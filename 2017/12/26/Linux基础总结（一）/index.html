@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/12 | 王杰强的博客</title>
+  <title>Linux基础总结（一） | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这个人很懒，什么都没有留下">
-<meta property="og:type" content="website">
-<meta property="og:title" content="王杰强的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2017/12/index.html">
+  <meta name="description" content="关键词：  Linux   磁盘分区 0. 概述接触Linux有接近一年多的时间了，从一开始对它的恐惧和陌生，到现在Linux成为我日常使用的操作系统，中间始终缺乏系统性地提炼和总结。于是我想认认真真地通读一遍《鸟哥的Linux私房菜–基础学习篇》，并结合自己在实际工作中遇到的相关问题，做一个Linux基础系列的总结。">
+<meta name="keywords" content="技术日志,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux基础总结（一）">
+<meta property="og:url" content="http://yoursite.com/2017/12/26/Linux基础总结（一）/index.html">
 <meta property="og:site_name" content="王杰强的博客">
-<meta property="og:description" content="这个人很懒，什么都没有留下">
+<meta property="og:description" content="关键词：  Linux   磁盘分区 0. 概述接触Linux有接近一年多的时间了，从一开始对它的恐惧和陌生，到现在Linux成为我日常使用的操作系统，中间始终缺乏系统性地提炼和总结。于是我想认认真真地通读一遍《鸟哥的Linux私房菜–基础学习篇》，并结合自己在实际工作中遇到的相关问题，做一个Linux基础系列的总结。 1. 计算机概论 计算机的五大单元包括输入单元、输出单元、CPU内部的控制单元">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/1200px-NewTux.svg.png">
+<meta property="og:updated_time" content="2017-12-27T16:39:00.693Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王杰强的博客">
-<meta name="twitter:description" content="这个人很懒，什么都没有留下">
+<meta name="twitter:title" content="Linux基础总结（一）">
+<meta name="twitter:description" content="关键词：  Linux   磁盘分区 0. 概述接触Linux有接近一年多的时间了，从一开始对它的恐惧和陌生，到现在Linux成为我日常使用的操作系统，中间始终缺乏系统性地提炼和总结。于是我想认认真真地通读一遍《鸟哥的Linux私房菜–基础学习篇》，并结合自己在实际工作中遇到的相关问题，做一个Linux基础系列的总结。 1. 计算机概论 计算机的五大单元包括输入单元、输出单元、CPU内部的控制单元">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/1200px-NewTux.svg.png">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
   
@@ -153,36 +157,186 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Linux基础总结（一）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/26/Linux基础总结（一）/" class="archive-article-date">
-  	<time datetime="2017-12-26T02:42:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/26/Linux基础总结（一）/">Linux基础总结（一）</a>
+    <h1 class="article-title" itemprop="name">
+      Linux基础总结（一）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/12/26/Linux基础总结（一）/" class="archive-article-date">
+  	<time datetime="2017-12-26T02:42:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>关键词：</strong>  Linux   磁盘分区</p>
+<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0. 概述"></a>0. 概述</h1><p>接触Linux有接近一年多的时间了，从一开始对它的恐惧和陌生，到现在Linux成为我日常使用的操作系统，中间始终缺乏系统性地提炼和总结。于是我想认认真真地通读一遍《鸟哥的Linux私房菜–基础学习篇》，并结合自己在实际工作中遇到的相关问题，做一个Linux基础系列的总结。<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/1200px-NewTux.svg.png" width="200px"></p>
+<h1 id="1-计算机概论"><a href="#1-计算机概论" class="headerlink" title="1. 计算机概论"></a>1. 计算机概论</h1><ul>
+<li>计算机的五大单元包括<strong>输入单元</strong>、<strong>输出单元</strong>、<strong>CPU内部的控制单元</strong>、<strong>CPU内部的算术逻辑单元</strong>与<strong>内存</strong>。</li>
+<li>数据会流进/流出内存，其命令是CPU所发布的控制命令，而CPU实际要处理的数据则完全来自于内存。</li>
+<li>CPU按照设计理念主要分为<strong>精简指令集（RISC）</strong>与<strong>复杂指令集（CISC）</strong>系统。</li>
+<li>CPU的外频指的是CPU与外部组件进行数据传输时的速度，倍频则是CPU内部用来加速工作性能的一个倍数，两者相乘是CPU的频率速度。</li>
+<li>主板芯片组一般分为<strong>北桥</strong>和<strong>南桥</strong>，<strong>北桥</strong>负责连接速度较快的CPU、内存与显卡等组件，<strong>南桥</strong>负责连接速度较慢的周边接口，包括硬盘、USB、网卡等。</li>
+<li>个人计算机的内存主要组件为<strong>动态随机访问内存</strong>（Dynamic Random Access Memory, DRAM），<strong>DRAM</strong>只有在通电时才能记录与使用，断电后数据丢失。CPU内部的第二层缓存则使用<strong>静态随机访问内存</strong>（Static Random Access Memory, SRAM），<strong>SRAM</strong>体积小，速度快，但价钱高。</li>
+<li><strong>BIOS</strong>（Basic Input Output System）是一套程序，这套程序是写死到主板上面的一个内存芯片中，这个内存芯片在没有通电时也能够将数据记录下来，那就是只读存储器（Read Only Memory, ROM）。</li>
+</ul>
+<h1 id="2-Linux的历史"><a href="#2-Linux的历史" class="headerlink" title="2. Linux的历史"></a>2. Linux的历史</h1><ol>
+<li>UNIX的前身是由贝尔实验室（Bell Lab.）的<a href="https://zh.wikipedia.org/wiki/%E8%82%AF%C2%B7%E6%B1%A4%E6%99%AE%E9%80%8A" target="_blank" rel="noopener">Ken Thompson</a>利用汇编语言写成的，后来在1971~1973年间由<a href="https://zh.wikipedia.org/wiki/%E4%B8%B9%E5%B0%BC%E6%96%AF%C2%B7%E9%87%8C%E5%A5%87" target="_blank" rel="noopener">Dennis Ritchie</a>以C程序语言进行改写，才称为UNIX。</li>
+<li>1977年由<a href="https://zh.wikipedia.org/wiki/%E6%AF%94%E5%B0%94%C2%B7%E4%B9%94%E4%BC%8A" target="_blank" rel="noopener">Bill Joy</a>释出BSD（Berkeley Software Distribution），这称为UNIX like的操作系统。</li>
+<li>1984年由<a href="https://zh.wikipedia.org/wiki/%E5%AE%89%E5%BE%B7%E9%B2%81%C2%B7%E6%96%AF%E5%9B%BE%E5%B0%94%E7%89%B9%C2%B7%E5%A1%94%E8%83%BD%E9%B2%8D%E5%A7%86" target="_blank" rel="noopener">Andrew Tannenbaum</a>制作出Minix操作系统，该系统可以提供源码及其软件。</li>
+<li>1984年由<a href="https://zh.wikipedia.org/wiki/%E7%90%86%E6%9F%A5%E5%BE%B7%C2%B7%E6%96%AF%E6%89%98%E6%9B%BC" target="_blank" rel="noopener">Richard Stallman</a>提倡GNU项目，倡导自由软件（Free Software），强调其软件可以自由地取得、复制、修改与再发行，并规范出GPL授权模式，任何GPL（General Public License）软件均不可单纯仅销售其软件，也不可修改其软件授权。</li>
+<li>1991年由芬兰人<a href="https://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9" target="_blank" rel="noopener">Linux Torvalds</a>开发出Linux操作系统。</li>
+<li>目前Linux内核的开发分为两种版本，分别是稳定版本的偶数版，如2.6.x，适用于商业与家用环境使用；一种是开发中版本，如2.5.x，适合开发特殊功能的环境。</li>
+<li>Linux distributions是”Linux Kernel + Free Software + Documentations(Tools) + 可完全安装的程序”所制成的一套完整的系统。</li>
+</ol>
+<h1 id="3-主机规划与磁盘分区"><a href="#3-主机规划与磁盘分区" class="headerlink" title="3. 主机规划与磁盘分区"></a>3. 主机规划与磁盘分区</h1><h2 id="3-1-Linux与硬件的搭配"><a href="#3-1-Linux与硬件的搭配" class="headerlink" title="3.1 Linux与硬件的搭配"></a>3.1 Linux与硬件的搭配</h2><p>硬件设备在Linux中的文件名：</p>
+<table>
+<thead>
+<tr>
+<th>设备</th>
+<th>设备在Linux内的文件名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IDE硬盘</td>
+<td>/dev/hd[a-d]</td>
+</tr>
+<tr>
+<td>SCSI/SATA/USB硬盘</td>
+<td>/dev/sd[a-p]</td>
+</tr>
+<tr>
+<td>当前CD ROM/DVD ROM</td>
+<td>/dev/cdrom</td>
+</tr>
+</tbody>
+</table>
+<p>更多的Linux内核支持的硬件设备与文件名，可参考<a href="https://www.kernel.org/pub/linux/docs/lanana/device-list/devices-2.6.txt" target="_blank" rel="noopener">连接</a>。</p>
+<h2 id="3-2-磁盘分区"><a href="#3-2-磁盘分区" class="headerlink" title="3.2 磁盘分区"></a>3.2 磁盘分区</h2><p>磁盘主要是由盘片、机械手臂、磁头与主轴马达所组成。数据写入的动作是在盘片上执行的。盘片又可细分为<strong>扇区</strong>（sector）与<strong>柱面</strong>（cylinder）两种单位，每个扇区大小为512bytes。</p>
+<p>每个扇区并不是一样重要。整块磁盘最重要的是第一扇区，其记录了两个重要的信息：</p>
+<ul>
+<li><strong>主引导分区</strong>（Master Boot Record，MBR）：可以安装引导加载程序的地方，有446bytes。</li>
+<li><strong>分区表</strong>（Partition Table）：记录整块硬盘分区的状态，有64bytes。</li>
+</ul>
+<p>在分区表所在的64bytes容量中，总共分为四组记录区，每组记录区记录了该区段的起始与结束的柱面号码。由于分区表就只有64bytes，最多只能容纳四个分区，这四个分区被成为主（Primary）或扩展（Extended）分区。</p>
+<p><strong>小总结：</strong></p>
+<ol>
+<li>“分区”的概念只是针对64bytes的分区表进行设置。</li>
+<li>硬盘默认的分区表仅能写入四组分区信息。</li>
+<li>这四组分区信息我们成为主（Primary）或扩展（Extended）分区。</li>
+<li>分区的最小单位为柱面（cylinder）。</li>
+</ol>
+<p><strong>Q:</strong>那么为什么要对磁盘进行分区？</p>
+<ol>
+<li>分区保证了磁盘内数据的安全性。每个分区内的数据是分开的。所以如果将某个分区的数据进行重新调整时，并不会影响到其它分区内的数据。</li>
+<li>分区提高了系统的性能。分区可以缩小从磁盘内读取数据的柱面范围，从而加快了数据的读取速度。</li>
+</ol>
+<p><strong>Q:</strong>那么是不是一块硬盘最多只能分成四个分区？</p>
+<p>当然不是，我们通过扩展分区来记录更多的分区信息。扩展分区的目的是使用额外的扇区来记录分区信息，扩展分区本身并不能被拿来格式化。由扩展分区继续切出来的分区，被成为逻辑分区。</p>
+<p><strong>小总结：</strong></p>
+<ol>
+<li>主分区与扩展分区最多可以有四个（硬盘的限制）。</li>
+<li>扩展分区最多只能有一个（操作系统的限制）。</li>
+<li>逻辑分区是由扩展分区持续切割出来的分区。</li>
+<li>能够被格式化后作为数据访问的分区为主分区与逻辑分区，扩展分区无法格式化。</li>
+</ol>
+<p><strong>开机流程到操作系统之前的流程：</strong></p>
+<ol>
+<li>BIOS: 开机主动执行的韧体，找到第一个能够开机的设备。</li>
+<li>MBR: 第一个可开机设备的第一个扇区内的主引导分区块，内包含引导加载程序。</li>
+<li>引导加载程序（Boot Loader）：用来读取内核文件并将其执行的软件。</li>
+<li>内核文件：开始操作系统的功能。</li>
+</ol>
+<p><strong>挂载的概念</strong>：”挂载”就是利用一个目录当成进入点，将磁盘分区的数据放置在该目录下，即，进入该目录就可以读取该分区，这个操作我们称为”挂载”，进入点的目录我们称之为”挂载点”。</p>
+<h1 id="4-Linux在线求助"><a href="#4-Linux在线求助" class="headerlink" title="4. Linux在线求助"></a>4. Linux在线求助</h1><h2 id="4-1-Linux中重要的热键"><a href="#4-1-Linux中重要的热键" class="headerlink" title="4.1 Linux中重要的热键"></a>4.1 Linux中重要的热键</h2><ol>
+<li>[Tab]按键<blockquote>
+<p>[Tab]具有”命令补全”与”文件补齐”的功能。<br>[Tab]接在一串命令的第一个命令的后面，则为”命令补全”。<br>[Tab]接在一串命令的第二个命令以后时，则为”文件补齐”。</p>
+</blockquote>
+</li>
+<li>[Ctrl]-c按键<br>[Ctrl]-c是中断目前程序的按键。</li>
+<li>[Ctrl]-d按键<br>[Ctrl]-d代表着键盘输入结束，直接离开文字界面（相当于输入exit）。</li>
+</ol>
+<h2 id="4-2-man-page"><a href="#4-2-man-page" class="headerlink" title="4.2 man page"></a>4.2 man page</h2><p>当想要在命令行里查询相关命令的使用方法，可以使用man命令来查看。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ man date</span><br></pre></td></tr></table></figure></p>
+<p>命令行显示的结果为DATE(1)，括号里的数字是有含义的，具体含义如表所示：</p>
+<table>
+<thead>
+<tr>
+<th>代号</th>
+<th>代表内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>用户在shell环境中可以操作的命令或者是可执行文件</td>
+</tr>
+<tr>
+<td>2</td>
+<td>系统内核可调用的函数与工具等</td>
+</tr>
+<tr>
+<td>3</td>
+<td>一些常用的函数与函数库，大部分为C的函数库</td>
+</tr>
+<tr>
+<td>4</td>
+<td>设备文件的说明，通常在/dev下的文件</td>
+</tr>
+<tr>
+<td>5</td>
+<td>配置文件或者是某些文件的格式</td>
+</tr>
+<tr>
+<td>6</td>
+<td>游戏</td>
+</tr>
+<tr>
+<td>7</td>
+<td>惯例与协议，如Linux文件系统、网络协议、ASCII code等</td>
+</tr>
+<tr>
+<td>8</td>
+<td>系统管理员可用的管理命令</td>
+</tr>
+<tr>
+<td>9</td>
+<td>与kernel有关的文件</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-3-正确的关机命令使用"><a href="#4-3-正确的关机命令使用" class="headerlink" title="4.3 正确的关机命令使用"></a>4.3 正确的关机命令使用</h2><ul>
+<li>将数据同步写入硬盘中的命令：sync</li>
+<li>惯用的关机命令：shutdown</li>
+<li>重启、关机： reboot, halt, poweroff</li>
+</ul>
+<p><strong>惯用的关机命令：</strong> shutdown</p>
+<p>shutdown可以达成如下的工作：</p>
+<ul>
+<li>可以自由选择关机模式：使要关机、重启或进入单用户操作模式均可。</li>
+<li>可以设置关机时间：可以设置成现在立刻关机，也可以设置某一特定时间才关机。</li>
+<li>可以自定义关机消息：在关机之前，可以将自己设置的消息传送给在线用户。</li>
+<li>可以仅发出警告消息：有时要告诉用户某段时间要注意一下，这个时候可以使用shutdown来通知用户，但却不是真的要关机。</li>
+<li>可以选择是否要用fsck检查文件系统。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ shutdown [-t 秒] [-krhfFnc] 时间 [警告消息]</span><br><span class="line">-t sec ：-t后面加秒数，几秒后关机</span><br><span class="line">-k     ：不是真的关机，只是发送警告消息</span><br><span class="line">-r     ：在将系统的服务停掉之后就重启（常用）</span><br><span class="line">-h     ：将系统的服务停掉之后，立刻关机（常用）</span><br><span class="line">-f     ：关机并开机之后，强制略过fsck的磁盘检查</span><br><span class="line">-F     ：系统重启之后，强制进行fsck的磁盘检查</span><br><span class="line">-n     ：不经过init程序，直接以shutdown的功能来关机</span><br><span class="line">-c     ：取消已经在进行的shutdown命令内容</span><br></pre></td></tr></table></figure>
+<p>举例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ shutdown -r +30 &apos;The system will reboot&apos;</span><br><span class="line">三十分钟后系统会重启，并将消息显示给所有在线的用户</span><br><span class="line">$ shutdown -k now &apos;The system will reboot&apos;</span><br><span class="line">仅发出警告，系统并不会关机</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -198,7 +352,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -211,74 +365,104 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/26/Linux基础总结（一）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/" class="archive-article-date">
-  	<time datetime="2017-12-04T01:22:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ubuntu16.04安装Caffe(CPU_only)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/">Ubuntu16.04安装Caffe(CPU_only)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Ubuntu16.04</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Caffe</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -301,8 +485,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
