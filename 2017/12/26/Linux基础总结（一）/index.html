@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Linux基础总结（一） | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关键词：  Linux   磁盘分区 0. 概述接触Linux有接近一年多的时间了，从一开始对它的恐惧和陌生，到现在Linux成为我日常使用的操作系统，中间始终缺乏系统性地提炼和总结。于是我想认认真真地通读一遍《鸟哥的Linux私房菜–基础学习篇》，并结合自己在实际工作中遇到的相关问题，做一个Linux基础系列的总结。">
-<meta name="keywords" content="技术日志,Linux">
+  <meta name="description" content="关键词：  Linux   磁盘分区 0. 概述接触Linux有接近一年多的时间了，从一开始对它的恐惧和陌生，到现在Linux成为我日常使用的操作系统，虽然渐渐上手并熟悉，但中间始终缺乏系统性地提炼和总结。于是我想认认真真地通读一遍《鸟哥的Linux私房菜–基础学习篇》，并结合自己在实际工作中遇到的相关问题，做一个Li">
+<meta name="keywords" content="Linux,技术日志">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux基础总结（一）">
 <meta property="og:url" content="http://yoursite.com/2017/12/26/Linux基础总结（一）/index.html">
 <meta property="og:site_name" content="王杰强的博客">
-<meta property="og:description" content="关键词：  Linux   磁盘分区 0. 概述接触Linux有接近一年多的时间了，从一开始对它的恐惧和陌生，到现在Linux成为我日常使用的操作系统，中间始终缺乏系统性地提炼和总结。于是我想认认真真地通读一遍《鸟哥的Linux私房菜–基础学习篇》，并结合自己在实际工作中遇到的相关问题，做一个Linux基础系列的总结。 1. 计算机概论 计算机的五大单元包括输入单元、输出单元、CPU内部的控制单元">
+<meta property="og:description" content="关键词：  Linux   磁盘分区 0. 概述接触Linux有接近一年多的时间了，从一开始对它的恐惧和陌生，到现在Linux成为我日常使用的操作系统，虽然渐渐上手并熟悉，但中间始终缺乏系统性地提炼和总结。于是我想认认真真地通读一遍《鸟哥的Linux私房菜–基础学习篇》，并结合自己在实际工作中遇到的相关问题，做一个Linux基础系列的总结。 1. 计算机概论 计算机的五大单元包括输入单元、输出单元">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/1200px-NewTux.svg.png">
-<meta property="og:updated_time" content="2017-12-27T16:39:00.693Z">
+<meta property="og:updated_time" content="2017-12-28T09:18:53.218Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux基础总结（一）">
-<meta name="twitter:description" content="关键词：  Linux   磁盘分区 0. 概述接触Linux有接近一年多的时间了，从一开始对它的恐惧和陌生，到现在Linux成为我日常使用的操作系统，中间始终缺乏系统性地提炼和总结。于是我想认认真真地通读一遍《鸟哥的Linux私房菜–基础学习篇》，并结合自己在实际工作中遇到的相关问题，做一个Linux基础系列的总结。 1. 计算机概论 计算机的五大单元包括输入单元、输出单元、CPU内部的控制单元">
+<meta name="twitter:description" content="关键词：  Linux   磁盘分区 0. 概述接触Linux有接近一年多的时间了，从一开始对它的恐惧和陌生，到现在Linux成为我日常使用的操作系统，虽然渐渐上手并熟悉，但中间始终缺乏系统性地提炼和总结。于是我想认认真真地通读一遍《鸟哥的Linux私房菜–基础学习篇》，并结合自己在实际工作中遇到的相关问题，做一个Linux基础系列的总结。 1. 计算机概论 计算机的五大单元包括输入单元、输出单元">
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/1200px-NewTux.svg.png">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
@@ -178,7 +178,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><strong>关键词：</strong>  Linux   磁盘分区</p>
-<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0. 概述"></a>0. 概述</h1><p>接触Linux有接近一年多的时间了，从一开始对它的恐惧和陌生，到现在Linux成为我日常使用的操作系统，中间始终缺乏系统性地提炼和总结。于是我想认认真真地通读一遍《鸟哥的Linux私房菜–基础学习篇》，并结合自己在实际工作中遇到的相关问题，做一个Linux基础系列的总结。<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/1200px-NewTux.svg.png" width="200px"></p>
+<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0. 概述"></a>0. 概述</h1><p>接触Linux有接近一年多的时间了，从一开始对它的恐惧和陌生，到现在Linux成为我日常使用的操作系统，虽然渐渐上手并熟悉，但中间始终缺乏系统性地提炼和总结。于是我想认认真真地通读一遍《鸟哥的Linux私房菜–基础学习篇》，并结合自己在实际工作中遇到的相关问题，做一个Linux基础系列的总结。<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/1200px-NewTux.svg.png" width="200px"></p>
 <h1 id="1-计算机概论"><a href="#1-计算机概论" class="headerlink" title="1. 计算机概论"></a>1. 计算机概论</h1><ul>
 <li>计算机的五大单元包括<strong>输入单元</strong>、<strong>输出单元</strong>、<strong>CPU内部的控制单元</strong>、<strong>CPU内部的算术逻辑单元</strong>与<strong>内存</strong>。</li>
 <li>数据会流进/流出内存，其命令是CPU所发布的控制命令，而CPU实际要处理的数据则完全来自于内存。</li>
@@ -342,11 +342,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
         		</li>
       		
 		</ul>
@@ -427,6 +427,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2017/12/28/Linux基础总结（二）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Linux基础总结（二）
+        
+      </div>
+    </a>
+  
   
     <a href="/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Ubuntu16.04安装Caffe(CPU_only)</div>
@@ -472,7 +481,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 王杰强
+    		&copy; 2018 王杰强
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -576,11 +585,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">技术日志</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -589,10 +602,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
             
             <div class="clearfix"></div>
