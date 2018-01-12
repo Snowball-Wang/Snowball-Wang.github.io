@@ -6,23 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Ubuntu16.04安装Caffe(CPU_only) | 王杰强的博客</title>
+  <title>Linux基础总结（三） | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关键词： Ubuntu16.04  Caffe  CPU_only 0. 概述在Linux系统下安装Caffe是一个很繁琐的过程，而且很有可能由于安装文档内容的欠缺或者用户在安装过程中的疏忽，将会导致各种各样令人崩溃的问题。我逛遍了CSDN等各大博客网站，尝试了各种版本的安装教程，几乎没有人把安装流程写得清晰明确。于是">
-<meta name="keywords" content="技术日志,Ubuntu16.04,Caffe">
+  <meta name="description" content="关键词： Linux  目录管理  find命令 0. 前言想要熟练使用Linux，首先得过的坎便是熟悉Linux命令行。命令行中很多的操作都是关于如何管理文件和目录，包括创建和删除目录、在不同的目录间切换、查找文件等。本文将对常用的Linux目录与文件管理命令进行总结。 1. 文件与目录管理1.1 绝对路径与相对路径">
+<meta name="keywords" content="Linux,技术日志">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu16.04安装Caffe(CPU_only)">
-<meta property="og:url" content="http://yoursite.com/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/index.html">
+<meta property="og:title" content="Linux基础总结（三）">
+<meta property="og:url" content="http://yoursite.com/2018/01/08/Linux基础总结（三）/index.html">
 <meta property="og:site_name" content="王杰强的博客">
-<meta property="og:description" content="关键词： Ubuntu16.04  Caffe  CPU_only 0. 概述在Linux系统下安装Caffe是一个很繁琐的过程，而且很有可能由于安装文档内容的欠缺或者用户在安装过程中的疏忽，将会导致各种各样令人崩溃的问题。我逛遍了CSDN等各大博客网站，尝试了各种版本的安装教程，几乎没有人把安装流程写得清晰明确。于是我决定把自己在Ubuntu16.04成功安装CPU_only版本的Caffe的流">
+<meta property="og:description" content="关键词： Linux  目录管理  find命令 0. 前言想要熟练使用Linux，首先得过的坎便是熟悉Linux命令行。命令行中很多的操作都是关于如何管理文件和目录，包括创建和删除目录、在不同的目录间切换、查找文件等。本文将对常用的Linux目录与文件管理命令进行总结。 1. 文件与目录管理1.1 绝对路径与相对路径 绝对路径： 路径的写法必须从根目录写起，如/home/snowball/cod">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/make_runtest_success.png">
-<meta property="og:image" content="http://yoursite.com/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/import_success.png">
-<meta property="og:updated_time" content="2017-12-05T03:16:45.880Z">
+<meta property="og:updated_time" content="2018-01-12T09:16:34.946Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu16.04安装Caffe(CPU_only)">
-<meta name="twitter:description" content="关键词： Ubuntu16.04  Caffe  CPU_only 0. 概述在Linux系统下安装Caffe是一个很繁琐的过程，而且很有可能由于安装文档内容的欠缺或者用户在安装过程中的疏忽，将会导致各种各样令人崩溃的问题。我逛遍了CSDN等各大博客网站，尝试了各种版本的安装教程，几乎没有人把安装流程写得清晰明确。于是我决定把自己在Ubuntu16.04成功安装CPU_only版本的Caffe的流">
-<meta name="twitter:image" content="http://yoursite.com/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/make_runtest_success.png">
+<meta name="twitter:title" content="Linux基础总结（三）">
+<meta name="twitter:description" content="关键词： Linux  目录管理  find命令 0. 前言想要熟练使用Linux，首先得过的坎便是熟悉Linux命令行。命令行中很多的操作都是关于如何管理文件和目录，包括创建和删除目录、在不同的目录间切换、查找文件等。本文将对常用的Linux目录与文件管理命令进行总结。 1. 文件与目录管理1.1 绝对路径与相对路径 绝对路径： 路径的写法必须从根目录写起，如/home/snowball/cod">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
   
@@ -158,91 +155,126 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Ubuntu16-04安装Caffe-CPU-only" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Linux基础总结（三）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Ubuntu16.04安装Caffe(CPU_only)
+      Linux基础总结（三）
     </h1>
   
 
         
-        <a href="/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/" class="archive-article-date">
-  	<time datetime="2017-12-04T01:22:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-04</time>
+        <a href="/2018/01/08/Linux基础总结（三）/" class="archive-article-date">
+  	<time datetime="2018-01-08T02:53:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>关键词：</strong> Ubuntu16.04  Caffe  CPU_only</p>
-<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0. 概述"></a>0. 概述</h1><p>在Linux系统下安装Caffe是一个很繁琐的过程，而且很有可能由于安装文档内容的欠缺或者用户在安装过程中的疏忽，将会导致各种各样令人崩溃的问题。我逛遍了CSDN等各大博客网站，尝试了各种版本的安装教程，几乎没有人把安装流程写得清晰明确。于是我决定把自己在Ubuntu16.04成功安装CPU_only版本的Caffe的流程记录下来，以便以后不时之需。虽然不是学习Caffe的最好版本（一般情况下肯定是GPU版本的Caffe的运行速度更快），但对于我等想要了解Caffe的初学者已经足够。</p>
-<p><strong>推荐：</strong>最好使用洁净版的Ubuntu16.04系统，这里是<a href="https://www.linuxtechi.com/install-ubuntu-16-04-with-screenshots/" title="Ubuntu16.04安装教程" target="_blank" rel="noopener">安装教程</a>。</p>
-<h1 id="1-安装OpenCV"><a href="#1-安装OpenCV" class="headerlink" title="1. 安装OpenCV"></a>1. 安装OpenCV</h1><p>Caffe需要图像处理库OpenCV，所以在安装Caffe之前我们需要安装OpenCV。</p>
-<h2 id="1-1-安装OpenCV所需包"><a href="#1-1-安装OpenCV所需包" class="headerlink" title="1.1 安装OpenCV所需包"></a>1.1 安装OpenCV所需包</h2><ul>
-<li>GCC 4.4.x或更新版本</li>
-<li>CMake 2.6或更高版本</li>
-<li>Git</li>
-<li>GTK+2.x或更新版本，包含头部（libgtk2.0-dev）</li>
-<li>pkg-config</li>
-<li>Python 2.6或者更新版本，Numpy 1.5或者更新版本，两者都需要开发者包（python-dev，python-numpy）</li>
-<li>ffmpeg或者libav开发工具包：libavcodec-dev，libavformat-dev，libswscale-dev</li>
-<li>[optional] libtbb2 libtbb-dev</li>
-<li>[optional] libdc1394 2.x</li>
-<li>[optional] libjpeg-dev，libpng-dev，libtiff-dev，libjasper-dev，libdc1394-22-dev</li>
+        <p><strong>关键词：</strong> Linux  目录管理  find命令</p>
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>想要熟练使用Linux，首先得过的坎便是熟悉Linux命令行。命令行中很多的操作都是关于如何管理文件和目录，包括创建和删除目录、在不同的目录间切换、查找文件等。本文将对常用的Linux目录与文件管理命令进行总结。</p>
+<h1 id="1-文件与目录管理"><a href="#1-文件与目录管理" class="headerlink" title="1. 文件与目录管理"></a>1. 文件与目录管理</h1><h2 id="1-1-绝对路径与相对路径"><a href="#1-1-绝对路径与相对路径" class="headerlink" title="1.1 绝对路径与相对路径"></a>1.1 绝对路径与相对路径</h2><ul>
+<li><strong>绝对路径：</strong> 路径的写法必须从<strong>根目录</strong>写起，如<code>/home/snowball/code</code>这个目录。</li>
+<li><strong>相对路径：</strong>从<code>/home/snowball/code</code>切换到<code>/home/snowball/caffe</code>这个目录下时，可以写成<code>cd ../caffe</code>，这就是相对路径的写法。</li>
 </ul>
-<p>这些包的安装可通过在终端敲入以下命令实现：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential</span><br><span class="line">sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev</span><br><span class="line">sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev</span><br></pre></td></tr></table></figure>
-<h2 id="1-2-获取OpenCV源代码"><a href="#1-2-获取OpenCV源代码" class="headerlink" title="1.2 获取OpenCV源代码"></a>1.2 获取OpenCV源代码</h2><p>在1.1中我们已经完成了Git的安装，可在终端敲入以下命令将OpenCV的源代码克隆到本地：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/&lt;相应的工作目录&gt; #以我的为例，我的目录为/home/snowball</span><br><span class="line">git clone https://github.com/opencv/opencv.git</span><br></pre></td></tr></table></figure>
-<h2 id="1-3-使用CMake编译OpenCV"><a href="#1-3-使用CMake编译OpenCV" class="headerlink" title="1.3 使用CMake编译OpenCV"></a>1.3 使用CMake编译OpenCV</h2><ol>
-<li>创建一个临时文件夹（比如取名为<build>目录），这个文件夹会放置你编译产生的Makefiles、项目文件（project files）、目标文件（object files）以及输出二进制文件（output binaries）。</build></li>
-<li>进入<build>目录文件夹，敲入以下命令：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake [&lt;可选参数&gt;] &lt;OpenCV源代码目录&gt;</span><br></pre></td></tr></table></figure>
-</build></li>
-</ol>
-<p>举例来说：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~/opencv #以我的为例，我的目录是/home/snowball/opencv-master</span><br><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line">cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..</span><br></pre></td></tr></table></figure>
+<p>常用的特殊目录：</p>
+<blockquote>
+<p>.  代表此目录<br>.. 代表上一层目录<br>-  代表上一步使用的工作目录<br>~ 代表当前用户身份所在的主文件夹<br>~account 代表account用户的主文件夹（我的是snowball）</p>
+</blockquote>
+<p><strong>注：</strong> </p>
 <ol>
-<li>返回上一层目录（以我的为例，即为/home/snowball/opencv-master），执行以下命令：</li>
+<li>所有目录下面都会存在两个目录：<code>.</code>表示此目录，<code>..</code>表示上一层目录。</li>
+<li>根目录的上一层目录<code>..</code>与根目录本身<code>.</code>是同一个目录</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-<p><strong>注意：</strong> 如果上述第2步中的-D不起作用的话，可使用以下命令代替：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local ..</span><br></pre></td></tr></table></figure></p>
-<h1 id="2-安装Caffe依赖包"><a href="#2-安装Caffe依赖包" class="headerlink" title="2. 安装Caffe依赖包"></a>2. 安装Caffe依赖包</h1><p>Caffe的安装依赖于以下命令行中的包，所以要在安装Caffe之前完成这些包的安装。一般来说安装这些包不会出现错误提示，但如果之前安装过Caffe导致操作系统留有破损的依赖包，就很有可能出现错误。如果出现错误，推荐使用洁净版的Ubuntu16.04从头开始。相关命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y --no-install-recommends libboost-all-dev</span><br><span class="line">sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libboost-all-dev libhdf5-serial-dev libgflags-dev libgoogle-glog-dev liblmdb-dev protobuf-compiler</span><br><span class="line"></span><br><span class="line">sudo apt-get install libopenblas-dev</span><br><span class="line">sudo apt-get install libatlas-base-dev</span><br></pre></td></tr></table></figure>
-<h1 id="3-克隆Caffe源代码"><a href="#3-克隆Caffe源代码" class="headerlink" title="3. 克隆Caffe源代码"></a>3. 克隆Caffe源代码</h1><p>接下来需要从GitHub上将Caffe的源代码克隆到本地，终端中执行以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~/&lt;相应的工作目录&gt; #以我的为例，我的目录是/home/snowball</span><br><span class="line">git clone https://github.com/BVLC/caffe</span><br><span class="line">cd caffe</span><br><span class="line">cp Makefile.config.example Makefile.config</span><br></pre></td></tr></table></figure>
-<h1 id="4-安装Python包"><a href="#4-安装Python包" class="headerlink" title="4. 安装Python包"></a>4. 安装Python包</h1><p>这一步完成pycaffe的配置，终端中执行以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python-pip python-dev build-essential</span><br><span class="line"></span><br><span class="line">sudo pip install scikit-image protobuf</span><br><span class="line">cd python</span><br><span class="line">for req in $(cat requirements.txt); do sudo pip install $req; done</span><br></pre></td></tr></table></figure>
-<h1 id="5-修改配置文件"><a href="#5-修改配置文件" class="headerlink" title="5. 修改配置文件"></a>5. 修改配置文件</h1><p>由于我们是工作在一个CPU_only版本下的Caffe，我们必须通过修改配置文件来通知Caffe我们没有GPU。同时我们也要在配置文件里说明我们所使用的OpenCV的版本。打开配置文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd .. #回到上一目录级</span><br><span class="line">sudo gedit Makefile.config #用gedit打开配置文件</span><br></pre></td></tr></table></figure>
-<p>这时配置文件已经打开，我们把相应的注释部分给去掉：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># CPU-only switch (uncomment to build without GPU support).</span><br><span class="line">CPU_ONLY := 1</span><br><span class="line">...</span><br><span class="line"># Uncomment if you&apos;re using OpenCV 3</span><br><span class="line">OPENCV_VERSION := 3</span><br></pre></td></tr></table></figure>
-<p>同时，我们也需要将hdf5的库添加进INCLUDE_DIRS和LIBRARY_DIRS的变量中，这样会避免随后编译Caffe时出错。</p>
-<p>Makefile.config原来的INCLUDE_DIRS和LIBRARY_DIRS:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Whatever else you find you need goes here.</span><br><span class="line">INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include</span><br><span class="line">LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib</span><br></pre></td></tr></table></figure></p>
-<p>修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Whatever else you find you need goes here.</span><br><span class="line">INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial</span><br><span class="line">LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/hdf5/serial</span><br></pre></td></tr></table></figure></p>
-<h1 id="6-修改Makefile文件"><a href="#6-修改Makefile文件" class="headerlink" title="6. 修改Makefile文件"></a>6. 修改Makefile文件</h1><p>接下来我们需要修改Makefile文件，打开Makefile文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit Makefile</span><br></pre></td></tr></table></figure></p>
-<p>对文件内的两处进行如下修改：<br>将<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NVCCFLAGS += -ccbin=$(CXX) -Xcompiler -fPIC $(COMMON_FLAGS)</span><br></pre></td></tr></table></figure></p>
-<p>修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NVCCFLAGS += -D_FORCE_INLINES -ccbin=$(CXX) -Xcompiler -fPIC $(COMMON_FLAGS)</span><br></pre></td></tr></table></figure></p>
-<p>将<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LIBRARIES += glog gflags protobuf boost_system boost_filesystem m hdf5_hl hdf5</span><br></pre></td></tr></table></figure></p>
-<p>修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LIBRARIES += glog gflags protobuf boost_system boost_filesystem m hdf5_serial_hl hdf5_serial</span><br></pre></td></tr></table></figure></p>
-<h1 id="7-对文件进行链接"><a href="#7-对文件进行链接" class="headerlink" title="7. 对文件进行链接"></a>7. 对文件进行链接</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /usr/lib/x86_64-linux-gnu/libhdf5_serial.so.10.1.0 /usr/lib/x86_64-linux-gnu/libhdf5.so</span><br><span class="line">sudo ln -s /usr/lib/x86_64-linux-gnu/libhdf5_serial_hl.so.10.0.2 /usr/lib/x86_64-linux-gnu/libhdf5_hl.so</span><br></pre></td></tr></table></figure>
-<p><strong>注意：</strong>我的版本是<code>libhdf5_serial.so</code>对应的是10.1.0版本，<code>libhdf5_serial_hl.so</code>对应的是10.0.2版本。如果版本号和我的不同，则需调整相应的版本号。</p>
-<h1 id="8-编译Caffe"><a href="#8-编译Caffe" class="headerlink" title="8. 编译Caffe"></a>8. 编译Caffe</h1><p>终于到了最后一步–编译。返回到Caffe的根目录下，在终端执行以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">make all</span><br><span class="line">make test</span><br><span class="line">make runtest</span><br></pre></td></tr></table></figure>
-<p>如果一切正常，将会看到同下图相同的结果：</p>
-<p><img src="/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/make_runtest_success.png" alt="make_runtest_success" title="Caffe编译成功"></p>
-<h1 id="9-编译Caffe-Python接口"><a href="#9-编译Caffe-Python接口" class="headerlink" title="9. 编译Caffe-Python接口"></a>9. 编译Caffe-Python接口</h1><p>配置pycaffe，在终端中输入以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">make pycaffe</span><br><span class="line">echo export PYTHONPATH=/path/to/caffe/python:$PYTHONPATH &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
-<p>接下来在Python终端导入Caffe模块：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python</span><br><span class="line">&gt;&gt;&gt;import caffe</span><br></pre></td></tr></table></figure></p>
-<p><img src="/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/import_success.png" alt="import_success" title="导入Caffe成功"></p>
-<p>至此，Ubuntu16.04安装Caffe(CPU_only)完成。</p>
+<h2 id="1-2-常用目录命令"><a href="#1-2-常用目录命令" class="headerlink" title="1.2 常用目录命令"></a>1.2 常用目录命令</h2><ul>
+<li><strong>cd</strong>：切换目录</li>
+<li><strong>pwd</strong>：显示当前目录（-P 显示当前路径，而非链接（link）路径）</li>
+<li><strong>mkdir</strong>：新建目录（-m 配置文件的权限，-p 递归创建新的目录）</li>
+<li><strong>rmdir</strong>：删除空目录（-p 递归删除空目录）</li>
+</ul>
+<h2 id="1-3-PATH变量"><a href="#1-3-PATH变量" class="headerlink" title="1.3 $PATH变量"></a>1.3 $PATH变量</h2><p>PATH变量是由一堆目录组成，每个目录中间用冒号(:)来隔开，每个目录有顺序之分。PATH的作用是用户在命令行敲入如<code>ls</code>指令时，通过PATH寻找<code>ls</code>所在路径，执行<code>ls</code>指令，相当于Windows下系统变量的设置。如果想要把目录添加加入PATH中，可执行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ PATH=&quot;$PATH&quot;:/home/snowball</span><br></pre></td></tr></table></figure></p>
+<h2 id="1-4-常用文件命令"><a href="#1-4-常用文件命令" class="headerlink" title="1.4 常用文件命令"></a>1.4 常用文件命令</h2><ol>
+<li><strong>ls</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ ls [-aAdfFhilnrRSt] 目录名称</span><br><span class="line">$ ls [--color=&#123;never,auto,always&#125;] 目录名称</span><br><span class="line">$ ls [--full-time] 目录名称</span><br><span class="line">参数（加粗表示常用）：</span><br><span class="line">-a: 列出全部文件，包含隐藏文件（常用）</span><br><span class="line">-A: 列出全部文件，但不包括`.`和`..`这两个目录</span><br><span class="line">-d: 仅列出目录本身，不列出目录内的文件数据（常用）</span><br><span class="line">-f: 直接列出结果，不进行排序（ls默认以文件名排序）</span><br><span class="line">-F: 根据文件、目录等信息给予附加数据结构</span><br><span class="line">-h: 以人可读的方式显示文件容量（GB，KB）</span><br><span class="line">-i: 列出inode号码</span><br><span class="line">-l: 列出长数据串，包含文件属性与权限等数据（常用）</span><br><span class="line">-n: 列出UID和GID</span><br><span class="line">-r: 反向输出排序结果</span><br><span class="line">-R: 递归输出目录下所有内容，注意和-a的区别</span><br><span class="line">-S: 以文件容量大小排序</span><br><span class="line">-t: 以时间（ctime）排序</span><br><span class="line">--color=never: 不依据文件特性给予颜色显示</span><br><span class="line">--color=always: 显示颜色</span><br><span class="line">--color=auto: 系统自行判断</span><br><span class="line">--full-time: 以完整时间模式输出</span><br><span class="line">--time=&#123;atime, ctime&#125;: 输出atime和ctime时间</span><br><span class="line">常用组合参数:</span><br><span class="line">-alh: 以人可读的方式列出全部文件的长数据</span><br><span class="line">-clt: 按照ctime时间排序输出目录内容</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><code>ls</code>最常用的的参数还是<code>-l</code>参数。Ubuntu在默认的情况下，可使用<code>ll</code>来表示<code>ls -l</code>。</p>
+<ol>
+<li><strong>cp</strong></li>
+</ol>
+<p>cp指令，顾名思义，即为copy复制。但cp指令还可以创建快捷方式，更新旧文件，以及复制整个目录等功能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ cp [-adfilprsu] 源文件（source） 目标文件(destination)</span><br><span class="line">$ cp [options] source1 source2 source3 ... directory</span><br><span class="line">参数：</span><br><span class="line">-a: 相当于-pdr，即将文件的所有特性都复制过来（常用）</span><br><span class="line">-d: 若源文件为链接文件（link file），则复制的是链接文件</span><br><span class="line">-f: 强制复制</span><br><span class="line">-i: 若目标文件已经存在，在覆盖时会先询问操作的进行（常用）</span><br><span class="line">-l: 进行硬链接的链接文件</span><br><span class="line">-p: 连同文件的属性一同复制</span><br><span class="line">-r: 递归持续复制（常用）</span><br><span class="line">-s: 复制为符号链接文件（symbolic link），即&quot;快捷方式&quot;</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，<code>cp -a</code>可以复制文件的相关权限与时间属性，但是无法更改所有者、用户组的相关信息。</p>
+<ol>
+<li><strong>rm</strong></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ rm [-fir] 文件或目录</span><br><span class="line">参数：</span><br><span class="line">-f: 强制删除，不会出现警告信息</span><br><span class="line">-i: 互动模式，删除前会询问用户是否进行操作</span><br><span class="line">-r: 递归删除，删除目录中的所有内容</span><br></pre></td></tr></table></figure>
+<p>如果文件名的开头含有<code>-</code>，诸如名为<code>-wang</code>的文件，使用<code>rm</code>指令会出现错误，这时可使用<code>rm ./-wang</code>来达到删除的目的。</p>
+<ol>
+<li><strong>mv</strong></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ mv [-fiu] source destination</span><br><span class="line">$ mv [options] source1 source2 source3 ... directory</span><br><span class="line">参数：</span><br><span class="line">-f: 强制</span><br><span class="line">-i: 目标文件若存在，会询问是否直接覆盖</span><br><span class="line">-u: 目标文件已经存在，source较新，则会更新</span><br></pre></td></tr></table></figure>
+<p><code>mv</code>还可以用做对文件名进行重命名，<code>mv test test1</code>这条指令便可以完成对文件名test的修改。</p>
+<h2 id="1-5-常见文件查阅命令"><a href="#1-5-常见文件查阅命令" class="headerlink" title="1.5 常见文件查阅命令"></a>1.5 常见文件查阅命令</h2><ul>
+<li><strong>cat</strong>: 由第一行开始显示文件内容</li>
+<li><strong>tac</strong>: 由最后一行开始显示（tac可以看作是cat的倒写）</li>
+<li><strong>nl</strong>: 显示的时候，顺便输出行号</li>
+<li><strong>more</strong>: 一页一页地显示文本内容</li>
+<li><strong>less</strong>: 与more类似，但可向前翻页</li>
+<li><strong>head</strong>: 只显示头几行文件（默认情况下只显示前10行）</li>
+<li><strong>tail</strong>: 只显示结尾几行文件（默认情况下只显示结尾10行）</li>
+<li><strong>od</strong>: 以二进制方式读取文件内容（-tc 可将数据按照ASCII方式显示）</li>
+</ul>
+<h1 id="2-文件与目录权限"><a href="#2-文件与目录权限" class="headerlink" title="2. 文件与目录权限"></a>2. 文件与目录权限</h1><h2 id="2-1-文件默认权限：umask"><a href="#2-1-文件默认权限：umask" class="headerlink" title="2.1 文件默认权限：umask"></a>2.1 文件默认权限：umask</h2><p><strong>umask</strong>就是指定”目前用户在新建文件夹或目录时的权限默认值”。文件与目录的默认属性为：</p>
+<ul>
+<li><p>若用户创建”文件”则默认没有可执行（x）权限，即只有r、w这两个选项，则默认权限如下：<code>-rw-rw-rw-</code></p>
+</li>
+<li><p>若用户新建”目录”，则权限’x’与是否进入此目录有关，所以默认为所有权限开放，则默认权限如下：<code>drwxrwxrwx</code></p>
+</li>
+</ul>
+<p>当umask为002时，用户新建文件的默认权限为<code>-rw-r--r--r</code>，用户新建目录的默认权限为<code>drwxrwxr-x</code>。<br><strong>那么umask有什么作用？</strong>设想这样一种场景，用户A与用户B在公司的同一个小组工作，这时有新的研发任务，主管分别为用户A和用户B分配了两个Linux用户名，同时将他们分配在同一个用户组。此时如果umask为022的话，那么用户A编写的程序用户B便无法修改，这样就无法协同工作。这时，只需将umask修改为002即可解决问题。</p>
+<h2 id="2-2-文件隐藏属性：chattr-lsattr"><a href="#2-2-文件隐藏属性：chattr-lsattr" class="headerlink" title="2.2 文件隐藏属性：chattr, lsattr"></a>2.2 文件隐藏属性：chattr, lsattr</h2><p><code>chattr</code>这个命令对于系统的数据安全尤其重要，而<code>lsattr</code>则可查看文件的隐藏权限。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ chattr [+-=] [options] 文件或目录名称</span><br><span class="line">参数：</span><br><span class="line">+ : 增加某个特殊参数</span><br><span class="line">- : 删除某个特殊参数</span><br><span class="line">= : 仅有后面接的参数</span><br><span class="line"></span><br><span class="line">a : 当设置a之后，这个文件将只能增加数据，而不能删除或者修改数据，root权限才能设置此属性</span><br><span class="line">i : 让文件&quot;不能被删除、改名，设置连接也无法写入或添加数据&quot;，root才能设置此属性</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-3-文件特殊权限：SUID-SGID-SBIT"><a href="#2-3-文件特殊权限：SUID-SGID-SBIT" class="headerlink" title="2.3 文件特殊权限：SUID, SGID, SBIT"></a>2.3 文件特殊权限：SUID, SGID, SBIT</h2><p>我们的Linux系统中，所有账号的密码都是记录在<code>/etc/shadow</code>文件夹内，而此文件的权限为<code>-r-------- root root</code>，表明只有root可读，那普通用户snowball是不是无法修改密码？并不是，这时就体现了SUID的作用，snowball用户当然可以修改自己的密码。snowball对<code>/usr/bin/passwd</code>这个程序是有x权限的，即snowball能够执行<strong>passwd</strong>，而<strong>passwd</strong>的拥有者是root，snowball会执行<strong>passwd</strong>，暂时获得root的权限，然后<code>/etc/shadow</code>可以被snowball执行的<strong>passwd</strong>程序所修改。</p>
+<p><strong>注：</strong>SUID仅可用在二进制程序上，不能用在shell script上。</p>
+<p>SGID的作用同SUID类似，它是暂时获得用户组的权限。<br>SBIT(Sticky Bit)只针对目录有效，其含义是如果目录加上SBIT的权限项目时，普通用户只能针对自己创建的文件或目录进行删除、重命名、移动等操作，而无法删除他人的文件。</p>
+<ul>
+<li><strong>SUID</strong>:4</li>
+<li><strong>SGID</strong>:2</li>
+<li><strong>SBIT</strong>:1</li>
+</ul>
+<p><strong>注：</strong>文件权限中可能出现<strong>S</strong>和<strong>T</strong>，表示对应用户或用户组都没有此文件的执行权限，即表明此<strong>S</strong>和<strong>T</strong>是空的含义。</p>
+<h1 id="3-文件与目录查询"><a href="#3-文件与目录查询" class="headerlink" title="3. 文件与目录查询"></a>3. 文件与目录查询</h1><h2 id="3-1-which命令"><a href="#3-1-which命令" class="headerlink" title="3.1 which命令"></a>3.1 which命令</h2><p><code>which</code>命令是根据PATH环境变量所规范的路径去查询”执行文件”的文件名，加上<code>-a</code>参数，可列出所有的可以找到的同名执行文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ which ifconfig</span><br><span class="line">/sbin/ifconfig</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-whereis命令和locate命令"><a href="#3-2-whereis命令和locate命令" class="headerlink" title="3.2 whereis命令和locate命令"></a>3.2 whereis命令和locate命令</h2><p>Linux系统会将系统内的所有文件都记录在一个数据库文件里面，当使用<code>whereis</code>或<code>locate</code>指令时，都会以此数据库文件的内容为准，所以要比直接搜索硬盘的<code>find</code>指令要快很多。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ whereis filename</span><br><span class="line">$ locate [-ir] keyword</span><br><span class="line">参数：</span><br><span class="line">-i : 忽略大小写的差异</span><br><span class="line">-r : 可接正则表达式</span><br></pre></td></tr></table></figure>
+<p>如果要更新记录数据库，可使用<code>updatedb</code>指令，它将根据<code>/etc/updatedb.conf</code>来查找系统硬盘内的文件名，并更新<code>/var/lib/mlocate</code>内的数据库文件。</p>
+<h2 id="3-3-find命令"><a href="#3-3-find命令" class="headerlink" title="3.3 find命令"></a>3.3 find命令</h2><p><code>find</code>命令是Unix/Linux中非常常用的命令，它可以进行多种方式的搜索。其命令为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ find [PATH] [option] [action]</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-3-1-指定时间搜索"><a href="#3-3-1-指定时间搜索" class="headerlink" title="3.3.1 指定时间搜索"></a>3.3.1 指定时间搜索</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">参数：</span><br><span class="line">可接atime、ctime、mtime，以mtime为例</span><br><span class="line">-mtime n: n是数字，表示n天前与n+1天前之间被修改过的文件</span><br><span class="line">-mtime +n: 表示n天之前（不含n天本身）被修改过的文件</span><br><span class="line">-mtime -n： 表示n天之内（包含那天本身）被修改过的文件</span><br></pre></td></tr></table></figure>
+<p>举例：查找当前目录下7天之前修改过的文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">snowball@snowball-wang:~/code$ find . -mtime +7</span><br><span class="line">.</span><br><span class="line">./learningC</span><br><span class="line">./learningC/List</span><br><span class="line">./learningC/List/1.c</span><br><span class="line">./learningLinux</span><br><span class="line">./learningLinux/acc_iter.txt</span><br><span class="line">./learningLinux/1.txt</span><br><span class="line">./learningLinux/blog.txt</span><br><span class="line">./learningLinux/result.txt</span><br><span class="line">./learningLinux/acc_iter.py</span><br><span class="line">./learningLinux/acc_iter.sh</span><br><span class="line">./python</span><br><span class="line">./python/test1.py</span><br><span class="line">./python/readpara.py</span><br><span class="line">./python/lfw_test.py</span><br><span class="line">./python/autoLFWtest.sh</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-3-2-指定用户或用户组名搜索"><a href="#3-3-2-指定用户或用户组名搜索" class="headerlink" title="3.3.2 指定用户或用户组名搜索"></a>3.3.2 指定用户或用户组名搜索</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">参数：</span><br><span class="line">- user name: name为用户账号名称，如snowball</span><br><span class="line">- group name: name为用户组名，如users</span><br><span class="line">- nouser: 寻找文件的所有者不存在/etc/passwd的人</span><br></pre></td></tr></table></figure>
+<p>举例：<code>find . -user snowball</code>查找当前目录下用户名为snowball的文件；<code>find . -group root</code>查找当前目录下用户组名为root的文件；<code>find . -nouser</code>查找/etc/passwd里不存在的用户的文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">snowball@snowball-wang:~/code$ find . -user snowball</span><br><span class="line">.</span><br><span class="line">./learningC</span><br><span class="line">./learningC/List</span><br><span class="line">./learningC/List/1.c</span><br><span class="line">./learningLinux</span><br><span class="line">./learningLinux/acc_iter.txt</span><br><span class="line">./learningLinux/blog_01_12.txt</span><br><span class="line">./learningLinux/1.txt</span><br><span class="line">./learningLinux/blog.txt</span><br><span class="line">./learningLinux/result.txt</span><br><span class="line">./learningLinux/acc_iter.py</span><br><span class="line">./learningLinux/acc_iter.sh</span><br><span class="line">./python</span><br><span class="line">./python/test1.py</span><br><span class="line">./python/readpara.py</span><br><span class="line">./python/autoLFWtest.sh</span><br><span class="line">snowball@snowball-wang:~/code$ find . -group root</span><br><span class="line">./python/lfw_test.py</span><br><span class="line">snowball@snowball-wang:~/code$ find . -nouser</span><br><span class="line">snowball@snowball-wang:~/code$</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-3-3-指定文件权限及名称搜索"><a href="#3-3-3-指定文件权限及名称搜索" class="headerlink" title="3.3.3 指定文件权限及名称搜索"></a>3.3.3 指定文件权限及名称搜索</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">参数：</span><br><span class="line">-name filename: 查找文件名为filename的文件</span><br><span class="line">-size [+-]SIZE: 查找比SIZE还要大（+）或小（-）的文件。&quot;-size +50k&quot;的含义为找比50KB还要大的文件</span><br><span class="line">-type TYPE: TYPE主要有f（一般文件）、b、c（设备文件）、d（目录）、l（连接文件）、s（socket）等</span><br><span class="line">-perm mode: 查找文件权限恰好等于&quot;mode&quot;的文件</span><br><span class="line">-perm -mode: 查找文件权限&quot;必须要包括mode的权限&quot;的文件</span><br><span class="line">-perm +mode: 查找文件权限&quot;包含任一mode的权限&quot;的文件</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-4-其它可执行的操作"><a href="#3-3-4-其它可执行的操作" class="headerlink" title="3.3.4 其它可执行的操作"></a>3.3.4 其它可执行的操作</h3><p>find的特殊功能就是能够进行额外的动作（action）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ find / -perm 7000 -exec ls -l &#123;&#125; \;</span><br></pre></td></tr></table></figure></p>
+<p><code>{}</code>代表的是<code>find / -perm 7000</code>搜索到的内容，其结果会被放在<code>{}</code>内。<code>-exec</code>和<code>\;</code>中间的内容是find命令的额外命令，上述中就是<code>ls -l {}</code>。</p>
+<p><strong>练习：</strong></p>
+<ol>
+<li>找出/etc下面，文件大小介于50KB到60KB之间的文件，并且将权限完整地列出来</li>
+<li>找出/etc下面，文件容量大于50KB且文件所有者不是root的文件名，且将权限完整地列出来</li>
+<li>找出/etc下面，容量大于1500KB以及容量等于0的文件</li>
+</ol>
+<p><strong>答案：</strong></p>
+<ol>
+<li><code>find /etc -size +50k -size -60k -exec ls -l {} \;</code></li>
+<li><code>find /etc -size +50k -a ! -user root -exec ls -l {} \;</code></li>
+<li><code>find /etc -size + 1500k -o -size 0k</code></li>
+</ol>
 <p><strong>参考链接：</strong></p>
 <ol>
-<li><a href="https://mohanadkaleia.com/install-caffe-on-ubuntu-with-no-gpu/" target="_blank" rel="noopener">https://mohanadkaleia.com/install-caffe-on-ubuntu-with-no-gpu/</a></li>
-<li><a href="https://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html" target="_blank" rel="noopener">https://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html</a></li>
+<li><a href="http://man.linuxde.net/ls" target="_blank" rel="noopener">http://man.linuxde.net/ls</a></li>
+<li><a href="http://blog.csdn.net/qq_38880380/article/details/78356372" target="_blank" rel="noopener">http://blog.csdn.net/qq_38880380/article/details/78356372</a></li>
 </ol>
 
       
@@ -257,15 +289,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Ubuntu16.04</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Caffe</a>
         		</li>
       		
 		</ul>
@@ -332,7 +360,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/01/08/Linux基础总结（三）/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -346,18 +374,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/12/26/Linux基础总结（一）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Linux基础总结（一）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/11/25/Markdown语法总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Markdown语法总结</div>
+    <a href="/2017/12/28/Linux基础总结（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux基础总结（二）</div>
       <i class="icon-circle-right"></i>
     </a>
   
