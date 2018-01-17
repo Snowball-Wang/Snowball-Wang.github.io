@@ -155,6 +155,122 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Python中raw-input-和input-的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/17/Python中raw-input-和input-的区别/">Python中raw_input()和input()的区别</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/17/Python中raw-input-和input-的区别/" class="archive-article-date">
+  	<time datetime="2018-01-17T01:41:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>关键词：</strong> Python  raw_input()  input()</p>
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>之前在学习<a href="https://learnpythonthehardway.org/book/" target="_blank" rel="noopener">“笨办法学Python”</a>时使用过<code>raw_input()</code>函数来提取用户输入的内容，今天在学习<a href="https://book.douban.com/subject/4866934/" target="_blank" rel="noopener">Python基础教程</a>又遇到了<code>input()</code>函数，<code>input()</code>函数也可以用来提取用户输入的内容，那么两者有什么差别？本文将对<code>raw_input()</code>和<code>input()</code>函数进行总结。</p>
+<h1 id="1-正文"><a href="#1-正文" class="headerlink" title="1. 正文"></a>1. 正文</h1><h2 id="1-1-Python2-x版本"><a href="#1-1-Python2-x版本" class="headerlink" title="1.1 Python2.x版本"></a>1.1 Python2.x版本</h2><p>我所用的是<code>Ubuntu16.04</code>系统，系统自带Python2.7版本，在命令行中敲入<code>python</code>命令，进入Python交互命令界面。<code>raw_input()</code>和<code>input()</code>是内置函数，可通过<code>help</code>函数来查看其具体用法。</p>
+<p>先来看一看<code>raw_input()</code>的含义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>help(raw_input)</span><br><span class="line"></span><br><span class="line">Help on built-<span class="keyword">in</span> function raw_input <span class="keyword">in</span> module __builtin__:</span><br><span class="line"></span><br><span class="line">raw_input(...)</span><br><span class="line">    raw_input([prompt]) -&gt; string</span><br><span class="line">    </span><br><span class="line">    Read a string <span class="keyword">from</span> standard input.  The trailing newline <span class="keyword">is</span> stripped.</span><br><span class="line">    If the user hits EOF (Unix: Ctl-D, Windows: Ctl-Z+Return), <span class="keyword">raise</span> EOFError.</span><br><span class="line">    On Unix, GNU readline <span class="keyword">is</span> used <span class="keyword">if</span> enabled.  The prompt string, <span class="keyword">if</span> given,</span><br><span class="line">    <span class="keyword">is</span> printed without a trailing newline before reading.</span><br></pre></td></tr></table></figure>
+<p><code>raw_input()</code>的含义是读取用户输入的字符串，并且用户输入的字符串中如何有<strong>换行符（trailing newline）</strong>，那么换行符将会被去除。如果用户在输入过程中输入<strong>EOF（文件结束符）</strong>，将会引发<code>EOFError</code>。</p>
+<p>再来看一看<code>input()</code>的含义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>help(input)</span><br><span class="line"></span><br><span class="line">Help on built-<span class="keyword">in</span> function input <span class="keyword">in</span> module __builtin__:</span><br><span class="line"></span><br><span class="line">input(...)</span><br><span class="line">    input([prompt]) -&gt; value</span><br><span class="line">    </span><br><span class="line">    Equivalent to eval(raw_input(prompt)).</span><br></pre></td></tr></table></figure>
+<p>可以看到，<code>input()</code>函数实际上是通过调用<code>raw_input()</code>来实现的，<code>eval()</code>函数的功能是将字符串str当成有效的Python表达式来求值并返回计算结果。</p>
+<p>这样子还是不能够理解两个函数的差别，下面通过具体例子来理解两者差异：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>raw_input_A = raw_input(<span class="string">"&gt;"</span>)</span><br><span class="line">&gt;abc</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>input_A = input(<span class="string">"&gt;"</span>)</span><br><span class="line">&gt;abc</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">  File <span class="string">"&lt;string&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">NameError: name <span class="string">'abc'</span> <span class="keyword">is</span> <span class="keyword">not</span> defined</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>input_A = input(<span class="string">"&gt;"</span>)</span><br><span class="line">&gt;<span class="string">'abc'</span></span><br></pre></td></tr></table></figure>
+<p>可以看出，<code>raw_input()</code>和<code>input()</code>都可以接收字符串，但<code>raw_input()</code>可以接受控制台任何类型的输入，而<code>input()</code>则要求输入必须是合法的Python表达式，否则就会引起错误。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>raw_input_B = raw_input(<span class="string">"&gt;"</span>)</span><br><span class="line">&gt;<span class="number">123</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(raw_input_B)</span><br><span class="line">&lt;type <span class="string">'str'</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>input_B = input(<span class="string">"&gt;"</span>)</span><br><span class="line">&gt;<span class="number">123</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(input_B)</span><br><span class="line">&lt;type <span class="string">'int'</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看出，<code>raw_input()</code>将所有输入都当做字符串来看待，返回的是str类型。而<code>input()</code>在对待纯数字输入时，会把数字当作Python表达式来看待，它的返回类型就不再是str类型，将会变成int或float类型。同时，<code>input()</code>函数可以接收合法的Python表达式，如<code>input(1+1)</code>返回int类型的2。</p>
+<h2 id="1-2-Python3-x版本"><a href="#1-2-Python3-x版本" class="headerlink" title="1.2     Python3.x版本"></a>1.2     Python3.x版本</h2><p>在Python3.x版本中，旧的<code>input()</code>函数功能被<strong>删除</strong>，<strong>新的<code>input()</code>函数</strong>的含义<strong>完全相当于</strong>Python2.x中的<strong><code>raw_input()</code></strong>。</p>
+<p><strong>参考链接：</strong></p>
+<ol>
+<li><a href="https://www.cnblogs.com/way_testlife/archive/2011/03/29/1999283.html" target="_blank" rel="noopener">https://www.cnblogs.com/way_testlife/archive/2011/03/29/1999283.html</a></li>
+<li><a href="https://stackoverflow.com/questions/4915361/whats-the-difference-between-raw-input-and-input-in-python3-x" target="_blank" rel="noopener">https://stackoverflow.com/questions/4915361/whats-the-difference-between-raw-input-and-input-in-python3-x</a></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">raw_input()</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">input()</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/17/Python中raw-input-和input-的区别/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-循序渐进学Vim" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -380,7 +496,7 @@
 <li>有时候，学习Vim就像是在死背一些东西</li>
 <li>幸运的是，Vim有很多不错的工具和优秀的文档</li>
 <li>运行vimtutor直到你熟悉了那些基本命令</li>
-<li>在线帮助文档徐仔细阅读的是<code>:help usr_02.txt</code></li>
+<li>在线帮助文档中应仔细阅读的是<code>:help usr_02.txt</code></li>
 <li>你会学习诸如<code>!</code>，目录，寄存器，插件等很多其它的功能</li>
 </ul>
 <p>学习Vim就像学习弹钢琴一样，一旦学会，受益无穷。</p>
@@ -1374,7 +1490,7 @@
 <p><strong>代码：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">推荐几个不错的网站[Baidu][1],[USTC][2]以及[村上秋水的却其顿小屋][3]。[村上秋水的却其顿小屋][3]是值得你关注的[博客][]。</span><br><span class="line"></span><br><span class="line">[1]: http://www.baidu.com &quot;百度&quot;</span><br><span class="line">[2]: http://www.ustc.edu.cn &quot;科大首页&quot;</span><br><span class="line">[3]: http://blog.163.com/snowball_wang/ &quot;村上秋水的却其顿小屋&quot;</span><br><span class="line">[博客]: http://blog.163.com/snowball_wang/ &quot;村上秋水的却其顿小屋&quot;</span><br></pre></td></tr></table></figure></p>
 <h2 id="3-3-自动链接"><a href="#3-3-自动链接" class="headerlink" title="3.3 自动链接"></a>3.3 自动链接</h2><p><strong>语法说明：</strong><br>Markdown支持以比较简单的自动链接形式来处理网址和电子邮件信箱。使用<code>&lt;&gt;</code>就会被自动转换成链接。</p>
 <p><strong>代码：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;http://www.baidu.com&gt;</span><br><span class="line">&lt;wjq1996@mail.ustc.edu.cn&gt;</span><br></pre></td></tr></table></figure></p>
-<p><strong>显示效果：</strong><br><a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a><br><a href="&#x6d;&#x61;&#x69;&#108;&#116;&#111;&#x3a;&#119;&#106;&#113;&#49;&#57;&#57;&#54;&#x40;&#x6d;&#x61;&#105;&#108;&#46;&#117;&#x73;&#x74;&#99;&#46;&#x65;&#x64;&#x75;&#46;&#99;&#x6e;">&#119;&#106;&#113;&#49;&#57;&#57;&#54;&#x40;&#x6d;&#x61;&#105;&#108;&#46;&#117;&#x73;&#x74;&#99;&#46;&#x65;&#x64;&#x75;&#46;&#99;&#x6e;</a></p>
+<p><strong>显示效果：</strong><br><a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a><br><a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#x3a;&#x77;&#106;&#113;&#x31;&#57;&#57;&#x36;&#64;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#117;&#115;&#116;&#99;&#46;&#101;&#100;&#x75;&#x2e;&#99;&#110;">&#x77;&#106;&#113;&#x31;&#57;&#57;&#x36;&#64;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#117;&#115;&#116;&#99;&#46;&#101;&#100;&#x75;&#x2e;&#99;&#110;</a></p>
 <h1 id="4-列表"><a href="#4-列表" class="headerlink" title="4.列表"></a>4.列表</h1><h2 id="4-1-无序列表"><a href="#4-1-无序列表" class="headerlink" title="4.1 无序列表"></a>4.1 无序列表</h2><p>使用<code>*,+,-</code>表示无序列表。</p>
 <p><strong>代码：</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 无序列表项 一</span><br><span class="line">- 无序列表项 二</span><br><span class="line">- 无序列表项 三</span><br></pre></td></tr></table></figure>
@@ -1792,6 +1908,22 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">raw_input()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">input()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
@@ -1801,10 +1933,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
               </li>
             
             <div class="clearfix"></div>
