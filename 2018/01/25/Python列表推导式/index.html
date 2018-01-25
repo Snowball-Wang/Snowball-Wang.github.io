@@ -6,23 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Markdown语法总结 | 王杰强的博客</title>
+  <title>Python列表推导式 | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.斜体和粗体代码：12341.*斜体*或_斜体_2.**粗体**3.***加粗斜体***4.~~删除线~~ 显示效果： 1.这是一段斜体2.这是一段粗体3.这是一段加粗斜体4.这是一段删除线 2.分级标题代码：123456# 一级标题## 二级标题### 三级标题#### 四级标题##### 五级标题###### 六">
-<meta name="keywords" content="技术日志,Markdown">
+  <meta name="description" content="关键字： Python 列表推导式 0. 前言最近重温Python的基础知识，发现了列表推导式（list comprehension）这种创建列表的高级方式，感觉非常有趣。谷歌发现了这篇文章Python: List Comprehensions，文章作者用非常浅显易懂的语言介绍了列表推导式，于是我把文章翻译成中文，方便">
+<meta name="keywords" content="技术日志,Python,List Comprehension">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Markdown语法总结">
-<meta property="og:url" content="http://yoursite.com/2017/11/25/Markdown语法总结/index.html">
+<meta property="og:title" content="Python列表推导式">
+<meta property="og:url" content="http://yoursite.com/2018/01/25/Python列表推导式/index.html">
 <meta property="og:site_name" content="王杰强的博客">
-<meta property="og:description" content="1.斜体和粗体代码：12341.*斜体*或_斜体_2.**粗体**3.***加粗斜体***4.~~删除线~~ 显示效果： 1.这是一段斜体2.这是一段粗体3.这是一段加粗斜体4.这是一段删除线 2.分级标题代码：123456# 一级标题## 二级标题### 三级标题#### 四级标题##### 五级标题###### 六级标题 3.超链接Markdown支持两种形式的链接语法：行内式和参考式两种形式">
+<meta property="og:description" content="关键字： Python 列表推导式 0. 前言最近重温Python的基础知识，发现了列表推导式（list comprehension）这种创建列表的高级方式，感觉非常有趣。谷歌发现了这篇文章Python: List Comprehensions，文章作者用非常浅显易懂的语言介绍了列表推导式，于是我把文章翻译成中文，方便以后学习和查阅。 1. 正文 注： 文章中以”&amp;gt;&amp;gt;&amp;gt;”和”…”">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2017/11/25/Markdown语法总结/seal.jpg">
-<meta property="og:image" content="http://yoursite.com/2017/11/25/Markdown语法总结/seal.jpg">
-<meta property="og:updated_time" content="2017-12-26T02:44:40.694Z">
+<meta property="og:updated_time" content="2018-01-25T08:57:53.091Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Markdown语法总结">
-<meta name="twitter:description" content="1.斜体和粗体代码：12341.*斜体*或_斜体_2.**粗体**3.***加粗斜体***4.~~删除线~~ 显示效果： 1.这是一段斜体2.这是一段粗体3.这是一段加粗斜体4.这是一段删除线 2.分级标题代码：123456# 一级标题## 二级标题### 三级标题#### 四级标题##### 五级标题###### 六级标题 3.超链接Markdown支持两种形式的链接语法：行内式和参考式两种形式">
-<meta name="twitter:image" content="http://yoursite.com/2017/11/25/Markdown语法总结/seal.jpg">
+<meta name="twitter:title" content="Python列表推导式">
+<meta name="twitter:description" content="关键字： Python 列表推导式 0. 前言最近重温Python的基础知识，发现了列表推导式（list comprehension）这种创建列表的高级方式，感觉非常有趣。谷歌发现了这篇文章Python: List Comprehensions，文章作者用非常浅显易懂的语言介绍了列表推导式，于是我把文章翻译成中文，方便以后学习和查阅。 1. 正文 注： 文章中以”&amp;gt;&amp;gt;&amp;gt;”和”…”">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
   
@@ -158,269 +155,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Markdown语法总结" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Python列表推导式" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Markdown语法总结
+      Python列表推导式
     </h1>
   
 
         
-        <a href="/2017/11/25/Markdown语法总结/" class="archive-article-date">
-  	<time datetime="2017-11-25T15:17:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-25</time>
+        <a href="/2018/01/25/Python列表推导式/" class="archive-article-date">
+  	<time datetime="2018-01-25T08:08:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-斜体和粗体"><a href="#1-斜体和粗体" class="headerlink" title="1.斜体和粗体"></a>1.斜体和粗体</h1><p><strong>代码：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.*斜体*或_斜体_</span><br><span class="line">2.**粗体**</span><br><span class="line">3.***加粗斜体***</span><br><span class="line">4.~~删除线~~</span><br></pre></td></tr></table></figure></p>
-<p><strong>显示效果：</strong></p>
-<p>1.<em>这是一段斜体</em><br>2.<strong>这是一段粗体</strong><br>3.<strong><em>这是一段加粗斜体</em></strong><br>4.<del>这是一段删除线</del></p>
-<h1 id="2-分级标题"><a href="#2-分级标题" class="headerlink" title="2.分级标题"></a>2.分级标题</h1><p><strong>代码：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题</span><br></pre></td></tr></table></figure></p>
-<h1 id="3-超链接"><a href="#3-超链接" class="headerlink" title="3.超链接"></a>3.超链接</h1><p>Markdown支持两种形式的链接语法：行内式和参考式两种形式，一般选择使用行内式更多一些。</p>
-<h2 id="3-1-行内式"><a href="#3-1-行内式" class="headerlink" title="3.1 行内式"></a>3.1 行内式</h2><p><strong>语法说明：</strong><br>[]里写链接文字，()写链接地址，()中的””中的文字可以为链接指定title属性，这个可加可不加。title属性的含义是可以实现鼠标悬停在链接上出现指定的title文字。其格式为：<code>[链接文字](链接地址 &quot;链接标题&quot;)</code>这样的形式。()里的<strong>链接地址</strong>和<strong>链接标题</strong>之间有一个空格。</p>
-<p><strong>代码：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">欢迎访问[村上秋水的却其顿小屋](http://blog.163.com/snowball_wang/)</span><br><span class="line">欢迎访问[村上秋水的却其顿小屋](http://blog.163.com/snowball_wang/ &quot;村上秋水的却其顿小屋&quot;)</span><br></pre></td></tr></table></figure></p>
-<p><strong>显示效果：</strong><br>欢迎访问<a href="http://blog.163.com/snowball_wang/" target="_blank" rel="noopener">村上秋水的却其顿小屋</a><br>欢迎访问<a href="http://blog.163.com/snowball_wang/" title="村上秋水的却其顿小屋" target="_blank" rel="noopener">村上秋水的却其顿小屋</a></p>
-<h2 id="3-2-参考式"><a href="#3-2-参考式" class="headerlink" title="3.2 参考式"></a>3.2 参考式</h2><p>参考式链接多用于学术论文，便于对链接进行统一处理。</p>
-<p><strong>语法说明：</strong></p>
-<p>参考式链接分为两部分，文字的写法<code>[链接文字][链接标记]</code>，在文本的任意位置添加<code>[链接标记]: 链接地址 “链接标题”</code>，<strong>链接地址</strong>与<strong>链接标题</strong>之间有一个空格。</p>
-<p>也可以将链接文字作为链接标记：<code>[链接文字][]</code>，然后在文本的任意位置添加<code>[链接文字]: 链接地址 “链接标题”</code></p>
-<p><strong>代码：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">推荐几个不错的网站[Baidu][1],[USTC][2]以及[村上秋水的却其顿小屋][3]。[村上秋水的却其顿小屋][3]是值得你关注的[博客][]。</span><br><span class="line"></span><br><span class="line">[1]: http://www.baidu.com &quot;百度&quot;</span><br><span class="line">[2]: http://www.ustc.edu.cn &quot;科大首页&quot;</span><br><span class="line">[3]: http://blog.163.com/snowball_wang/ &quot;村上秋水的却其顿小屋&quot;</span><br><span class="line">[博客]: http://blog.163.com/snowball_wang/ &quot;村上秋水的却其顿小屋&quot;</span><br></pre></td></tr></table></figure></p>
-<h2 id="3-3-自动链接"><a href="#3-3-自动链接" class="headerlink" title="3.3 自动链接"></a>3.3 自动链接</h2><p><strong>语法说明：</strong><br>Markdown支持以比较简单的自动链接形式来处理网址和电子邮件信箱。使用<code>&lt;&gt;</code>就会被自动转换成链接。</p>
-<p><strong>代码：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;http://www.baidu.com&gt;</span><br><span class="line">&lt;wjq1996@mail.ustc.edu.cn&gt;</span><br></pre></td></tr></table></figure></p>
-<p><strong>显示效果：</strong><br><a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a><br><a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#58;&#119;&#106;&#113;&#49;&#57;&#57;&#54;&#x40;&#109;&#x61;&#105;&#108;&#x2e;&#117;&#115;&#116;&#99;&#46;&#101;&#100;&#117;&#46;&#x63;&#x6e;">&#119;&#106;&#113;&#49;&#57;&#57;&#54;&#x40;&#109;&#x61;&#105;&#108;&#x2e;&#117;&#115;&#116;&#99;&#46;&#101;&#100;&#117;&#46;&#x63;&#x6e;</a></p>
-<h1 id="4-列表"><a href="#4-列表" class="headerlink" title="4.列表"></a>4.列表</h1><h2 id="4-1-无序列表"><a href="#4-1-无序列表" class="headerlink" title="4.1 无序列表"></a>4.1 无序列表</h2><p>使用<code>*,+,-</code>表示无序列表。</p>
-<p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 无序列表项 一</span><br><span class="line">- 无序列表项 二</span><br><span class="line">- 无序列表项 三</span><br></pre></td></tr></table></figure>
-<p><strong>显示效果：</strong></p>
-<ul>
-<li>无序列表项 一</li>
-<li>无序列表项 二</li>
-<li>无序列表项 三</li>
-</ul>
-<h2 id="4-2-有序列表"><a href="#4-2-有序列表" class="headerlink" title="4.2 有序列表"></a>4.2 有序列表</h2><p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 有序列表项 一</span><br><span class="line">2. 有序列表项 二</span><br><span class="line">3. 有序列表项 三</span><br></pre></td></tr></table></figure>
-<p><strong>显示效果：</strong></p>
+        <p><strong>关键字：</strong> Python 列表推导式</p>
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>最近重温Python的基础知识，发现了<strong>列表推导式</strong>（list comprehension）这种创建列表的高级方式，感觉非常有趣。谷歌发现了这篇文章<a href="http://www.secnetix.de/olli/Python/list_comprehensions.hawk" target="_blank" rel="noopener">Python: List Comprehensions</a>，文章作者用非常浅显易懂的语言介绍了<strong>列表推导式</strong>，于是我把文章翻译成中文，方便以后学习和查阅。</p>
+<h1 id="1-正文"><a href="#1-正文" class="headerlink" title="1. 正文"></a>1. 正文</h1><blockquote>
+<p><strong>注：</strong> 文章中以”&gt;&gt;&gt;”和”…”符号开头的行是Python的输入（这些符号都是Python交互式解释器默认的提示符），所有其它的内容都是Python的输出。</p>
+</blockquote>
+<p>Python支持一个名为<strong>“列表推导式”</strong>的概念。它可以像数学家一样，以非常自然容易的方法来构建列表。</p>
+<p>下面是常用的描述列表（或是集合、元组、向量）的数学表达式：</p>
+<p>$$S = \lbrace x^2 : x \ in \  \lbrace0 … 9\rbrace \rbrace $$</p>
+<p>$$ V = \lbrace1, 2, 4, 8, … , 2^{12}\rbrace $$</p>
+<p>$$M = \lbrace x\ | x \ in \ S \ and \ x \ even \rbrace$$</p>
+<p>你可能已经在学校的数学课里学过了上述内容。在Python中，你几乎完全可以像数学家一样写出这些表达式，并且不需要记住任何难懂的语法。</p>
+<p>在Python中实现上述数学表达式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>S = [x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>V = [<span class="number">2</span>**i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">13</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>M = [x <span class="keyword">for</span> x <span class="keyword">in</span> S <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>]</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> S; <span class="keyword">print</span> V; <span class="keyword">print</span> M</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>, <span class="number">36</span>, <span class="number">49</span>, <span class="number">64</span>, <span class="number">81</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">32</span>, <span class="number">64</span>, <span class="number">128</span>, <span class="number">256</span>, <span class="number">512</span>, <span class="number">1024</span>, <span class="number">2048</span>, <span class="number">4096</span>]</span><br><span class="line">[<span class="number">0</span>, <span class="number">4</span>, <span class="number">16</span>, <span class="number">36</span>, <span class="number">64</span>]</span><br></pre></td></tr></table></figure>
+<p>我知道你想要了解更复杂的例子:)。接下来我们将用列表推导式来计算质数。有趣的是我们要首先建一个非质数的列表，然后我们使用列表推导式来得到之前列表的”反转列表”，也就是我们想要得到的质数列表。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>noprimes = [j <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, <span class="number">8</span>) <span class="keyword">for</span> j <span class="keyword">in</span> range(i*<span class="number">2</span>, <span class="number">50</span>, i)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>primes = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">2</span>,<span class="number">50</span>) <span class="keyword">if</span> x <span class="keyword">not</span> <span class="keyword">in</span> noprimes]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> primes</span><br><span class="line">[<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>, <span class="number">29</span>, <span class="number">31</span>, <span class="number">37</span>, <span class="number">41</span>, <span class="number">43</span>, <span class="number">47</span>]</span><br></pre></td></tr></table></figure>
+<p><strong>注：</strong>你可以在每一个列表推导式中再嵌套列表推导式，上述的例子用一行代码即可完成（不再需要中间变量”noprimes”）。但是，这样的代码容易变得冗长，导致可读性下降，所以不推荐。</p>
+<p>当然，列表推导式不仅仅用于数字。列表可以包含任意类型的元素，包括字符串、嵌套列表和函数。你甚至可以在一个列表里混合多种类型的元素。</p>
+<p>下面的代码处理一个字符串列表，生成一组列表。每个子列表都包含两个字符串和一个整型数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>words = <span class="string">'The quick brown fox jumps over the lazy dog'</span>.split()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> words</span><br><span class="line">[<span class="string">'The'</span>, <span class="string">'quick'</span>, <span class="string">'brown'</span>, <span class="string">'fox'</span>, <span class="string">'jumps'</span>, <span class="string">'over'</span>, <span class="string">'the'</span>, <span class="string">'lazy'</span>, <span class="string">'dog'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>stuff = [[w.upper(), w.lower(), len(w)] <span class="keyword">for</span> w <span class="keyword">in</span> words]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> stuff:</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">print</span> i</span><br><span class="line"><span class="meta">... </span></span><br><span class="line">[<span class="string">'THE'</span>, <span class="string">'the'</span>, <span class="number">3</span>]</span><br><span class="line">[<span class="string">'QUICK'</span>, <span class="string">'quick'</span>, <span class="number">5</span>]</span><br><span class="line">[<span class="string">'BROWN'</span>, <span class="string">'brown'</span>, <span class="number">5</span>]</span><br><span class="line">[<span class="string">'FOX'</span>, <span class="string">'fox'</span>, <span class="number">3</span>]</span><br><span class="line">[<span class="string">'JUMPS'</span>, <span class="string">'jumps'</span>, <span class="number">5</span>]</span><br><span class="line">[<span class="string">'OVER'</span>, <span class="string">'over'</span>, <span class="number">4</span>]</span><br><span class="line">[<span class="string">'THE'</span>, <span class="string">'the'</span>, <span class="number">3</span>]</span><br><span class="line">[<span class="string">'LAZY'</span>, <span class="string">'lazy'</span>, <span class="number">4</span>]</span><br><span class="line">[<span class="string">'DOG'</span>, <span class="string">'dog'</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>stuff = map(<span class="keyword">lambda</span> w: [w.upper(), w.lower(), len(w)], words)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> stuff:</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">print</span> i</span><br><span class="line"><span class="meta">... </span></span><br><span class="line">[<span class="string">'THE'</span>, <span class="string">'the'</span>, <span class="number">3</span>]</span><br><span class="line">[<span class="string">'QUICK'</span>, <span class="string">'quick'</span>, <span class="number">5</span>]</span><br><span class="line">[<span class="string">'BROWN'</span>, <span class="string">'brown'</span>, <span class="number">5</span>]</span><br><span class="line">[<span class="string">'FOX'</span>, <span class="string">'fox'</span>, <span class="number">3</span>]</span><br><span class="line">[<span class="string">'JUMPS'</span>, <span class="string">'jumps'</span>, <span class="number">5</span>]</span><br><span class="line">[<span class="string">'OVER'</span>, <span class="string">'over'</span>, <span class="number">4</span>]</span><br><span class="line">[<span class="string">'THE'</span>, <span class="string">'the'</span>, <span class="number">3</span>]</span><br><span class="line">[<span class="string">'LAZY'</span>, <span class="string">'lazy'</span>, <span class="number">4</span>]</span><br><span class="line">[<span class="string">'DOG'</span>, <span class="string">'dog'</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<p>上述例子说明你完全可以通过<code>map()</code>和<code>lambda</code>函数做到列表推导式做的事。但是，存在你无法使用<code>map()</code>函数只能使用列表推导式的情况，反之亦然。如果两种方法都可以使用，则推荐使用列表推导式，因为它更高效，代码的可读性也更强。</p>
+<p>如果构建列表的规则太过复杂，无法用简单的<code>for</code>或是<code>if</code>语句来表达时，抑或是构建列表的规则会在代码运行时动态修改，那你就无法使用列表推导式。在上述情况下，你最好使用<code>map()</code>或者<code>filter()</code>函数。当然，你也可以将函数结合列表推导式使用。</p>
+<h1 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h1><p>列表推导式的规范为：<strong><code>var = [ out_exp for out_exp in input_list if out_exp ...]</code></strong></p>
+<p><strong>参考链接：</strong></p>
 <ol>
-<li>有序列表项 一</li>
-<li>有序列表项 二</li>
-<li>有序列表项 三</li>
+<li><a href="http://www.secnetix.de/olli/Python/list_comprehensions.hawk" target="_blank" rel="noopener">http://www.secnetix.de/olli/Python/list_comprehensions.hawk</a></li>
+<li><a href="https://eastlakeside.gitbooks.io/interpy-zh/content/Comprehensions/list-comprehensions.html" target="_blank" rel="noopener">https://eastlakeside.gitbooks.io/interpy-zh/content/Comprehensions/list-comprehensions.html</a></li>
 </ol>
-<h2 id="4-3-列表缩进"><a href="#4-3-列表缩进" class="headerlink" title="4.3 列表缩进"></a>4.3 列表缩进</h2><p><strong>语法说明：</strong></p>
-<p>列表项目标记通常是放在最左边，项目标记后面一定要至少接一个空格或制表符。</p>
-<p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* 忙就中断跑步的话，我一辈子都无法跑步。坚持跑步的理由不过一丝半点，中断跑步的理由却足够装满一辆大型载重卡车。我们只能将那&quot;一丝半点的理由&quot;一个个慎之又慎地不断打磨。见缝插针，得空儿就孜孜不倦地打磨它们。</span><br><span class="line">* 应将自己追问到何处为止？何种程度的修养才是恰当的，而多少又是休息得过分？到何种程度才是妥当，而到什么程度又是狭隘？外部的风景撷取多少为好，而内心的世界又该挖掘多少为妙？对自己的能力应该相信多少，又该对自身有多少的怀疑？</span><br></pre></td></tr></table></figure>
-<p><strong>显示效果：</strong></p>
-<ul>
-<li>忙就中断跑步的话，我一辈子都无法跑步。坚持跑步的理由不过一丝半点，中断跑步的理由却足够装满一辆大型载重卡车。我们只能将那”一丝半点的理由”一个个慎之又慎地不断打磨。见缝插针，得空儿就孜孜不倦地打磨它们。</li>
-<li>应将自己追问到何处为止？何种程度的修养才是恰当的，而多少又是休息得过分？到何种程度才是妥当，而到什么程度又是狭隘？外部的风景撷取多少为好，而内心的世界又该挖掘多少为妙？对自己的能力应该相信多少，又该对自身有多少的怀疑？</li>
-</ul>
-<h2 id="4-4-包含段落的列表"><a href="#4-4-包含段落的列表" class="headerlink" title="4.4 包含段落的列表"></a>4.4 包含段落的列表</h2><p><strong>语法说明：</strong></p>
-<p>列表项目可以包含多个段落，每个项目下的段落都必须缩进4个空格或是1个制表符。</p>
-<p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* 忙就中断跑步的话，我一辈子都无法跑步。坚持跑步的理由不过一丝半点，中断跑步的理由却足够装满一辆大型载重卡车。我们只能将那&quot;一丝半点的理由&quot;一个个慎之又慎地不断打磨。见缝插针，得空儿就孜孜不倦地打磨它们。</span><br><span class="line">    应将自己追问到何处为止？何种程度的修养才是恰当的，而多少又是休息得过分？到何种程度才是妥当，而到什么程度又是狭隘？外部的风景撷取多少为好，而内心的世界又该挖掘多少为妙？对自己的能力应该相信多少，又该对自身有多少的怀疑？</span><br><span class="line">* 同样是十年，与其稀里糊涂地或者，目的明确、生气勃勃地活当然令人远为满意。跑步无疑大有魅力：在个人地局限性中，可以让自己有效地燃烧--哪怕是一丁点，这表示跑步一事的本质，也是活着一事的隐喻。</span><br></pre></td></tr></table></figure>
-<p><strong>显示效果：</strong></p>
-<ul>
-<li>忙就中断跑步的话，我一辈子都无法跑步。坚持跑步的理由不过一丝半点，中断跑步的理由却足够装满一辆大型载重卡车。我们只能将那”一丝半点的理由”一个个慎之又慎地不断打磨。见缝插针，得空儿就孜孜不倦地打磨它们。<br>  应将自己追问到何处为止？何种程度的修养才是恰当的，而多少又是休息得过分？到何种程度才是妥当，而到什么程度又是狭隘？外部的风景撷取多少为好，而内心的世界又该挖掘多少为妙？对自己的能力应该相信多少，又该对自身有多少的怀疑？</li>
-<li>同样是十年，与其稀里糊涂地或者，目的明确、生气勃勃地活当然令人远为满意。跑步无疑大有魅力：在个人地局限性中，可以让自己有效地燃烧–哪怕是一丁点，这便是跑步一事的本质，也是活着一事的隐喻。</li>
-</ul>
-<h2 id="4-5-包含引用的列表"><a href="#4-5-包含引用的列表" class="headerlink" title="4.5 包含引用的列表"></a>4.5 包含引用的列表</h2><p><strong>语法说明：</strong></p>
-<p>如果要在列表项目内放进引用，那<code>&gt;</code>就需要缩进。</p>
-<p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* 阅读的方法：</span><br><span class="line">  &gt;打开书本</span><br><span class="line">  &gt;打开电灯</span><br></pre></td></tr></table></figure>
-<p><strong>显示效果：</strong></p>
-<ul>
-<li>阅读的方法：<blockquote>
-<p>打开书本<br>打开电灯</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="5-引用"><a href="#5-引用" class="headerlink" title="5. 引用"></a>5. 引用</h1><p><strong>语法说明：</strong></p>
-<p>引用需要在被引用的文本前加上<code>&gt;</code>符号。</p>
-<p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; 这是一段引用</span><br><span class="line">&gt; 引用内容1</span><br><span class="line">&gt; 引用内容2</span><br></pre></td></tr></table></figure>
-<p><strong>显示效果：</strong></p>
-<blockquote>
-<p>这是一段引用</p>
-<p>引用内容1</p>
-<p>引用内容2</p>
-</blockquote>
-<h2 id="5-1-引用的多层嵌套"><a href="#5-1-引用的多层嵌套" class="headerlink" title="5.1 引用的多层嵌套"></a>5.1 引用的多层嵌套</h2><p>区块引用可以嵌套(例如：引用内的引用)，只要根据层次上不同数量的<code>&gt;</code>。</p>
-<p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; 如何才能熟练掌握Markdown语法？ ---初级阶段</span><br><span class="line">&gt; &gt;看教程 ---进阶阶段</span><br><span class="line">&gt; &gt; &gt; 多写文章 ---高级阶段</span><br></pre></td></tr></table></figure>
-<p><strong>显示效果：</strong></p>
-<blockquote>
-<p>如何才能熟练掌握Markdown语法？ —初级阶段</p>
-<blockquote>
-<p>看教程 —进阶阶段</p>
-<blockquote>
-<p>多写文章 —高级阶段</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h2 id="5-2-引用其它的要素"><a href="#5-2-引用其它的要素" class="headerlink" title="5.2 引用其它的要素"></a>5.2 引用其它的要素</h2><p>引用的区块内也可以使用其他的Markdown语法，包括标题、列表、代码区块等。</p>
-<p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; 1. 这是第一行列表项。</span><br><span class="line">&gt; 2. 这是第二行列表项。</span><br><span class="line">&gt; 代码示例：</span><br><span class="line">&gt; `print &quot;Typora is such an amazing Markdown editor!&quot;`</span><br></pre></td></tr></table></figure>
-<p><strong>显示效果：</strong></p>
-<blockquote>
-<ol>
-<li>这是第一行列表项。</li>
-<li>这是第二行列表项。<br>代码示例：<br><code>print &quot;Typora is such an amazing Markdown editor!&quot;</code></li>
-</ol>
-</blockquote>
-<h1 id="6-插入图片"><a href="#6-插入图片" class="headerlink" title="6. 插入图片"></a>6. 插入图片</h1><p>图片的创建方式与超链接相似，而且和超链接一样也有两种写法，行内式和参考式写法。</p>
-<p>语法中图片Alt的意思是如果图片因为某些原因不能显示，就用定义的图片的Alt文字来代替图片。图片Title则和链接中的Title一样，表示鼠标悬停在图片上时出现的文字。Alt和Title都不是必须的，可以省略，但建议写上。</p>
-<h2 id="6-1-行内式"><a href="#6-1-行内式" class="headerlink" title="6.1 行内式"></a>6.1 行内式</h2><p><strong>语法说明：</strong></p>
-<p><code>![图片Alt](图片地址 &quot;图片Title&quot;)</code></p>
-<p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">海豹</span><br><span class="line">![海豹](/Markdown语法总结/seal.jpg &quot;海豹&quot;)</span><br></pre></td></tr></table></figure>
-<p><strong>显示效果：</strong></p>
-<p>海豹</p>
-<p><img src="/2017/11/25/Markdown语法总结/seal.jpg" alt="seal" title="海豹"></p>
-<h2 id="6-2-参考式"><a href="#6-2-参考式" class="headerlink" title="6.2 参考式"></a>6.2 参考式</h2><p><strong>语法说明：</strong></p>
-<p>在文档要插入图片的地方写<code>![图片Alt][标记]</code><br>在文档的最后写上<code>[标记]:图片地址 &quot;Title&quot;</code></p>
-<p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">海豹</span><br><span class="line">![海豹][seal]</span><br><span class="line">[seal]: Markdown语法总结/seal.jpg &quot;海豹&quot;</span><br></pre></td></tr></table></figure>
-<p><strong>显示效果：</strong></p>
-<p>海豹</p>
-<p><img src="/2017/11/25/Markdown语法总结/seal.jpg" alt="海豹" title="海豹"></p>
-<h1 id="7-LaTeX公式"><a href="#7-LaTeX公式" class="headerlink" title="7. LaTeX公式"></a>7. LaTeX公式</h1><h2 id="7-1-表示行内公式"><a href="#7-1-表示行内公式" class="headerlink" title="7.1 $表示行内公式"></a>7.1 $表示行内公式</h2><p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">质能守恒方程可以用一个很简单的方程式$E=mc^2$来表达。</span><br></pre></td></tr></table></figure>
-<p><strong>显示效果：</strong><br>质能守恒方程可以用一个很简单的方程式$E=mc^2$来表达。</p>
-<h2 id="7-2-表示整行公式"><a href="#7-2-表示整行公式" class="headerlink" title="7.2 $表示整行公式"></a>7.2 $表示整行公式</h2><p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$$\sum_&#123;i=1&#125;^n a_i=0$$</span><br><span class="line">$$f(x_1,x_2,\dots,x_n) = x_1^2 + x_2^2 + \dots + x_n^2$$</span><br></pre></td></tr></table></figure>
-<p><strong>显示效果：</strong></p>
-<p>$$\sum_{i=1}^n a_i=0$$</p>
-<p>$$f(x_1, x_2, \dots, x_n) = x_1^2 + x_2^2 + \dots + x_n^2$$</p>
-<h1 id="8-表格"><a href="#8-表格" class="headerlink" title="8. 表格"></a>8. 表格</h1><p><strong>语法说明：</strong></p>
-<ol>
-<li>不论是哪种方式，第一行为表头，第二行分隔表头和主题部分，第三行开始每一行是一个表格行。</li>
-<li>列与列之间用管道符<code>|</code>隔开，原生方式的表格每一行的两边也要有管道符。</li>
-<li>第二行还可以为不同的列指定对其方式。默认为左对齐，在<code>-</code>后加上<code>:</code>就右对齐。</li>
-</ol>
-<p><strong>代码：</strong></p>
-<p>简单表格：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">姓名|学科|成绩</span><br><span class="line">-|-|-</span><br><span class="line">小强|数学|150</span><br><span class="line">小赛|语文|150</span><br><span class="line">小呆|英语|59</span><br></pre></td></tr></table></figure>
-<p>原生表格：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">|姓名|学科|成绩|</span><br><span class="line">|-|-|-|</span><br><span class="line">|小强|数学|150|</span><br><span class="line">|小赛|语文|150|</span><br><span class="line">|小呆|英语|59|</span><br></pre></td></tr></table></figure>
-<p>表格单元内容设置为右对齐：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">姓名|学科|成绩</span><br><span class="line">|-:|-:|-:|</span><br><span class="line">|小强|数学|150|</span><br><span class="line">|小赛|语文|150|</span><br><span class="line">|小呆|英语|59|</span><br></pre></td></tr></table></figure></p>
-<p><strong>显示效果：</strong></p>
-<p>简单表格：</p>
-<table>
-<thead>
-<tr>
-<th>姓名</th>
-<th>学科</th>
-<th>成绩</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>小强</td>
-<td>数学</td>
-<td>150</td>
-</tr>
-<tr>
-<td>小赛</td>
-<td>语文</td>
-<td>150</td>
-</tr>
-<tr>
-<td>小呆</td>
-<td>英语</td>
-<td>59</td>
-</tr>
-</tbody>
-</table>
-<p>原生表格：</p>
-<table>
-<thead>
-<tr>
-<th>姓名</th>
-<th>学科</th>
-<th>成绩</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>小强</td>
-<td>数学</td>
-<td>150</td>
-</tr>
-<tr>
-<td>小赛</td>
-<td>语文</td>
-<td>150</td>
-</tr>
-<tr>
-<td>小呆</td>
-<td>英语</td>
-<td>59</td>
-</tr>
-</tbody>
-</table>
-<p>表格单元内容设置为右对齐：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:right">姓名</th>
-<th style="text-align:right">学科</th>
-<th style="text-align:right">成绩</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right">小强</td>
-<td style="text-align:right">数学</td>
-<td style="text-align:right">150</td>
-</tr>
-<tr>
-<td style="text-align:right">小赛</td>
-<td style="text-align:right">语文</td>
-<td style="text-align:right">150</td>
-</tr>
-<tr>
-<td style="text-align:right">小呆</td>
-<td style="text-align:right">英语</td>
-<td style="text-align:right">59</td>
-</tr>
-</tbody>
-</table>
-<h1 id="9-分割线"><a href="#9-分割线" class="headerlink" title="9. 分割线"></a>9. 分割线</h1><p>可以在一行中用三个以上的星号、减号、底线来建立一个分割线，行内不能有其它任何东西。Typora不允许符号间有空格。</p>
-<p><strong>代码：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">***</span><br><span class="line">- - -</span><br><span class="line">- - - - - -</span><br></pre></td></tr></table></figure></p>
-<p><strong>显示效果：</strong><br>显示效果相同。</p>
-<hr>
-<hr>
-<hr>
-<h1 id="10-代码"><a href="#10-代码" class="headerlink" title="10. 代码"></a>10. 代码</h1><p><strong>语法说明：</strong></p>
-<ol>
-<li>插入行内代码，即插入一个单词或者一句代码的情况，使用``这样的形式插入。</li>
-<li>插入多行代码，可使用三个`来插入。</li>
-</ol>
-<h2 id="10-1-行内式"><a href="#10-1-行内式" class="headerlink" title="10.1 行内式"></a>10.1 行内式</h2><p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C语言的函数`scanf()`怎么使用？</span><br></pre></td></tr></table></figure>
-<p><strong>显示效果：</strong></p>
-<p>C语言的函数<code>scanf()</code>怎么使用？</p>
-<h2 id="10-2-多行代码"><a href="#10-2-多行代码" class="headerlink" title="10.2 多行代码"></a>10.2 多行代码</h2><p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> ```C</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;hello world\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>显示效果：</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hello world\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="10-3-HTML代码"><a href="#10-3-HTML代码" class="headerlink" title="10.3 HTML代码"></a>10.3 HTML代码</h2><p>在代码区块里，&amp;、&lt;和&gt;会自动转成HTML实体，这样的方式可以让用户非常容易地使用Markdown插入范例使用地HTML原始码。</p>
-<p><strong>代码：</strong></p>
-<p>例子1：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;footer&quot;&gt;</span><br><span class="line"> @2017 Snowball Wang</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>例子2：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;th rowspan=&quot;2&quot;&gt;值班人员&lt;/th&gt;</span><br><span class="line">        &lt;th&gt;星期一&lt;/th&gt;</span><br><span class="line">        &lt;th&gt;星期二&lt;/th&gt;</span><br><span class="line">        &lt;th&gt;星期三&lt;/th&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;td&gt;王强&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;彭赛&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;阿呆&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>显示效果：</strong></p>
-<p>例子1：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"footer"</span>&gt;</span></span><br><span class="line"> @2017 Snowball Wang</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>例子2：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span> <span class="attr">rowspan</span>=<span class="string">"2"</span>&gt;</span>值班人员<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>星期一<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>星期二<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>星期三<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>王强<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>彭赛<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>阿呆<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
       
 
@@ -438,7 +219,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">List Comprehension</a>
         		</li>
       		
 		</ul>
@@ -505,7 +290,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/11/25/Markdown语法总结/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/01/25/Python列表推导式/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -519,15 +304,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Ubuntu16.04安装Caffe(CPU_only)
-        
-      </div>
-    </a>
   
+    <a href="/2018/01/17/Python中raw-input-和input-的区别/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python中raw_input()和input()的区别</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 

@@ -155,6 +155,125 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Python列表推导式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/25/Python列表推导式/">Python列表推导式</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/25/Python列表推导式/" class="archive-article-date">
+  	<time datetime="2018-01-25T08:08:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>关键字：</strong> Python 列表推导式</p>
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>最近重温Python的基础知识，发现了<strong>列表推导式</strong>（list comprehension）这种创建列表的高级方式，感觉非常有趣。谷歌发现了这篇文章<a href="http://www.secnetix.de/olli/Python/list_comprehensions.hawk" target="_blank" rel="noopener">Python: List Comprehensions</a>，文章作者用非常浅显易懂的语言介绍了<strong>列表推导式</strong>，于是我把文章翻译成中文，方便以后学习和查阅。</p>
+<h1 id="1-正文"><a href="#1-正文" class="headerlink" title="1. 正文"></a>1. 正文</h1><blockquote>
+<p><strong>注：</strong> 文章中以”&gt;&gt;&gt;”和”…”符号开头的行是Python的输入（这些符号都是Python交互式解释器默认的提示符），所有其它的内容都是Python的输出。</p>
+</blockquote>
+<p>Python支持一个名为<strong>“列表推导式”</strong>的概念。它可以像数学家一样，以非常自然容易的方法来构建列表。</p>
+<p>下面是常用的描述列表（或是集合、元组、向量）的数学表达式：</p>
+<p>$$S = \lbrace x^2 : x \ in \  \lbrace0 … 9\rbrace \rbrace $$</p>
+<p>$$ V = \lbrace1, 2, 4, 8, … , 2^{12}\rbrace $$</p>
+<p>$$M = \lbrace x\ | x \ in \ S \ and \ x \ even \rbrace$$</p>
+<p>你可能已经在学校的数学课里学过了上述内容。在Python中，你几乎完全可以像数学家一样写出这些表达式，并且不需要记住任何难懂的语法。</p>
+<p>在Python中实现上述数学表达式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>S = [x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>V = [<span class="number">2</span>**i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">13</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>M = [x <span class="keyword">for</span> x <span class="keyword">in</span> S <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>]</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> S; <span class="keyword">print</span> V; <span class="keyword">print</span> M</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>, <span class="number">36</span>, <span class="number">49</span>, <span class="number">64</span>, <span class="number">81</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>, <span class="number">32</span>, <span class="number">64</span>, <span class="number">128</span>, <span class="number">256</span>, <span class="number">512</span>, <span class="number">1024</span>, <span class="number">2048</span>, <span class="number">4096</span>]</span><br><span class="line">[<span class="number">0</span>, <span class="number">4</span>, <span class="number">16</span>, <span class="number">36</span>, <span class="number">64</span>]</span><br></pre></td></tr></table></figure>
+<p>我知道你想要了解更复杂的例子:)。接下来我们将用列表推导式来计算质数。有趣的是我们要首先建一个非质数的列表，然后我们使用列表推导式来得到之前列表的”反转列表”，也就是我们想要得到的质数列表。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>noprimes = [j <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, <span class="number">8</span>) <span class="keyword">for</span> j <span class="keyword">in</span> range(i*<span class="number">2</span>, <span class="number">50</span>, i)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>primes = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">2</span>,<span class="number">50</span>) <span class="keyword">if</span> x <span class="keyword">not</span> <span class="keyword">in</span> noprimes]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> primes</span><br><span class="line">[<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>, <span class="number">29</span>, <span class="number">31</span>, <span class="number">37</span>, <span class="number">41</span>, <span class="number">43</span>, <span class="number">47</span>]</span><br></pre></td></tr></table></figure>
+<p><strong>注：</strong>你可以在每一个列表推导式中再嵌套列表推导式，上述的例子用一行代码即可完成（不再需要中间变量”noprimes”）。但是，这样的代码容易变得冗长，导致可读性下降，所以不推荐。</p>
+<p>当然，列表推导式不仅仅用于数字。列表可以包含任意类型的元素，包括字符串、嵌套列表和函数。你甚至可以在一个列表里混合多种类型的元素。</p>
+<p>下面的代码处理一个字符串列表，生成一组列表。每个子列表都包含两个字符串和一个整型数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>words = <span class="string">'The quick brown fox jumps over the lazy dog'</span>.split()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> words</span><br><span class="line">[<span class="string">'The'</span>, <span class="string">'quick'</span>, <span class="string">'brown'</span>, <span class="string">'fox'</span>, <span class="string">'jumps'</span>, <span class="string">'over'</span>, <span class="string">'the'</span>, <span class="string">'lazy'</span>, <span class="string">'dog'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>stuff = [[w.upper(), w.lower(), len(w)] <span class="keyword">for</span> w <span class="keyword">in</span> words]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> stuff:</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">print</span> i</span><br><span class="line"><span class="meta">... </span></span><br><span class="line">[<span class="string">'THE'</span>, <span class="string">'the'</span>, <span class="number">3</span>]</span><br><span class="line">[<span class="string">'QUICK'</span>, <span class="string">'quick'</span>, <span class="number">5</span>]</span><br><span class="line">[<span class="string">'BROWN'</span>, <span class="string">'brown'</span>, <span class="number">5</span>]</span><br><span class="line">[<span class="string">'FOX'</span>, <span class="string">'fox'</span>, <span class="number">3</span>]</span><br><span class="line">[<span class="string">'JUMPS'</span>, <span class="string">'jumps'</span>, <span class="number">5</span>]</span><br><span class="line">[<span class="string">'OVER'</span>, <span class="string">'over'</span>, <span class="number">4</span>]</span><br><span class="line">[<span class="string">'THE'</span>, <span class="string">'the'</span>, <span class="number">3</span>]</span><br><span class="line">[<span class="string">'LAZY'</span>, <span class="string">'lazy'</span>, <span class="number">4</span>]</span><br><span class="line">[<span class="string">'DOG'</span>, <span class="string">'dog'</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>stuff = map(<span class="keyword">lambda</span> w: [w.upper(), w.lower(), len(w)], words)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> stuff:</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">print</span> i</span><br><span class="line"><span class="meta">... </span></span><br><span class="line">[<span class="string">'THE'</span>, <span class="string">'the'</span>, <span class="number">3</span>]</span><br><span class="line">[<span class="string">'QUICK'</span>, <span class="string">'quick'</span>, <span class="number">5</span>]</span><br><span class="line">[<span class="string">'BROWN'</span>, <span class="string">'brown'</span>, <span class="number">5</span>]</span><br><span class="line">[<span class="string">'FOX'</span>, <span class="string">'fox'</span>, <span class="number">3</span>]</span><br><span class="line">[<span class="string">'JUMPS'</span>, <span class="string">'jumps'</span>, <span class="number">5</span>]</span><br><span class="line">[<span class="string">'OVER'</span>, <span class="string">'over'</span>, <span class="number">4</span>]</span><br><span class="line">[<span class="string">'THE'</span>, <span class="string">'the'</span>, <span class="number">3</span>]</span><br><span class="line">[<span class="string">'LAZY'</span>, <span class="string">'lazy'</span>, <span class="number">4</span>]</span><br><span class="line">[<span class="string">'DOG'</span>, <span class="string">'dog'</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<p>上述例子说明你完全可以通过<code>map()</code>和<code>lambda</code>函数做到列表推导式做的事。但是，存在你无法使用<code>map()</code>函数只能使用列表推导式的情况，反之亦然。如果两种方法都可以使用，则推荐使用列表推导式，因为它更高效，代码的可读性也更强。</p>
+<p>如果构建列表的规则太过复杂，无法用简单的<code>for</code>或是<code>if</code>语句来表达时，抑或是构建列表的规则会在代码运行时动态修改，那你就无法使用列表推导式。在上述情况下，你最好使用<code>map()</code>或者<code>filter()</code>函数。当然，你也可以将函数结合列表推导式使用。</p>
+<h1 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h1><p>列表推导式的规范为：<strong><code>var = [ out_exp for out_exp in input_list if out_exp ...]</code></strong></p>
+<p><strong>参考链接：</strong></p>
+<ol>
+<li><a href="http://www.secnetix.de/olli/Python/list_comprehensions.hawk" target="_blank" rel="noopener">http://www.secnetix.de/olli/Python/list_comprehensions.hawk</a></li>
+<li><a href="https://eastlakeside.gitbooks.io/interpy-zh/content/Comprehensions/list-comprehensions.html" target="_blank" rel="noopener">https://eastlakeside.gitbooks.io/interpy-zh/content/Comprehensions/list-comprehensions.html</a></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">List Comprehension</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/25/Python列表推导式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Python中raw-input-和input-的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1490,7 +1609,7 @@
 <p><strong>代码：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">推荐几个不错的网站[Baidu][1],[USTC][2]以及[村上秋水的却其顿小屋][3]。[村上秋水的却其顿小屋][3]是值得你关注的[博客][]。</span><br><span class="line"></span><br><span class="line">[1]: http://www.baidu.com &quot;百度&quot;</span><br><span class="line">[2]: http://www.ustc.edu.cn &quot;科大首页&quot;</span><br><span class="line">[3]: http://blog.163.com/snowball_wang/ &quot;村上秋水的却其顿小屋&quot;</span><br><span class="line">[博客]: http://blog.163.com/snowball_wang/ &quot;村上秋水的却其顿小屋&quot;</span><br></pre></td></tr></table></figure></p>
 <h2 id="3-3-自动链接"><a href="#3-3-自动链接" class="headerlink" title="3.3 自动链接"></a>3.3 自动链接</h2><p><strong>语法说明：</strong><br>Markdown支持以比较简单的自动链接形式来处理网址和电子邮件信箱。使用<code>&lt;&gt;</code>就会被自动转换成链接。</p>
 <p><strong>代码：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;http://www.baidu.com&gt;</span><br><span class="line">&lt;wjq1996@mail.ustc.edu.cn&gt;</span><br></pre></td></tr></table></figure></p>
-<p><strong>显示效果：</strong><br><a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a><br><a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#x77;&#106;&#x71;&#x31;&#57;&#57;&#54;&#64;&#109;&#x61;&#x69;&#108;&#46;&#x75;&#115;&#x74;&#99;&#x2e;&#101;&#100;&#117;&#x2e;&#99;&#110;">&#x77;&#106;&#x71;&#x31;&#57;&#57;&#54;&#64;&#109;&#x61;&#x69;&#108;&#46;&#x75;&#115;&#x74;&#99;&#x2e;&#101;&#100;&#117;&#x2e;&#99;&#110;</a></p>
+<p><strong>显示效果：</strong><br><a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a><br><a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#58;&#119;&#106;&#113;&#49;&#57;&#57;&#54;&#x40;&#109;&#x61;&#105;&#108;&#x2e;&#117;&#115;&#116;&#99;&#46;&#101;&#100;&#117;&#46;&#x63;&#x6e;">&#119;&#106;&#113;&#49;&#57;&#57;&#54;&#x40;&#109;&#x61;&#105;&#108;&#x2e;&#117;&#115;&#116;&#99;&#46;&#101;&#100;&#117;&#46;&#x63;&#x6e;</a></p>
 <h1 id="4-列表"><a href="#4-列表" class="headerlink" title="4.列表"></a>4.列表</h1><h2 id="4-1-无序列表"><a href="#4-1-无序列表" class="headerlink" title="4.1 无序列表"></a>4.1 无序列表</h2><p>使用<code>*,+,-</code>表示无序列表。</p>
 <p><strong>代码：</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 无序列表项 一</span><br><span class="line">- 无序列表项 二</span><br><span class="line">- 无序列表项 三</span><br></pre></td></tr></table></figure>
@@ -1912,18 +2031,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1933,6 +2040,22 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">input()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
               </li>
             
             <div class="clearfix"></div>
