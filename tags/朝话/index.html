@@ -6,23 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Python魔法方法和操作符重载 | 王杰强的博客</title>
+  <title>Tag: 朝话 | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关键词： Python 魔法方法 操作符重载 0.前言在阅读Python的代码时，经常会看到以双下划线__包裹起来的方法，最常见的就是在Python的类里的__init__方法。这些方法被称之为魔法方法（Magic Method）。网上看了很多介绍Python魔法方法的文章，有的写得太过啰嗦，有的写得太过深奥。我个人觉">
-<meta name="keywords" content="技术日志,Python,Magic Method,Operator Overloading">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Python魔法方法和操作符重载">
-<meta property="og:url" content="http://yoursite.com/2018/02/02/Python魔法方法和操作符重载/index.html">
+  <meta name="description" content="这个人很懒，什么都没有留下">
+<meta property="og:type" content="website">
+<meta property="og:title" content="王杰强的博客">
+<meta property="og:url" content="http://yoursite.com/tags/朝话/index.html">
 <meta property="og:site_name" content="王杰强的博客">
-<meta property="og:description" content="关键词： Python 魔法方法 操作符重载 0.前言在阅读Python的代码时，经常会看到以双下划线__包裹起来的方法，最常见的就是在Python的类里的__init__方法。这些方法被称之为魔法方法（Magic Method）。网上看了很多介绍Python魔法方法的文章，有的写得太过啰嗦，有的写得太过深奥。我个人觉得这篇文章写得非常简洁明了，于是将之翻译，稍微对原文内容做了一些修改，算是Py">
+<meta property="og:description" content="这个人很懒，什么都没有留下">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/02/02/Python魔法方法和操作符重载/marvin_the_magician.png">
-<meta property="og:image" content="http://yoursite.com/2018/02/02/Python魔法方法和操作符重载/operator_overloading__radd__.png">
-<meta property="og:updated_time" content="2018-02-22T13:55:54.889Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python魔法方法和操作符重载">
-<meta name="twitter:description" content="关键词： Python 魔法方法 操作符重载 0.前言在阅读Python的代码时，经常会看到以双下划线__包裹起来的方法，最常见的就是在Python的类里的__init__方法。这些方法被称之为魔法方法（Magic Method）。网上看了很多介绍Python魔法方法的文章，有的写得太过啰嗦，有的写得太过深奥。我个人觉得这篇文章写得非常简洁明了，于是将之翻译，稍微对原文内容做了一些修改，算是Py">
-<meta name="twitter:image" content="http://yoursite.com/2018/02/02/Python魔法方法和操作符重载/marvin_the_magician.png">
+<meta name="twitter:title" content="王杰强的博客">
+<meta name="twitter:description" content="这个人很懒，什么都没有留下">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
   
@@ -158,438 +153,79 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Python魔法方法和操作符重载" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Python魔法方法和操作符重载
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/03/03/日常生活的态度/" class="archive-article-date">
+  	<time datetime="2018-03-03T05:02:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-03</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/03/03/日常生活的态度/">日常生活的态度</a>
     </h1>
   
 
-        
-        <a href="/2018/02/02/Python魔法方法和操作符重载/" class="archive-article-date">
-  	<time datetime="2018-02-01T16:12:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/2018/02/02/Python魔法方法和操作符重载/marvin_the_magician.png" alt="魔法方法"></p>
-<p><strong>关键词：</strong> Python 魔法方法 操作符重载</p>
-<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h1><p>在阅读Python的代码时，经常会看到以双下划线<code>__</code>包裹起来的方法，最常见的就是在Python的类里的<code>__init__</code>方法。这些方法被称之为<strong>魔法方法（Magic Method）</strong>。网上看了很多介绍Python<strong>魔法方法</strong>的文章，有的写得太过啰嗦，有的写得太过深奥。我个人觉得<a href="https://www.python-course.eu/python3_magic_methods.php" target="_blank" rel="noopener">这篇文章</a>写得非常简洁明了，于是将之翻译，稍微对原文内容做了一些修改，算是Python<strong>魔法方法</strong>相关知识的总结和归档。</p>
-<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1.介绍"></a>1.介绍</h1><p>所谓的Python魔法方法与真正的魔法并没有关系。这种方法的语法很令人费解，如：在方法名的开始和结尾都要加上两道下划线。你也很难探讨它们，如何口头表达一个名字为<code>__init__</code>的方法？可能最好的口头表达方法就是”前后双下划init方法”，就是这样听起来也很难受。</p>
-<p>那么关于<code>__init__</code>方法有何神奇之处？答案就是，你不用直接调用它，调用的实现机制是在后台完成。当你用语句<code>X = A()</code>创建一个A类的x实例时，Python会自动调用<code>__new__</code>和<code>__init__</code>方法。</p>
-<p>关于操作符重载，我们可以使用<code>+</code>来进行加法运算、合并字符串或列表。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">4</span> + <span class="number">5</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">3.8</span> + <span class="number">9</span></span><br><span class="line"><span class="number">12.8</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"Peter"</span> + <span class="string">" "</span> + <span class="string">"Pan"</span></span><br><span class="line"><span class="string">'Peter Pan'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">3</span>, <span class="number">6</span>, <span class="number">8</span>] + [<span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>]</span><br><span class="line">[<span class="number">3</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>]</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
-<p>我们甚至可以在自己的类中重载<code>+</code>操作符乃至其它操作符。想要实现上述功能，我们就需要理解操作符重载的背后机制。每一个操作符号都有一个魔法方法（也称特殊方法）。<code>+</code>号的魔法方法是<code>__add__</code>方法，<code>-</code>号的魔法方法是<code>__sub__</code>方法。下面第2节表格显示的是全部操作符的魔法方法。</p>
-<p>操作符重载的工作机制如下：如果我们有一个<code>x + y</code>的表达式，x是类K的实例，那么Python将会检查类K的定义。如果K有<code>__add__</code>方法，那么<code>x + y</code>将会调用<code>x.__add__(y)</code>，否则我们将会得到一个错误信息。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">K</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">print</span> <span class="string">"This is class K."</span></span><br><span class="line"><span class="meta">... </span></span><br><span class="line">This <span class="keyword">is</span> <span class="class"><span class="keyword">class</span> <span class="title">K</span>.</span></span><br><span class="line">&gt;&gt;&gt; A = K()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>B = K()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A + B</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">TypeError: unsupported operand type(s) <span class="keyword">for</span> +: <span class="string">'instance'</span> <span class="keyword">and</span> <span class="string">'instance'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">M</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__add__</span><span class="params">(self, other)</span>:</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">print</span> <span class="string">"Hello, World!"</span></span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A = M()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>B = M()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A + B</span><br><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
-<h1 id="2-魔法方法总览"><a href="#2-魔法方法总览" class="headerlink" title="2. 魔法方法总览"></a>2. 魔法方法总览</h1><p><strong>二进制操作符</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">操作符</th>
-<th style="text-align:center">方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>+</code></td>
-<td style="text-align:center"><code>object.__add__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>-</code></td>
-<td style="text-align:center"><code>object.__sub__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>*</code></td>
-<td style="text-align:center"><code>object.__mul__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>//</code></td>
-<td style="text-align:center"><code>object.__floordiv__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>/</code></td>
-<td style="text-align:center"><code>object.__truediv__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>%</code></td>
-<td style="text-align:center"><code>object.__mod__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>**</code></td>
-<td style="text-align:center"><code>object.__pow__(self, other[,modulo])</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&lt;&lt;</code></td>
-<td style="text-align:center"><code>object.__lshift__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&gt;&gt;</code></td>
-<td style="text-align:center"><code>object.__rshift__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&amp;</code></td>
-<td style="text-align:center"><code>object.__and__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>^</code></td>
-<td style="text-align:center"><code>object.__xor__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center">&#x7c;</td>
-<td style="text-align:center"><code>object.__or__(self, other)</code></td>
-</tr>
-</tbody>
-</table>
-<p><strong>增强赋值操作符</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">操作符</th>
-<th style="text-align:center">方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>+=</code></td>
-<td style="text-align:center"><code>object.__iadd__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>-=</code></td>
-<td style="text-align:center"><code>object.__isub__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>*=</code></td>
-<td style="text-align:center"><code>object.__imul__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>/=</code></td>
-<td style="text-align:center"><code>object.__idiv__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>//=</code></td>
-<td style="text-align:center"><code>object.__ifloordiv__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>%=</code></td>
-<td style="text-align:center"><code>object.__imod__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>**=</code></td>
-<td style="text-align:center"><code>object.__ipow__(self, other[,modulo])</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&lt;&lt;=</code></td>
-<td style="text-align:center"><code>object.__lshift__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&gt;&gt;=</code></td>
-<td style="text-align:center"><code>object.__rshift__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&amp;=</code></td>
-<td style="text-align:center"><code>object.__iand__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center">&#x7c; =</td>
-<td style="text-align:center"><code>object.__ior__(self, other)</code></td>
-</tr>
-</tbody>
-</table>
-<p><strong>注：</strong>在Markdown表格里输入<code>|</code>会出现很多问题，上述表格中的<code>|=</code>的中间并没有空格。</p>
-<p><strong>一元操作符</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">操作符</th>
-<th style="text-align:center">方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>-</code></td>
-<td style="text-align:center"><code>object.__neg__(self)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>+</code></td>
-<td style="text-align:center"><code>object.__pos__(self)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>abs()</code></td>
-<td style="text-align:center"><code>object.__abs__(self)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>~</code></td>
-<td style="text-align:center"><code>object.__invert__(self)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>complex()</code></td>
-<td style="text-align:center"><code>object.__complex__(self)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>int()</code></td>
-<td style="text-align:center"><code>object.__int__(self)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>long()</code></td>
-<td style="text-align:center"><code>object.__long__(self)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>float()</code></td>
-<td style="text-align:center"><code>object.__float__(self)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>oct()</code></td>
-<td style="text-align:center"><code>object.__oct__(self)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>hex()</code></td>
-<td style="text-align:center"><code>object.__hex__(self)</code></td>
-</tr>
-</tbody>
-</table>
-<p><strong>比较操作符</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">操作符</th>
-<th style="text-align:center">方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>&lt;</code></td>
-<td style="text-align:center"><code>object.__lt__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&lt;=</code></td>
-<td style="text-align:center"><code>object.__le__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>==</code></td>
-<td style="text-align:center"><code>object.__eq__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>!=</code></td>
-<td style="text-align:center"><code>object.__ne__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&gt;=</code></td>
-<td style="text-align:center"><code>object.__ge__(self, other)</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&gt;</code></td>
-<td style="text-align:center"><code>object.__gt__(self, other)</code></td>
-</tr>
-</tbody>
-</table>
-<h1 id="3-例程：Length类"><a href="#3-例程：Length类" class="headerlink" title="3. 例程：Length类"></a>3. 例程：Length类</h1><p>在接下来的<code>Length</code>类里，我们将展示如何在自己的类中重载<code>+</code>操作符。要完成上述功能，我们要重载<code>__add__</code>方法。我们的类中也同时包含<code>__str__</code>和<code>__repr__</code>方法。<code>Length</code>类的实例也包含长度或距离信息。一个实例的属性包含<code>self.value</code>和<code>self.unit</code>。</p>
-<p><code>Length</code>类允许我们计算混合单元的表达式，如下例所示：</p>
-<p><code>2.56 m + 3 yd + 7.8 in + 7.03 cm</code></p>
-<p><code>Length</code>类可以如下所示的代码所使用：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> unit_conversions <span class="keyword">import</span> Length</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>L = Length</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(L(<span class="number">2.56</span>, <span class="string">"m"</span>) + L(<span class="number">3</span>, <span class="string">"yd"</span>) + L(<span class="number">7.8</span>, <span class="string">"in"</span>) + L(<span class="number">7.03</span>, <span class="string">"cm"</span>))</span><br><span class="line"><span class="number">5.57162</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
-<p><code>Length</code>类的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Length</span><span class="params">()</span>:</span></span><br><span class="line">    __metric = &#123;<span class="string">'mm'</span>:<span class="number">0.001</span>, <span class="string">'cm'</span>:<span class="number">0.01</span>, <span class="string">'m'</span>:<span class="number">1</span>, <span class="string">'km'</span>:<span class="number">1000</span>,</span><br><span class="line">                <span class="string">'in'</span>:<span class="number">0.0254</span>, <span class="string">'ft'</span>:<span class="number">0.3048</span>, <span class="string">'yd'</span>:<span class="number">0.9144</span>, <span class="string">'mi'</span>:<span class="number">1609.344</span>&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, value, unit=<span class="string">"m"</span>)</span>:</span></span><br><span class="line">        self.value = value</span><br><span class="line">        self.unit = unit</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Converse2Metres</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.value * Length.__metric[self.unit]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__add__</span><span class="params">(self, other)</span>:</span></span><br><span class="line">        l = self.Converse2Metres() + other.Converse2Metres()</span><br><span class="line">        <span class="keyword">return</span> Length(l / Length.__metric[self.unit], self.unit)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> str(self.Converse2Metres())</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Length("</span> + str(self.value) + <span class="string">", '"</span> + self.unit + <span class="string">"')"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    x = Length(<span class="number">4</span>)</span><br><span class="line">    print(x)</span><br><span class="line">    y = eval(repr(x))</span><br><span class="line"></span><br><span class="line">    z = Length(<span class="number">4.5</span>, <span class="string">"yd"</span>) + Length(<span class="number">1</span>)</span><br><span class="line">    print(repr(z))</span><br><span class="line">    print(z)</span><br></pre></td></tr></table></figure>
-<p><strong>注：</strong>补充关于Python中的前缀为单下划线、结尾为单下划线、前缀为双下划线、前缀和结尾为双下划线的各自含义，参照<a href="https://stackoverflow.com/questions/8689964/why-do-some-functions-have-underscores-before-and-after-the-function-name/8689983#8689983" target="_blank" rel="noopener">stackoverflow上的解答</a>。</p>
-<ul>
-<li><strong>_single_leading_underscore:</strong> 以单下划线作为前缀的变量或者函数被默认当作是内部变量和函数。如果使用<code>from a_module import *</code>导入时，这部分变量和函数不会被导入。不过如果使用<code>import a_module</code>导入模块，仍可通过<code>a_module._some_var</code>进行访问。</li>
-<li><strong>single_trailing<em>underscore</em>：</strong>避免与Python关键字冲突的一种习惯写法，举例：<code>Tkinter.Toplevel(master, class_=&#39;ClassName&#39;)</code>。</li>
-<li><strong>__double_leading_underscore：</strong>以双下划线作前缀的名称对解释器有特定含义。Python会改写这些名称，以免与子类中定义的名称产生冲突。任何<code>__method</code>这种形式的标识符，都会在文本上被替换成<code>_classname__method</code>，其中<code>classname</code>是当前类名，并带上一个下划线作为前缀，具体理解可参考<a href="https://segmentfault.com/a/1190000002611411" target="_blank" rel="noopener">例子</a> 。</li>
-<li><strong><strong>double_leading_and_trailing_underscore</strong>：</strong>Python的魔法方法，但也是一种惯例，确保Python系统中的名称不会和用户自定义的名称发生冲突的方式。</li>
-</ul>
-<p>如果我们运行程序，将会得到以下输出结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">4</span><br><span class="line">Length(5.593613298337708, &apos;yd&apos;)</span><br><span class="line">5.1148</span><br></pre></td></tr></table></figure>
-<p>我们可以使用<code>__iadd__</code>方法来实现更多的功能：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__iadd__</span><span class="params">(self, other)</span>:</span></span><br><span class="line">    l = self.Converse2Metres() + other.Converse2Metres()</span><br><span class="line">    self.value = l / Length.__metric[self.unit]</span><br><span class="line">    <span class="keyword">return</span> self</span><br></pre></td></tr></table></figure>
-<p>现在我们可以写下以下程序：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x += Length(<span class="number">1</span>)</span><br><span class="line">x += Length(<span class="number">4</span>, <span class="string">"yd"</span>)</span><br></pre></td></tr></table></figure>
-<p>在上述的例子当中，我们通过语句<code>x += Length(1)</code>来实现加上1米的功能。可以肯定地说，你一定会同意<code>x += 1</code>这种写法更加方便。对于<code>Length(5, &quot;yd&quot;) + 4.8</code>这类的表达式，我们也想实现类似的功能。如果有人使用整型数或者浮点型数，我们的<code>Length</code>类将会自动将其转换为单位是”metre”的<code>Length</code>对象。使用<code>__add__</code>和<code>__iadd__</code>方法来完成上述功能很简单，我们只需要检查参数”other”的类型即可。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__add__</span><span class="params">(self, other)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> type(other) == int <span class="keyword">or</span> type(other) == float:</span><br><span class="line">        l = self.Converse2Metres() + other</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        l = self.Converse2Metres() + other.Converse2Metres()</span><br><span class="line">    <span class="keyword">return</span> Length(l / Length.__metric[self.unit], self.unit)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__iadd__</span><span class="params">(self, other)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> type(other) == int <span class="keyword">or</span> type(other) == float:</span><br><span class="line">        l = self.Converse2Metres() + other</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        l = self.Converse2Metres() + other.Converse2Metres()</span><br><span class="line">    self.value = l / Length.__metric[self.unit]</span><br><span class="line">    <span class="keyword">return</span> self</span><br></pre></td></tr></table></figure>
-<p>如果一个人从右边加上整数或者浮点数，他也很有可能从左边执行相同的操作。让我们尝试一下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> unit_conversions <span class="keyword">import</span> Length</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = Length(<span class="number">3</span>, <span class="string">"yd"</span>) + <span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = <span class="number">5</span> + Length(<span class="number">3</span>, <span class="string">"yd"</span>)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">TypeError: unsupported operand type(s) <span class="keyword">for</span> +: <span class="string">'int'</span> <span class="keyword">and</span> <span class="string">'Length'</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
-<p>当然，表达式的左边必须是”Length”类，否则Python将会试图从<code>int</code>类型里使用<code>__add__</code>方法，这样就无法将<code>Length</code>对象作为第二个参数进行处理。</p>
-<p>对于此类问题Python也提供了一套解决方案。这就是<code>__radd__</code>方法。它的工作原理是这样的：Python试图求得表达式<code>5 + Length(3, &quot;yd&quot;)</code>的值。首先表达式将调用<code>int.__add__(5, Length(3, &#39;yd&#39;))</code>，从而引发一个异常。然后表达式将试图调用<code>Length.__radd__(Length(3, &quot;yd&quot;), 5)</code>。很容易想象出<code>__radd__</code>的实现同<code>__add__</code>很类似。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__radd__</span><span class="params">(self, other)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> type(other) == int <span class="keyword">or</span> type(other) == float:</span><br><span class="line">        l = self.Converse2Metres() + other</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        l = self.Converse2Metres() + other.Converse2Metres()</span><br><span class="line">    <span class="keyword">return</span> Length(l / Length.__metric[self.unit], self.unit)</span><br></pre></td></tr></table></figure>
-<p>更为明智的做法是在<code>__radd__</code>方法中使用<code>__add__</code>方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__radd__</span><span class="params">(self, other)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> Length.__add__(self, other)</span><br></pre></td></tr></table></figure>
-<p>下面的图标解释了方法<code>__add__</code>和<code>__radd__</code>之间的关系：</p>
-<p><img src="/2018/02/02/Python魔法方法和操作符重载/operator_overloading__radd__.png" alt="radd和add的关系"></p>
-<h1 id="4-标准类作为基类"><a href="#4-标准类作为基类" class="headerlink" title="4. 标准类作为基类"></a>4. 标准类作为基类</h1><p>我们有可能使用诸如<code>int</code>，<code>float</code>，<code>dict</code>或者是<code>list</code>的基类作为标准类。</p>
-<p>我们将<code>list</code>列表类型新填一个<code>push</code>方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Plist</span><span class="params">(list)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, l)</span>:</span></span><br><span class="line">        list.__init__(self, l)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, item)</span>:</span></span><br><span class="line">        self.append(item)</span><br><span class="line">        </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    x = Plist([<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">    x.push(<span class="number">47</span>)</span><br><span class="line">    print(x)</span><br></pre></td></tr></table></figure>
-<h1 id="5-练习"><a href="#5-练习" class="headerlink" title="5. 练习"></a>5. 练习</h1><p><strong>问题：</strong>写一个类似于之前定义的<code>Length</code>类的名称为<code>Ccy</code>的类。<code>Ccy</code>类应该包含不同货币的值，诸如欧元、英镑、美元等。一个实例应该包含金额数量和金额单位。设计的类必须能够通过下列程序描述：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> currencies <span class="keyword">import</span> Ccy</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>v1 = Ccy(<span class="number">23.43</span>, <span class="string">"EUR"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>v2 = Ccy(<span class="number">19.97</span>, <span class="string">"USD"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(v1 + v2)</span><br><span class="line"><span class="number">39.68</span> EUR</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(v2 + v1)</span><br><span class="line"><span class="number">48.76</span> USD</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(v1 + <span class="number">3</span>) <span class="comment"># an int or a float is considered to be a EUR value</span></span><br><span class="line"><span class="number">26.43</span> EUR</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="number">3</span> + v1)</span><br><span class="line"><span class="number">26.43</span> EUR</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>注：</strong>原文数据有误。</p>
-<p><strong>我的解决方法：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ccy</span>:</span></span><br><span class="line"></span><br><span class="line">    __unit = &#123;<span class="string">"EUR"</span>: <span class="number">1.0</span>, <span class="string">"USD"</span>: <span class="number">1.2288</span>, <span class="string">"GBD"</span>: <span class="number">0.8857</span>&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, value, unit = <span class="string">"EUR"</span>)</span>:</span></span><br><span class="line">        self.value = value</span><br><span class="line">        self.unit = unit</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">converse2eur</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.value / Ccy.__unit[self.unit]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__add__</span><span class="params">(self, other)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> type(other) == int <span class="keyword">or</span> type(other) == float:</span><br><span class="line">            l = self.converse2eur() + other</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            l = self.converse2eur() + other.converse2eur()</span><br><span class="line">        x = l * Ccy.__unit[self.unit]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Ccy(x, self.unit)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__radd__</span><span class="params">(self, other)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> Ccy.__add__(self, other)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"&#123;0:5.2f&#125;"</span>.format(self.value) + <span class="string">" "</span> + self.unit</span><br></pre></td></tr></table></figure>
-<p><strong>参考链接：</strong></p>
-<ol>
-<li><a href="https://www.python-course.eu/python3_magic_methods.php" target="_blank" rel="noopener">https://www.python-course.eu/python3_magic_methods.php</a></li>
-<li><a href="https://segmentfault.com/a/1190000002611411" target="_blank" rel="noopener">https://segmentfault.com/a/1190000002611411</a></li>
-<li><a href="https://stackoverflow.com/questions/1301346/what-is-the-meaning-of-a-single-and-a-double-underscore-before-an-object-name" target="_blank" rel="noopener">https://stackoverflow.com/questions/1301346/what-is-the-meaning-of-a-single-and-a-double-underscore-before-an-object-name</a></li>
-<li><a href="https://ask.helplib.com/python/post_166801" target="_blank" rel="noopener">https://ask.helplib.com/python/post_166801</a></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">朝话</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Magic Method</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Operator Overloading</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">梁漱溟</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志/Python//" class="article-tag-list-link color2">Python</a>
+        			<a href="/categories/读书摘录//" class="article-tag-list-link color5">读书摘录</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/02/Python魔法方法和操作符重载/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/03/03/日常生活的态度/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          日常生活的态度
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/01/25/Python列表推导式/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python列表推导式</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -612,9 +248,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
