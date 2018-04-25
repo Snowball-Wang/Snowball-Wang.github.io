@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="王杰强的博客">
 <meta property="og:description" content="前言最近在执行100天C++ Primer计划，书中第四章里的左值和右值的概念让我困惑不已。CSDN博客里关于左值和右值的文章介绍的都不够全面，每次看了一些都没有耐心继续再看下去。个人认为这篇英文博客把左值和右值的概念说明的非常清晰，且方式也是循循善诱。翻译之作为学习的存档。 正文我们在C/C++编程中很少会遇到术语左值（lvalue）和右值（rvalue），但是一旦接触到这两个概念，我们很难立即">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-31T08:46:42.116Z">
+<meta property="og:updated_time" content="2018-03-31T08:55:25.332Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解C&#x2F;C++中的左值和右值">
 <meta name="twitter:description" content="前言最近在执行100天C++ Primer计划，书中第四章里的左值和右值的概念让我困惑不已。CSDN博客里关于左值和右值的文章介绍的都不够全面，每次看了一些都没有耐心继续再看下去。个人认为这篇英文博客把左值和右值的概念说明的非常清晰，且方式也是循循善诱。翻译之作为学习的存档。 正文我们在C/C++编程中很少会遇到术语左值（lvalue）和右值（rvalue），但是一旦接触到这两个概念，我们很难立即">
@@ -200,7 +200,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> globalvar = <span class="number">20</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span>&amp; <span class="title">foo</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> globalvar;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    foo() = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上述代码中，<code>foo</code>函数返回了一个引用，<strong>引用是左值类型</strong>，因此可以被赋值。实际上，C++从函数中返回左值的能力在实现某些操作符重载的机制上有着非常重要的作用。一个常见的例子便是对类的中括号<code>[]</code>操作符进行重载，来实现某种查询控制。<code>std::map</code>可以这样做：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">float</span>&gt; mymap;</span><br><span class="line">mymap[<span class="number">10</span>] = <span class="number">5.6</span>;</span><br></pre></td></tr></table></figure>
-<p><code>mymap[10]</code>赋值有效，是因为<code>std::map::operator[]</code>的非常量重载返回了一个可以被赋值的引用。</p>
+<p><code>mymap[10]</code>赋值有效，是因为<code>std::map::operator[]</code>的非const重载返回了一个可以被赋值的引用。</p>
 <h2 id="可修改的左值"><a href="#可修改的左值" class="headerlink" title="可修改的左值"></a>可修改的左值</h2><p>一开始左值是为了C语言定义的，它字面上的意思是”适合在赋值语句左边的值”。一段时间后，当IOS C添加了<code>const</code>关键字时，原先的含义必须重新定义。毕竟：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> a = <span class="number">10</span>; <span class="comment">//'a'是个左值</span></span><br><span class="line">a = <span class="number">10</span>;           <span class="comment">//但是'a'不能够被赋值</span></span><br></pre></td></tr></table></figure>
 <p>由此必须添加对左值的定义的改良。不是所有的左值都能够被赋值。那些可以被赋值的左值被称为<strong>可修改的左值</strong>。正式来说，C99标准定义可修改的左值为：</p>
@@ -217,7 +217,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> var = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span>* bad_addr = &amp;(var + <span class="number">1</span>); <span class="comment">//ERROR:单目运算符要求参数是左值</span></span><br><span class="line"><span class="keyword">int</span>* addr = &amp;var;           <span class="comment">//OK:var是个左值</span></span><br><span class="line">&amp;var = <span class="number">40</span>;                  <span class="comment">//ERROR:赋值语句的左操作符要求的是左值</span></span><br></pre></td></tr></table></figure>
 <p><code>&amp;</code>符号在C++中有着别的用途–它能够定义引用类型。这种引用类型被称为”左值引用”。非const左值引用不能够使用右值进行赋值，因为右值转左值的变换是无效的。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">string</span>&amp; sref = <span class="built_in">std</span>::<span class="built_in">string</span>(); <span class="comment">//ERROR: 从右值类型'std::string'对非const引用类</span></span><br><span class="line">                                   <span class="comment">//型'std::string'的初始化是无效的</span></span><br></pre></td></tr></table></figure>
-<p>常量左值引用能够被赋值右值。因为它们是常量，无法通过引用来修改值，所以也就不存在修改右值的问题。所以我们在C++中经常使用const左值作为函数的参数类型，由此可以减少不必要的临时对象的创建和复制。</p>
+<p>常量左值引用能够被赋值右值。因为它们是常量，无法通过引用来修改值，所以也就不存在修改右值的问题。所以我们在C++中经常使用const引用作为函数的参数类型，由此可以减少不必要的临时对象的创建和复制。</p>
 <h2 id="带CV限定符（CV-qualified）的右值"><a href="#带CV限定符（CV-qualified）的右值" class="headerlink" title="带CV限定符（CV-qualified）的右值"></a>带CV限定符（CV-qualified）的右值</h2><p>如果我们仔细阅读C++标准里关于左值转右值的讨论，我们注意到它是这么说的：</p>
 <blockquote>
 <p>类型T的左值（非函数、非数组类型）可以被转换成一个右值。[…]如果T不是一个类（class）类型，转换后的右值的类型便是不带CV限定符（cv-unqualified）的T类型，否则转换后的右值类型为T。</p>
@@ -355,6 +355,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/04/25/k-means算法及其matlab实现/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          k-means算法及其matlab实现
+        
+      </div>
+    </a>
   
   
     <a href="/2018/03/03/日常生活的态度/" id="article-nav-older" class="article-nav-link-wrap">
@@ -517,11 +526,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">raw_input()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">input()</a>
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -529,7 +534,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
+                <a href="javascript:void(0)" class="js-tag color2">raw_input()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">input()</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,6 +550,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">matlab</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">k-means</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
               </li>
              
@@ -549,7 +570,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,7 +586,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
             
             <div class="clearfix"></div>

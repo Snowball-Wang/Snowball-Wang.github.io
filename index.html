@@ -155,6 +155,123 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-k-means算法及其matlab实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/25/k-means算法及其matlab实现/">k-means算法及其matlab实现</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/25/k-means算法及其matlab实现/" class="archive-article-date">
+  	<time datetime="2018-04-25T12:26:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>关键字：</strong> K-means算法</p>
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>K-means算法是常见的聚类算法。研一的时候在吴桂兴老师的”信息论”课上接触过K-means算法，但并没有深入理解，也没有自己写代码去实现。最近在看<a href="http://cs231n.stanford.edu/syllabus.html" target="_blank" rel="noopener">斯坦福CS231n课程</a>的lecture2里又涉及到K-means算法，正好也想把Coursera里吴恩达机器学习课程里的代码复习一遍，以此文作为学习总结。</p>
+<h1 id="1-聚类算法概述"><a href="#1-聚类算法概述" class="headerlink" title="1. 聚类算法概述"></a>1. 聚类算法概述</h1><p>在机器学习算法中，按照<strong>学习方式</strong>来划分，分为<strong>有监督学习</strong>、<strong>无监督学习</strong>、<strong>半监督学习</strong>、<strong>强化学习</strong>。其中，在<strong>无监督学习（supervised learning）</strong>中，训练的样本的标记信息是未知的，我们的目标是对无标记训练样本的学习来揭示输入数据的内在性质和规律，从而可对数据进行下一步的分析。<strong>“聚类算法”</strong>是<strong>无监督学习</strong>中经常使用的算法。</p>
+<p>那么<strong>聚类</strong>是如何实现的了？通常来说，聚类是将数据集中的样本划分为若干个不相交的子集，每个子集称为一个<strong>簇（cluster）</strong>，并且每个子集可能都对应于一些潜在的类别。举个例子，某招聘会上有一群毕业生，有的是”交大毕业生”，有的是”科大毕业生”，有的是”上大毕业生”，这三个子集互不相交，且都是这群毕业生的组成部分。但我们需要注意的是，这些类别，或者说聚类产生的子集的概念，对于聚类算法而言事先是未知的。聚类过程仅能自动形成簇结构，簇所对应的概念语义需要人为的把握和命名。</p>
+<p>聚类算法既能够作为一个单独的过程，用于寻找数据内在的分布结构，也可作为分类等其他学习任务的前驱过程。举个例子，在一些商业应用中，我们需要对新用户的用户类型进行判别，然后”用户类型”的概念很难全面准确地被商家定义，于是我们可以针对已有的用户数据进行聚类，将聚类结果的每一个簇定义为一个类，然后再根据这些类来训练分类模型，达到判别新用户的类型的目标。</p>
+<h1 id="2-k-means算法"><a href="#2-k-means算法" class="headerlink" title="2. k-means算法"></a>2. k-means算法</h1><h2 id="2-1-k-means算法概述"><a href="#2-1-k-means算法概述" class="headerlink" title="2.1 k-means算法概述"></a>2.1 k-means算法概述</h2><p>k-means算法，也称为k均值聚类算法，是最广泛使用的聚类算法。它实现的是，将数据集中的n个点划分到k个聚类中，使得每个点都属于离此点最近均值点所对应的聚类。k-means算法在于简单、快速，但其缺点也很明显。使用k-means算法就必须要求事前给出k值，也就是预先确定好想要把数据集分成几类。其次，不同的初始化点，最后通过k-means得出的聚类结果也有可能产生差异。最后一点，k-means对于”噪声点”是及其敏感的，可能极少的”噪声点”都会对最后的结果产生很大的影响。</p>
+<h2 id="2-2-k-means算法数学描述"><a href="#2-2-k-means算法数学描述" class="headerlink" title="2.2 k-means算法数学描述"></a>2.2 k-means算法数学描述</h2><p>给定样本集$D = { x_1, x_2, …, x_m}$，k-means算法针对聚类所得簇划分$C = { C_1, C_2,…,C_k}$最小化平方误差为：</p>
+<p>$$E = \sum<em>{i=1}^{k}{\sum</em>{x \in C_i}{\Vert x - \mu<em>i \Vert}^{2}</em>{2}}$$</p>
+<p>其中$\mu_i = \frac{1}{|C<em>i|}*\sum</em>{x \in C_i}{x}$是簇$C_i$的均值向量。上述的表达式反映的是簇内样本围绕簇均值向量的紧密程度，E值越小则簇内样本相似度越高。</p>
+<h2 id="2-3-k-means算法流程"><a href="#2-3-k-means算法流程" class="headerlink" title="2.3 k-means算法流程"></a>2.3 k-means算法流程</h2><p><strong>输入：</strong>样本集$D = { x_1, x_2, …, x_m}$，聚类簇数k.</p>
+<p><strong>过程：</strong></p>
+<p>1：从D中随机选择k个样本作为初始均值向量${\mu_1, \mu_2, …, \mu_k}$</p>
+<p>2：<strong>repeat</strong></p>
+<p>3：    令$C_i = \emptyset  \quad(1 \leq i \leq k)$</p>
+<p>4：    <strong>for</strong> $j = 1, 2, …., m$ <strong>do</strong></p>
+<p>5：        计算样本$x_j$与各均值向量$\mu<em>i(1 \leq i \leq k)$的距离：$$d</em>{ji} = \Vert x_j - \mu_i \Vert_2$$；</p>
+<p>6：        根据距离最近的均值向量确定$x_j$的簇标记：$\lambda<em>j = argmin</em>{i \in {1,2,…,k}}d_{ji}$；</p>
+<p>7：        将样本$x<em>j$划入相应的簇中：$$C</em>{\lambda<em>{j}} = C</em>{\lambda_{j}} \cup{x_j}$$;</p>
+<p>8：    <strong>end for</strong></p>
+<p>9：    <strong>for</strong> $i = 1,2,…,k$ <strong>do</strong></p>
+<p>10：</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">matlab</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">k-means</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/25/k-means算法及其matlab实现/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-理解C-C-中的左值和右值" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -200,7 +317,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> globalvar = <span class="number">20</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span>&amp; <span class="title">foo</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> globalvar;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    foo() = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上述代码中，<code>foo</code>函数返回了一个引用，<strong>引用是左值类型</strong>，因此可以被赋值。实际上，C++从函数中返回左值的能力在实现某些操作符重载的机制上有着非常重要的作用。一个常见的例子便是对类的中括号<code>[]</code>操作符进行重载，来实现某种查询控制。<code>std::map</code>可以这样做：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">float</span>&gt; mymap;</span><br><span class="line">mymap[<span class="number">10</span>] = <span class="number">5.6</span>;</span><br></pre></td></tr></table></figure>
-<p><code>mymap[10]</code>赋值有效，是因为<code>std::map::operator[]</code>的非常量重载返回了一个可以被赋值的引用。</p>
+<p><code>mymap[10]</code>赋值有效，是因为<code>std::map::operator[]</code>的非const重载返回了一个可以被赋值的引用。</p>
 <h2 id="可修改的左值"><a href="#可修改的左值" class="headerlink" title="可修改的左值"></a>可修改的左值</h2><p>一开始左值是为了C语言定义的，它字面上的意思是”适合在赋值语句左边的值”。一段时间后，当IOS C添加了<code>const</code>关键字时，原先的含义必须重新定义。毕竟：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> a = <span class="number">10</span>; <span class="comment">//'a'是个左值</span></span><br><span class="line">a = <span class="number">10</span>;           <span class="comment">//但是'a'不能够被赋值</span></span><br></pre></td></tr></table></figure>
 <p>由此必须添加对左值的定义的改良。不是所有的左值都能够被赋值。那些可以被赋值的左值被称为<strong>可修改的左值</strong>。正式来说，C99标准定义可修改的左值为：</p>
@@ -217,7 +334,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> var = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span>* bad_addr = &amp;(var + <span class="number">1</span>); <span class="comment">//ERROR:单目运算符要求参数是左值</span></span><br><span class="line"><span class="keyword">int</span>* addr = &amp;var;           <span class="comment">//OK:var是个左值</span></span><br><span class="line">&amp;var = <span class="number">40</span>;                  <span class="comment">//ERROR:赋值语句的左操作符要求的是左值</span></span><br></pre></td></tr></table></figure>
 <p><code>&amp;</code>符号在C++中有着别的用途–它能够定义引用类型。这种引用类型被称为”左值引用”。非const左值引用不能够使用右值进行赋值，因为右值转左值的变换是无效的。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">string</span>&amp; sref = <span class="built_in">std</span>::<span class="built_in">string</span>(); <span class="comment">//ERROR: 从右值类型'std::string'对非const引用类</span></span><br><span class="line">                                   <span class="comment">//型'std::string'的初始化是无效的</span></span><br></pre></td></tr></table></figure>
-<p>常量左值引用能够被赋值右值。因为它们是常量，无法通过引用来修改值，所以也就不存在修改右值的问题。所以我们在C++中经常使用const左值作为函数的参数类型，由此可以减少不必要的临时对象的创建和复制。</p>
+<p>常量左值引用能够被赋值右值。因为它们是常量，无法通过引用来修改值，所以也就不存在修改右值的问题。所以我们在C++中经常使用const引用作为函数的参数类型，由此可以减少不必要的临时对象的创建和复制。</p>
 <h2 id="带CV限定符（CV-qualified）的右值"><a href="#带CV限定符（CV-qualified）的右值" class="headerlink" title="带CV限定符（CV-qualified）的右值"></a>带CV限定符（CV-qualified）的右值</h2><p>如果我们仔细阅读C++标准里关于左值转右值的讨论，我们注意到它是这么说的：</p>
 <blockquote>
 <p>类型T的左值（非函数、非数组类型）可以被转换成一个右值。[…]如果T不是一个类（class）类型，转换后的右值的类型便是不带CV限定符（cv-unqualified）的T类型，否则转换后的右值类型为T。</p>
@@ -2044,164 +2161,6 @@
 
 
   
-    <article id="post-Ubuntu16-04安装Caffe-CPU-only" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/">Ubuntu16.04安装Caffe(CPU_only)</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/" class="archive-article-date">
-  	<time datetime="2017-12-04T01:22:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>关键词：</strong> Ubuntu16.04  Caffe  CPU_only</p>
-<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0. 概述"></a>0. 概述</h1><p>在Linux系统下安装Caffe是一个很繁琐的过程，而且很有可能由于安装文档内容的欠缺或者用户在安装过程中的疏忽，将会导致各种各样令人崩溃的问题。我逛遍了CSDN等各大博客网站，尝试了各种版本的安装教程，几乎没有人把安装流程写得清晰明确。于是我决定把自己在Ubuntu16.04成功安装CPU_only版本的Caffe的流程记录下来，以便以后不时之需。虽然不是学习Caffe的最好版本（一般情况下肯定是GPU版本的Caffe的运行速度更快），但对于我等想要了解Caffe的初学者已经足够。</p>
-<p><strong>推荐：</strong>最好使用洁净版的Ubuntu16.04系统，这里是<a href="https://www.linuxtechi.com/install-ubuntu-16-04-with-screenshots/" title="Ubuntu16.04安装教程" target="_blank" rel="noopener">安装教程</a>。</p>
-<h1 id="1-安装OpenCV"><a href="#1-安装OpenCV" class="headerlink" title="1. 安装OpenCV"></a>1. 安装OpenCV</h1><p>Caffe需要图像处理库OpenCV，所以在安装Caffe之前我们需要安装OpenCV。</p>
-<h2 id="1-1-安装OpenCV所需包"><a href="#1-1-安装OpenCV所需包" class="headerlink" title="1.1 安装OpenCV所需包"></a>1.1 安装OpenCV所需包</h2><ul>
-<li>GCC 4.4.x或更新版本</li>
-<li>CMake 2.6或更高版本</li>
-<li>Git</li>
-<li>GTK+2.x或更新版本，包含头部（libgtk2.0-dev）</li>
-<li>pkg-config</li>
-<li>Python 2.6或者更新版本，Numpy 1.5或者更新版本，两者都需要开发者包（python-dev，python-numpy）</li>
-<li>ffmpeg或者libav开发工具包：libavcodec-dev，libavformat-dev，libswscale-dev</li>
-<li>[optional] libtbb2 libtbb-dev</li>
-<li>[optional] libdc1394 2.x</li>
-<li>[optional] libjpeg-dev，libpng-dev，libtiff-dev，libjasper-dev，libdc1394-22-dev</li>
-</ul>
-<p>这些包的安装可通过在终端敲入以下命令实现：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential</span><br><span class="line">sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev</span><br><span class="line">sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev</span><br></pre></td></tr></table></figure>
-<h2 id="1-2-获取OpenCV源代码"><a href="#1-2-获取OpenCV源代码" class="headerlink" title="1.2 获取OpenCV源代码"></a>1.2 获取OpenCV源代码</h2><p>在1.1中我们已经完成了Git的安装，可在终端敲入以下命令将OpenCV的源代码克隆到本地：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/&lt;相应的工作目录&gt; #以我的为例，我的目录为/home/snowball</span><br><span class="line">git clone https://github.com/opencv/opencv.git</span><br></pre></td></tr></table></figure>
-<h2 id="1-3-使用CMake编译OpenCV"><a href="#1-3-使用CMake编译OpenCV" class="headerlink" title="1.3 使用CMake编译OpenCV"></a>1.3 使用CMake编译OpenCV</h2><ol>
-<li>创建一个临时文件夹（比如取名为<build>目录），这个文件夹会放置你编译产生的Makefiles、项目文件（project files）、目标文件（object files）以及输出二进制文件（output binaries）。</build></li>
-<li>进入<build>目录文件夹，敲入以下命令：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake [&lt;可选参数&gt;] &lt;OpenCV源代码目录&gt;</span><br></pre></td></tr></table></figure>
-</build></li>
-</ol>
-<p>举例来说：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~/opencv #以我的为例，我的目录是/home/snowball/opencv-master</span><br><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line">cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..</span><br></pre></td></tr></table></figure>
-<ol>
-<li>在<code>build</code>目录下（以我的为例，即为/home/snowball/opencv-master/build），执行以下命令：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-<p><strong>注意：</strong> 如果上述第2步中的-D不起作用的话，可使用以下命令代替：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local ..</span><br></pre></td></tr></table></figure></p>
-<h1 id="2-安装Caffe依赖包"><a href="#2-安装Caffe依赖包" class="headerlink" title="2. 安装Caffe依赖包"></a>2. 安装Caffe依赖包</h1><p>Caffe的安装依赖于以下命令行中的包，所以要在安装Caffe之前完成这些包的安装。一般来说安装这些包不会出现错误提示，但如果之前安装过Caffe导致操作系统留有破损的依赖包，就很有可能出现错误。如果出现错误，推荐使用洁净版的Ubuntu16.04从头开始。相关命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y --no-install-recommends libboost-all-dev</span><br><span class="line">sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libboost-all-dev libhdf5-serial-dev libgflags-dev libgoogle-glog-dev liblmdb-dev protobuf-compiler</span><br><span class="line"></span><br><span class="line">sudo apt-get install libopenblas-dev</span><br><span class="line">sudo apt-get install libatlas-base-dev</span><br></pre></td></tr></table></figure>
-<h1 id="3-克隆Caffe源代码"><a href="#3-克隆Caffe源代码" class="headerlink" title="3. 克隆Caffe源代码"></a>3. 克隆Caffe源代码</h1><p>接下来需要从GitHub上将Caffe的源代码克隆到本地，终端中执行以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~/&lt;相应的工作目录&gt; #以我的为例，我的目录是/home/snowball</span><br><span class="line">git clone https://github.com/BVLC/caffe</span><br><span class="line">cd caffe</span><br><span class="line">cp Makefile.config.example Makefile.config</span><br></pre></td></tr></table></figure>
-<h1 id="4-安装Python包"><a href="#4-安装Python包" class="headerlink" title="4. 安装Python包"></a>4. 安装Python包</h1><p>这一步完成pycaffe的配置，终端中执行以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python-pip python-dev build-essential</span><br><span class="line"></span><br><span class="line">sudo pip install scikit-image protobuf</span><br><span class="line">cd python</span><br><span class="line">for req in $(cat requirements.txt); do sudo pip install $req; done</span><br></pre></td></tr></table></figure>
-<h1 id="5-修改配置文件"><a href="#5-修改配置文件" class="headerlink" title="5. 修改配置文件"></a>5. 修改配置文件</h1><p>由于我们是工作在一个CPU_only版本下的Caffe，我们必须通过修改配置文件来通知Caffe我们没有GPU。同时我们也要在配置文件里说明我们所使用的OpenCV的版本。打开配置文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd .. #回到上一目录级</span><br><span class="line">sudo gedit Makefile.config #用gedit打开配置文件</span><br></pre></td></tr></table></figure>
-<p>这时配置文件已经打开，我们把相应的注释部分给去掉：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># CPU-only switch (uncomment to build without GPU support).</span><br><span class="line">CPU_ONLY := 1</span><br><span class="line">...</span><br><span class="line"># Uncomment if you&apos;re using OpenCV 3</span><br><span class="line">OPENCV_VERSION := 3</span><br></pre></td></tr></table></figure>
-<p>同时，我们也需要将hdf5的库添加进INCLUDE_DIRS和LIBRARY_DIRS的变量中，这样会避免随后编译Caffe时出错。</p>
-<p>Makefile.config原来的INCLUDE_DIRS和LIBRARY_DIRS:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Whatever else you find you need goes here.</span><br><span class="line">INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include</span><br><span class="line">LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib</span><br></pre></td></tr></table></figure></p>
-<p>修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Whatever else you find you need goes here.</span><br><span class="line">INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial</span><br><span class="line">LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/hdf5/serial</span><br></pre></td></tr></table></figure></p>
-<h1 id="6-修改Makefile文件"><a href="#6-修改Makefile文件" class="headerlink" title="6. 修改Makefile文件"></a>6. 修改Makefile文件</h1><p>接下来我们需要修改Makefile文件，打开Makefile文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit Makefile</span><br></pre></td></tr></table></figure></p>
-<p>对文件内的两处进行如下修改：<br>将<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NVCCFLAGS += -ccbin=$(CXX) -Xcompiler -fPIC $(COMMON_FLAGS)</span><br></pre></td></tr></table></figure></p>
-<p>修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NVCCFLAGS += -D_FORCE_INLINES -ccbin=$(CXX) -Xcompiler -fPIC $(COMMON_FLAGS)</span><br></pre></td></tr></table></figure></p>
-<p>将<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LIBRARIES += glog gflags protobuf boost_system boost_filesystem m hdf5_hl hdf5</span><br></pre></td></tr></table></figure></p>
-<p>修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LIBRARIES += glog gflags protobuf boost_system boost_filesystem m hdf5_serial_hl hdf5_serial</span><br></pre></td></tr></table></figure></p>
-<h1 id="7-对文件进行链接"><a href="#7-对文件进行链接" class="headerlink" title="7. 对文件进行链接"></a>7. 对文件进行链接</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /usr/lib/x86_64-linux-gnu/libhdf5_serial.so.10.1.0 /usr/lib/x86_64-linux-gnu/libhdf5.so</span><br><span class="line">sudo ln -s /usr/lib/x86_64-linux-gnu/libhdf5_serial_hl.so.10.0.2 /usr/lib/x86_64-linux-gnu/libhdf5_hl.so</span><br></pre></td></tr></table></figure>
-<p><strong>注意：</strong>我的版本是<code>libhdf5_serial.so</code>对应的是10.1.0版本，<code>libhdf5_serial_hl.so</code>对应的是10.0.2版本。如果版本号和我的不同，则需调整相应的版本号。</p>
-<h1 id="8-编译Caffe"><a href="#8-编译Caffe" class="headerlink" title="8. 编译Caffe"></a>8. 编译Caffe</h1><p>终于到了最后一步–编译。返回到Caffe的根目录下，在终端执行以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">make all</span><br><span class="line">make test</span><br><span class="line">make runtest</span><br></pre></td></tr></table></figure>
-<p>如果一切正常，将会看到同下图相同的结果：</p>
-<p><img src="/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/make_runtest_success.png" alt="make_runtest_success" title="Caffe编译成功"></p>
-<h1 id="9-编译Caffe-Python接口"><a href="#9-编译Caffe-Python接口" class="headerlink" title="9. 编译Caffe-Python接口"></a>9. 编译Caffe-Python接口</h1><p>配置pycaffe，在终端中输入以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">make pycaffe</span><br><span class="line">echo export PYTHONPATH=/path/to/caffe/python:$PYTHONPATH &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
-<p>接下来在Python终端导入Caffe模块：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python</span><br><span class="line">&gt;&gt;&gt;import caffe</span><br></pre></td></tr></table></figure></p>
-<p><img src="/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/import_success.png" alt="import_success" title="导入Caffe成功"></p>
-<p>至此，Ubuntu16.04安装Caffe(CPU_only)完成。</p>
-<p><strong>参考链接：</strong></p>
-<ol>
-<li><a href="https://mohanadkaleia.com/install-caffe-on-ubuntu-with-no-gpu/" target="_blank" rel="noopener">https://mohanadkaleia.com/install-caffe-on-ubuntu-with-no-gpu/</a></li>
-<li><a href="https://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html" target="_blank" rel="noopener">https://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html</a></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Ubuntu16.04</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Caffe</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -2332,11 +2291,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">raw_input()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">input()</a>
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2344,7 +2299,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
+                <a href="javascript:void(0)" class="js-tag color2">raw_input()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">input()</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2356,6 +2315,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">matlab</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">k-means</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
               </li>
              
@@ -2364,7 +2335,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2380,7 +2351,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
             
             <div class="clearfix"></div>

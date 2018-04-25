@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Linux | 王杰强的博客</title>
+  <title>k-means算法及其matlab实现 | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这个人很懒，什么都没有留下">
-<meta property="og:type" content="website">
-<meta property="og:title" content="王杰强的博客">
-<meta property="og:url" content="http://yoursite.com/tags/Linux/index.html">
+  <meta name="description" content="关键字： K-means算法 0. 前言K-means算法是常见的聚类算法。研一的时候在吴桂兴老师的”信息论”课上接触过K-means算法，但并没有深入理解，也没有自己写代码去实现。最近在看斯坦福CS231n课程的lecture2里又涉及到K-means算法，正好也想把Coursera里吴恩达机器学习课程里的代码复习一">
+<meta name="keywords" content="技术日志,机器学习,matlab,k-means">
+<meta property="og:type" content="article">
+<meta property="og:title" content="k-means算法及其matlab实现">
+<meta property="og:url" content="http://yoursite.com/2018/04/25/k-means算法及其matlab实现/index.html">
 <meta property="og:site_name" content="王杰强的博客">
-<meta property="og:description" content="这个人很懒，什么都没有留下">
+<meta property="og:description" content="关键字： K-means算法 0. 前言K-means算法是常见的聚类算法。研一的时候在吴桂兴老师的”信息论”课上接触过K-means算法，但并没有深入理解，也没有自己写代码去实现。最近在看斯坦福CS231n课程的lecture2里又涉及到K-means算法，正好也想把Coursera里吴恩达机器学习课程里的代码复习一遍，以此文作为学习总结。 1. 聚类算法概述在机器学习算法中，按照学习方式来划分">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-25T14:24:47.193Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王杰强的博客">
-<meta name="twitter:description" content="这个人很懒，什么都没有留下">
+<meta name="twitter:title" content="k-means算法及其matlab实现">
+<meta name="twitter:description" content="关键字： K-means算法 0. 前言K-means算法是常见的聚类算法。研一的时候在吴桂兴老师的”信息论”课上接触过K-means算法，但并没有深入理解，也没有自己写代码去实现。最近在看斯坦福CS231n课程的lecture2里又涉及到K-means算法，正好也想把Coursera里吴恩达机器学习课程里的代码复习一遍，以此文作为学习总结。 1. 聚类算法概述在机器学习算法中，按照学习方式来划分">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
   
@@ -153,56 +155,79 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-k-means算法及其matlab实现" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/13/循序渐进学Vim/" class="archive-article-date">
-  	<time datetime="2018-01-13T03:39:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-13</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/13/循序渐进学Vim/">循序渐进学Vim</a>
+    <h1 class="article-title" itemprop="name">
+      k-means算法及其matlab实现
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/04/25/k-means算法及其matlab实现/" class="archive-article-date">
+  	<time datetime="2018-04-25T12:26:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>关键字：</strong> K-means算法</p>
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>K-means算法是常见的聚类算法。研一的时候在吴桂兴老师的”信息论”课上接触过K-means算法，但并没有深入理解，也没有自己写代码去实现。最近在看<a href="http://cs231n.stanford.edu/syllabus.html" target="_blank" rel="noopener">斯坦福CS231n课程</a>的lecture2里又涉及到K-means算法，正好也想把Coursera里吴恩达机器学习课程里的代码复习一遍，以此文作为学习总结。</p>
+<h1 id="1-聚类算法概述"><a href="#1-聚类算法概述" class="headerlink" title="1. 聚类算法概述"></a>1. 聚类算法概述</h1><p>在机器学习算法中，按照<strong>学习方式</strong>来划分，分为<strong>有监督学习</strong>、<strong>无监督学习</strong>、<strong>半监督学习</strong>、<strong>强化学习</strong>。其中，在<strong>无监督学习（supervised learning）</strong>中，训练的样本的标记信息是未知的，我们的目标是对无标记训练样本的学习来揭示输入数据的内在性质和规律，从而可对数据进行下一步的分析。<strong>“聚类算法”</strong>是<strong>无监督学习</strong>中经常使用的算法。</p>
+<p>那么<strong>聚类</strong>是如何实现的了？通常来说，聚类是将数据集中的样本划分为若干个不相交的子集，每个子集称为一个<strong>簇（cluster）</strong>，并且每个子集可能都对应于一些潜在的类别。举个例子，某招聘会上有一群毕业生，有的是”交大毕业生”，有的是”科大毕业生”，有的是”上大毕业生”，这三个子集互不相交，且都是这群毕业生的组成部分。但我们需要注意的是，这些类别，或者说聚类产生的子集的概念，对于聚类算法而言事先是未知的。聚类过程仅能自动形成簇结构，簇所对应的概念语义需要人为的把握和命名。</p>
+<p>聚类算法既能够作为一个单独的过程，用于寻找数据内在的分布结构，也可作为分类等其他学习任务的前驱过程。举个例子，在一些商业应用中，我们需要对新用户的用户类型进行判别，然后”用户类型”的概念很难全面准确地被商家定义，于是我们可以针对已有的用户数据进行聚类，将聚类结果的每一个簇定义为一个类，然后再根据这些类来训练分类模型，达到判别新用户的类型的目标。</p>
+<h1 id="2-k-means算法"><a href="#2-k-means算法" class="headerlink" title="2. k-means算法"></a>2. k-means算法</h1><h2 id="2-1-k-means算法概述"><a href="#2-1-k-means算法概述" class="headerlink" title="2.1 k-means算法概述"></a>2.1 k-means算法概述</h2><p>k-means算法，也称为k均值聚类算法，是最广泛使用的聚类算法。它实现的是，将数据集中的n个点划分到k个聚类中，使得每个点都属于离此点最近均值点所对应的聚类。k-means算法在于简单、快速，但其缺点也很明显。使用k-means算法就必须要求事前给出k值，也就是预先确定好想要把数据集分成几类。其次，不同的初始化点，最后通过k-means得出的聚类结果也有可能产生差异。最后一点，k-means对于”噪声点”是及其敏感的，可能极少的”噪声点”都会对最后的结果产生很大的影响。</p>
+<h2 id="2-2-k-means算法数学描述"><a href="#2-2-k-means算法数学描述" class="headerlink" title="2.2 k-means算法数学描述"></a>2.2 k-means算法数学描述</h2><p>给定样本集$D = { x_1, x_2, …, x_m}$，k-means算法针对聚类所得簇划分$C = { C_1, C_2,…,C_k}$最小化平方误差为：</p>
+<p>$$E = \sum<em>{i=1}^{k}{\sum</em>{x \in C_i}{\Vert x - \mu<em>i \Vert}^{2}</em>{2}}$$</p>
+<p>其中$\mu_i = \frac{1}{|C<em>i|}*\sum</em>{x \in C_i}{x}$是簇$C_i$的均值向量。上述的表达式反映的是簇内样本围绕簇均值向量的紧密程度，E值越小则簇内样本相似度越高。</p>
+<h2 id="2-3-k-means算法流程"><a href="#2-3-k-means算法流程" class="headerlink" title="2.3 k-means算法流程"></a>2.3 k-means算法流程</h2><p><strong>输入：</strong>样本集$D = { x_1, x_2, …, x_m}$，聚类簇数k.</p>
+<p><strong>过程：</strong></p>
+<p>1：从D中随机选择k个样本作为初始均值向量${\mu_1, \mu_2, …, \mu_k}$</p>
+<p>2：<strong>repeat</strong></p>
+<p>3：    令$C_i = \emptyset  \quad(1 \leq i \leq k)$</p>
+<p>4：    <strong>for</strong> $j = 1, 2, …., m$ <strong>do</strong></p>
+<p>5：        计算样本$x_j$与各均值向量$\mu<em>i(1 \leq i \leq k)$的距离：$$d</em>{ji} = \Vert x_j - \mu_i \Vert_2$$；</p>
+<p>6：        根据距离最近的均值向量确定$x_j$的簇标记：$\lambda<em>j = argmin</em>{i \in {1,2,…,k}}d_{ji}$；</p>
+<p>7：        将样本$x<em>j$划入相应的簇中：$$C</em>{\lambda<em>{j}} = C</em>{\lambda_{j}} \cup{x_j}$$;</p>
+<p>8：    <strong>end for</strong></p>
+<p>9：    <strong>for</strong> $i = 1,2,…,k$ <strong>do</strong></p>
+<p>10：</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Vim</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">matlab</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">k-means</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -215,186 +240,104 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/08/Linux基础总结（三）/" class="archive-article-date">
-  	<time datetime="2018-01-08T02:53:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/08/Linux基础总结（三）/">Linux基础总结（三）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/25/k-means算法及其matlab实现/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/28/Linux基础总结（二）/" class="archive-article-date">
-  	<time datetime="2017-12-28T03:17:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/28/Linux基础总结（二）/">Linux基础总结（二）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/26/Linux基础总结（一）/" class="archive-article-date">
-  	<time datetime="2017-12-26T02:42:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-26</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/29/理解C-C-中的左值和右值/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">理解C/C++中的左值和右值</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/26/Linux基础总结（一）/">Linux基础总结（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -417,9 +360,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
