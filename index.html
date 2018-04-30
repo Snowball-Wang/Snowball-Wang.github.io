@@ -155,6 +155,138 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-理解Python函数参数-args和-kwargs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/30/理解Python函数参数-args和-kwargs/">理解Python函数参数*args和**kwargs</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/30/理解Python函数参数-args和-kwargs/" class="archive-article-date">
+  	<time datetime="2018-04-30T07:53:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/2018/04/30/理解Python函数参数-args和-kwargs/tricks.jpg" alt="*args和**kwargs"></p>
+<p><strong>关键字：</strong> Python <code>*args</code>  <code>**kwargs</code></p>
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>上周和室友讨论他在科大讯飞面试的问题时，谈到了Python装饰器的含义和用途。于是乎今天重新复习了一下关于Python装饰器的内容。但在阅读Python装饰器的代码中，函数经常会出现<code>*args</code>和<code>**kwargs</code>等参数，虽然之前了解这两个参数表示可以输入数量不定的变量的含义，但并没有深入理解其含义和用法。写下此文作为理解<code>*args</code>和<code>**kwargs</code>的学习笔记。</p>
+<h1 id="1-‘-表达式’"><a href="#1-‘-表达式’" class="headerlink" title="1. ‘*表达式’"></a>1. ‘*表达式’</h1><p>在讨论<code>*args</code>和<code>**kwargs</code>之前，我们需要先介绍一下Python中的<strong>‘*表达式’</strong>。</p>
+<p>先看以下代码：</p>
+<p><strong>说明：</strong> <code>&gt;&gt;&gt;</code>表示是Python运行终端，本文所用的Python版本是3.5.2。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>user_info = (<span class="string">'snowball'</span>, <span class="string">'USTC'</span>, <span class="string">'183xxxx1966'</span>, <span class="string">'188xxxx7604'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>name, school, phone_number = user_info</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">    File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">ValueError: too many values to unpack (expected <span class="number">3</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>name, school, *phone_number = user_info</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>name</span><br><span class="line"><span class="string">'snowball'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>school</span><br><span class="line"><span class="string">'USTC'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>phone_number</span><br><span class="line">[<span class="string">'183xxxx1966'</span>, <span class="string">'188xxxx7604'</span>]</span><br></pre></td></tr></table></figure>
+<p>观察上述代码，我们可以看到，当我们用name、school、phone_number三个变量去对含有4个元素的user_info元组进行解包时，就会出现<code>too many values to unpack</code>的错误。但是元组中的第3个和第4个元素都是手机号码，我们又不想分别用两个变量对这两个号码进行保存，这时我们就可以通过<strong>‘*表达式’</strong>来实现我们的功能。<code>*phone_number</code>表示的是一个列表，它将存储元组中剩下的所有元素。即使元组中剩下元素的个数为0，代码也不会报错，因为此时<strong>‘*表达式’</strong>所对应的是一个空列表。</p>
+<p>同时，<strong>‘*表达式’</strong>也可以位于解包代码的第一个位置，举例说明：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>*head, end = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>head</span><br><span class="line">[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>end</span><br><span class="line"><span class="number">9</span></span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>head = a[:<span class="number">9</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>head</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>end = a[<span class="number">-1</span>:]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>end</span><br><span class="line">[<span class="number">9</span>]</span><br></pre></td></tr></table></figure>
+<p>上述代码中，<code>*head</code>表示的是包含原列表中前9个元素的列表，变量<code>end</code>对应列表中的最后一个元素。在对列表的元素解包的过程中，<code>*head</code>一直匹配到下一个解包元素的所对应的原列表的位置的前一个位置。进一步深入的理解，<strong>‘*表达式’</strong>的实现机制可和<strong>切片</strong>的实现机制进行类比。<strong>‘*表达式’</strong>相当于实现了对原始可迭代对象的切片操作（上述代码中的可迭代对象为列表），只不过<strong>‘*表达式’</strong>切片的长度是不定的，它的长度是由其它解包元素的个数来确定的。在上述代码中，<code>*head</code>之后只有一个解包变量<code>end</code>，所以<code>*head</code>的长度即为原始列表的长度减1，可将其类比成取原始列表前9个元素的<strong>切片</strong>操作。</p>
+<h1 id="2-args和-kwargs"><a href="#2-args和-kwargs" class="headerlink" title="2. *args和**kwargs"></a>2. <code>*args</code>和<code>**kwargs</code></h1><p>理解了<strong>‘*表达式’</strong>的含义和用法，再对Python中的<code>*args</code>和<code>**kwargs</code>这两个魔法变量进行理解，就不会显得那么突兀。首先我们必须了解的是，<code>*args</code>和<code>**kwargs</code>的写法只是约定俗称的，我们完全可以按照自己的喜好来给参数变量命名，例如<code>*var</code>和<code>**vars</code>。换句话说，变量中<code>*</code>号是不可省略的，但<code>*</code>之后的变量名可以自定义。</p>
+<p><code>*args</code>和<code>**kwargs</code>都主要用于函数定义，表示的是可将不定数量的参数传递给一个函数。这里不定数量的含义是指，我们预先并不清楚，函数的使用者究竟会传递多少个参数给函数。这时，使用<code>*args</code>和<code>**kwargs</code>将会帮助我们处理这种情况。</p>
+<h2 id="2-1-args的用法"><a href="#2-1-args的用法" class="headerlink" title="2.1 *args的用法"></a>2.1 <code>*args</code>的用法</h2><p><code>*args</code>用来向函数传递一个<strong>非键值对的可变长度的参数列表</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_var_args</span><span class="params">(f_arg, *argv)</span>:</span></span><br><span class="line">    print(<span class="string">"first normal arg:"</span>, f_arg)</span><br><span class="line">    <span class="keyword">for</span> arg <span class="keyword">in</span> argv:</span><br><span class="line">        print(<span class="string">"another arg through *argv:"</span>, arg)</span><br><span class="line">        </span><br><span class="line">test_var_args(<span class="string">'snowball'</span>, <span class="string">'emily'</span>, <span class="string">'tom'</span>, <span class="string">'jerry'</span>)</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">first normal arg: snowball</span><br><span class="line">another arg through *argv: emily</span><br><span class="line">another arg through *argv: tom</span><br><span class="line">another arg through *argv: jerry</span><br></pre></td></tr></table></figure>
+<p>通过上述代码，我们可以对<code>*args</code>的用法有了较为深刻的理解。</p>
+<h2 id="2-2-kwargs的用法"><a href="#2-2-kwargs的用法" class="headerlink" title="2.2 **kwargs的用法"></a>2.2 <code>**kwargs</code>的用法</h2><p>首先我们要知道的是，<code>**kwargs</code>中的<code>kw</code>的含义是<strong>key-word pairs</strong>，也就是键值对。所以<code>**kwargs</code>的用法是，向函数传递一个不定长度的<strong>键值对</strong>。如果我们想要我们的函数能够处理<strong>带名字的参数</strong>，我们应该使用<code>**kwargs</code>。</p>
+<p>举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">welcome</span><span class="params">(**kwargs)</span>:</span></span><br><span class="line">	<span class="keyword">for</span> key, value <span class="keyword">in</span> kwargs.items():</span><br><span class="line">		print(<span class="string">"&#123;0&#125; = &#123;1&#125;"</span>.format(key, value))</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>welcome(name=<span class="string">"snowball"</span>)</span><br><span class="line">name = snowball</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a_dict = &#123;<span class="string">"name1"</span>:<span class="string">"snowball"</span>, <span class="string">"name2"</span>:<span class="string">"emily"</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>welcome(**a_dict)</span><br><span class="line">name1 = snowball</span><br><span class="line">name2 = emily</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<p>所以，当函数的形参是<code>**kwargs</code>时，传入函数的实参必须是<strong>键值对</strong>。</p>
+<h2 id="2-3-使用-args和-kwargs调用函数"><a href="#2-3-使用-args和-kwargs调用函数" class="headerlink" title="2.3 使用*args和**kwargs调用函数"></a>2.3 使用<code>*args</code>和<code>**kwargs</code>调用函数</h2><p>我们写一个小函数，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">test_args_kwargs</span><span class="params">(arg1, arg2, arg3)</span>:</span></span><br><span class="line">	print(<span class="string">"arg1:"</span>, arg1)</span><br><span class="line">	print(<span class="string">"arg2:"</span>, arg2)</span><br><span class="line">	print(<span class="string">"arg3:"</span>, arg3)</span><br></pre></td></tr></table></figure>
+<p>然后我们分别使用<code>*args</code>和<code>**kwargs</code>来将参数传递给上述函数，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>args = (<span class="string">"snowball"</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>test_args_kwargs(*args)</span><br><span class="line">arg1: snowball</span><br><span class="line">arg2: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">arg3: <span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>kwargs = &#123;<span class="string">"arg3"</span>:<span class="number">3</span>, <span class="string">"arg2"</span>:<span class="number">2</span>, <span class="string">"arg1"</span>:<span class="number">1</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>test_args_kwargs(**kwargs)</span><br><span class="line">arg1: <span class="number">1</span></span><br><span class="line">arg2: <span class="number">2</span></span><br><span class="line">arg3: <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<p>使用标准参数和<code>*args</code>、<code>**kwargs</code> 的顺序如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">some_func(fargs, *args, **kwargs)</span><br></pre></td></tr></table></figure>
+<p>举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">test_formal_args_kwargs</span><span class="params">(fargs, *args, **kwargs)</span>:</span></span><br><span class="line">	print(<span class="string">"First argument:"</span>, fargs)</span><br><span class="line">	<span class="keyword">for</span> arg <span class="keyword">in</span> args:</span><br><span class="line">		print(<span class="string">"arg through *args:"</span>, arg)</span><br><span class="line">	<span class="keyword">for</span> key, value <span class="keyword">in</span> kwargs.items():</span><br><span class="line">		print(<span class="string">"&#123;0&#125;: &#123;1&#125;"</span>.format(key, value))</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a_list = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>, <span class="string">"a"</span>, [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a_dict = &#123;<span class="string">"a"</span>:<span class="number">1</span>, <span class="string">"b"</span>:<span class="number">2</span>, <span class="string">"c"</span>:<span class="number">3</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>test_formal_args_kwargs(a, *a_list, **a_dict)</span><br><span class="line">First argument: <span class="number">4</span></span><br><span class="line">arg through *args: <span class="number">1</span></span><br><span class="line">arg through *args: <span class="number">2</span></span><br><span class="line">arg through *args: <span class="number">3</span></span><br><span class="line">arg through *args: a</span><br><span class="line">arg through *args: [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">a: <span class="number">1</span></span><br><span class="line">b: <span class="number">2</span></span><br><span class="line">c: <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h1 id="3-args和-kwargs的使用场景"><a href="#3-args和-kwargs的使用场景" class="headerlink" title="3. *args和**kwargs的使用场景"></a>3. <code>*args</code>和<code>**kwargs</code>的使用场景</h1><p>在<em>Python Cookbook</em>第三版的第9章的元编程中，涉及到了Python装饰器的相关代码，<code>*args</code>和<code>**kwargs</code>在装饰器中经常会出现，举例说明：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">timethis</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    Decorator that reports the execution time</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line"><span class="meta">    @wraps</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(func)</span>:</span></span><br><span class="line">        start = time.time()</span><br><span class="line">        result = func(*args, **kwargs) <span class="comment"># use *args and **kwargs to represent the input data</span></span><br><span class="line">        end = time.time()</span><br><span class="line">        print(func.__name__, end - start)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@timethis</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countdown</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    Counts down</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">        n -= <span class="number">1</span></span><br><span class="line">        </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    countdown(<span class="number">10000</span>)</span><br><span class="line">    countdown(<span class="number">10000000</span>)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>上述中的代码是一个用于计算函数执行时间的装饰器。在装饰器内部的代码里，我们使用语句<code>result = func(*args, **kwargs)</code>来表示传入被装饰函数的参数的所有可能的表达形式。这种写法在Python装饰器函数中极其常见。</p>
+<p>代码的运行结果为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">countdown <span class="number">0.001141786553173828</span></span><br><span class="line">countdown <span class="number">0.7821342945098877</span></span><br></pre></td></tr></table></figure>
+<p><strong>参考文献：</strong></p>
+<ol>
+<li><em>Python Cookbook</em> 第三版</li>
+<li><a href="http://book.pythontips.com/en/latest/args_and_kwargs.html" target="_blank" rel="noopener">http://book.pythontips.com/en/latest/args_and_kwargs.html</a></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术日志/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/30/理解Python函数参数-args和-kwargs/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-k-means算法及其matlab实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -180,7 +312,7 @@
 <h1 id="1-聚类算法概述"><a href="#1-聚类算法概述" class="headerlink" title="1. 聚类算法概述"></a>1. 聚类算法概述</h1><p>在机器学习算法中，按照<strong>学习方式</strong>来划分，分为<strong>有监督学习</strong>、<strong>无监督学习</strong>、<strong>半监督学习</strong>、<strong>强化学习</strong>。其中，在<strong>无监督学习（supervised learning）</strong>中，训练的样本的标记信息是未知的，我们的目标是对无标记训练样本的学习来揭示输入数据的内在性质和规律，从而可对数据进行下一步的分析。<strong>“聚类算法”</strong>是<strong>无监督学习</strong>中经常使用的算法。</p>
 <p>那么<strong>聚类</strong>是如何实现的了？通常来说，聚类是将数据集中的样本划分为若干个不相交的子集，每个子集称为一个<strong>簇（cluster）</strong>，并且每个子集可能都对应于一些潜在的类别。举个例子，某招聘会上有一群毕业生，有的是”交大毕业生”，有的是”科大毕业生”，有的是”上大毕业生”，这三个子集互不相交，且都是这群毕业生的组成部分。但我们需要注意的是，这些类别，或者说聚类产生的子集的概念，对于聚类算法而言事先是未知的。聚类过程仅能自动形成簇结构，簇所对应的概念语义需要人为的把握和命名。</p>
 <p>聚类算法既能够作为一个单独的过程，用于寻找数据内在的分布结构，也可作为分类等其他学习任务的前驱过程。举个例子，在一些商业应用中，我们需要对新用户的用户类型进行判别，然而”用户类型”的概念很难全面准确地被商家定义，于是我们可以针对已有的用户数据进行聚类，将聚类结果的每一个簇定义为一个类，然后再根据这些类来训练分类模型，达到判别新用户的类型的目标。</p>
-<h1 id="2-k-means算法"><a href="#2-k-means算法" class="headerlink" title="2. k-means算法"></a>2. k-means算法</h1><h2 id="2-1-k-means算法概述"><a href="#2-1-k-means算法概述" class="headerlink" title="2.1 k-means算法概述"></a>2.1 k-means算法概述</h2><p>k-means算法，也称为k均值聚类算法，是最广泛使用的聚类算法。它实现的是，将数据集中的n个点划分到k个聚类中，使得每个点都属于离此点最近均值点所对应的聚类。k-means算法在于简单、快速，但其缺点也很明显。使用k-means算法就必须要求事前给出k值，也就是预先确定好想要把数据集分成几类。其次，不同的初始化点，最后通过k-means得出的聚类结果也有可能产生差异。最后一点，k-means对于”噪声点”是极其敏感的，可能极少的”噪声点”都会对最后的结果产生很大的影响。</p>
+<h1 id="2-k-means算法"><a href="#2-k-means算法" class="headerlink" title="2. k-means算法"></a>2. k-means算法</h1><h2 id="2-1-k-means算法概述"><a href="#2-1-k-means算法概述" class="headerlink" title="2.1 k-means算法概述"></a>2.1 k-means算法概述</h2><p>k-means算法，也称为k均值聚类算法，是最广泛使用的聚类算法。它实现的是，将数据集中的n个点划分到k个聚类中，使得每个点都属于离此点最近均值点所对应的聚类。k-means算法优点在于简单、快速，但其缺点也很明显。使用k-means算法就必须要求事前给出k值，也就是预先确定好想要把数据集分成几类。其次，不同的初始化点，最后通过k-means得出的聚类结果也有可能产生差异。最后一点，k-means对于”噪声点”是极其敏感的，可能极少的”噪声点”都会对最后的结果产生很大的影响。</p>
 <h2 id="2-2-k-means算法流程"><a href="#2-2-k-means算法流程" class="headerlink" title="2.2 k-means算法流程"></a>2.2 k-means算法流程</h2><p><img src="/2018/04/25/k-means算法及其matlab实现/k-means算法流程.jpg" alt="k-means算法流程图"></p>
 <p><strong>算法流程说明：</strong>第1行对均值向量进行初始化，再第4-8行与第9-16行依次对当前簇划分及均值向量迭代更新，若迭代更新后聚类结果保持不变，则在第18行将当前簇划分结果返回。</p>
 <h1 id="3-matlab代码实现"><a href="#3-matlab代码实现" class="headerlink" title="3. matlab代码实现"></a>3. matlab代码实现</h1><p>在Coursera的吴恩达的机器学习的课程作业里，ex7中有关于k-means的matlab实现。我将其代码进行合并和改进，源码如下：</p>
@@ -1926,246 +2058,6 @@
 
 
   
-    <article id="post-Linux基础总结（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/26/Linux基础总结（一）/">Linux基础总结（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/26/Linux基础总结（一）/" class="archive-article-date">
-  	<time datetime="2017-12-26T02:42:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>关键词：</strong>  Linux   磁盘分区</p>
-<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0. 概述"></a>0. 概述</h1><p>接触Linux有接近一年多的时间了，从一开始对它的恐惧和陌生，到现在Linux成为我日常使用的操作系统，虽然渐渐上手并熟悉，但中间始终缺乏系统性地提炼和总结。于是我想认认真真地通读一遍《鸟哥的Linux私房菜–基础学习篇》，并结合自己在实际工作中遇到的相关问题，做一个Linux基础系列的总结。<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/1200px-NewTux.svg.png" width="200px"></p>
-<h1 id="1-计算机概论"><a href="#1-计算机概论" class="headerlink" title="1. 计算机概论"></a>1. 计算机概论</h1><ul>
-<li>计算机的五大单元包括<strong>输入单元</strong>、<strong>输出单元</strong>、<strong>CPU内部的控制单元</strong>、<strong>CPU内部的算术逻辑单元</strong>与<strong>内存</strong>。</li>
-<li>数据会流进/流出内存，其命令是CPU所发布的控制命令，而CPU实际要处理的数据则完全来自于内存。</li>
-<li>CPU按照设计理念主要分为<strong>精简指令集（RISC）</strong>与<strong>复杂指令集（CISC）</strong>系统。</li>
-<li>CPU的外频指的是CPU与外部组件进行数据传输时的速度，倍频则是CPU内部用来加速工作性能的一个倍数，两者相乘是CPU的频率速度。</li>
-<li>主板芯片组一般分为<strong>北桥</strong>和<strong>南桥</strong>，<strong>北桥</strong>负责连接速度较快的CPU、内存与显卡等组件，<strong>南桥</strong>负责连接速度较慢的周边接口，包括硬盘、USB、网卡等。</li>
-<li>个人计算机的内存主要组件为<strong>动态随机访问内存</strong>（Dynamic Random Access Memory, DRAM），<strong>DRAM</strong>只有在通电时才能记录与使用，断电后数据丢失。CPU内部的第二层缓存则使用<strong>静态随机访问内存</strong>（Static Random Access Memory, SRAM），<strong>SRAM</strong>体积小，速度快，但价钱高。</li>
-<li><strong>BIOS</strong>（Basic Input Output System）是一套程序，这套程序是写死到主板上面的一个内存芯片中，这个内存芯片在没有通电时也能够将数据记录下来，那就是只读存储器（Read Only Memory, ROM）。</li>
-</ul>
-<h1 id="2-Linux的历史"><a href="#2-Linux的历史" class="headerlink" title="2. Linux的历史"></a>2. Linux的历史</h1><ol>
-<li>UNIX的前身是由贝尔实验室（Bell Lab.）的<a href="https://zh.wikipedia.org/wiki/%E8%82%AF%C2%B7%E6%B1%A4%E6%99%AE%E9%80%8A" target="_blank" rel="noopener">Ken Thompson</a>利用汇编语言写成的，后来在1971~1973年间由<a href="https://zh.wikipedia.org/wiki/%E4%B8%B9%E5%B0%BC%E6%96%AF%C2%B7%E9%87%8C%E5%A5%87" target="_blank" rel="noopener">Dennis Ritchie</a>以C程序语言进行改写，才称为UNIX。</li>
-<li>1977年由<a href="https://zh.wikipedia.org/wiki/%E6%AF%94%E5%B0%94%C2%B7%E4%B9%94%E4%BC%8A" target="_blank" rel="noopener">Bill Joy</a>释出BSD（Berkeley Software Distribution），这称为UNIX like的操作系统。</li>
-<li>1984年由<a href="https://zh.wikipedia.org/wiki/%E5%AE%89%E5%BE%B7%E9%B2%81%C2%B7%E6%96%AF%E5%9B%BE%E5%B0%94%E7%89%B9%C2%B7%E5%A1%94%E8%83%BD%E9%B2%8D%E5%A7%86" target="_blank" rel="noopener">Andrew Tannenbaum</a>制作出Minix操作系统，该系统可以提供源码及其软件。</li>
-<li>1984年由<a href="https://zh.wikipedia.org/wiki/%E7%90%86%E6%9F%A5%E5%BE%B7%C2%B7%E6%96%AF%E6%89%98%E6%9B%BC" target="_blank" rel="noopener">Richard Stallman</a>提倡GNU项目，倡导自由软件（Free Software），强调其软件可以自由地取得、复制、修改与再发行，并规范出GPL授权模式，任何GPL（General Public License）软件均不可单纯仅销售其软件，也不可修改其软件授权。</li>
-<li>1991年由芬兰人<a href="https://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9" target="_blank" rel="noopener">Linux Torvalds</a>开发出Linux操作系统。</li>
-<li>目前Linux内核的开发分为两种版本，分别是稳定版本的偶数版，如2.6.x，适用于商业与家用环境使用；一种是开发中版本，如2.5.x，适合开发特殊功能的环境。</li>
-<li>Linux distributions是”Linux Kernel + Free Software + Documentations(Tools) + 可完全安装的程序”所制成的一套完整的系统。</li>
-</ol>
-<h1 id="3-主机规划与磁盘分区"><a href="#3-主机规划与磁盘分区" class="headerlink" title="3. 主机规划与磁盘分区"></a>3. 主机规划与磁盘分区</h1><h2 id="3-1-Linux与硬件的搭配"><a href="#3-1-Linux与硬件的搭配" class="headerlink" title="3.1 Linux与硬件的搭配"></a>3.1 Linux与硬件的搭配</h2><p>硬件设备在Linux中的文件名：</p>
-<table>
-<thead>
-<tr>
-<th>设备</th>
-<th>设备在Linux内的文件名</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>IDE硬盘</td>
-<td>/dev/hd[a-d]</td>
-</tr>
-<tr>
-<td>SCSI/SATA/USB硬盘</td>
-<td>/dev/sd[a-p]</td>
-</tr>
-<tr>
-<td>当前CD ROM/DVD ROM</td>
-<td>/dev/cdrom</td>
-</tr>
-</tbody>
-</table>
-<p>更多的Linux内核支持的硬件设备与文件名，可参考<a href="https://www.kernel.org/pub/linux/docs/lanana/device-list/devices-2.6.txt" target="_blank" rel="noopener">连接</a>。</p>
-<h2 id="3-2-磁盘分区"><a href="#3-2-磁盘分区" class="headerlink" title="3.2 磁盘分区"></a>3.2 磁盘分区</h2><p>磁盘主要是由盘片、机械手臂、磁头与主轴马达所组成。数据写入的动作是在盘片上执行的。盘片又可细分为<strong>扇区</strong>（sector）与<strong>柱面</strong>（cylinder）两种单位，每个扇区大小为512bytes。</p>
-<p>每个扇区并不是一样重要。整块磁盘最重要的是第一扇区，其记录了两个重要的信息：</p>
-<ul>
-<li><strong>主引导分区</strong>（Master Boot Record，MBR）：可以安装引导加载程序的地方，有446bytes。</li>
-<li><strong>分区表</strong>（Partition Table）：记录整块硬盘分区的状态，有64bytes。</li>
-</ul>
-<p>在分区表所在的64bytes容量中，总共分为四组记录区，每组记录区记录了该区段的起始与结束的柱面号码。由于分区表就只有64bytes，最多只能容纳四个分区，这四个分区被成为主（Primary）或扩展（Extended）分区。</p>
-<p><strong>小总结：</strong></p>
-<ol>
-<li>“分区”的概念只是针对64bytes的分区表进行设置。</li>
-<li>硬盘默认的分区表仅能写入四组分区信息。</li>
-<li>这四组分区信息我们成为主（Primary）或扩展（Extended）分区。</li>
-<li>分区的最小单位为柱面（cylinder）。</li>
-</ol>
-<p><strong>Q:</strong>那么为什么要对磁盘进行分区？</p>
-<ol>
-<li>分区保证了磁盘内数据的安全性。每个分区内的数据是分开的。所以如果将某个分区的数据进行重新调整时，并不会影响到其它分区内的数据。</li>
-<li>分区提高了系统的性能。分区可以缩小从磁盘内读取数据的柱面范围，从而加快了数据的读取速度。</li>
-</ol>
-<p><strong>Q:</strong>那么是不是一块硬盘最多只能分成四个分区？</p>
-<p>当然不是，我们通过扩展分区来记录更多的分区信息。扩展分区的目的是使用额外的扇区来记录分区信息，扩展分区本身并不能被拿来格式化。由扩展分区继续切出来的分区，被成为逻辑分区。</p>
-<p><strong>小总结：</strong></p>
-<ol>
-<li>主分区与扩展分区最多可以有四个（硬盘的限制）。</li>
-<li>扩展分区最多只能有一个（操作系统的限制）。</li>
-<li>逻辑分区是由扩展分区持续切割出来的分区。</li>
-<li>能够被格式化后作为数据访问的分区为主分区与逻辑分区，扩展分区无法格式化。</li>
-</ol>
-<p><strong>开机流程到操作系统之前的流程：</strong></p>
-<ol>
-<li>BIOS: 开机主动执行的韧体，找到第一个能够开机的设备。</li>
-<li>MBR: 第一个可开机设备的第一个扇区内的主引导分区块，内包含引导加载程序。</li>
-<li>引导加载程序（Boot Loader）：用来读取内核文件并将其执行的软件。</li>
-<li>内核文件：开始操作系统的功能。</li>
-</ol>
-<p><strong>挂载的概念</strong>：”挂载”就是利用一个目录当成进入点，将磁盘分区的数据放置在该目录下，即，进入该目录就可以读取该分区，这个操作我们称为”挂载”，进入点的目录我们称之为”挂载点”。</p>
-<h1 id="4-Linux在线求助"><a href="#4-Linux在线求助" class="headerlink" title="4. Linux在线求助"></a>4. Linux在线求助</h1><h2 id="4-1-Linux中重要的热键"><a href="#4-1-Linux中重要的热键" class="headerlink" title="4.1 Linux中重要的热键"></a>4.1 Linux中重要的热键</h2><ol>
-<li>[Tab]按键<blockquote>
-<p>[Tab]具有”命令补全”与”文件补齐”的功能。<br>[Tab]接在一串命令的第一个命令的后面，则为”命令补全”。<br>[Tab]接在一串命令的第二个命令以后时，则为”文件补齐”。</p>
-</blockquote>
-</li>
-<li>[Ctrl]-c按键<br>[Ctrl]-c是中断目前程序的按键。</li>
-<li>[Ctrl]-d按键<br>[Ctrl]-d代表着键盘输入结束，直接离开文字界面（相当于输入exit）。</li>
-</ol>
-<h2 id="4-2-man-page"><a href="#4-2-man-page" class="headerlink" title="4.2 man page"></a>4.2 man page</h2><p>当想要在命令行里查询相关命令的使用方法，可以使用man命令来查看。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ man date</span><br></pre></td></tr></table></figure></p>
-<p>命令行显示的结果为DATE(1)，括号里的数字是有含义的，具体含义如表所示：</p>
-<table>
-<thead>
-<tr>
-<th>代号</th>
-<th>代表内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>用户在shell环境中可以操作的命令或者是可执行文件</td>
-</tr>
-<tr>
-<td>2</td>
-<td>系统内核可调用的函数与工具等</td>
-</tr>
-<tr>
-<td>3</td>
-<td>一些常用的函数与函数库，大部分为C的函数库</td>
-</tr>
-<tr>
-<td>4</td>
-<td>设备文件的说明，通常在/dev下的文件</td>
-</tr>
-<tr>
-<td>5</td>
-<td>配置文件或者是某些文件的格式</td>
-</tr>
-<tr>
-<td>6</td>
-<td>游戏</td>
-</tr>
-<tr>
-<td>7</td>
-<td>惯例与协议，如Linux文件系统、网络协议、ASCII code等</td>
-</tr>
-<tr>
-<td>8</td>
-<td>系统管理员可用的管理命令</td>
-</tr>
-<tr>
-<td>9</td>
-<td>与kernel有关的文件</td>
-</tr>
-</tbody>
-</table>
-<h2 id="4-3-正确的关机命令使用"><a href="#4-3-正确的关机命令使用" class="headerlink" title="4.3 正确的关机命令使用"></a>4.3 正确的关机命令使用</h2><ul>
-<li>将数据同步写入硬盘中的命令：sync</li>
-<li>惯用的关机命令：shutdown</li>
-<li>重启、关机： reboot, halt, poweroff</li>
-</ul>
-<p><strong>惯用的关机命令：</strong> shutdown</p>
-<p>shutdown可以达成如下的工作：</p>
-<ul>
-<li>可以自由选择关机模式：使要关机、重启或进入单用户操作模式均可。</li>
-<li>可以设置关机时间：可以设置成现在立刻关机，也可以设置某一特定时间才关机。</li>
-<li>可以自定义关机消息：在关机之前，可以将自己设置的消息传送给在线用户。</li>
-<li>可以仅发出警告消息：有时要告诉用户某段时间要注意一下，这个时候可以使用shutdown来通知用户，但却不是真的要关机。</li>
-<li>可以选择是否要用fsck检查文件系统。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ shutdown [-t 秒] [-krhfFnc] 时间 [警告消息]</span><br><span class="line">-t sec ：-t后面加秒数，几秒后关机</span><br><span class="line">-k     ：不是真的关机，只是发送警告消息</span><br><span class="line">-r     ：在将系统的服务停掉之后就重启（常用）</span><br><span class="line">-h     ：将系统的服务停掉之后，立刻关机（常用）</span><br><span class="line">-f     ：关机并开机之后，强制略过fsck的磁盘检查</span><br><span class="line">-F     ：系统重启之后，强制进行fsck的磁盘检查</span><br><span class="line">-n     ：不经过init程序，直接以shutdown的功能来关机</span><br><span class="line">-c     ：取消已经在进行的shutdown命令内容</span><br></pre></td></tr></table></figure>
-<p>举例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ shutdown -r +30 &apos;The system will reboot&apos;</span><br><span class="line">三十分钟后系统会重启，并将消息显示给所有在线的用户</span><br><span class="line">$ shutdown -k now &apos;The system will reboot&apos;</span><br><span class="line">仅发出警告，系统并不会关机</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/26/Linux基础总结（一）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -2308,10 +2200,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
               </li>
              
@@ -2328,15 +2216,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">matlab</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">k-means</a>
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2353,6 +2233,18 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">梁漱溟</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">matlab</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">k-means</a>
               </li>
              
               <li class="article-tag-list-item">

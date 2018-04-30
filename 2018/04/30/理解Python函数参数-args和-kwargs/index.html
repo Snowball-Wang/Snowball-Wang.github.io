@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Caffe | 王杰强的博客</title>
+  <title>理解Python函数参数*args和**kwargs | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这个人很懒，什么都没有留下">
-<meta property="og:type" content="website">
-<meta property="og:title" content="王杰强的博客">
-<meta property="og:url" content="http://yoursite.com/tags/Caffe/index.html">
+  <meta name="description" content="关键字： Python *args  **kwargs 0. 前言上周和室友讨论他在科大讯飞面试的问题时，谈到了Python装饰器的含义和用途。于是乎今天重新复习了一下关于Python装饰器的内容。但在阅读Python装饰器的代码中，函数经常会出现*args和**kwargs等参数，虽然之前了解这两个参数表示可以输入数">
+<meta name="keywords" content="技术日志,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解Python函数参数*args和**kwargs">
+<meta property="og:url" content="http://yoursite.com/2018/04/30/理解Python函数参数-args和-kwargs/index.html">
 <meta property="og:site_name" content="王杰强的博客">
-<meta property="og:description" content="这个人很懒，什么都没有留下">
+<meta property="og:description" content="关键字： Python *args  **kwargs 0. 前言上周和室友讨论他在科大讯飞面试的问题时，谈到了Python装饰器的含义和用途。于是乎今天重新复习了一下关于Python装饰器的内容。但在阅读Python装饰器的代码中，函数经常会出现*args和**kwargs等参数，虽然之前了解这两个参数表示可以输入数量不定的变量的含义，但并没有深入理解其含义和用法。写下此文作为理解*args和">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/04/30/理解Python函数参数-args和-kwargs/tricks.jpg">
+<meta property="og:updated_time" content="2018-04-30T13:24:20.039Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王杰强的博客">
-<meta name="twitter:description" content="这个人很懒，什么都没有留下">
+<meta name="twitter:title" content="理解Python函数参数*args和**kwargs">
+<meta name="twitter:description" content="关键字： Python *args  **kwargs 0. 前言上周和室友讨论他在科大讯飞面试的问题时，谈到了Python装饰器的含义和用途。于是乎今天重新复习了一下关于Python装饰器的内容。但在阅读Python装饰器的代码中，函数经常会出现*args和**kwargs等参数，虽然之前了解这两个参数表示可以输入数量不定的变量的含义，但并没有深入理解其含义和用法。写下此文作为理解*args和">
+<meta name="twitter:image" content="http://yoursite.com/2018/04/30/理解Python函数参数-args和-kwargs/tricks.jpg">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
   
@@ -153,36 +157,74 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-理解Python函数参数-args和-kwargs" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/" class="archive-article-date">
-  	<time datetime="2017-12-04T01:22:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-04</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/04/Ubuntu16-04安装Caffe-CPU-only/">Ubuntu16.04安装Caffe(CPU_only)</a>
+    <h1 class="article-title" itemprop="name">
+      理解Python函数参数*args和**kwargs
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/04/30/理解Python函数参数-args和-kwargs/" class="archive-article-date">
+  	<time datetime="2018-04-30T07:53:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/2018/04/30/理解Python函数参数-args和-kwargs/tricks.jpg" alt="*args和**kwargs"></p>
+<p><strong>关键字：</strong> Python <code>*args</code>  <code>**kwargs</code></p>
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>上周和室友讨论他在科大讯飞面试的问题时，谈到了Python装饰器的含义和用途。于是乎今天重新复习了一下关于Python装饰器的内容。但在阅读Python装饰器的代码中，函数经常会出现<code>*args</code>和<code>**kwargs</code>等参数，虽然之前了解这两个参数表示可以输入数量不定的变量的含义，但并没有深入理解其含义和用法。写下此文作为理解<code>*args</code>和<code>**kwargs</code>的学习笔记。</p>
+<h1 id="1-‘-表达式’"><a href="#1-‘-表达式’" class="headerlink" title="1. ‘*表达式’"></a>1. ‘*表达式’</h1><p>在讨论<code>*args</code>和<code>**kwargs</code>之前，我们需要先介绍一下Python中的<strong>‘*表达式’</strong>。</p>
+<p>先看以下代码：</p>
+<p><strong>说明：</strong> <code>&gt;&gt;&gt;</code>表示是Python运行终端，本文所用的Python版本是3.5.2。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>user_info = (<span class="string">'snowball'</span>, <span class="string">'USTC'</span>, <span class="string">'183xxxx1966'</span>, <span class="string">'188xxxx7604'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>name, school, phone_number = user_info</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">    File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">ValueError: too many values to unpack (expected <span class="number">3</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>name, school, *phone_number = user_info</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>name</span><br><span class="line"><span class="string">'snowball'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>school</span><br><span class="line"><span class="string">'USTC'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>phone_number</span><br><span class="line">[<span class="string">'183xxxx1966'</span>, <span class="string">'188xxxx7604'</span>]</span><br></pre></td></tr></table></figure>
+<p>观察上述代码，我们可以看到，当我们用name、school、phone_number三个变量去对含有4个元素的user_info元组进行解包时，就会出现<code>too many values to unpack</code>的错误。但是元组中的第3个和第4个元素都是手机号码，我们又不想分别用两个变量对这两个号码进行保存，这时我们就可以通过<strong>‘*表达式’</strong>来实现我们的功能。<code>*phone_number</code>表示的是一个列表，它将存储元组中剩下的所有元素。即使元组中剩下元素的个数为0，代码也不会报错，因为此时<strong>‘*表达式’</strong>所对应的是一个空列表。</p>
+<p>同时，<strong>‘*表达式’</strong>也可以位于解包代码的第一个位置，举例说明：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>*head, end = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>head</span><br><span class="line">[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>end</span><br><span class="line"><span class="number">9</span></span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>head = a[:<span class="number">9</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>head</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>end = a[<span class="number">-1</span>:]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>end</span><br><span class="line">[<span class="number">9</span>]</span><br></pre></td></tr></table></figure>
+<p>上述代码中，<code>*head</code>表示的是包含原列表中前9个元素的列表，变量<code>end</code>对应列表中的最后一个元素。在对列表的元素解包的过程中，<code>*head</code>一直匹配到下一个解包元素的所对应的原列表的位置的前一个位置。进一步深入的理解，<strong>‘*表达式’</strong>的实现机制可和<strong>切片</strong>的实现机制进行类比。<strong>‘*表达式’</strong>相当于实现了对原始可迭代对象的切片操作（上述代码中的可迭代对象为列表），只不过<strong>‘*表达式’</strong>切片的长度是不定的，它的长度是由其它解包元素的个数来确定的。在上述代码中，<code>*head</code>之后只有一个解包变量<code>end</code>，所以<code>*head</code>的长度即为原始列表的长度减1，可将其类比成取原始列表前9个元素的<strong>切片</strong>操作。</p>
+<h1 id="2-args和-kwargs"><a href="#2-args和-kwargs" class="headerlink" title="2. *args和**kwargs"></a>2. <code>*args</code>和<code>**kwargs</code></h1><p>理解了<strong>‘*表达式’</strong>的含义和用法，再对Python中的<code>*args</code>和<code>**kwargs</code>这两个魔法变量进行理解，就不会显得那么突兀。首先我们必须了解的是，<code>*args</code>和<code>**kwargs</code>的写法只是约定俗称的，我们完全可以按照自己的喜好来给参数变量命名，例如<code>*var</code>和<code>**vars</code>。换句话说，变量中<code>*</code>号是不可省略的，但<code>*</code>之后的变量名可以自定义。</p>
+<p><code>*args</code>和<code>**kwargs</code>都主要用于函数定义，表示的是可将不定数量的参数传递给一个函数。这里不定数量的含义是指，我们预先并不清楚，函数的使用者究竟会传递多少个参数给函数。这时，使用<code>*args</code>和<code>**kwargs</code>将会帮助我们处理这种情况。</p>
+<h2 id="2-1-args的用法"><a href="#2-1-args的用法" class="headerlink" title="2.1 *args的用法"></a>2.1 <code>*args</code>的用法</h2><p><code>*args</code>用来向函数传递一个<strong>非键值对的可变长度的参数列表</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_var_args</span><span class="params">(f_arg, *argv)</span>:</span></span><br><span class="line">    print(<span class="string">"first normal arg:"</span>, f_arg)</span><br><span class="line">    <span class="keyword">for</span> arg <span class="keyword">in</span> argv:</span><br><span class="line">        print(<span class="string">"another arg through *argv:"</span>, arg)</span><br><span class="line">        </span><br><span class="line">test_var_args(<span class="string">'snowball'</span>, <span class="string">'emily'</span>, <span class="string">'tom'</span>, <span class="string">'jerry'</span>)</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">first normal arg: snowball</span><br><span class="line">another arg through *argv: emily</span><br><span class="line">another arg through *argv: tom</span><br><span class="line">another arg through *argv: jerry</span><br></pre></td></tr></table></figure>
+<p>通过上述代码，我们可以对<code>*args</code>的用法有了较为深刻的理解。</p>
+<h2 id="2-2-kwargs的用法"><a href="#2-2-kwargs的用法" class="headerlink" title="2.2 **kwargs的用法"></a>2.2 <code>**kwargs</code>的用法</h2><p>首先我们要知道的是，<code>**kwargs</code>中的<code>kw</code>的含义是<strong>key-word pairs</strong>，也就是键值对。所以<code>**kwargs</code>的用法是，向函数传递一个不定长度的<strong>键值对</strong>。如果我们想要我们的函数能够处理<strong>带名字的参数</strong>，我们应该使用<code>**kwargs</code>。</p>
+<p>举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">welcome</span><span class="params">(**kwargs)</span>:</span></span><br><span class="line">	<span class="keyword">for</span> key, value <span class="keyword">in</span> kwargs.items():</span><br><span class="line">		print(<span class="string">"&#123;0&#125; = &#123;1&#125;"</span>.format(key, value))</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>welcome(name=<span class="string">"snowball"</span>)</span><br><span class="line">name = snowball</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a_dict = &#123;<span class="string">"name1"</span>:<span class="string">"snowball"</span>, <span class="string">"name2"</span>:<span class="string">"emily"</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>welcome(**a_dict)</span><br><span class="line">name1 = snowball</span><br><span class="line">name2 = emily</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<p>所以，当函数的形参是<code>**kwargs</code>时，传入函数的实参必须是<strong>键值对</strong>。</p>
+<h2 id="2-3-使用-args和-kwargs调用函数"><a href="#2-3-使用-args和-kwargs调用函数" class="headerlink" title="2.3 使用*args和**kwargs调用函数"></a>2.3 使用<code>*args</code>和<code>**kwargs</code>调用函数</h2><p>我们写一个小函数，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">test_args_kwargs</span><span class="params">(arg1, arg2, arg3)</span>:</span></span><br><span class="line">	print(<span class="string">"arg1:"</span>, arg1)</span><br><span class="line">	print(<span class="string">"arg2:"</span>, arg2)</span><br><span class="line">	print(<span class="string">"arg3:"</span>, arg3)</span><br></pre></td></tr></table></figure>
+<p>然后我们分别使用<code>*args</code>和<code>**kwargs</code>来将参数传递给上述函数，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>args = (<span class="string">"snowball"</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>test_args_kwargs(*args)</span><br><span class="line">arg1: snowball</span><br><span class="line">arg2: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">arg3: <span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>kwargs = &#123;<span class="string">"arg3"</span>:<span class="number">3</span>, <span class="string">"arg2"</span>:<span class="number">2</span>, <span class="string">"arg1"</span>:<span class="number">1</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>test_args_kwargs(**kwargs)</span><br><span class="line">arg1: <span class="number">1</span></span><br><span class="line">arg2: <span class="number">2</span></span><br><span class="line">arg3: <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<p>使用标准参数和<code>*args</code>、<code>**kwargs</code> 的顺序如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">some_func(fargs, *args, **kwargs)</span><br></pre></td></tr></table></figure>
+<p>举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">test_formal_args_kwargs</span><span class="params">(fargs, *args, **kwargs)</span>:</span></span><br><span class="line">	print(<span class="string">"First argument:"</span>, fargs)</span><br><span class="line">	<span class="keyword">for</span> arg <span class="keyword">in</span> args:</span><br><span class="line">		print(<span class="string">"arg through *args:"</span>, arg)</span><br><span class="line">	<span class="keyword">for</span> key, value <span class="keyword">in</span> kwargs.items():</span><br><span class="line">		print(<span class="string">"&#123;0&#125;: &#123;1&#125;"</span>.format(key, value))</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a_list = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>, <span class="string">"a"</span>, [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a_dict = &#123;<span class="string">"a"</span>:<span class="number">1</span>, <span class="string">"b"</span>:<span class="number">2</span>, <span class="string">"c"</span>:<span class="number">3</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>test_formal_args_kwargs(a, *a_list, **a_dict)</span><br><span class="line">First argument: <span class="number">4</span></span><br><span class="line">arg through *args: <span class="number">1</span></span><br><span class="line">arg through *args: <span class="number">2</span></span><br><span class="line">arg through *args: <span class="number">3</span></span><br><span class="line">arg through *args: a</span><br><span class="line">arg through *args: [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">a: <span class="number">1</span></span><br><span class="line">b: <span class="number">2</span></span><br><span class="line">c: <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h1 id="3-args和-kwargs的使用场景"><a href="#3-args和-kwargs的使用场景" class="headerlink" title="3. *args和**kwargs的使用场景"></a>3. <code>*args</code>和<code>**kwargs</code>的使用场景</h1><p>在<em>Python Cookbook</em>第三版的第9章的元编程中，涉及到了Python装饰器的相关代码，<code>*args</code>和<code>**kwargs</code>在装饰器中经常会出现，举例说明：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">timethis</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    Decorator that reports the execution time</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line"><span class="meta">    @wraps</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(func)</span>:</span></span><br><span class="line">        start = time.time()</span><br><span class="line">        result = func(*args, **kwargs) <span class="comment"># use *args and **kwargs to represent the input data</span></span><br><span class="line">        end = time.time()</span><br><span class="line">        print(func.__name__, end - start)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@timethis</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countdown</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    Counts down</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">        n -= <span class="number">1</span></span><br><span class="line">        </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    countdown(<span class="number">10000</span>)</span><br><span class="line">    countdown(<span class="number">10000000</span>)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>上述中的代码是一个用于计算函数执行时间的装饰器。在装饰器内部的代码里，我们使用语句<code>result = func(*args, **kwargs)</code>来表示传入被装饰函数的参数的所有可能的表达形式。这种写法在Python装饰器函数中极其常见。</p>
+<p>代码的运行结果为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">countdown <span class="number">0.001141786553173828</span></span><br><span class="line">countdown <span class="number">0.7821342945098877</span></span><br></pre></td></tr></table></figure>
+<p><strong>参考文献：</strong></p>
+<ol>
+<li><em>Python Cookbook</em> 第三版</li>
+<li><a href="http://book.pythontips.com/en/latest/args_and_kwargs.html" target="_blank" rel="noopener">http://book.pythontips.com/en/latest/args_and_kwargs.html</a></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -192,17 +234,13 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Ubuntu16.04</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Caffe</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -210,22 +248,113 @@
         		<li class="article-tag-list-item">
         			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术日志/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/30/理解Python函数参数-args和-kwargs/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/04/25/k-means算法及其matlab实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">k-means算法及其matlab实现</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -248,9 +377,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
