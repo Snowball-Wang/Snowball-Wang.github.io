@@ -155,6 +155,141 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="[post]-理解Python中的深拷贝和浅拷贝" class="article article-type-[post]  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/12/理解Python中的深拷贝和浅拷贝/">理解Python中的深拷贝和浅拷贝</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/12/理解Python中的深拷贝和浅拷贝/" class="archive-article-date">
+  	<time datetime="2018-11-12T13:37:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>关键词：</strong> Python  深拷贝  浅拷贝</p>
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>之前在参加海康研究院图像算法工程师的面试时，面试官问到了关于Python中深拷贝和浅拷贝的问题。虽然大致上回答出了深拷贝和浅拷贝的区别，但仅仅就列表这一种数据结构做出了简单的说明，且也没有进一步地说明了如何在Python的其它数据结构中（如字典）完成深拷贝的操作。网上有很多说明Python深浅拷贝的文章，本文就是基于自己的理解对Python的深浅拷贝做个总结。</p>
+<h1 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h1><ul>
+<li><strong>直接赋值：</strong>变量即为对象的别名（类比于C++的引用）。</li>
+<li><strong>浅拷贝：</strong>拷贝父对象，不会拷贝对象内部的子对象，可通过copy模块的copy方法实现。</li>
+<li><strong>深拷贝：</strong>完全拷贝父对象及其子对象，可通过copy模块的deepcopy方法实现。</li>
+</ul>
+<h1 id="2-实例说明"><a href="#2-实例说明" class="headerlink" title="2. 实例说明"></a>2. 实例说明</h1><h2 id="2-1-直接赋值"><a href="#2-1-直接赋值" class="headerlink" title="2.1 直接赋值"></a>2.1 直接赋值</h2><p><strong>代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">snowball = [&quot;Snowball&quot;, 22, [&quot;Python&quot;, &quot;C&quot;, &quot;Shell&quot;]]</span><br><span class="line">wang = snowball</span><br><span class="line">print(&quot;var snowball&apos;s id: &quot;, id(snowball))</span><br><span class="line">print(&quot;snowball&apos;s content: &quot;, snowball)</span><br><span class="line">print(&quot;each element&apos;s id in snowball: &quot;, [id(elem) for elem in snowball])</span><br><span class="line">print(&quot;var wang&apos;s id: &quot;, id(wang))</span><br><span class="line">print(&quot;wang&apos;s content: &quot;, wang)</span><br><span class="line">print(&quot;each element&apos;s id in wang: &quot;, [id(elem) for elem in wang])</span><br><span class="line"></span><br><span class="line">print()</span><br><span class="line">print(&quot;Modify var snowball....&quot;)</span><br><span class="line">snowball[0] = &quot;wang&quot;</span><br><span class="line">snowball[2].append(&quot;C++&quot;)</span><br><span class="line">print(&quot;var snowball&apos;s id: &quot;, id(snowball))</span><br><span class="line">print(&quot;snowball&apos;s content: &quot;, snowball)</span><br><span class="line">print(&quot;each element&apos;s id in snowball: &quot;, [id(elem) for elem in snowball])</span><br><span class="line">print(&quot;var wang&apos;s id:  &quot;, id(wang))</span><br><span class="line">print(&quot;wang&apos;s content: &quot;, wang)</span><br><span class="line">print(&quot;each element&apos;s id in wang: &quot;, [id(elem) for elem in wang])</span><br></pre></td></tr></table></figure>
+<p><strong>运行结果：</strong></p>
+<p><img src="/2018/11/12/理解Python中的深拷贝和浅拷贝/test1.png" alt="test1"></p>
+<p><strong>代码分析：</strong></p>
+<ul>
+<li>我首先创建了一个<code>snowball</code>变量，<code>snowball</code>变量指向一个list对象。从图1.1中我们可以看到所有对象的地址（每次运行显示的地址的值可能不同）。</li>
+<li>将<code>snowball</code>变量赋值给<code>wang</code>变量，此时变量<code>wang</code>指向<code>snowball</code>变量指向的list对象，<code>wang</code>变量与<code>snowball</code>变量的内存地址也相同，如图1.2所示。可以这样去做理解，Python中对象的赋值都是针对对象的引用，即传递的并不是对象的值，传递的是对象的内存地址。</li>
+<li>从图1.3可以看出，由于<code>snowball</code>变量和<code>wang</code>变量都指向同一个list对象，所以针对<code>snowball</code>变量的任何修改都会在<code>wang</code>变量上体现。</li>
+</ul>
+<p><img src="/2018/11/12/理解Python中的深拷贝和浅拷贝/图1.png" alt="图1"></p>
+<h2 id="2-2-浅拷贝"><a href="#2-2-浅拷贝" class="headerlink" title="2.2 浅拷贝"></a>2.2 浅拷贝</h2><p><strong>代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import copy</span><br><span class="line"></span><br><span class="line">snowball = [&quot;Snowball&quot;, 22, [&quot;Python&quot;, &quot;C&quot;, &quot;Shell&quot;]]</span><br><span class="line">wang = copy.copy(snowball)</span><br><span class="line"></span><br><span class="line">print(&quot;var snowball&apos;s id: &quot;, id(snowball))</span><br><span class="line">print(&quot;snowball&apos;s content: &quot;, snowball)</span><br><span class="line">print(&quot;each element&apos;s id in snowball: &quot;, [id(elem) for elem in snowball])</span><br><span class="line">print(&quot;var wang&apos;s id: &quot;, id(wang))</span><br><span class="line">print(&quot;wang&apos;s content: &quot;, wang)</span><br><span class="line">print(&quot;each element&apos;s id in wang: &quot;, [id(elem) for elem in wang])</span><br><span class="line"></span><br><span class="line">print()</span><br><span class="line">print(&quot;Modify var snowball....&quot;)</span><br><span class="line">snowball[0] = &quot;wang&quot;</span><br><span class="line">snowball[2].append(&quot;C++&quot;)</span><br><span class="line">print(&quot;var snowball&apos;s id: &quot;, id(snowball))</span><br><span class="line">print(&quot;snowball&apos;s content: &quot;, snowball)</span><br><span class="line">print(&quot;each element&apos;s id in snowball: &quot;, [id(elem) for elem in snowball])</span><br><span class="line">print(&quot;var wang&apos;s id:  &quot;, id(wang))</span><br><span class="line">print(&quot;wang&apos;s content: &quot;, wang)</span><br><span class="line">print(&quot;each element&apos;s id in wang: &quot;, [id(elem) for elem in wang])</span><br></pre></td></tr></table></figure>
+<p><strong>运行结果：</strong></p>
+<p><img src="/2018/11/12/理解Python中的深拷贝和浅拷贝/test2.png" alt="test2"></p>
+<p><strong>代码分析：</strong></p>
+<ul>
+<li>同上述的步骤1相同，我创建一个<code>snowball</code>变量，所有对象的内存地址如图2.1所示。</li>
+<li>通过copy模块中的copy()方法，对<code>snowball</code>变量指向的对象进行浅拷贝，然后将浅拷贝生成的新对象赋值给<code>wang</code>变量，则<code>wang</code>变量此时指向的对象不再是<code>snowball</code>变量指向的变量。但浅拷贝只完成父对象的拷贝，也就意味着对于被拷贝对象里的元素，浅拷贝只会使用原始元素的引用，即只对原始元素的内存地址进行拷贝。</li>
+<li>当对<code>snowball</code>变量进行修改时，由于<code>snowball</code>变量所指向的list对象的第一个元素是<code>str</code>类型，<code>str</code>类型为不可变类型，所以新的<code>str</code>类型<code>wang</code>将会替换掉原来list对象的第一个元素。而原始list对象的最后一个元素是<code>list</code>类型，为可变类型，修改操作不会产生新的对象，所以对<code>snowball</code>变量的修改结果会在<code>wang</code>变量上得到体现。</li>
+</ul>
+<p><img src="/2018/11/12/理解Python中的深拷贝和浅拷贝/图2.png" alt="图2"></p>
+<h2 id="2-3-深拷贝"><a href="#2-3-深拷贝" class="headerlink" title="2.3 深拷贝"></a>2.3 深拷贝</h2><p><strong>代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import copy</span><br><span class="line"></span><br><span class="line">snowball = [&quot;Snowball&quot;, 22, [&quot;Python&quot;, &quot;C&quot;, &quot;Shell&quot;]]</span><br><span class="line">wang = copy.deepcopy(snowball)</span><br><span class="line"></span><br><span class="line">print(&quot;var snowball&apos;s id: &quot;, id(snowball))</span><br><span class="line">print(&quot;snowball&apos;s content: &quot;, snowball)</span><br><span class="line">print(&quot;each element&apos;s id in snowball: &quot;, [id(elem) for elem in snowball])</span><br><span class="line">print(&quot;var wang&apos;s id: &quot;, id(wang))</span><br><span class="line">print(&quot;wang&apos;s content: &quot;, wang)</span><br><span class="line">print(&quot;each element&apos;s id in wang: &quot;, [id(elem) for elem in wang])</span><br><span class="line"></span><br><span class="line">print()</span><br><span class="line">print(&quot;Modify var snowball....&quot;)</span><br><span class="line">snowball[0] = &quot;wang&quot;</span><br><span class="line">snowball[2].append(&quot;C++&quot;)</span><br><span class="line">print(&quot;var snowball&apos;s id: &quot;, id(snowball))</span><br><span class="line">print(&quot;snowball&apos;s content: &quot;, snowball)</span><br><span class="line">print(&quot;each element&apos;s id in snowball: &quot;, [id(elem) for elem in snowball])</span><br><span class="line">print(&quot;var wang&apos;s id:  &quot;, id(wang))</span><br><span class="line">print(&quot;wang&apos;s content: &quot;, wang)</span><br><span class="line">print(&quot;each element&apos;s id in wang: &quot;, [id(elem) for elem in wang])</span><br></pre></td></tr></table></figure>
+<p><strong>运行结果：</strong></p>
+<p><img src="/2018/11/12/理解Python中的深拷贝和浅拷贝/test3.png" alt="test3"></p>
+<p><strong>代码分析：</strong></p>
+<ul>
+<li>步骤1同上述内容一致。</li>
+<li>通过copy模块中的deepcopy()方法，对<code>snowball</code>所指向的list对象进行深拷贝，将深拷贝生成的新的对象赋值给<code>wang</code>变量，同浅拷贝相同的是，此时<code>snowball</code>变量和<code>wang</code>变量所指向的list对象不是同一个对象，但不同于浅拷贝只复制对象元素的内存地址的方式，深拷贝将对象元素的内容也复制到新生成的对象中，这在图3.2中得到了体现。<code>snowball</code>变量指向的list对象的第三个元素的内存地址同<code>wang</code>变量指向的list对象的第三个元素的内存地址不同，也就是说在对原始list对象的深拷贝操作中，我们完成对list对象第三个元素列表内容的拷贝，即新开拓了一块内存存放原先list对象的第三个元素的值。</li>
+<li>同上述浅拷贝一致，<code>snowball</code>变量指向的list对象的第一个元素发生了替换。但由于深拷贝复制了list对象第三个元素的值，所以当对<code>snowball</code>变量所指向的list对象的第三个元素修改时，这种修改不会在<code>wang</code>变量所指向的list对象上体现，也意味着<code>wang</code>变量所指向的list对象的第三个元素不会发生改变。</li>
+</ul>
+<p><img src="/2018/11/12/理解Python中的深拷贝和浅拷贝/图3.png" alt="图3"></p>
+<h1 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h1><ul>
+<li>Python中对象的直接赋值是对对象的引用。</li>
+<li>Python的浅拷贝只完成对象元素父对象的拷贝，而深拷贝则完成对象元素父对象及子对象的拷贝。</li>
+<li>不可变类型（如int，str类型等）不存在拷贝这个概念。</li>
+</ul>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>1.<a href="https://www.cnblogs.com/wilber2013/p/4645353.html" target="_blank" rel="noopener">图解Python深拷贝和浅拷贝</a></p>
+<p>2.<a href="http://www.runoob.com/w3cnote/python-understanding-dict-copy-shallow-or-deep.html" target="_blank" rel="noopener">Python 直接赋值、浅拷贝和深度拷贝解析</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/12/理解Python中的深拷贝和浅拷贝/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-My-CS4-Challenge" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1530,312 +1665,6 @@
 
 
   
-    <article id="post-循序渐进学Vim" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/13/循序渐进学Vim/">循序渐进学Vim</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/13/循序渐进学Vim/" class="archive-article-date">
-  	<time datetime="2018-01-13T03:39:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/2018/01/13/循序渐进学Vim/uber_leet_use_vim.jpg" alt="Vim" title="学习Vim可真酷！"></p>
-<p><strong>注：</strong>图片中的U83R 1337指的是德语中的uber leet，合起来的uberleet表示的意思是super cool，所以图片的意思是Super Cool USE VIM!</p>
-<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>本文翻译自<strong>博主<a href="www.yannesposito">yannesposito</a></strong>的<strong>博客<a href="http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/" target="_blank" rel="noopener">Learn Vim Progessively</a></strong>，中文的翻译也有陈皓博主的版本<strong><a href="https://coolshell.cn/articles/5426.html" target="_blank" rel="noopener">简明VIM练级攻略</a></strong>。虽已有现成的中英文材料，但还是想结合两篇博客，自己重新总结和升级一下vim的相关知识，也方便遗忘后归档查阅。以下为译文。</p>
-<p><strong>关键词：</strong> Linux  Vim  </p>
-<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>想要以最快速度学习Vim？那就先从最基础的学习，能够适应Vim，然后再融会贯通，逐渐融合各种技巧。</p>
-<p><a href="http://www.vim.org/" target="_blank" rel="noopener">vim</a> 一款价值60亿美元的编辑器</p>
-<blockquote>
-<p><em>Better, Stronger, Faster</em></p>
-</blockquote>
-<p>学习Vim，那么Vim将是你最后一个文本编辑器。没有比Vim更好的编辑器了（好了，Emacs的同学们估计已经提刀前来:(）。Vim虽然难学，但是使用体验非常棒。</p>
-<p>个人推荐分4步学习Vim（Vim学习四重境界）：</p>
-<ol>
-<li>生存</li>
-<li>感觉舒服</li>
-<li>更好、更强、更快</li>
-<li>使用Vim的超能力</li>
-</ol>
-<p>在这趟学习旅程结束之后，你将成为一名Vim的超级明星:)。</p>
-<p>但是在开始之前，有一个小小的提示。学习Vim的初始阶段将会非常痛苦，非常消耗时间。这个过程很像是玩乐器。不要指望在3天之内就能把Vim用的比其他的编辑器更熟练，实际上，要想熟练使用Vim，你肯定要在Vim上花费超过两周的时间。</p>
-<h1 id="2-第一重境界–生存"><a href="#2-第一重境界–生存" class="headerlink" title="2. 第一重境界–生存"></a>2. 第一重境界–生存</h1><ol>
-<li>安装Vim（Ubuntu下直接使用<code>sudo apt-get install vim</code>即可安装）</li>
-<li>启动Vim</li>
-<li><strong>什么也不做！</strong>先阅读以下内容：</li>
-</ol>
-<p>当安装好一个编辑器后，你一般都会在键盘上敲些东西让它显示在屏幕上。但是Vim的使用不是这样的，请按照以下命令操作：</p>
-<ul>
-<li>启动Vim后，Vim在<em>Normal</em> 模式下。</li>
-<li>进入<em>Insert</em> 模式，按下<code>i</code>键（编辑器左下角会显示–INSERT–字样）。</li>
-<li>此时，可在编辑器里输入文本。</li>
-<li>若想要返回<em>Normal</em>模式，按下<code>ESC</code>键。</li>
-</ul>
-<p>现在，你知道如何在<em>Insert</em>和<em>Normal</em>模式下切换。下面的命令，可以让你在<em>Normal</em>模式下生存下来：</p>
-<blockquote>
-<p><code>i</code>→<em>Insert</em>模式，按<code>Esc</code>返回<em>Normal</em>模式<br><code>x</code>→删除当前光标所在的一个字符<br><code>:wq</code>→保存+退出（<code>:w</code>保存，<code>:q</code>退出）<br><code>dd</code>→删除当前行，并将删除的行存到剪贴板里<br><code>p</code>→粘贴剪切板<br><strong>推荐：</strong><br><code>hjkl</code>(强烈推荐但非必须) →基本的光标移动键（←↓↑→），也可以直接使用键盘<code>←↓↑→</code><br>提示：<code>j</code>的形状很像↓键<br><code>:help &lt;command&gt;</code>→显示相关命令的帮助，也可以输入<code>:help</code>不跟命令</p>
-</blockquote>
-<p>学会了上述5个命令，便可以称得上是Vim入门了。只有当上述命令变成潜意识的动作后，便可以进入第二步了。<br>但是第二步开始之前，我们要说说<em>Normal</em>模式。在标准的文本编辑器中，复制命令通常是使用<code>Ctrl</code>键（通常是<code>Ctrl-c</code>键）。实际上，当你按下<code>Ctrl</code>键时，就像是所有的按键改变了意义。<strong>在Vim的<em>Normal</em>模式下，所有的按键不再是原先的意义，变成了功能键</strong>。</p>
-<p>记号：</p>
-<ul>
-<li>下面的文字中，如果是<strong>Ctrl-$\lambda$</strong> ， 我会写成<strong>C-$\lambda$</strong>.</li>
-<li>以<code>:</code>开始的命令需要输入<code>&lt;enter&gt;</code>回车，如果我写成<code>:q</code>也就是说你要输入<code>:q&lt;enter&gt;</code></li>
-</ul>
-<h1 id="3-第二重境界–感觉舒服"><a href="#3-第二重境界–感觉舒服" class="headerlink" title="3. 第二重境界–感觉舒服"></a>3. 第二重境界–感觉舒服</h1><p>现在你已经了解了在Vim生存的基本命令，现在可以学习更多的命令了，下面就是我的建议：</p>
-<ol>
-<li>各种插入模式：</li>
-</ol>
-<blockquote>
-<p><code>a</code>→在光标后插入<br><code>o</code>→在当前行后插入一个新行<br><code>O</code>→在当前行前插入一个新行<br><code>cw</code>→替换从光标所在位置后到一个单词结尾的字符</p>
-</blockquote>
-<ol>
-<li>简单的移动光标</li>
-</ol>
-<blockquote>
-<p><code>0</code>→将光标移动到行头<br><code>^</code>→将光标移动到本行第一个不是blank字符的位置（blank字符包括空格、tab、换行、回车等）<br><code>$</code>→到本行行尾<br><code>g_</code>→到本行最后一个不是blank字符的位置<br><code>/pattern</code>→搜索<code>pattern</code>的字符串（如果搜索到多个匹配，可按n键到下一个）</p>
-<ol>
-<li>拷贝/粘贴</li>
-</ol>
-<p><code>P</code>→在当前位置之前粘贴，<code>p</code>在当前位置之后粘贴<br><code>yy</code>→拷贝当前行，相当于<code>ddP</code></p>
-</blockquote>
-<ol>
-<li>撤销/恢复</li>
-</ol>
-<blockquote>
-<p><code>u</code>→撤销<br><code>C-r</code>→恢复</p>
-</blockquote>
-<ol>
-<li>打开/保存/退出/改变文件（Buffer）</li>
-</ol>
-<blockquote>
-<p><code>:e &lt;path/to/file&gt;</code>→打开一个文件<br><code>:w</code>→保存<br><code>:saveas &lt;path/to/file&gt;</code>→另存为<code>&lt;path/to/file&gt;</code><br><code>:x</code>，<code>ZZ</code>或<code>:wq</code>→保存并退出（<code>:x</code>仅在需要时保存）<br><code>:q!</code>→退出不保存<code>:qa!</code>强行退出所有的正在编辑的文件，就算别的文件的Buffer有更改<br><code>:bn</code>和<code>:bp</code>→可以同时打开很多文件，使用这两个命令来切换下一个或者上一个文件</p>
-</blockquote>
-<p>花些时间学习上述的所有命令，一旦掌握它们，你就几乎能干所有其它编辑器能干的事情了。你可能还是觉得使用Vim有点不太理想，不过接下来的第三步，你就会明白Vim值得你的付出。</p>
-<h1 id="4-第三重境界–更好、更强、更快"><a href="#4-第三重境界–更好、更强、更快" class="headerlink" title="4. 第三重境界–更好、更强、更快"></a>4. 第三重境界–更好、更强、更快</h1><p>恭喜你到达学习Vim的第三境界！现在我们可以学一些有意思的东西了。在第三境界中，我们只讨论兼容vi编辑器的命令。</p>
-<h2 id="4-1-更好"><a href="#4-1-更好" class="headerlink" title="4.1 更好"></a>4.1 更好</h2><p>接下来让我们看一下Vim如何重复执行命令：</p>
-<ol>
-<li><code>.</code>→（小数点）可以重复上一次的命令</li>
-<li><code>N&lt;command&gt;</code>→重复某个命令N次</li>
-</ol>
-<p>一些例子，可以打开一个文件敲入：</p>
-<blockquote>
-<p><code>2dd</code>→删除2行<br><code>3p</code>→粘贴文本3次<br><code>100idesu [ESC]</code>→会写下”desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu”<br><code>.</code>→重复上一个命令，在输入100次”desu”<br><code>3.</code>→重复3次”desu”（注意：不是300次，Vim很聪明的！）</p>
-</blockquote>
-<h2 id="4-2-更强"><a href="#4-2-更强" class="headerlink" title="4.2 更强"></a>4.2 更强</h2><p>如何让光标移动更有效率，在使用Vim时是非常重要的。<strong>不要跳过此节。</strong></p>
-<ol>
-<li>N<code>G</code>→到第N行（也可使用<code>:N</code>表示到第N行）</li>
-<li><code>gg</code>→到第一行（相当于<code>1G</code>，或<code>:1</code>）</li>
-<li><code>G</code>→到最后一行</li>
-<li>按单词移动：<blockquote>
-<ol>
-<li><p><code>w</code>→到下一个单词的开头</p>
-</li>
-<li><p><code>e</code>→到下一个单词的结尾<br>默认情况下，单词是由字母和下划线组成。<strong>WORD</strong>的含义为blank字符风格的一组字母。如果考虑<strong>WORDS</strong>的话，就要使用大写字符</p>
-</li>
-<li><p><code>W</code>→到下一个<strong>WORD</strong>的开头</p>
-</li>
-<li><p><code>E</code>→到下一个<strong>WORD</strong>的结尾</p>
-</li>
-</ol>
-<p><img src="/2018/01/13/循序渐进学Vim/word_moves.jpg" alt="图例"></p>
-</blockquote>
-</li>
-</ol>
-<p>下面说到更高效的光标移动：</p>
-<blockquote>
-<p><code>%</code>→匹配括号移动，包括<code>(</code>，<code>{</code>，<code>[</code><br><code>*</code>和<code>#</code>→匹配光标当前所在的单词，移动光标到下一个（或上一个）匹配单词（<code>*</code>是下一个，<code>#</code>是上一个）</p>
-</blockquote>
-<p>相信我，这三个命令非常有价值。</p>
-<h2 id="4-3-更快"><a href="#4-3-更快" class="headerlink" title="4.3 更快"></a>4.3 更快</h2><p>为什么要求记住vi光标移动操作？原因是这样的，大多数的命令都可以通过以下通用格式使用:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;start position&gt;&lt;command&gt;&lt;end position&gt;</span><br></pre></td></tr></table></figure></p>
-<p>例如<code>0y$</code>命令意味着：</p>
-<ul>
-<li><code>0</code>→光标移动到行首</li>
-<li><code>y</code>→从此处开始拷贝</li>
-<li><code>$</code>→拷贝到本行的最后一个字符</li>
-</ul>
-<p>输入<code>ye</code>，从当前位置拷贝到本单词的最后一个字符。<br>输入<code>y2/foo</code>，拷贝2个”foo”之间的字符串。<br>以下的命令也能进行拷贝：</p>
-<ul>
-<li><code>d</code>（删除）</li>
-<li><code>v</code>（可视化的选择）</li>
-<li><code>gU</code>（变大写）</li>
-<li><code>gu</code>（变小写）</li>
-</ul>
-<p><code>v</code>是一个非常有意思的命令，按下<code>v</code>后，可以通过移动光标，来选择相应的文本，在对文本进行<code>d</code>或<code>y</code>等操作。</p>
-<h1 id="5-第四重境界–使用Vim的超能力"><a href="#5-第四重境界–使用Vim的超能力" class="headerlink" title="5. 第四重境界–使用Vim的超能力"></a>5. 第四重境界–使用Vim的超能力</h1><p>如果掌握了之前的命令，你用起Vim应该很舒服。但现在，我将介绍Vim杀手级的功能，其中的有些功能是我开始使用Vim的原因。</p>
-<h2 id="5-1-在当前行移动光标"><a href="#5-1-在当前行移动光标" class="headerlink" title="5.1 在当前行移动光标"></a>5.1 在当前行移动光标</h2><blockquote>
-<p><code>0</code>→到行首<br><code>^</code>→到本行的第一个非blank字符<br><code>$</code>→到行尾<br><code>g_</code>→到本行最后一个不是blank字符的位置<br><code>fa</code>→到下一个为a的字符处，你也可以通过<code>fs</code>到下一个为s的字符<br><code>t,</code>→到逗号前的第一个字符，<code>t.</code>到<code>.</code>前的第一个字符<br><code>3fa</code>→在当前行查找第三个出现的a<br><code>F</code>和<code>T</code>→和<code>f</code>和<code>t</code>一样，只不过是相反方向</p>
-<p><img src="/2018/01/13/循序渐进学Vim/line_moves.jpg" alt="图例"></p>
-</blockquote>
-<h2 id="5-2-区域选择-lt-action-gt-a-lt-object-gt-或-lt-action-gt-i-lt-object-gt"><a href="#5-2-区域选择-lt-action-gt-a-lt-object-gt-或-lt-action-gt-i-lt-object-gt" class="headerlink" title="5.2 区域选择&lt;action&gt;a&lt;object&gt;或&lt;action&gt;i&lt;object&gt;"></a>5.2 区域选择<code>&lt;action&gt;a&lt;object&gt;</code>或<code>&lt;action&gt;i&lt;object&gt;</code></h2><p>在visual模式下，这些命令很强大，其命令格式为：</p>
-<p><code>&lt;action&gt;a&lt;object&gt;</code>和<code>&lt;action&gt;i&lt;object&gt;</code></p>
-<ul>
-<li>action可以是任何的指令，如<code>d</code>（删除）、<code>y</code>（拷贝）、<code>v</code>（可视化模式）</li>
-<li>object可能是：<code>w</code>是一个单词，<code>W</code>是一个以空格为分隔的单词，<code>s</code>是一个句子，<code>p</code>是一段段落。也可能是一个特殊字符：<code>&quot;</code>、<code>&#39;</code>、<code>)</code>、<code>}</code>、<code>]</code>等</li>
-</ul>
-<p>假设有一个字符串<code>(map (+) (&quot;foo&quot;))</code>，而光标在第一个<code>o</code>的位置。</p>
-<blockquote>
-<p><code>vi&quot;</code>→会选择<code>foo</code></p>
-<p><code>va&quot;</code>→会选择<code>&quot;foo&quot;</code></p>
-<p><code>vi)</code>→会选择<code>&quot;foo&quot;</code></p>
-<p><code>va)</code>→会选择<code>(&quot;foo&quot;)</code></p>
-<p><code>v2i)</code>→会选择<code>map (+) (&quot;foo&quot;)</code></p>
-<p><code>v2a)</code>→会选择<code>(map (+) (&quot;foo&quot;))</code></p>
-<p><img src="/2018/01/13/循序渐进学Vim/textobjects.png" alt="图例"></p>
-</blockquote>
-<h2 id="5-3-块操作：C-v"><a href="#5-3-块操作：C-v" class="headerlink" title="5.3 块操作：C-v"></a>5.3 块操作：<code>C-v</code></h2><p>块操作，典型的操作： <code>0</code> <code>C-v</code> <code>C-d</code> <code>I--[ESC]</code></p>
-<blockquote>
-<p><code>^</code>→到行首</p>
-<p><code>&lt;C-v&gt;</code>→开始块操作</p>
-<p><code>&lt;C-d&gt;</code>→向下移动（也可以是<code>jjj</code>或<code>%</code>等）</p>
-<p><code>I-- [ESC]</code>→向每行写<code>--</code></p>
-<p><img src="/2018/01/13/循序渐进学Vim/rectangular-blocks.gif" alt="图例"></p>
-</blockquote>
-<h2 id="5-4-自动提示：-lt-C-n-gt-和-lt-C-p-gt"><a href="#5-4-自动提示：-lt-C-n-gt-和-lt-C-p-gt" class="headerlink" title="5.4 自动提示： &lt;C-n&gt;和&lt;C-p&gt;"></a>5.4 自动提示： <code>&lt;C-n&gt;</code>和<code>&lt;C-p&gt;</code></h2><p>在<em>Insert</em>模式下，你可以输入一个词的开头，然后按下<code>&lt;C-p&gt;</code>或者是<code>&lt;C-n&gt;</code>，就能实现自动补齐。</p>
-<p><img src="/2018/01/13/循序渐进学Vim/completion.gif" alt="图例"></p>
-<h2 id="5-5-宏录制：qa操作序列q，-a，"><a href="#5-5-宏录制：qa操作序列q，-a，" class="headerlink" title="5.5 宏录制：qa操作序列q，@a，@@"></a>5.5 宏录制：<code>qa</code>操作序列<code>q</code>，<code>@a</code>，<code>@@</code></h2><ul>
-<li><code>qa</code>把你的操作记录在寄存器<code>a</code></li>
-<li>于是<code>@a</code>会replay存放进寄存器<code>a</code>里的宏</li>
-<li><code>@@</code>是一个用来replay最新录制的宏的快捷键</li>
-</ul>
-<blockquote>
-<p><strong>举例</strong></p>
-<p>在只有数字1的一行中，敲入以下命令：</p>
-<ul>
-<li><code>qaYp&lt;C-a&gt;q</code></li>
-<li><ul>
-<li><code>qa</code>开始录制</li>
-<li><code>Yp</code>复制此行内容</li>
-<li><code>&lt;C-a&gt;</code>增加1</li>
-<li><code>q</code>停止录制</li>
-</ul>
-</li>
-<li><code>@a</code>→在1下面写2</li>
-<li><code>@@</code>→在2下面写3</li>
-<li>现在做<code>100@@</code>会创建新的100行，并把数据增加到103</li>
-</ul>
-<p><img src="/2018/01/13/循序渐进学Vim/macros.gif" alt="图例"></p>
-</blockquote>
-<h2 id="5-6-可视化选择：-v，V，-lt-C-v-gt"><a href="#5-6-可视化选择：-v，V，-lt-C-v-gt" class="headerlink" title="5.6 可视化选择： v，V，&lt;C-v&gt;"></a>5.6 可视化选择： <code>v</code>，<code>V</code>，<code>&lt;C-v&gt;</code></h2><p>前面，我们看到了<code>&lt;C-v&gt;</code>的示例，我们可以使用<code>v</code>和<code>V</code>。一旦被选好了，就可以做下面的事情：</p>
-<ul>
-<li><code>J</code>→把所有的行连接起来（变成一行）</li>
-<li><code>&lt;</code>或<code>&gt;</code>→左右缩进</li>
-<li><code>=</code>→自动缩进</li>
-</ul>
-<p><img src="/2018/01/13/循序渐进学Vim/autoindent.gif" alt="图例"></p>
-<p>在所有被选择的行后加上点东西：</p>
-<ul>
-<li><code>&lt;C-v&gt;</code></li>
-<li>选中相关的行（可使用<code>j</code>或<code>&lt;C-d&gt;</code>或是<code>/pattern</code>或是<code>%</code>等）</li>
-<li><code>$</code>到行最后</li>
-<li><code>A</code>，输入字符串，按<code>ESC</code></li>
-</ul>
-<p><img src="/2018/01/13/循序渐进学Vim/append-to-many-lines.gif" alt="图例"></p>
-<h2 id="5-7-分屏：-split和vsplit"><a href="#5-7-分屏：-split和vsplit" class="headerlink" title="5.7 分屏：:split和vsplit"></a>5.7 分屏：<code>:split</code>和<code>vsplit</code></h2><p>下面是主要的命令，你可以使用Vim的帮助<code>:help split</code></p>
-<blockquote>
-<p><code>:split</code>→创建分屏（<code>:vsplit</code>创建垂直分屏）</p>
-<p><code>&lt;C-w&gt;&lt;dir&gt;</code>→<code>dir</code>表示方向，可以是<code>hjkl</code>或是<code>↑↓←→</code>中的一个，用来切换分屏</p>
-<p><code>&lt;C-w&gt;_</code>（或<code>&lt;C-w&gt;|</code>）：最大化尺寸（<code>&lt;C-w&gt;|</code>垂直分屏）</p>
-<p><code>&lt;C-w&gt;+</code>（或<code>&lt;C-w&gt;-</code>）：增加尺寸</p>
-</blockquote>
-<p><img src="/2018/01/13/循序渐进学Vim/split.gif" alt="图例"></p>
-<h1 id="6-结束语"><a href="#6-结束语" class="headerlink" title="6. 结束语"></a>6. 结束语</h1><ul>
-<li>上面是作者最常用的90%的命令</li>
-<li>我建议你每天都学1到2个新的命令</li>
-<li>在两到三周后，你会感到Vim的强大</li>
-<li>有时候，学习Vim就像是在死背一些东西</li>
-<li>幸运的是，Vim有很多不错的工具和优秀的文档</li>
-<li>运行vimtutor直到你熟悉了那些基本命令</li>
-<li>在线帮助文档中应仔细阅读的是<code>:help usr_02.txt</code></li>
-<li>你会学习诸如<code>!</code>，目录，寄存器，插件等很多其它的功能</li>
-</ul>
-<p>学习Vim就像学习弹钢琴一样，一旦学会，受益无穷。</p>
-<p><strong>参考链接：</strong></p>
-<ol>
-<li><a href="http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/" target="_blank" rel="noopener">http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/</a></li>
-<li><a href="https://coolshell.cn/articles/5426.html" target="_blank" rel="noopener">https://coolshell.cn/articles/5426.html</a></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Vim</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/13/循序渐进学Vim/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1970,23 +1799,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">raw_input()</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">input()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1998,15 +1819,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">matlab</a>
+                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">k-means</a>
+                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2022,19 +1851,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">matlab</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">k-means</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
               </li>
             
             <div class="clearfix"></div>
