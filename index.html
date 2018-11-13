@@ -155,6 +155,141 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="[post]-理解Python中的深拷贝和浅拷贝-1" class="article article-type-[post]  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/13/理解Python中的深拷贝和浅拷贝-1/">理解Python中的深拷贝和浅拷贝</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/13/理解Python中的深拷贝和浅拷贝-1/" class="archive-article-date">
+  	<time datetime="2018-11-13T09:10:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>关键词：</strong> Python  深拷贝  浅拷贝</p>
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>之前在参加海康研究院图像算法工程师的面试时，面试官问到了关于Python中深拷贝和浅拷贝的问题。我只是回答出了直接赋值和浅拷贝的差异，并没有涉及到Python如何使用copy模块中的deepcopy()方法来实现深拷贝。这部分的知识明显有漏洞，并且网上有很多说明Python深浅拷贝的文章，本文就是基于自己的理解对Python的深浅拷贝做个总结。</p>
+<h1 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h1><ul>
+<li><strong>直接赋值：</strong>变量即为对象的别名（类比于C++的引用）。</li>
+<li><strong>浅拷贝：</strong>拷贝父对象，不会拷贝对象内部的子对象，可通过copy模块的copy方法实现。</li>
+<li><strong>深拷贝：</strong>完全拷贝父对象及其子对象，可通过copy模块的deepcopy方法实现。</li>
+</ul>
+<h1 id="2-实例说明"><a href="#2-实例说明" class="headerlink" title="2. 实例说明"></a>2. 实例说明</h1><h2 id="2-1-直接赋值"><a href="#2-1-直接赋值" class="headerlink" title="2.1 直接赋值"></a>2.1 直接赋值</h2><p><strong>代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">snowball = [&quot;Snowball&quot;, 22, [&quot;Python&quot;, &quot;C&quot;, &quot;Shell&quot;]]</span><br><span class="line">wang = snowball</span><br><span class="line">print(&quot;var snowball&apos;s id: &quot;, id(snowball))</span><br><span class="line">print(&quot;snowball&apos;s content: &quot;, snowball)</span><br><span class="line">print(&quot;each element&apos;s id in snowball: &quot;, [id(elem) for elem in snowball])</span><br><span class="line">print(&quot;var wang&apos;s id: &quot;, id(wang))</span><br><span class="line">print(&quot;wang&apos;s content: &quot;, wang)</span><br><span class="line">print(&quot;each element&apos;s id in wang: &quot;, [id(elem) for elem in wang])</span><br><span class="line"></span><br><span class="line">print()</span><br><span class="line">print(&quot;Modify var snowball....&quot;)</span><br><span class="line">snowball[0] = &quot;wang&quot;</span><br><span class="line">snowball[2].append(&quot;C++&quot;)</span><br><span class="line">print(&quot;var snowball&apos;s id: &quot;, id(snowball))</span><br><span class="line">print(&quot;snowball&apos;s content: &quot;, snowball)</span><br><span class="line">print(&quot;each element&apos;s id in snowball: &quot;, [id(elem) for elem in snowball])</span><br><span class="line">print(&quot;var wang&apos;s id:  &quot;, id(wang))</span><br><span class="line">print(&quot;wang&apos;s content: &quot;, wang)</span><br><span class="line">print(&quot;each element&apos;s id in wang: &quot;, [id(elem) for elem in wang])</span><br></pre></td></tr></table></figure>
+<p><strong>运行结果：</strong></p>
+<p><img src="/2018/11/13/理解Python中的深拷贝和浅拷贝-1/理解Python中的深拷贝和浅拷贝/test1.png" alt="test1"></p>
+<p><strong>代码分析：</strong></p>
+<ul>
+<li>我首先创建了一个<code>snowball</code>变量，<code>snowball</code>变量指向一个list对象。从图1.1中我们可以看到所有对象的地址（每次运行显示的地址的值可能不同）。</li>
+<li>将<code>snowball</code>变量赋值给<code>wang</code>变量，此时变量<code>wang</code>指向<code>snowball</code>变量指向的list对象，<code>wang</code>变量与<code>snowball</code>变量的内存地址也相同，如图1.2所示。可以这样去做理解，Python中对象的赋值都是针对对象的引用，即传递的并不是对象的值，传递的是对象的内存地址。</li>
+<li>从图1.3可以看出，由于<code>snowball</code>变量和<code>wang</code>变量都指向同一个list对象，所以针对<code>snowball</code>变量的任何修改都会在<code>wang</code>变量上体现。</li>
+</ul>
+<p><img src="/2018/11/13/理解Python中的深拷贝和浅拷贝-1/理解Python中的深拷贝和浅拷贝/图1.png" alt="图1"></p>
+<h2 id="2-2-浅拷贝"><a href="#2-2-浅拷贝" class="headerlink" title="2.2 浅拷贝"></a>2.2 浅拷贝</h2><p><strong>代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import copy</span><br><span class="line"></span><br><span class="line">snowball = [&quot;Snowball&quot;, 22, [&quot;Python&quot;, &quot;C&quot;, &quot;Shell&quot;]]</span><br><span class="line">wang = copy.copy(snowball)</span><br><span class="line"></span><br><span class="line">print(&quot;var snowball&apos;s id: &quot;, id(snowball))</span><br><span class="line">print(&quot;snowball&apos;s content: &quot;, snowball)</span><br><span class="line">print(&quot;each element&apos;s id in snowball: &quot;, [id(elem) for elem in snowball])</span><br><span class="line">print(&quot;var wang&apos;s id: &quot;, id(wang))</span><br><span class="line">print(&quot;wang&apos;s content: &quot;, wang)</span><br><span class="line">print(&quot;each element&apos;s id in wang: &quot;, [id(elem) for elem in wang])</span><br><span class="line"></span><br><span class="line">print()</span><br><span class="line">print(&quot;Modify var snowball....&quot;)</span><br><span class="line">snowball[0] = &quot;wang&quot;</span><br><span class="line">snowball[2].append(&quot;C++&quot;)</span><br><span class="line">print(&quot;var snowball&apos;s id: &quot;, id(snowball))</span><br><span class="line">print(&quot;snowball&apos;s content: &quot;, snowball)</span><br><span class="line">print(&quot;each element&apos;s id in snowball: &quot;, [id(elem) for elem in snowball])</span><br><span class="line">print(&quot;var wang&apos;s id:  &quot;, id(wang))</span><br><span class="line">print(&quot;wang&apos;s content: &quot;, wang)</span><br><span class="line">print(&quot;each element&apos;s id in wang: &quot;, [id(elem) for elem in wang])</span><br></pre></td></tr></table></figure>
+<p><strong>运行结果：</strong></p>
+<p><img src="/2018/11/13/理解Python中的深拷贝和浅拷贝-1/理解Python中的深拷贝和浅拷贝/test2.png" alt="test2"></p>
+<p><strong>代码分析：</strong></p>
+<ul>
+<li>同上述的步骤1相同，我创建一个<code>snowball</code>变量，所有对象的内存地址如图2.1所示。</li>
+<li>通过copy模块中的copy()方法，对<code>snowball</code>变量指向的对象进行浅拷贝，然后将浅拷贝生成的新对象赋值给<code>wang</code>变量，则<code>wang</code>变量此时指向的对象不再是<code>snowball</code>变量指向的变量。但浅拷贝只完成父对象的拷贝，也就意味着对于被拷贝对象里的元素，浅拷贝只会使用原始元素的引用，即只对原始元素的内存地址进行拷贝。</li>
+<li>当对<code>snowball</code>变量进行修改时，由于<code>snowball</code>变量所指向的list对象的第一个元素是<code>str</code>类型，<code>str</code>类型为不可变类型，所以新的<code>str</code>类型<code>wang</code>将会替换掉原来list对象的第一个元素。而原始list对象的最后一个元素是<code>list</code>类型，为可变类型，修改操作不会产生新的对象，所以对<code>snowball</code>变量的修改结果会在<code>wang</code>变量上得到体现。</li>
+</ul>
+<p><img src="/2018/11/13/理解Python中的深拷贝和浅拷贝-1/理解Python中的深拷贝和浅拷贝/图2.png" alt="图2"></p>
+<h2 id="2-3-深拷贝"><a href="#2-3-深拷贝" class="headerlink" title="2.3 深拷贝"></a>2.3 深拷贝</h2><p><strong>代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import copy</span><br><span class="line"></span><br><span class="line">snowball = [&quot;Snowball&quot;, 22, [&quot;Python&quot;, &quot;C&quot;, &quot;Shell&quot;]]</span><br><span class="line">wang = copy.deepcopy(snowball)</span><br><span class="line"></span><br><span class="line">print(&quot;var snowball&apos;s id: &quot;, id(snowball))</span><br><span class="line">print(&quot;snowball&apos;s content: &quot;, snowball)</span><br><span class="line">print(&quot;each element&apos;s id in snowball: &quot;, [id(elem) for elem in snowball])</span><br><span class="line">print(&quot;var wang&apos;s id: &quot;, id(wang))</span><br><span class="line">print(&quot;wang&apos;s content: &quot;, wang)</span><br><span class="line">print(&quot;each element&apos;s id in wang: &quot;, [id(elem) for elem in wang])</span><br><span class="line"></span><br><span class="line">print()</span><br><span class="line">print(&quot;Modify var snowball....&quot;)</span><br><span class="line">snowball[0] = &quot;wang&quot;</span><br><span class="line">snowball[2].append(&quot;C++&quot;)</span><br><span class="line">print(&quot;var snowball&apos;s id: &quot;, id(snowball))</span><br><span class="line">print(&quot;snowball&apos;s content: &quot;, snowball)</span><br><span class="line">print(&quot;each element&apos;s id in snowball: &quot;, [id(elem) for elem in snowball])</span><br><span class="line">print(&quot;var wang&apos;s id:  &quot;, id(wang))</span><br><span class="line">print(&quot;wang&apos;s content: &quot;, wang)</span><br><span class="line">print(&quot;each element&apos;s id in wang: &quot;, [id(elem) for elem in wang])</span><br></pre></td></tr></table></figure>
+<p><strong>运行结果：</strong></p>
+<p><img src="/2018/11/13/理解Python中的深拷贝和浅拷贝-1/理解Python中的深拷贝和浅拷贝/test3.png" alt="test3"></p>
+<p><strong>代码分析：</strong></p>
+<ul>
+<li>步骤1同上述内容一致。</li>
+<li>通过copy模块中的deepcopy()方法，对<code>snowball</code>所指向的list对象进行深拷贝，将深拷贝生成的新的对象赋值给<code>wang</code>变量，同浅拷贝相同的是，此时<code>snowball</code>变量和<code>wang</code>变量所指向的list对象不是同一个对象，但不同于浅拷贝只复制对象元素的内存地址的方式，深拷贝将对象元素的内容也复制到新生成的对象中，这在图3.2中得到了体现。<code>snowball</code>变量指向的list对象的第三个元素的内存地址同<code>wang</code>变量指向的list对象的第三个元素的内存地址不同，也就是说在对原始list对象的深拷贝操作中，我们完成对list对象第三个元素列表内容的拷贝，即新开拓了一块内存存放原先list对象的第三个元素的值。</li>
+<li>同上述浅拷贝一致，<code>snowball</code>变量指向的list对象的第一个元素发生了替换。但由于深拷贝复制了list对象第三个元素的值，所以当对<code>snowball</code>变量所指向的list对象的第三个元素修改时，这种修改不会在<code>wang</code>变量所指向的list对象上体现，也意味着<code>wang</code>变量所指向的list对象的第三个元素不会发生改变。</li>
+</ul>
+<p><img src="/2018/11/13/理解Python中的深拷贝和浅拷贝-1/理解Python中的深拷贝和浅拷贝/图3.png" alt="图3"></p>
+<h1 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h1><ul>
+<li>Python中对象的直接赋值是对对象的引用。</li>
+<li>Python的浅拷贝只完成对象元素父对象的拷贝，而深拷贝则完成对象元素父对象及子对象的拷贝。</li>
+<li>不可变类型（如int，str类型等）不存在拷贝这个概念。</li>
+</ul>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>1.<a href="https://www.cnblogs.com/wilber2013/p/4645353.html" target="_blank" rel="noopener">图解Python深拷贝和浅拷贝</a></p>
+<p>2.<a href="http://www.runoob.com/w3cnote/python-understanding-dict-copy-shallow-or-deep.html" target="_blank" rel="noopener">Python 直接赋值、浅拷贝和深度拷贝解析</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/13/理解Python中的深拷贝和浅拷贝-1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="[post]-理解Python中的深拷贝和浅拷贝" class="article article-type-[post]  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1549,122 +1684,6 @@
 
 
   
-    <article id="post-Python中raw-input-和input-的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/17/Python中raw-input-和input-的区别/">Python中raw_input()和input()的区别</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/17/Python中raw-input-和input-的区别/" class="archive-article-date">
-  	<time datetime="2018-01-17T01:41:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>关键词：</strong> Python  raw_input()  input()</p>
-<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>之前在学习<a href="https://learnpythonthehardway.org/book/" target="_blank" rel="noopener">“笨办法学Python”</a>时使用过<code>raw_input()</code>函数来提取用户输入的内容，今天在学习<a href="https://book.douban.com/subject/4866934/" target="_blank" rel="noopener">Python基础教程</a>又遇到了<code>input()</code>函数，<code>input()</code>函数也可以用来提取用户输入的内容，那么两者有什么差别？本文将对<code>raw_input()</code>和<code>input()</code>函数的差别进行总结。</p>
-<h1 id="1-正文"><a href="#1-正文" class="headerlink" title="1. 正文"></a>1. 正文</h1><h2 id="1-1-Python2-x版本"><a href="#1-1-Python2-x版本" class="headerlink" title="1.1 Python2.x版本"></a>1.1 Python2.x版本</h2><p>我所用的是<code>Ubuntu16.04</code>系统，系统自带Python2.7版本，在命令行中敲入<code>python</code>命令，进入Python交互命令界面。由于<code>raw_input()</code>和<code>input()</code>是内置函数，可通过<code>help</code>函数来查看其具体用法。</p>
-<p>先来看一看<code>raw_input()</code>的含义：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>help(raw_input)</span><br><span class="line"></span><br><span class="line">Help on built-<span class="keyword">in</span> function raw_input <span class="keyword">in</span> module __builtin__:</span><br><span class="line"></span><br><span class="line">raw_input(...)</span><br><span class="line">    raw_input([prompt]) -&gt; string</span><br><span class="line">    </span><br><span class="line">    Read a string <span class="keyword">from</span> standard input.  The trailing newline <span class="keyword">is</span> stripped.</span><br><span class="line">    If the user hits EOF (Unix: Ctl-D, Windows: Ctl-Z+Return), <span class="keyword">raise</span> EOFError.</span><br><span class="line">    On Unix, GNU readline <span class="keyword">is</span> used <span class="keyword">if</span> enabled.  The prompt string, <span class="keyword">if</span> given,</span><br><span class="line">    <span class="keyword">is</span> printed without a trailing newline before reading.</span><br></pre></td></tr></table></figure>
-<p><code>raw_input()</code>的含义是读取用户输入的字符串，并且用户输入的字符串中如果有<strong>换行符（trailing newline）</strong>，那么换行符将会被去除。如果用户在输入过程中输入<strong>EOF（文件结束符）</strong>，将会引发<code>EOFError</code>。</p>
-<p>再来看一看<code>input()</code>的含义：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>help(input)</span><br><span class="line"></span><br><span class="line">Help on built-<span class="keyword">in</span> function input <span class="keyword">in</span> module __builtin__:</span><br><span class="line"></span><br><span class="line">input(...)</span><br><span class="line">    input([prompt]) -&gt; value</span><br><span class="line">    </span><br><span class="line">    Equivalent to eval(raw_input(prompt)).</span><br></pre></td></tr></table></figure>
-<p>可以看到，<code>input()</code>函数实际上是通过调用<code>raw_input()</code>来实现的，<code>eval()</code>函数的功能是将字符串str当成有效的Python表达式来求值并返回计算结果。</p>
-<p>这样子还是不能够理解两个函数的差别，下面通过具体例子来理解两者差异：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>raw_input_A = raw_input(<span class="string">"&gt;"</span>)</span><br><span class="line">&gt;abc</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>input_A = input(<span class="string">"&gt;"</span>)</span><br><span class="line">&gt;abc</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">  File <span class="string">"&lt;string&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">NameError: name <span class="string">'abc'</span> <span class="keyword">is</span> <span class="keyword">not</span> defined</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>input_A = input(<span class="string">"&gt;"</span>)</span><br><span class="line">&gt;<span class="string">'abc'</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
-<p>可以看出，<code>raw_input()</code>和<code>input()</code>都可以接收字符串，但<code>raw_input()</code>可以接受控制台任何类型的输入，而<code>input()</code>则要求输入必须是合法的Python表达式，否则就会引起错误。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>raw_input_B = raw_input(<span class="string">"&gt;"</span>)</span><br><span class="line">&gt;<span class="number">123</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(raw_input_B)</span><br><span class="line">&lt;type <span class="string">'str'</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>input_B = input(<span class="string">"&gt;"</span>)</span><br><span class="line">&gt;<span class="number">123</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(input_B)</span><br><span class="line">&lt;type <span class="string">'int'</span>&gt;</span><br></pre></td></tr></table></figure>
-<p>可以看出，<code>raw_input()</code>将所有输入都当做字符串来看待，返回的是str类型。而<code>input()</code>在对待纯数字输入时，会把数字当作Python表达式来看待，它的返回类型就不再是str类型，将会变成int或float类型。同时，<code>input()</code>函数可以接收合法的Python表达式，如<code>input(1+1)</code>结果返回int类型的2。</p>
-<h2 id="1-2-Python3-x版本"><a href="#1-2-Python3-x版本" class="headerlink" title="1.2     Python3.x版本"></a>1.2     Python3.x版本</h2><p>在Python3.x版本中，旧的<code>input()</code>函数功能被<strong>删除</strong>，<strong>新的<code>input()</code>函数</strong>的含义<strong>完全相当于</strong>Python2.x中的<strong><code>raw_input()</code></strong>。也就是说，在Python3.x版本中，不再有<code>raw_input()</code>函数，<code>input()</code>函数变为Python2.x中的<code>raw_input()</code>函数。</p>
-<p><strong>参考链接：</strong></p>
-<ol>
-<li><a href="https://www.cnblogs.com/way_testlife/archive/2011/03/29/1999283.html" target="_blank" rel="noopener">https://www.cnblogs.com/way_testlife/archive/2011/03/29/1999283.html</a></li>
-<li><a href="https://stackoverflow.com/questions/4915361/whats-the-difference-between-raw-input-and-input-in-python3-x" target="_blank" rel="noopener">https://stackoverflow.com/questions/4915361/whats-the-difference-between-raw-input-and-input-in-python3-x</a></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">raw_input()</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">input()</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/17/Python中raw-input-和input-的区别/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1795,6 +1814,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1811,27 +1838,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1847,6 +1858,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -1856,10 +1879,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">梁漱溟</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
               </li>
              
               <li class="article-tag-list-item">
