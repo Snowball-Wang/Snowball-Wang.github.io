@@ -184,7 +184,7 @@
 <p>不过，在Linux中，存在一个”上帝视角”的身份–<strong>root</strong>。它的角色可以理解为实验室的教授，他有着对主机资源的完全控制权。他既可以访问同学A的邮件文件，也可以访问所有参赛同学的代码。它在Linux中相当于有着绝对控制权的君王，所以在<strong>root</strong>权限下一定要谨慎操作，以防对系统造成不可恢复的损坏。</p>
 <p>在Linux中，<strong>/etc/passwd</strong>里记录系统上的账号和root的相关信息，<strong>/etc/shadow</strong>记录个人的密码，<strong>/etc/group</strong>记录所有的组名。</p>
 <h2 id="1-2-Linux文件属性"><a href="#1-2-Linux文件属性" class="headerlink" title="1.2 Linux文件属性"></a>1.2 Linux文件属性</h2><p>通过<code>ls -al</code>命令来查看文件属性。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">root@snowball-wang:~# ls -al</span><br><span class="line">total 228</span><br><span class="line">drwxr-xr-x 31 snowball snowball  4096 12月 27 11:27 .</span><br><span class="line">drwxr-xr-x  3 root     root      4096 11月 29 16:32 ..</span><br><span class="line">drwxrwxr-x  3 snowball snowball  4096 11月 30 16:59 AlexNet-time</span><br><span class="line">drwxrwxr-x  5 snowball snowball  4096 12月 18 15:16 autoLFWtest</span><br><span class="line">-rw-------  1 snowball snowball 25392 12月 28 11:24 .bash_history</span><br><span class="line">-rw-r--r--  1 snowball snowball   220 11月 29 16:32 .bash_logout</span><br><span class="line">-rw-r--r--  1 snowball snowball  3879 12月 22 22:31 .bashrc</span><br><span class="line">drwx------ 20 snowball snowball  4096 12月 12 16:41 .cache</span><br><span class="line">drwxrwxr-x 18 snowball snowball  4096 12月  4 17:18 caffe</span><br><span class="line">drwxrwxr-x 16 snowball snowball  4096 11月 30 16:18 caffe-alexnet</span><br><span class="line">drwxrwxr-x  3 snowball snowball  4096 11月 30 21:34 .cmake</span><br><span class="line">drwxrwxr-x  5 snowball snowball  4096 12月 28 11:23 code</span><br><span class="line">drwx------  3 snowball snowball  4096 12月  7 09:28 .compiz</span><br><span class="line">drwxr-xr-x  4 snowball snowball  4096 11月 28 19:06 compute_time</span><br><span class="line">drwx------ 27 snowball snowball  4096 12月 12 16:41 .config</span><br><span class="line">drwx------  3 root     root      4096 11月 30 08:51 .dbus</span><br><span class="line">drwxr-xr-x  3 snowball snowball  4096 12月 15 15:22 Desktop</span><br></pre></td></tr></table></figure>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">root@snowball-wang:~<span class="comment"># ls -al</span></span><br><span class="line">total 228</span><br><span class="line">drwxr-xr-x<span class="number"> 31 </span>snowball snowball <span class="number"> 4096 </span>12月<span class="number"> 27 </span>11:27 .</span><br><span class="line">drwxr-xr-x <span class="number"> 3 </span>root     root     <span class="number"> 4096 </span>11月<span class="number"> 29 </span>16:32 ..</span><br><span class="line">drwxrwxr-x <span class="number"> 3 </span>snowball snowball <span class="number"> 4096 </span>11月<span class="number"> 30 </span>16:59 AlexNet-time</span><br><span class="line">drwxrwxr-x <span class="number"> 5 </span>snowball snowball <span class="number"> 4096 </span>12月<span class="number"> 18 </span>15:16 autoLFWtest</span><br><span class="line">-rw------- <span class="number"> 1 </span>snowball snowball<span class="number"> 25392 </span>12月<span class="number"> 28 </span>11:24 .bash_history</span><br><span class="line">-rw-r--r-- <span class="number"> 1 </span>snowball snowball  <span class="number"> 220 </span>11月<span class="number"> 29 </span>16:32 .bash_logout</span><br><span class="line">-rw-r--r-- <span class="number"> 1 </span>snowball snowball <span class="number"> 3879 </span>12月<span class="number"> 22 </span>22:31 .bashrc</span><br><span class="line">drwx------<span class="number"> 20 </span>snowball snowball <span class="number"> 4096 </span>12月<span class="number"> 12 </span>16:41 .cache</span><br><span class="line">drwxrwxr-x<span class="number"> 18 </span>snowball snowball <span class="number"> 4096 </span>12月 <span class="number"> 4 </span>17:18 caffe</span><br><span class="line">drwxrwxr-x<span class="number"> 16 </span>snowball snowball <span class="number"> 4096 </span>11月<span class="number"> 30 </span>16:18 caffe-alexnet</span><br><span class="line">drwxrwxr-x <span class="number"> 3 </span>snowball snowball <span class="number"> 4096 </span>11月<span class="number"> 30 </span>21:34 .cmake</span><br><span class="line">drwxrwxr-x <span class="number"> 5 </span>snowball snowball <span class="number"> 4096 </span>12月<span class="number"> 28 </span>11:23 code</span><br><span class="line">drwx------ <span class="number"> 3 </span>snowball snowball <span class="number"> 4096 </span>12月 <span class="number"> 7 </span>09:28 .compiz</span><br><span class="line">drwxr-xr-x <span class="number"> 4 </span>snowball snowball <span class="number"> 4096 </span>11月<span class="number"> 28 </span>19:06 compute_time</span><br><span class="line">drwx------<span class="number"> 27 </span>snowball snowball <span class="number"> 4096 </span>12月<span class="number"> 12 </span>16:41 .config</span><br><span class="line">drwx------ <span class="number"> 3 </span>root     root     <span class="number"> 4096 </span>11月<span class="number"> 30 </span>08:51 .dbus</span><br><span class="line">drwxr-xr-x <span class="number"> 3 </span>snowball snowball <span class="number"> 4096 </span>12月<span class="number"> 15 </span>15:22 Desktop</span><br></pre></td></tr></table></figure>
 <ol>
 <li><strong>第一列代表此文件的类型与权限</strong></li>
 </ol>
@@ -308,7 +308,7 @@
 </tr>
 </tbody>
 </table>
-<p>举例来说，当想要把一个文件的权限设置为”-rwxr-xr-x”，其命令为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$chmod u=rwx,go=rx .bashrc</span><br><span class="line">注意u=rwx,go=rx是连接在一起的，中间没有空格</span><br></pre></td></tr></table></figure></p>
+<p>举例来说，当想要把一个文件的权限设置为”-rwxr-xr-x”，其命令为：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$chmod</span> <span class="attribute">u</span>=rwx,go=rx .bashrc</span><br><span class="line">注意<span class="attribute">u</span>=rwx,go=rx是连接在一起的，中间没有空格</span><br></pre></td></tr></table></figure></p>
 <h2 id="1-5-目录权限概念的理解"><a href="#1-5-目录权限概念的理解" class="headerlink" title="1.5 目录权限概念的理解"></a>1.5 目录权限概念的理解</h2><ul>
 <li>目录的<code>r</code>权限表示具有读取目录结构列表的权限，也就是可以查询该目录下的文件名数据，可以通过<code>ls</code>命令来显示列表内容。</li>
 <li>目录的<code>w</code>权限表示用户<strong>具有更改该目录结构列表的权限</strong>，具体含义为：<blockquote>
@@ -317,8 +317,8 @@
 </li>
 <li>目录的<code>x</code>权限表示用户能否进入该目录成为工作目录，即可以通过<code>cd</code>命令来切换工作目录。</li>
 </ul>
-<p>举例来说：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drwx------  3 root     root      4096 11月 30 08:51 .dbus</span><br></pre></td></tr></table></figure></p>
-<p>此文件夹的用户是root，作为用户snowball对此文件没有任何权限，也就是不能通过<code>cd</code>命令切入进入目录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">snowball@snowball-wang:~$ cd .dbus</span><br><span class="line">bash: cd: .dbus: Permission denied</span><br></pre></td></tr></table></figure></p>
+<p>举例来说：<br><figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drwx------ <span class="number"> 3 </span>root     root     <span class="number"> 4096 </span>11月<span class="number"> 30 </span>08:51 .dbus</span><br></pre></td></tr></table></figure></p>
+<p>此文件夹的用户是root，作为用户snowball对此文件没有任何权限，也就是不能通过<code>cd</code>命令切入进入目录。<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">snowball<span class="meta">@snowball</span>-<span class="string">wang:</span>~$ cd .dbus</span><br><span class="line"><span class="string">bash:</span> <span class="string">cd:</span> .<span class="string">dbus:</span> Permission denied</span><br></pre></td></tr></table></figure></p>
 <h1 id="2-Linux目录管理"><a href="#2-Linux目录管理" class="headerlink" title="2. Linux目录管理"></a>2. Linux目录管理</h1><h2 id="2-1-Linux目录配置标准–FHS（Firesystem-Hierarchy-Standard）"><a href="#2-1-Linux目录配置标准–FHS（Firesystem-Hierarchy-Standard）" class="headerlink" title="2.1 Linux目录配置标准–FHS（Firesystem Hierarchy Standard）"></a>2.1 Linux目录配置标准–FHS（Firesystem Hierarchy Standard）</h2><p>FHS的目的在于规定每个目录下应该存放的数据。FHS根据文件系统使用的频繁与否将目录定义为四种交互形态：<strong>可分享的</strong>、<strong>不可分享的</strong>、<strong>可变动的</strong>、<strong>不可变动的</strong>。</p>
 <p>FHS定义了以下三层目录的内容：</p>
 <ul>
@@ -660,6 +660,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">raw_input()</a>
               </li>
              
@@ -684,10 +688,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
@@ -704,6 +704,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -713,10 +717,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">梁漱溟</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
             
             <div class="clearfix"></div>

@@ -178,25 +178,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-斜体和粗体"><a href="#1-斜体和粗体" class="headerlink" title="1.斜体和粗体"></a>1.斜体和粗体</h1><p><strong>代码：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.*斜体*或_斜体_</span><br><span class="line">2.**粗体**</span><br><span class="line">3.***加粗斜体***</span><br><span class="line">4.~~删除线~~</span><br></pre></td></tr></table></figure></p>
+        <h1 id="1-斜体和粗体"><a href="#1-斜体和粗体" class="headerlink" title="1.斜体和粗体"></a>1.斜体和粗体</h1><p><strong>代码：</strong><br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>*斜体*或_斜体_</span><br><span class="line"><span class="number">2.</span>**粗体**</span><br><span class="line"><span class="number">3.</span>***加粗斜体***</span><br><span class="line"><span class="number">4.</span>~~删除线~~</span><br></pre></td></tr></table></figure></p>
 <p><strong>显示效果：</strong></p>
 <p>1.<em>这是一段斜体</em><br>2.<strong>这是一段粗体</strong><br>3.<strong><em>这是一段加粗斜体</em></strong><br>4.<del>这是一段删除线</del></p>
-<h1 id="2-分级标题"><a href="#2-分级标题" class="headerlink" title="2.分级标题"></a>2.分级标题</h1><p><strong>代码：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题</span><br></pre></td></tr></table></figure></p>
+<h1 id="2-分级标题"><a href="#2-分级标题" class="headerlink" title="2.分级标题"></a>2.分级标题</h1><p><strong>代码：</strong><br><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题</span><br></pre></td></tr></table></figure></p>
 <h1 id="3-超链接"><a href="#3-超链接" class="headerlink" title="3.超链接"></a>3.超链接</h1><p>Markdown支持两种形式的链接语法：行内式和参考式两种形式，一般选择使用行内式更多一些。</p>
 <h2 id="3-1-行内式"><a href="#3-1-行内式" class="headerlink" title="3.1 行内式"></a>3.1 行内式</h2><p><strong>语法说明：</strong><br>[]里写链接文字，()写链接地址，()中的””中的文字可以为链接指定title属性，这个可加可不加。title属性的含义是可以实现鼠标悬停在链接上出现指定的title文字。其格式为：<code>[链接文字](链接地址 &quot;链接标题&quot;)</code>这样的形式。()里的<strong>链接地址</strong>和<strong>链接标题</strong>之间有一个空格。</p>
-<p><strong>代码：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">欢迎访问[村上秋水的却其顿小屋](http://blog.163.com/snowball_wang/)</span><br><span class="line">欢迎访问[村上秋水的却其顿小屋](http://blog.163.com/snowball_wang/ &quot;村上秋水的却其顿小屋&quot;)</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码：</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">欢迎访问[<span class="string">村上秋水的却其顿小屋</span>](<span class="link">http://blog.163.com/snowball_wang/</span>)</span><br><span class="line">欢迎访问[<span class="string">村上秋水的却其顿小屋</span>](<span class="link">http://blog.163.com/snowball_wang/ "村上秋水的却其顿小屋"</span>)</span><br></pre></td></tr></table></figure></p>
 <p><strong>显示效果：</strong><br>欢迎访问<a href="http://blog.163.com/snowball_wang/" target="_blank" rel="noopener">村上秋水的却其顿小屋</a><br>欢迎访问<a href="http://blog.163.com/snowball_wang/" title="村上秋水的却其顿小屋" target="_blank" rel="noopener">村上秋水的却其顿小屋</a></p>
 <h2 id="3-2-参考式"><a href="#3-2-参考式" class="headerlink" title="3.2 参考式"></a>3.2 参考式</h2><p>参考式链接多用于学术论文，便于对链接进行统一处理。</p>
 <p><strong>语法说明：</strong></p>
 <p>参考式链接分为两部分，文字的写法<code>[链接文字][链接标记]</code>，在文本的任意位置添加<code>[链接标记]: 链接地址 “链接标题”</code>，<strong>链接地址</strong>与<strong>链接标题</strong>之间有一个空格。</p>
 <p>也可以将链接文字作为链接标记：<code>[链接文字][]</code>，然后在文本的任意位置添加<code>[链接文字]: 链接地址 “链接标题”</code></p>
-<p><strong>代码：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">推荐几个不错的网站[Baidu][1],[USTC][2]以及[村上秋水的却其顿小屋][3]。[村上秋水的却其顿小屋][3]是值得你关注的[博客][]。</span><br><span class="line"></span><br><span class="line">[1]: http://www.baidu.com &quot;百度&quot;</span><br><span class="line">[2]: http://www.ustc.edu.cn &quot;科大首页&quot;</span><br><span class="line">[3]: http://blog.163.com/snowball_wang/ &quot;村上秋水的却其顿小屋&quot;</span><br><span class="line">[博客]: http://blog.163.com/snowball_wang/ &quot;村上秋水的却其顿小屋&quot;</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码：</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">推荐几个不错的网站[<span class="string">Baidu</span>][<span class="symbol">1</span>],[<span class="string">USTC</span>][<span class="symbol">2</span>]以及[<span class="string">村上秋水的却其顿小屋</span>][<span class="symbol">3</span>]。[<span class="string">村上秋水的却其顿小屋</span>][<span class="symbol">3</span>]是值得你关注的[<span class="string">博客</span>][<span class="symbol"></span>]。</span><br><span class="line"></span><br><span class="line">[<span class="symbol">1</span>]: <span class="link">http://www.baidu.com "百度"</span></span><br><span class="line">[<span class="symbol">2</span>]: <span class="link">http://www.ustc.edu.cn "科大首页"</span></span><br><span class="line">[<span class="symbol">3</span>]: <span class="link">http://blog.163.com/snowball_wang/ "村上秋水的却其顿小屋"</span></span><br><span class="line">[<span class="symbol">博客</span>]: <span class="link">http://blog.163.com/snowball_wang/ "村上秋水的却其顿小屋"</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="3-3-自动链接"><a href="#3-3-自动链接" class="headerlink" title="3.3 自动链接"></a>3.3 自动链接</h2><p><strong>语法说明：</strong><br>Markdown支持以比较简单的自动链接形式来处理网址和电子邮件信箱。使用<code>&lt;&gt;</code>就会被自动转换成链接。</p>
-<p><strong>代码：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;http://www.baidu.com&gt;</span><br><span class="line">&lt;wjq1996@mail.ustc.edu.cn&gt;</span><br></pre></td></tr></table></figure></p>
-<p><strong>显示效果：</strong><br><a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a><br><a href="&#109;&#x61;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x77;&#106;&#x71;&#x31;&#57;&#57;&#54;&#64;&#109;&#97;&#105;&#108;&#x2e;&#x75;&#x73;&#x74;&#x63;&#46;&#x65;&#x64;&#x75;&#x2e;&#99;&#110;">&#x77;&#106;&#x71;&#x31;&#57;&#57;&#54;&#64;&#109;&#97;&#105;&#108;&#x2e;&#x75;&#x73;&#x74;&#x63;&#46;&#x65;&#x64;&#x75;&#x2e;&#99;&#110;</a></p>
+<p><strong>代码：</strong><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;http:<span class="comment">//www.baidu.com&gt;</span></span><br><span class="line">&lt;wjq1996@mail<span class="selector-class">.ustc</span><span class="selector-class">.edu</span><span class="selector-class">.cn</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>显示效果：</strong><br><a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a><br><a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#x77;&#106;&#113;&#49;&#x39;&#x39;&#x36;&#x40;&#109;&#97;&#x69;&#x6c;&#46;&#117;&#x73;&#116;&#x63;&#x2e;&#101;&#100;&#117;&#46;&#x63;&#x6e;">&#x77;&#106;&#113;&#49;&#x39;&#x39;&#x36;&#x40;&#109;&#97;&#x69;&#x6c;&#46;&#117;&#x73;&#116;&#x63;&#x2e;&#101;&#100;&#117;&#46;&#x63;&#x6e;</a></p>
 <h1 id="4-列表"><a href="#4-列表" class="headerlink" title="4.列表"></a>4.列表</h1><h2 id="4-1-无序列表"><a href="#4-1-无序列表" class="headerlink" title="4.1 无序列表"></a>4.1 无序列表</h2><p>使用<code>*,+,-</code>表示无序列表。</p>
 <p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 无序列表项 一</span><br><span class="line">- 无序列表项 二</span><br><span class="line">- 无序列表项 三</span><br></pre></td></tr></table></figure>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby"> 无序列表项 一</span></span><br><span class="line"><span class="ruby">- 无序列表项 二</span></span><br><span class="line"><span class="ruby">- 无序列表项 三</span></span><br></pre></td></tr></table></figure>
 <p><strong>显示效果：</strong></p>
 <ul>
 <li>无序列表项 一</li>
@@ -204,7 +204,7 @@
 <li>无序列表项 三</li>
 </ul>
 <h2 id="4-2-有序列表"><a href="#4-2-有序列表" class="headerlink" title="4.2 有序列表"></a>4.2 有序列表</h2><p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 有序列表项 一</span><br><span class="line">2. 有序列表项 二</span><br><span class="line">3. 有序列表项 三</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1. </span>有序列表项 一</span><br><span class="line"><span class="bullet">2. </span>有序列表项 二</span><br><span class="line"><span class="bullet">3. </span>有序列表项 三</span><br></pre></td></tr></table></figure>
 <p><strong>显示效果：</strong></p>
 <ol>
 <li>有序列表项 一</li>
@@ -214,7 +214,7 @@
 <h2 id="4-3-列表缩进"><a href="#4-3-列表缩进" class="headerlink" title="4.3 列表缩进"></a>4.3 列表缩进</h2><p><strong>语法说明：</strong></p>
 <p>列表项目标记通常是放在最左边，项目标记后面一定要至少接一个空格或制表符。</p>
 <p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* 忙就中断跑步的话，我一辈子都无法跑步。坚持跑步的理由不过一丝半点，中断跑步的理由却足够装满一辆大型载重卡车。我们只能将那&quot;一丝半点的理由&quot;一个个慎之又慎地不断打磨。见缝插针，得空儿就孜孜不倦地打磨它们。</span><br><span class="line">* 应将自己追问到何处为止？何种程度的修养才是恰当的，而多少又是休息得过分？到何种程度才是妥当，而到什么程度又是狭隘？外部的风景撷取多少为好，而内心的世界又该挖掘多少为妙？对自己的能力应该相信多少，又该对自身有多少的怀疑？</span><br></pre></td></tr></table></figure>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">* </span>忙就中断跑步的话，我一辈子都无法跑步。坚持跑步的理由不过一丝半点，中断跑步的理由却足够装满一辆大型载重卡车。我们只能将那"一丝半点的理由"一个个慎之又慎地不断打磨。见缝插针，得空儿就孜孜不倦地打磨它们。</span><br><span class="line"><span class="bullet">* </span>应将自己追问到何处为止？何种程度的修养才是恰当的，而多少又是休息得过分？到何种程度才是妥当，而到什么程度又是狭隘？外部的风景撷取多少为好，而内心的世界又该挖掘多少为妙？对自己的能力应该相信多少，又该对自身有多少的怀疑？</span><br></pre></td></tr></table></figure>
 <p><strong>显示效果：</strong></p>
 <ul>
 <li>忙就中断跑步的话，我一辈子都无法跑步。坚持跑步的理由不过一丝半点，中断跑步的理由却足够装满一辆大型载重卡车。我们只能将那”一丝半点的理由”一个个慎之又慎地不断打磨。见缝插针，得空儿就孜孜不倦地打磨它们。</li>
@@ -223,7 +223,7 @@
 <h2 id="4-4-包含段落的列表"><a href="#4-4-包含段落的列表" class="headerlink" title="4.4 包含段落的列表"></a>4.4 包含段落的列表</h2><p><strong>语法说明：</strong></p>
 <p>列表项目可以包含多个段落，每个项目下的段落都必须缩进4个空格或是1个制表符。</p>
 <p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* 忙就中断跑步的话，我一辈子都无法跑步。坚持跑步的理由不过一丝半点，中断跑步的理由却足够装满一辆大型载重卡车。我们只能将那&quot;一丝半点的理由&quot;一个个慎之又慎地不断打磨。见缝插针，得空儿就孜孜不倦地打磨它们。</span><br><span class="line">    应将自己追问到何处为止？何种程度的修养才是恰当的，而多少又是休息得过分？到何种程度才是妥当，而到什么程度又是狭隘？外部的风景撷取多少为好，而内心的世界又该挖掘多少为妙？对自己的能力应该相信多少，又该对自身有多少的怀疑？</span><br><span class="line">* 同样是十年，与其稀里糊涂地或者，目的明确、生气勃勃地活当然令人远为满意。跑步无疑大有魅力：在个人地局限性中，可以让自己有效地燃烧--哪怕是一丁点，这表示跑步一事的本质，也是活着一事的隐喻。</span><br></pre></td></tr></table></figure>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* 忙就中断跑步的话，我一辈子都无法跑步。坚持跑步的理由不过一丝半点，中断跑步的理由却足够装满一辆大型载重卡车。我们只能将那<span class="string">"一丝半点的理由"</span>一个个慎之又慎地不断打磨。见缝插针，得空儿就孜孜不倦地打磨它们。</span><br><span class="line">    应将自己追问到何处为止？何种程度的修养才是恰当的，而多少又是休息得过分？到何种程度才是妥当，而到什么程度又是狭隘？外部的风景撷取多少为好，而内心的世界又该挖掘多少为妙？对自己的能力应该相信多少，又该对自身有多少的怀疑？</span><br><span class="line">* 同样是十年，与其稀里糊涂地或者，目的明确、生气勃勃地活当然令人远为满意。跑步无疑大有魅力：在个人地局限性中，可以让自己有效地燃烧<span class="comment">--哪怕是一丁点，这表示跑步一事的本质，也是活着一事的隐喻。</span></span><br></pre></td></tr></table></figure>
 <p><strong>显示效果：</strong></p>
 <ul>
 <li>忙就中断跑步的话，我一辈子都无法跑步。坚持跑步的理由不过一丝半点，中断跑步的理由却足够装满一辆大型载重卡车。我们只能将那”一丝半点的理由”一个个慎之又慎地不断打磨。见缝插针，得空儿就孜孜不倦地打磨它们。<br>  应将自己追问到何处为止？何种程度的修养才是恰当的，而多少又是休息得过分？到何种程度才是妥当，而到什么程度又是狭隘？外部的风景撷取多少为好，而内心的世界又该挖掘多少为妙？对自己的能力应该相信多少，又该对自身有多少的怀疑？</li>
@@ -232,7 +232,7 @@
 <h2 id="4-5-包含引用的列表"><a href="#4-5-包含引用的列表" class="headerlink" title="4.5 包含引用的列表"></a>4.5 包含引用的列表</h2><p><strong>语法说明：</strong></p>
 <p>如果要在列表项目内放进引用，那<code>&gt;</code>就需要缩进。</p>
 <p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* 阅读的方法：</span><br><span class="line">  &gt;打开书本</span><br><span class="line">  &gt;打开电灯</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* 阅读的方法：</span><br><span class="line"><span class="meta">  &gt;</span><span class="bash">打开书本</span></span><br><span class="line"><span class="meta">  &gt;</span><span class="bash">打开电灯</span></span><br></pre></td></tr></table></figure>
 <p><strong>显示效果：</strong></p>
 <ul>
 <li>阅读的方法：<blockquote>
@@ -243,7 +243,7 @@
 <h1 id="5-引用"><a href="#5-引用" class="headerlink" title="5. 引用"></a>5. 引用</h1><p><strong>语法说明：</strong></p>
 <p>引用需要在被引用的文本前加上<code>&gt;</code>符号。</p>
 <p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; 这是一段引用</span><br><span class="line">&gt; 引用内容1</span><br><span class="line">&gt; 引用内容2</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> 这是一段引用</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> 引用内容1</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> 引用内容2</span></span><br></pre></td></tr></table></figure>
 <p><strong>显示效果：</strong></p>
 <blockquote>
 <p>这是一段引用</p>
@@ -252,7 +252,7 @@
 </blockquote>
 <h2 id="5-1-引用的多层嵌套"><a href="#5-1-引用的多层嵌套" class="headerlink" title="5.1 引用的多层嵌套"></a>5.1 引用的多层嵌套</h2><p>区块引用可以嵌套(例如：引用内的引用)，只要根据层次上不同数量的<code>&gt;</code>。</p>
 <p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; 如何才能熟练掌握Markdown语法？ ---初级阶段</span><br><span class="line">&gt; &gt;看教程 ---进阶阶段</span><br><span class="line">&gt; &gt; &gt; 多写文章 ---高级阶段</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> 如何才能熟练掌握Markdown语法？ ---初级阶段</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> &gt;看教程 ---进阶阶段</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> &gt; &gt; 多写文章 ---高级阶段</span></span><br></pre></td></tr></table></figure>
 <p><strong>显示效果：</strong></p>
 <blockquote>
 <p>如何才能熟练掌握Markdown语法？ —初级阶段</p>
@@ -265,7 +265,7 @@
 </blockquote>
 <h2 id="5-2-引用其它的要素"><a href="#5-2-引用其它的要素" class="headerlink" title="5.2 引用其它的要素"></a>5.2 引用其它的要素</h2><p>引用的区块内也可以使用其他的Markdown语法，包括标题、列表、代码区块等。</p>
 <p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; 1. 这是第一行列表项。</span><br><span class="line">&gt; 2. 这是第二行列表项。</span><br><span class="line">&gt; 代码示例：</span><br><span class="line">&gt; `print &quot;Typora is such an amazing Markdown editor!&quot;`</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> 1. 这是第一行列表项。</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> 2. 这是第二行列表项。</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> 代码示例：</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> `<span class="built_in">print</span> <span class="string">"Typora is such an amazing Markdown editor!"</span>`</span></span><br></pre></td></tr></table></figure>
 <p><strong>显示效果：</strong></p>
 <blockquote>
 <ol>
@@ -278,22 +278,22 @@
 <h2 id="6-1-行内式"><a href="#6-1-行内式" class="headerlink" title="6.1 行内式"></a>6.1 行内式</h2><p><strong>语法说明：</strong></p>
 <p><code>![图片Alt](图片地址 &quot;图片Title&quot;)</code></p>
 <p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">海豹</span><br><span class="line">![海豹](/Markdown语法总结/seal.jpg &quot;海豹&quot;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">海豹</span><br><span class="line">![<span class="string">海豹</span>](<span class="link">/Markdown语法总结/seal.jpg "海豹"</span>)</span><br></pre></td></tr></table></figure>
 <p><strong>显示效果：</strong></p>
 <p>海豹</p>
 <p><img src="/2017/11/25/Markdown语法总结/seal.jpg" alt="seal" title="海豹"></p>
 <h2 id="6-2-参考式"><a href="#6-2-参考式" class="headerlink" title="6.2 参考式"></a>6.2 参考式</h2><p><strong>语法说明：</strong></p>
 <p>在文档要插入图片的地方写<code>![图片Alt][标记]</code><br>在文档的最后写上<code>[标记]:图片地址 &quot;Title&quot;</code></p>
 <p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">海豹</span><br><span class="line">![海豹][seal]</span><br><span class="line">[seal]: Markdown语法总结/seal.jpg &quot;海豹&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">海豹</span><br><span class="line">![<span class="string">海豹</span>][<span class="symbol">seal</span>]</span><br><span class="line">[<span class="symbol">seal</span>]: <span class="link">Markdown语法总结/seal.jpg "海豹"</span></span><br></pre></td></tr></table></figure>
 <p><strong>显示效果：</strong></p>
 <p>海豹</p>
 <p><img src="/2017/11/25/Markdown语法总结/seal.jpg" alt="海豹" title="海豹"></p>
 <h1 id="7-LaTeX公式"><a href="#7-LaTeX公式" class="headerlink" title="7. LaTeX公式"></a>7. LaTeX公式</h1><h2 id="7-1-表示行内公式"><a href="#7-1-表示行内公式" class="headerlink" title="7.1 $表示行内公式"></a>7.1 $表示行内公式</h2><p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">质能守恒方程可以用一个很简单的方程式$E=mc^2$来表达。</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">质能守恒方程可以用一个很简单的方程式<span class="variable">$E</span>=mc^<span class="number">2</span><span class="variable">$来</span>表达。</span><br></pre></td></tr></table></figure>
 <p><strong>显示效果：</strong><br>质能守恒方程可以用一个很简单的方程式$E=mc^2$来表达。</p>
 <h2 id="7-2-表示整行公式"><a href="#7-2-表示整行公式" class="headerlink" title="7.2 $表示整行公式"></a>7.2 $表示整行公式</h2><p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$$\sum_&#123;i=1&#125;^n a_i=0$$</span><br><span class="line">$$f(x_1,x_2,\dots,x_n) = x_1^2 + x_2^2 + \dots + x_n^2$$</span><br></pre></td></tr></table></figure>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span>\sum_&#123;i=<span class="number">1</span>&#125;^n a_i=<span class="number">0</span><span class="symbol">$</span><span class="symbol">$</span></span><br><span class="line"><span class="symbol">$</span><span class="symbol">$</span>f(x_1,x_2,\dots,x_n) = x_1^<span class="number">2</span> + x_2^<span class="number">2</span> + \dots + x_n^<span class="number">2</span><span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure>
 <p><strong>显示效果：</strong></p>
 <p>$$\sum_{i=1}^n a_i=0$$</p>
 <p>$$f(x_1, x_2, \dots, x_n) = x_1^2 + x_2^2 + \dots + x_n^2$$</p>
@@ -305,10 +305,10 @@
 </ol>
 <p><strong>代码：</strong></p>
 <p>简单表格：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">姓名|学科|成绩</span><br><span class="line">-|-|-</span><br><span class="line">小强|数学|150</span><br><span class="line">小赛|语文|150</span><br><span class="line">小呆|英语|59</span><br></pre></td></tr></table></figure>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">姓名|<span class="string">学科</span>|<span class="string">成绩</span></span><br><span class="line"><span class="string">-</span>|<span class="string">-</span>|<span class="string">-</span></span><br><span class="line"><span class="string">小强</span>|<span class="string">数学</span>|150</span><br><span class="line">小赛|<span class="string">语文</span>|150</span><br><span class="line">小呆|<span class="string">英语</span>|59</span><br></pre></td></tr></table></figure>
 <p>原生表格：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">|姓名|学科|成绩|</span><br><span class="line">|-|-|-|</span><br><span class="line">|小强|数学|150|</span><br><span class="line">|小赛|语文|150|</span><br><span class="line">|小呆|英语|59|</span><br></pre></td></tr></table></figure>
-<p>表格单元内容设置为右对齐：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">姓名|学科|成绩</span><br><span class="line">|-:|-:|-:|</span><br><span class="line">|小强|数学|150|</span><br><span class="line">|小赛|语文|150|</span><br><span class="line">|小呆|英语|59|</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">|<span class="string">姓名</span>|<span class="string">学科</span>|<span class="string">成绩</span>|</span><br><span class="line">|<span class="string">-</span>|<span class="string">-</span>|<span class="string">-</span>|</span><br><span class="line">|<span class="string">小强</span>|<span class="string">数学</span>|<span class="string">150</span>|</span><br><span class="line">|<span class="string">小赛</span>|<span class="string">语文</span>|<span class="string">150</span>|</span><br><span class="line">|<span class="string">小呆</span>|<span class="string">英语</span>|<span class="string">59</span>|</span><br></pre></td></tr></table></figure>
+<p>表格单元内容设置为右对齐：<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">姓名|<span class="string">学科</span>|<span class="string">成绩</span></span><br><span class="line">|<span class="string">-:</span>|<span class="string">-:</span>|<span class="string">-:</span>|</span><br><span class="line">|<span class="string">小强</span>|<span class="string">数学</span>|<span class="string">150</span>|</span><br><span class="line">|<span class="string">小赛</span>|<span class="string">语文</span>|<span class="string">150</span>|</span><br><span class="line">|<span class="string">小呆</span>|<span class="string">英语</span>|<span class="string">59</span>|</span><br></pre></td></tr></table></figure></p>
 <p><strong>显示效果：</strong></p>
 <p>简单表格：</p>
 <table>
@@ -392,7 +392,7 @@
 </tbody>
 </table>
 <h1 id="9-分割线"><a href="#9-分割线" class="headerlink" title="9. 分割线"></a>9. 分割线</h1><p>可以在一行中用三个以上的星号、减号、底线来建立一个分割线，行内不能有其它任何东西。Typora不允许符号间有空格。</p>
-<p><strong>代码：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">***</span><br><span class="line">- - -</span><br><span class="line">- - - - - -</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码：</strong><br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">**<span class="strong">*</span></span><br><span class="line"><span class="strong">- - -</span></span><br><span class="line"><span class="strong">- - - - - -</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>显示效果：</strong><br>显示效果相同。</p>
 <hr>
 <hr>
@@ -403,19 +403,19 @@
 <li>插入多行代码，可使用三个`来插入。</li>
 </ol>
 <h2 id="10-1-行内式"><a href="#10-1-行内式" class="headerlink" title="10.1 行内式"></a>10.1 行内式</h2><p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C语言的函数`scanf()`怎么使用？</span><br></pre></td></tr></table></figure>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C语言的函数`scanf()`怎么使用？</span><br></pre></td></tr></table></figure>
 <p><strong>显示效果：</strong></p>
 <p>C语言的函数<code>scanf()</code>怎么使用？</p>
 <h2 id="10-2-多行代码"><a href="#10-2-多行代码" class="headerlink" title="10.2 多行代码"></a>10.2 多行代码</h2><p><strong>代码：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> ```C</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;hello world\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> ```C</span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hello world\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>显示效果：</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"hello world\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="10-3-HTML代码"><a href="#10-3-HTML代码" class="headerlink" title="10.3 HTML代码"></a>10.3 HTML代码</h2><p>在代码区块里，&amp;、&lt;和&gt;会自动转成HTML实体，这样的方式可以让用户非常容易地使用Markdown插入范例使用地HTML原始码。</p>
 <p><strong>代码：</strong></p>
 <p>例子1：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;footer&quot;&gt;</span><br><span class="line"> @2017 Snowball Wang</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"footer"</span>&gt;</span><br><span class="line"> @<span class="number">2017</span> Snowball Wang</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
 <p>例子2：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;th rowspan=&quot;2&quot;&gt;值班人员&lt;/th&gt;</span><br><span class="line">        &lt;th&gt;星期一&lt;/th&gt;</span><br><span class="line">        &lt;th&gt;星期二&lt;/th&gt;</span><br><span class="line">        &lt;th&gt;星期三&lt;/th&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;td&gt;王强&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;彭赛&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;阿呆&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span> <span class="attr">rowspan</span>=<span class="string">"2"</span>&gt;</span>值班人员<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>星期一<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>星期二<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>星期三<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>王强<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>彭赛<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>阿呆<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><strong>显示效果：</strong></p>
 <p>例子1：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"footer"</span>&gt;</span></span><br><span class="line"> @2017 Snowball Wang</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -696,6 +696,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">raw_input()</a>
               </li>
              
@@ -720,10 +724,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
@@ -740,6 +740,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -749,10 +753,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">梁漱溟</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
             
             <div class="clearfix"></div>

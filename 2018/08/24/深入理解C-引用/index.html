@@ -188,7 +188,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> &amp;j = i;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span> &lt;&lt; j &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    j++;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span> &lt;&lt; j &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; &amp;i &lt;&lt; <span class="string">" "</span> &lt;&lt; &amp;j &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在上述代码中，我们通过<code>int &amp;j = i;</code>来声名<code>j</code>是引用对象的变量，指向对象<code>i</code>。要注意的是，<strong>引用必须初始化</strong>，诸如<code>int &amp;j;</code>这样的代码是无法编译通过的。我们在定义引用时，所完成的操作并不是像其它初始化操作一样，将初始值拷贝到新建的对象中，而是将引用和它的初始值<strong>绑定</strong>在一起，并没有将初始值拷贝给引用。举个现实生活中的例子作为类比理解。有一个人的身份证正式姓名为李鹏程，他的外号叫作阿程。我们可以在日常生活中通过李鹏程这个名字来找到他，也可以通过阿程这个名字来找到他。阿程这个外号如果脱离了李鹏程这个人的实体，也就失去了它的含义。同理，如果我们说李鹏程长胖了10斤，也就意味着阿程也长胖了10斤。阿程这个外号和李鹏程这个实体是一一对应的关系，引用同引用的对象也是一一对应的关系。引用不可以重新绑定到另外一个对象，就像是不可以把阿程这个外号用在另一个人身上。上述代码的运行结果也说明了我们的认识是正确的。</p>
 <p>代码运行结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">10 10</span><br><span class="line">11 11</span><br><span class="line">0x7ffd01e3cf5c 0x7ffd01e3cf5c</span><br></pre></td></tr></table></figure>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">10 </span><span class="number">10</span></span><br><span class="line"><span class="symbol">11 </span><span class="number">11</span></span><br><span class="line"><span class="number">0</span>x7ffd01e3cf5c <span class="number">0</span>x7ffd01e3cf5c</span><br></pre></td></tr></table></figure>
 <p>可以看见，引用变量的值就是所引用的对象的值，引用变量的地址也就是所引用的对象的地址。到现在，我们初步认识了引用的含义和引用的用法。</p>
 <h1 id="2-理解C-引用——看山不是山，看水不是水"><a href="#2-理解C-引用——看山不是山，看水不是水" class="headerlink" title="2. 理解C++引用——看山不是山，看水不是水"></a>2. 理解C++引用——看山不是山，看水不是水</h1>
       
@@ -474,6 +474,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">raw_input()</a>
               </li>
              
@@ -498,10 +502,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
@@ -518,6 +518,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -527,10 +531,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">梁漱溟</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
             
             <div class="clearfix"></div>

@@ -179,11 +179,11 @@
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>我们在C/C++编程中很少会遇到术语<strong>左值（lvalue）</strong>和<strong>右值（rvalue）</strong>，但是一旦接触到这两个概念，我们很难立即弄清楚他们的含义是什么。最常遇到这两个术语的地方便是编译错误和警告信息。举个例子，用<code>gcc</code>编译以下代码：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="number">2</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    foo() = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>命令行会显示以下错误信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">test.c: In function ‘main’:</span><br><span class="line">test.c:5:11: error: lvalue required as left operand of assignment</span><br><span class="line">     foo() = 2;</span><br><span class="line">           ^</span><br></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">test.c: <span class="keyword">In</span> <span class="function"><span class="keyword">function</span> ‘<span class="title">main</span>’:</span></span><br><span class="line">test.c:<span class="number">5</span>:<span class="number">11</span>: error: lvalue required <span class="keyword">as</span> left operand <span class="keyword">of</span> assignment</span><br><span class="line">     foo() = <span class="number">2</span>;</span><br><span class="line">           ^</span><br></pre></td></tr></table></figure>
 <p>当然，这段代码有些故意写错的成分，你也不会写出这样的代码，但是在错误信息中涉及了<strong>左值</strong>这个在C/C++教程中不经常出现的术语。再举一个例子，这次用<code>g++</code>来编译：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span>&amp; <span class="title">foo</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这一次的错误代码显示如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">testcpp.cpp: In function ‘int&amp; foo()’:</span><br><span class="line">testcpp.cpp:3:12: error: invalid initialization of non-const reference of type ‘int&amp;’ from an rvalue of type ‘int’</span><br><span class="line">     return 2;</span><br><span class="line">            ^</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">testcpp.cpp: <span class="keyword">In</span> function ‘int&amp; foo()’:</span><br><span class="line">testcpp.cpp:3:12: error: invalid initialization of non-const reference of<span class="built_in"> type </span>‘int&amp;’ <span class="keyword">from</span> an rvalue of<span class="built_in"> type </span>‘int’</span><br><span class="line">     return 2;</span><br><span class="line">            ^</span><br></pre></td></tr></table></figure>
 <p>同样，错误信息中涉及了一个神秘的术语<strong>右值</strong>。那么<strong>左值</strong>和<strong>右值</strong>到底在C和C++中的含义是什么了？这就是这篇文章所要探索的内容。</p>
 <h2 id="一个简单的定义"><a href="#一个简单的定义" class="headerlink" title="一个简单的定义"></a>一个简单的定义</h2><p>这部分的文章将首先呈现一个故意简化版的<strong>左值</strong>和<strong>右值</strong>的定义。接下来的文章内容将对此定义进行详细叙述。</p>
 <p><strong>左值（lvalue locator value）</strong>表示的是占有某可被标识的内存位置的对象（它有地址）。</p>
@@ -236,16 +236,16 @@
 <p>让我们来运行一些简单的代码，来实现将<code>v1</code>的内容复制到<code>v2</code>中。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Intvec <span class="title">v1</span><span class="params">(<span class="number">20</span>)</span></span>;</span><br><span class="line">Intvec v2;</span><br><span class="line"></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"assigning lvalue...\n"</span>;</span><br><span class="line">v2 = v1;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"ended assigning lvalue...\n"</span>;</span><br></pre></td></tr></table></figure>
 <p>打印出来的结果是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">assigning lavlue...</span><br><span class="line">[0x28fef8] copy assignment operator</span><br><span class="line">[0x28fec8] copy constructor </span><br><span class="line">[0x28fec8] destructor</span><br><span class="line">ended assigning lvalue...</span><br></pre></td></tr></table></figure>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">assigning lavlue...</span><br><span class="line">[<span class="number">0</span>x28fef8] <span class="keyword">copy</span> assignment <span class="keyword">operator</span></span><br><span class="line">[<span class="number">0</span>x28fec8] <span class="keyword">copy</span> <span class="function"><span class="keyword">constructor</span> </span></span><br><span class="line"><span class="function">[0<span class="title">x28fec8</span>] <span class="title">destructor</span></span></span><br><span class="line"><span class="function"><span class="title">ended</span> <span class="title">assigning</span> <span class="title">lvalue</span>...</span></span><br></pre></td></tr></table></figure>
 <p>上述结果能够说得通，表明了在<code>operator=</code>里的运行过程究竟是什么样的。但是假设我们想要把右值赋给<code>v2</code>：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"assigning rvalue...\n"</span>;</span><br><span class="line">v2 = Intvec(<span class="number">33</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"ended assigning rvalue...\n"</span>;</span><br></pre></td></tr></table></figure>
 <p>尽管在这里我赋的值是一个新构造的vector，但这个例子想对<code>v2</code>赋值的案例更加通用化，即新建某个临时右值，然后将它赋值给<code>v2</code>。得到的结果如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">assigning rvalue...</span><br><span class="line">[0x28ff08] constructor</span><br><span class="line">[0x28fef8] copy assignment operator</span><br><span class="line">[0x28fec8] copy constructor</span><br><span class="line">[0x28fec8] destructor</span><br><span class="line">[0x28ff08] destructor</span><br><span class="line">ended assigning rvalues...</span><br></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">assigning rvalue...</span><br><span class="line">[<span class="number">0</span>x28ff08] <span class="function"><span class="keyword">constructor</span></span></span><br><span class="line"><span class="function">[0<span class="title">x28fef8</span>] <span class="title">copy</span> <span class="title">assignment</span> <span class="title">operator</span></span></span><br><span class="line"><span class="function">[0<span class="title">x28fec8</span>] <span class="title">copy</span> <span class="title">constructor</span></span></span><br><span class="line"><span class="function">[0<span class="title">x28fec8</span>] <span class="title">destructor</span></span></span><br><span class="line"><span class="function">[0<span class="title">x28ff08</span>] <span class="title">destructor</span></span></span><br><span class="line"><span class="function"><span class="title">ended</span> <span class="title">assigning</span> <span class="title">rvalues</span>...</span></span><br></pre></td></tr></table></figure>
 <p>哇，这看上去工作量很大。尤其是有多余的一对用来创建和销毁临时对象的构造函数和析构函数。这种方式很不友好，因为在拷贝赋值运算符中，创建和销毁了另一个临时拷贝。这纯粹是多余无用的工作。</p>
 <p>但在C++11中，上述的情况不在存在。C++11提出了右值引用这个概念，通过它，我们可以实现”move语义”和”move赋值运算符”。让我们对<code>Intvec</code>重载另一个<code>operator=</code>：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Intvect&amp; <span class="keyword">operator</span>=(Intvec&amp;&amp; other)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">log</span>(<span class="string">"move assignment operator"</span>);</span><br><span class="line">    <span class="built_in">std</span>::swap(m_size, other.m_size);</span><br><span class="line">    <span class="built_in">std</span>::swap(m_data, other.m_data);</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>&amp;&amp;</code>语法就是新的<strong>右值引用</strong>。它实现对一个即将在调用后销毁的右值的引用。我们可以通过这种方式来”偷走”右值里的内容，反正这些也不再需要用到这些右值。结果如下显示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">assigning rvalue...</span><br><span class="line">[0x28ff08] constructor</span><br><span class="line">[0x28fef8] move assignment operator</span><br><span class="line">[0x28ff08] destructor</span><br><span class="line">ended assigning rvalue...</span><br></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">assigning rvalue...</span><br><span class="line">[<span class="number">0</span>x28ff08] <span class="function"><span class="keyword">constructor</span></span></span><br><span class="line"><span class="function">[0<span class="title">x28fef8</span>] <span class="title">move</span> <span class="title">assignment</span> <span class="title">operator</span></span></span><br><span class="line"><span class="function">[0<span class="title">x28ff08</span>] <span class="title">destructor</span></span></span><br><span class="line"><span class="function"><span class="title">ended</span> <span class="title">assigning</span> <span class="title">rvalue</span>...</span></span><br></pre></td></tr></table></figure>
 <p>这里显示的是，当<code>v2</code>被一个右值赋值时，新的move赋值运算符便被调用。创建<code>Intvec(33)</code>的临时对象仍需调用构造和析构函数，但是在赋值运算符里，我们不再需要新的临时对象了。运算符只是把自己的内容和右值的内部缓冲区交换了一下，因此右值的析构函数将会释放掉我们对象中自己不再使用的缓冲区，整个操作干净明了。</p>
 <p>我不得不再说明一遍，上述的例子仅仅是move语义和右值引用的冰山一角。你很容易猜到，这是个有着各种各样特殊情况的及其复杂的主题。我在这篇文章中想要说明的是C++中左值和右值不同之处的有趣的应用。编译器显然知道什么时候实体是个右值，并且能在编译时调用相应正确的构造函数。</p>
 <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>我们可以在不考虑左值和右值的情况下编写C++代码，仅仅把左值和右值看作是特定错误信息里的编译器的行话。但是，正如这篇文章想要说明的那样，对此主题的深刻理解，能够帮助我们对特定C++代码的构造有着更深的认识，同时也能使C++语言专家之间的专业讨论更加清楚明白。</p>
@@ -538,6 +538,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">raw_input()</a>
               </li>
              
@@ -562,10 +566,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
@@ -582,6 +582,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -591,10 +595,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">梁漱溟</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
             
             <div class="clearfix"></div>

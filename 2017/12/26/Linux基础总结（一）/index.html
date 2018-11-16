@@ -265,7 +265,7 @@
 <li>[Ctrl]-c按键<br>[Ctrl]-c是中断目前程序的按键。</li>
 <li>[Ctrl]-d按键<br>[Ctrl]-d代表着键盘输入结束，直接离开文字界面（相当于输入exit）。</li>
 </ol>
-<h2 id="4-2-man-page"><a href="#4-2-man-page" class="headerlink" title="4.2 man page"></a>4.2 man page</h2><p>当想要在命令行里查询相关命令的使用方法，可以使用man命令来查看。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ man date</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-2-man-page"><a href="#4-2-man-page" class="headerlink" title="4.2 man page"></a>4.2 man page</h2><p>当想要在命令行里查询相关命令的使用方法，可以使用man命令来查看。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> man date</span></span><br></pre></td></tr></table></figure></p>
 <p>命令行显示的结果为DATE(1)，括号里的数字是有含义的，具体含义如表所示：</p>
 <table>
 <thead>
@@ -327,8 +327,8 @@
 <li>可以仅发出警告消息：有时要告诉用户某段时间要注意一下，这个时候可以使用shutdown来通知用户，但却不是真的要关机。</li>
 <li>可以选择是否要用fsck检查文件系统。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ shutdown [-t 秒] [-krhfFnc] 时间 [警告消息]</span><br><span class="line">-t sec ：-t后面加秒数，几秒后关机</span><br><span class="line">-k     ：不是真的关机，只是发送警告消息</span><br><span class="line">-r     ：在将系统的服务停掉之后就重启（常用）</span><br><span class="line">-h     ：将系统的服务停掉之后，立刻关机（常用）</span><br><span class="line">-f     ：关机并开机之后，强制略过fsck的磁盘检查</span><br><span class="line">-F     ：系统重启之后，强制进行fsck的磁盘检查</span><br><span class="line">-n     ：不经过init程序，直接以shutdown的功能来关机</span><br><span class="line">-c     ：取消已经在进行的shutdown命令内容</span><br></pre></td></tr></table></figure>
-<p>举例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ shutdown -r +30 &apos;The system will reboot&apos;</span><br><span class="line">三十分钟后系统会重启，并将消息显示给所有在线的用户</span><br><span class="line">$ shutdown -k now &apos;The system will reboot&apos;</span><br><span class="line">仅发出警告，系统并不会关机</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ shutdown [-t 秒] [-krhfFnc] 时间 [警告消息]</span><br><span class="line">-<span class="ruby">t sec ：-t后面加秒数，几秒后关机</span></span><br><span class="line"><span class="ruby">-k     ：不是真的关机，只是发送警告消息</span></span><br><span class="line"><span class="ruby">-r     ：在将系统的服务停掉之后就重启（常用）</span></span><br><span class="line"><span class="ruby">-h     ：将系统的服务停掉之后，立刻关机（常用）</span></span><br><span class="line"><span class="ruby">-f     ：关机并开机之后，强制略过fsck的磁盘检查</span></span><br><span class="line"><span class="ruby">-F     ：系统重启之后，强制进行fsck的磁盘检查</span></span><br><span class="line"><span class="ruby">-n     ：不经过init程序，直接以shutdown的功能来关机</span></span><br><span class="line"><span class="ruby">-c     ：取消已经在进行的shutdown命令内容</span></span><br></pre></td></tr></table></figure>
+<p>举例：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> shutdown -r +30 <span class="string">'The system will reboot'</span></span></span><br><span class="line">三十分钟后系统会重启，并将消息显示给所有在线的用户</span><br><span class="line"><span class="meta">$</span><span class="bash"> shutdown -k now <span class="string">'The system will reboot'</span></span></span><br><span class="line">仅发出警告，系统并不会关机</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -609,6 +609,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">raw_input()</a>
               </li>
              
@@ -633,10 +637,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
@@ -653,6 +653,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -662,10 +666,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">梁漱溟</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
             
             <div class="clearfix"></div>
