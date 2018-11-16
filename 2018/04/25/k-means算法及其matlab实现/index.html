@@ -5,29 +5,29 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="https://wangjieqiang.com">
   <title>k-means算法及其matlab实现 | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="关键字： K-means算法 0. 前言K-means算法是常见的聚类算法。研一的时候在吴桂兴老师的”信息论”课上接触过K-means算法，但并没有深入理解，也没有自己写代码去实现。最近在看斯坦福CS231n课程的lecture2里又涉及到K-means算法，正好也想把Coursera里吴恩达机器学习课程里的代码复习一">
 <meta name="keywords" content="技术日志,机器学习,matlab,k-means">
 <meta property="og:type" content="article">
 <meta property="og:title" content="k-means算法及其matlab实现">
-<meta property="og:url" content="http://yoursite.com/2018/04/25/k-means算法及其matlab实现/index.html">
+<meta property="og:url" content="https://wangjieqiang.com/2018/04/25/k-means算法及其matlab实现/index.html">
 <meta property="og:site_name" content="王杰强的博客">
 <meta property="og:description" content="关键字： K-means算法 0. 前言K-means算法是常见的聚类算法。研一的时候在吴桂兴老师的”信息论”课上接触过K-means算法，但并没有深入理解，也没有自己写代码去实现。最近在看斯坦福CS231n课程的lecture2里又涉及到K-means算法，正好也想把Coursera里吴恩达机器学习课程里的代码复习一遍，以此文作为学习总结。 1. 聚类算法概述在机器学习算法中，按照学习方式来划分">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/04/25/k-means算法及其matlab实现/k-means算法流程.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/04/25/k-means算法及其matlab实现/1.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/04/25/k-means算法及其matlab实现/2.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/04/25/k-means算法及其matlab实现/3.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/04/25/k-means算法及其matlab实现/4.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/04/25/k-means算法及其matlab实现/5.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/04/25/k-means算法及其matlab实现/10.jpg">
+<meta property="og:image" content="https://wangjieqiang.com/2018/04/25/k-means算法及其matlab实现/k-means算法流程.jpg">
+<meta property="og:image" content="https://wangjieqiang.com/2018/04/25/k-means算法及其matlab实现/1.jpg">
+<meta property="og:image" content="https://wangjieqiang.com/2018/04/25/k-means算法及其matlab实现/2.jpg">
+<meta property="og:image" content="https://wangjieqiang.com/2018/04/25/k-means算法及其matlab实现/3.jpg">
+<meta property="og:image" content="https://wangjieqiang.com/2018/04/25/k-means算法及其matlab实现/4.jpg">
+<meta property="og:image" content="https://wangjieqiang.com/2018/04/25/k-means算法及其matlab实现/5.jpg">
+<meta property="og:image" content="https://wangjieqiang.com/2018/04/25/k-means算法及其matlab实现/10.jpg">
 <meta property="og:updated_time" content="2018-04-26T06:57:49.505Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="k-means算法及其matlab实现">
 <meta name="twitter:description" content="关键字： K-means算法 0. 前言K-means算法是常见的聚类算法。研一的时候在吴桂兴老师的”信息论”课上接触过K-means算法，但并没有深入理解，也没有自己写代码去实现。最近在看斯坦福CS231n课程的lecture2里又涉及到K-means算法，正好也想把Coursera里吴恩达机器学习课程里的代码复习一遍，以此文作为学习总结。 1. 聚类算法概述在机器学习算法中，按照学习方式来划分">
-<meta name="twitter:image" content="http://yoursite.com/2018/04/25/k-means算法及其matlab实现/k-means算法流程.jpg">
+<meta name="twitter:image" content="https://wangjieqiang.com/2018/04/25/k-means算法及其matlab实现/k-means算法流程.jpg">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
   
@@ -301,7 +301,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/25/k-means算法及其matlab实现/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://wangjieqiang.com/2018/04/25/k-means算法及其matlab实现/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -505,10 +505,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
               </li>
              
@@ -522,6 +518,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,10 +541,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -554,6 +550,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">梁漱溟</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
             
             <div class="clearfix"></div>
