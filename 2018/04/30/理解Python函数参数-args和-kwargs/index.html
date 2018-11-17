@@ -17,7 +17,7 @@
 <meta property="og:description" content="关键字： Python *args  **kwargs 0. 前言上周和室友讨论他在科大讯飞面试的问题时，谈到了Python装饰器的含义和用途。于是乎今天重新复习了一下关于Python装饰器的内容。但在阅读Python装饰器的代码中，函数经常会出现*args和**kwargs等参数，虽然之前了解这两个参数表示可以输入数量不定的变量的含义，但并没有深入理解其含义和用法。写下此文作为理解*args和">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://wangjieqiang.com/2018/04/30/理解Python函数参数-args和-kwargs/tricks.jpg">
-<meta property="og:updated_time" content="2018-04-30T13:24:20.039Z">
+<meta property="og:updated_time" content="2018-11-17T01:52:16.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解Python函数参数*args和**kwargs">
 <meta name="twitter:description" content="关键字： Python *args  **kwargs 0. 前言上周和室友讨论他在科大讯飞面试的问题时，谈到了Python装饰器的含义和用途。于是乎今天重新复习了一下关于Python装饰器的内容。但在阅读Python装饰器的代码中，函数经常会出现*args和**kwargs等参数，虽然之前了解这两个参数表示可以输入数量不定的变量的含义，但并没有深入理解其含义和用法。写下此文作为理解*args和">
@@ -180,6 +180,7 @@
         <p><img src="/2018/04/30/理解Python函数参数-args和-kwargs/tricks.jpg" alt="*args和**kwargs"></p>
 <p><strong>关键字：</strong> Python <code>*args</code>  <code>**kwargs</code></p>
 <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>上周和室友讨论他在科大讯飞面试的问题时，谈到了Python装饰器的含义和用途。于是乎今天重新复习了一下关于Python装饰器的内容。但在阅读Python装饰器的代码中，函数经常会出现<code>*args</code>和<code>**kwargs</code>等参数，虽然之前了解这两个参数表示可以输入数量不定的变量的含义，但并没有深入理解其含义和用法。写下此文作为理解<code>*args</code>和<code>**kwargs</code>的学习笔记。</p>
+<a id="more"></a>
 <h1 id="1-‘-表达式’"><a href="#1-‘-表达式’" class="headerlink" title="1. ‘*表达式’"></a>1. ‘*表达式’</h1><p>在讨论<code>*args</code>和<code>**kwargs</code>之前，我们需要先介绍一下Python中的<strong>‘*表达式’</strong>。</p>
 <p>先看以下代码：</p>
 <p><strong>说明：</strong> <code>&gt;&gt;&gt;</code>表示是Python运行终端，本文所用的Python版本是3.5.2。</p>
@@ -485,23 +486,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,11 +498,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
+                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -526,6 +519,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
               </li>
              
               <li class="article-tag-list-item">

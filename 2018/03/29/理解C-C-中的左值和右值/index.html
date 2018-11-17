@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://wangjieqiang.com">
   <title>理解C/C++中的左值和右值 | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言最近在执行100天C++ Primer计划，书中第四章里的左值和右值的概念让我困惑不已。CSDN博客里关于左值和右值的文章介绍的都不够全面，每次看了一些都没有耐心继续再看下去。个人认为这篇英文博客把左值和右值的概念说明的非常清晰，且方式也是循循善诱。翻译之作为学习的存档。 正文我们在C/C++编程中很少会遇到术语左">
+  <meta name="description" content="前言最近在执行100天C++ Primer计划，书中第四章里的左值和右值的概念让我困惑不已。CSDN博客里关于左值和右值的文章介绍的都不够全面，每次看了一些都没有耐心继续再看下去。个人认为这篇英文博客把左值和右值的概念说明的非常清晰，且方式也是循循善诱。翻译之作为学习的存档。">
 <meta name="keywords" content="技术日志,C&#x2F;C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解C&#x2F;C++中的左值和右值">
 <meta property="og:url" content="https://wangjieqiang.com/2018/03/29/理解C-C-中的左值和右值/index.html">
 <meta property="og:site_name" content="王杰强的博客">
-<meta property="og:description" content="前言最近在执行100天C++ Primer计划，书中第四章里的左值和右值的概念让我困惑不已。CSDN博客里关于左值和右值的文章介绍的都不够全面，每次看了一些都没有耐心继续再看下去。个人认为这篇英文博客把左值和右值的概念说明的非常清晰，且方式也是循循善诱。翻译之作为学习的存档。 正文我们在C/C++编程中很少会遇到术语左值（lvalue）和右值（rvalue），但是一旦接触到这两个概念，我们很难立即">
+<meta property="og:description" content="前言最近在执行100天C++ Primer计划，书中第四章里的左值和右值的概念让我困惑不已。CSDN博客里关于左值和右值的文章介绍的都不够全面，每次看了一些都没有耐心继续再看下去。个人认为这篇英文博客把左值和右值的概念说明的非常清晰，且方式也是循循善诱。翻译之作为学习的存档。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-17T08:32:36.112Z">
+<meta property="og:updated_time" content="2018-11-17T01:53:08.959Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解C&#x2F;C++中的左值和右值">
-<meta name="twitter:description" content="前言最近在执行100天C++ Primer计划，书中第四章里的左值和右值的概念让我困惑不已。CSDN博客里关于左值和右值的文章介绍的都不够全面，每次看了一些都没有耐心继续再看下去。个人认为这篇英文博客把左值和右值的概念说明的非常清晰，且方式也是循循善诱。翻译之作为学习的存档。 正文我们在C/C++编程中很少会遇到术语左值（lvalue）和右值（rvalue），但是一旦接触到这两个概念，我们很难立即">
+<meta name="twitter:description" content="前言最近在执行100天C++ Primer计划，书中第四章里的左值和右值的概念让我困惑不已。CSDN博客里关于左值和右值的文章介绍的都不够全面，每次看了一些都没有耐心继续再看下去。个人认为这篇英文博客把左值和右值的概念说明的非常清晰，且方式也是循循善诱。翻译之作为学习的存档。">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
   
@@ -176,6 +176,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在执行<strong>100天C++ Primer计划</strong>，书中第四章里的左值和右值的概念让我困惑不已。CSDN博客里关于左值和右值的文章介绍的都不够全面，每次看了一些都没有耐心继续再看下去。个人认为这篇<a href="https://eli.thegreenplace.net/2011/12/15/understanding-lvalues-and-rvalues-in-c-and-c" target="_blank" rel="noopener">英文博客</a>把左值和右值的概念说明的非常清晰，且方式也是循循善诱。翻译之作为学习的存档。</p>
+<a id="more"></a>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>我们在C/C++编程中很少会遇到术语<strong>左值（lvalue）</strong>和<strong>右值（rvalue）</strong>，但是一旦接触到这两个概念，我们很难立即弄清楚他们的含义是什么。最常遇到这两个术语的地方便是编译错误和警告信息。举个例子，用<code>gcc</code>编译以下代码：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="number">2</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    foo() = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>命令行会显示以下错误信息：</p>
@@ -522,23 +523,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -550,11 +535,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
+                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -563,6 +556,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
               </li>
              
               <li class="article-tag-list-item">

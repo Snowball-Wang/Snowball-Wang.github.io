@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://wangjieqiang.com/2018/02/02/Python魔法方法和操作符重载/marvin_the_magician.png">
 <meta property="og:image" content="https://wangjieqiang.com/2018/02/02/Python魔法方法和操作符重载/operator_overloading__radd__.png">
-<meta property="og:updated_time" content="2018-02-22T13:55:54.889Z">
+<meta property="og:updated_time" content="2018-11-17T01:53:40.394Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python魔法方法和操作符重载">
 <meta name="twitter:description" content="关键词： Python 魔法方法 操作符重载 0.前言在阅读Python的代码时，经常会看到以双下划线__包裹起来的方法，最常见的就是在Python的类里的__init__方法。这些方法被称之为魔法方法（Magic Method）。网上看了很多介绍Python魔法方法的文章，有的写得太过啰嗦，有的写得太过深奥。我个人觉得这篇文章写得非常简洁明了，于是将之翻译，稍微对原文内容做了一些修改，算是Py">
@@ -181,6 +181,7 @@
         <p><img src="/2018/02/02/Python魔法方法和操作符重载/marvin_the_magician.png" alt="魔法方法"></p>
 <p><strong>关键词：</strong> Python 魔法方法 操作符重载</p>
 <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h1><p>在阅读Python的代码时，经常会看到以双下划线<code>__</code>包裹起来的方法，最常见的就是在Python的类里的<code>__init__</code>方法。这些方法被称之为<strong>魔法方法（Magic Method）</strong>。网上看了很多介绍Python<strong>魔法方法</strong>的文章，有的写得太过啰嗦，有的写得太过深奥。我个人觉得<a href="https://www.python-course.eu/python3_magic_methods.php" target="_blank" rel="noopener">这篇文章</a>写得非常简洁明了，于是将之翻译，稍微对原文内容做了一些修改，算是Python<strong>魔法方法</strong>相关知识的总结和归档。</p>
+<a id="more"></a>
 <h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1.介绍"></a>1.介绍</h1><p>所谓的Python魔法方法与真正的魔法并没有关系。这种方法的语法很令人费解，如：在方法名的开始和结尾都要加上两道下划线。你也很难探讨它们，如何口头表达一个名字为<code>__init__</code>的方法？可能最好的口头表达方法就是”前后双下划init方法”，就是这样听起来也很难受。</p>
 <p>那么关于<code>__init__</code>方法有何神奇之处？答案就是，你不用直接调用它，调用的实现机制是在后台完成。当你用语句<code>X = A()</code>创建一个A类的x实例时，Python会自动调用<code>__new__</code>和<code>__init__</code>方法。</p>
 <p>关于操作符重载，我们可以使用<code>+</code>来进行加法运算、合并字符串或列表。</p>
@@ -711,23 +712,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -739,11 +724,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
+                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -752,6 +745,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
               </li>
              
               <li class="article-tag-list-item">

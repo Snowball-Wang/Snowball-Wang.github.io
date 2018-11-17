@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="王杰强的博客">
 <meta property="og:description" content="关键词： C++引用 0.前言 引用并非对象，相反的，它只是为一个已经存在的对象所起的另外一个名字。  这句话摘自C++ Prime 的46页。仔细品味这句话，就会产生很多疑惑。第一，引用并非是对象，那么引用是什么？第二，引用是所存在对象的别名，“别名”的具体含义是什么？它占用内存空间吗？它和指针变量有什么区别？所有的这些疑问将在本文中给以解答。我们将遵从认知事物的规律，从认识、理解和总结三个步骤">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-30T13:13:22.761Z">
+<meta property="og:updated_time" content="2018-11-17T01:51:42.279Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解C++引用">
 <meta name="twitter:description" content="关键词： C++引用 0.前言 引用并非对象，相反的，它只是为一个已经存在的对象所起的另外一个名字。  这句话摘自C++ Prime 的46页。仔细品味这句话，就会产生很多疑惑。第一，引用并非是对象，那么引用是什么？第二，引用是所存在对象的别名，“别名”的具体含义是什么？它占用内存空间吗？它和指针变量有什么区别？所有的这些疑问将在本文中给以解答。我们将遵从认知事物的规律，从认识、理解和总结三个步骤">
@@ -180,6 +180,7 @@
 <p>引用并非对象，相反的，它只是为一个已经存在的对象所起的另外一个名字。</p>
 </blockquote>
 <p>这句话摘自<em>C++ Prime</em> 的46页。仔细品味这句话，就会产生很多疑惑。第一，引用并非是对象，那么引用是什么？第二，引用是所存在对象的别名，“别名”的具体含义是什么？它占用内存空间吗？它和指针变量有什么区别？所有的这些疑问将在本文中给以解答。我们将遵从认知事物的规律，从认识、理解和总结三个步骤来把握C++引用。</p>
+<a id="more"></a>
 <h1 id="1-认识C-引用——看山是山，看水是水"><a href="#1-认识C-引用——看山是山，看水是水" class="headerlink" title="1.认识C++引用——看山是山，看水是水"></a>1.认识C++引用——看山是山，看水是水</h1><p>关于引用，我们首先了解一下<em>C++ Prime</em>的定义：</p>
 <blockquote>
 <p><strong>引用</strong>（reference）为对象起了另外一个名字，引用类型引用（refer to）另外一种类型。通过将声名符写成&amp;d的形式来定义引用类型，其中d是声名的变量名。</p>
@@ -458,23 +459,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -486,11 +471,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
+                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,6 +492,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
               </li>
              
               <li class="article-tag-list-item">

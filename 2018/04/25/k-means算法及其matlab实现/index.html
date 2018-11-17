@@ -14,7 +14,7 @@
 <meta property="og:title" content="k-means算法及其matlab实现">
 <meta property="og:url" content="https://wangjieqiang.com/2018/04/25/k-means算法及其matlab实现/index.html">
 <meta property="og:site_name" content="王杰强的博客">
-<meta property="og:description" content="关键字： K-means算法 0. 前言K-means算法是常见的聚类算法。研一的时候在吴桂兴老师的”信息论”课上接触过K-means算法，但并没有深入理解，也没有自己写代码去实现。最近在看斯坦福CS231n课程的lecture2里又涉及到K-means算法，正好也想把Coursera里吴恩达机器学习课程里的代码复习一遍，以此文作为学习总结。 1. 聚类算法概述在机器学习算法中，按照学习方式来划分">
+<meta property="og:description" content="关键字： K-means算法 0. 前言K-means算法是常见的聚类算法。研一的时候在吴桂兴老师的”信息论”课上接触过K-means算法，但并没有深入理解，也没有自己写代码去实现。最近在看斯坦福CS231n课程的lecture2里又涉及到K-means算法，正好也想把Coursera里吴恩达机器学习课程里的代码复习一遍，以此文作为学习总结。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://wangjieqiang.com/2018/04/25/k-means算法及其matlab实现/k-means算法流程.jpg">
 <meta property="og:image" content="https://wangjieqiang.com/2018/04/25/k-means算法及其matlab实现/1.jpg">
@@ -23,10 +23,10 @@
 <meta property="og:image" content="https://wangjieqiang.com/2018/04/25/k-means算法及其matlab实现/4.jpg">
 <meta property="og:image" content="https://wangjieqiang.com/2018/04/25/k-means算法及其matlab实现/5.jpg">
 <meta property="og:image" content="https://wangjieqiang.com/2018/04/25/k-means算法及其matlab实现/10.jpg">
-<meta property="og:updated_time" content="2018-04-26T06:57:49.505Z">
+<meta property="og:updated_time" content="2018-11-17T01:52:39.376Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="k-means算法及其matlab实现">
-<meta name="twitter:description" content="关键字： K-means算法 0. 前言K-means算法是常见的聚类算法。研一的时候在吴桂兴老师的”信息论”课上接触过K-means算法，但并没有深入理解，也没有自己写代码去实现。最近在看斯坦福CS231n课程的lecture2里又涉及到K-means算法，正好也想把Coursera里吴恩达机器学习课程里的代码复习一遍，以此文作为学习总结。 1. 聚类算法概述在机器学习算法中，按照学习方式来划分">
+<meta name="twitter:description" content="关键字： K-means算法 0. 前言K-means算法是常见的聚类算法。研一的时候在吴桂兴老师的”信息论”课上接触过K-means算法，但并没有深入理解，也没有自己写代码去实现。最近在看斯坦福CS231n课程的lecture2里又涉及到K-means算法，正好也想把Coursera里吴恩达机器学习课程里的代码复习一遍，以此文作为学习总结。">
 <meta name="twitter:image" content="https://wangjieqiang.com/2018/04/25/k-means算法及其matlab实现/k-means算法流程.jpg">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
@@ -185,6 +185,7 @@
       
         <p><strong>关键字：</strong> K-means算法</p>
 <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>K-means算法是常见的聚类算法。研一的时候在吴桂兴老师的”信息论”课上接触过K-means算法，但并没有深入理解，也没有自己写代码去实现。最近在看<a href="http://cs231n.stanford.edu/syllabus.html" target="_blank" rel="noopener">斯坦福CS231n课程</a>的lecture2里又涉及到K-means算法，正好也想把Coursera里吴恩达机器学习课程里的代码复习一遍，以此文作为学习总结。</p>
+<a id="more"></a>
 <h1 id="1-聚类算法概述"><a href="#1-聚类算法概述" class="headerlink" title="1. 聚类算法概述"></a>1. 聚类算法概述</h1><p>在机器学习算法中，按照<strong>学习方式</strong>来划分，分为<strong>有监督学习</strong>、<strong>无监督学习</strong>、<strong>半监督学习</strong>、<strong>强化学习</strong>。其中，在<strong>无监督学习（supervised learning）</strong>中，训练的样本的标记信息是未知的，我们的目标是对无标记训练样本的学习来揭示输入数据的内在性质和规律，从而可对数据进行下一步的分析。<strong>“聚类算法”</strong>是<strong>无监督学习</strong>中经常使用的算法。</p>
 <p>那么<strong>聚类</strong>是如何实现的了？通常来说，聚类是将数据集中的样本划分为若干个不相交的子集，每个子集称为一个<strong>簇（cluster）</strong>，并且每个子集可能都对应于一些潜在的类别。举个例子，某招聘会上有一群毕业生，有的是”交大毕业生”，有的是”科大毕业生”，有的是”上大毕业生”，这三个子集互不相交，且都是这群毕业生的组成部分。但我们需要注意的是，这些类别，或者说聚类产生的子集的概念，对于聚类算法而言事先是未知的。聚类过程仅能自动形成簇结构，簇所对应的概念语义需要人为的把握和命名。</p>
 <p>聚类算法既能够作为一个单独的过程，用于寻找数据内在的分布结构，也可作为分类等其他学习任务的前驱过程。举个例子，在一些商业应用中，我们需要对新用户的用户类型进行判别，然而”用户类型”的概念很难全面准确地被商家定义，于是我们可以针对已有的用户数据进行聚类，将聚类结果的每一个簇定义为一个类，然后再根据这些类来训练分类模型，达到判别新用户的类型的目标。</p>
@@ -481,23 +482,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,11 +494,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
+                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,6 +515,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
               </li>
              
               <li class="article-tag-list-item">

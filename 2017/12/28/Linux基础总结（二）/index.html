@@ -14,13 +14,13 @@
 <meta property="og:title" content="Linux基础总结（二）">
 <meta property="og:url" content="https://wangjieqiang.com/2017/12/28/Linux基础总结（二）/index.html">
 <meta property="og:site_name" content="王杰强的博客">
-<meta property="og:description" content="关键词： Linux  文件权限  目录管理 0. 前言相比于Windows的伪多用户环境，Linux从本质上才是服务于多用户的操作系统。多用户多任务操作系统要处理的问题之一，便是要对每个用户的数据进行分离和保密，由此产生了Linux文件权限的概念。同时，与Windows相比，Linux的文件目录管理的风格迥然不同。本文将对Linux的文件权限和目录管理的内容进行总结。 1. Linux的文件权限">
+<meta property="og:description" content="关键词： Linux  文件权限  目录管理 0. 前言相比于Windows的伪多用户环境，Linux从本质上才是服务于多用户的操作系统。多用户多任务操作系统要处理的问题之一，便是要对每个用户的数据进行分离和保密，由此产生了Linux文件权限的概念。同时，与Windows相比，Linux的文件目录管理的风格迥然不同。本文将对Linux的文件权限和目录管理的内容进行总结。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://wangjieqiang.com/2017/12/28/Linux基础总结（二）/Linux目录树.png">
-<meta property="og:updated_time" content="2018-01-03T03:26:43.472Z">
+<meta property="og:updated_time" content="2018-11-17T01:59:14.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux基础总结（二）">
-<meta name="twitter:description" content="关键词： Linux  文件权限  目录管理 0. 前言相比于Windows的伪多用户环境，Linux从本质上才是服务于多用户的操作系统。多用户多任务操作系统要处理的问题之一，便是要对每个用户的数据进行分离和保密，由此产生了Linux文件权限的概念。同时，与Windows相比，Linux的文件目录管理的风格迥然不同。本文将对Linux的文件权限和目录管理的内容进行总结。 1. Linux的文件权限">
+<meta name="twitter:description" content="关键词： Linux  文件权限  目录管理 0. 前言相比于Windows的伪多用户环境，Linux从本质上才是服务于多用户的操作系统。多用户多任务操作系统要处理的问题之一，便是要对每个用户的数据进行分离和保密，由此产生了Linux文件权限的概念。同时，与Windows相比，Linux的文件目录管理的风格迥然不同。本文将对Linux的文件权限和目录管理的内容进行总结。">
 <meta name="twitter:image" content="https://wangjieqiang.com/2017/12/28/Linux基础总结（二）/Linux目录树.png">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
@@ -179,6 +179,7 @@
       
         <p><strong>关键词：</strong> Linux  文件权限  目录管理</p>
 <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>相比于Windows的伪多用户环境，Linux从本质上才是服务于多用户的操作系统。多用户多任务操作系统要处理的问题之一，便是要对每个用户的数据进行分离和保密，由此产生了Linux文件权限的概念。同时，与Windows相比，Linux的文件目录管理的风格迥然不同。本文将对Linux的文件权限和目录管理的内容进行总结。</p>
+<a id="more"></a>
 <h1 id="1-Linux的文件权限"><a href="#1-Linux的文件权限" class="headerlink" title="1. Linux的文件权限"></a>1. Linux的文件权限</h1><h2 id="1-1-用户与用户组的概念"><a href="#1-1-用户与用户组的概念" class="headerlink" title="1.1 用户与用户组的概念"></a>1.1 用户与用户组的概念</h2><p>Linux一般将文件的可存取访问的身份分为3个类别，分别是<strong>owner（文件所有者）</strong>、<strong>group（用户组）</strong>和<strong>others（其他人）</strong>，且每种身份各有read、write和execute等权限。那么为什么Linux要将文件及其权限进行这样的划分？我们可以结合具体的应用场景，来体会Linux文件权限中”用户与用户组”所带来的方便。</p>
 <p>设想一个实验室里只有一台主机，实验室里的每位同学都要使用这台机器来完成相关的科研任务。但是在科研之余，有些同学也会在这台主机上进行类似收发邮件等私人行为，在主机上保存一些私人信息。这时，<strong>用户（owner）</strong>的概念便体现出其优势。比如同学A不想让别人访问自己保存在主机的邮件文件，同学A只需将此邮件文件的权限设定为只有自己可查看和修改即可，其他同学便无法访问同学A的邮件文件。同时，学校里举办了一次大数据比赛，实验室里的同学都各自组队参赛。每组同学都需要借用实验室主机来进行数据处理，<strong>用户组（group）</strong>便能实现每个小组的比赛代码分离的功能。同学A、B、C组成的小组1，只需将他们的比赛代码的用户组限定为小组1，其他小组便不可访问小组1的比赛代码。同时，小组1也无法访问其他小组的比赛代码，由此实现了每个用户组之间的隔离。</p>
 <p>不过，在Linux中，存在一个”上帝视角”的身份–<strong>root</strong>。它的角色可以理解为实验室的教授，他有着对主机资源的完全控制权。他既可以访问同学A的邮件文件，也可以访问所有参赛同学的代码。它在Linux中相当于有着绝对控制权的君王，所以在<strong>root</strong>权限下一定要谨慎操作，以防对系统造成不可恢复的损坏。</p>
@@ -644,23 +645,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -672,11 +657,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
+                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -685,6 +678,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
               </li>
              
               <li class="article-tag-list-item">
