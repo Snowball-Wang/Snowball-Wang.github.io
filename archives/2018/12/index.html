@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://wangjieqiang.com">
-  <title>深入理解C++引用 | 王杰强的博客</title>
+  <title>Archives: 2018/12 | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关键词： C++引用 0.前言 引用并非对象，相反的，它只是为一个已经存在的对象所起的另外一个名字。  这句话摘自C++ Prime 的46页。仔细品味这句话，就会产生很多疑惑。第一，引用并非是对象，那么引用是什么？第二，引用是所存在对象的别名，“别名”的具体含义是什么？它占用内存空间吗？它和指针变量有什么区别？所有的">
-<meta name="keywords" content="技术日志,C&#x2F;C++">
-<meta property="og:type" content="article">
-<meta property="og:title" content="深入理解C++引用">
-<meta property="og:url" content="https://wangjieqiang.com/2018/08/24/深入理解C-引用/index.html">
+  <meta name="description" content="南七技校软件培训速成中心16级学徒，半道出家的底层程序员，即将入职ARM。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="王杰强的博客">
+<meta property="og:url" content="https://wangjieqiang.com/archives/2018/12/index.html">
 <meta property="og:site_name" content="王杰强的博客">
-<meta property="og:description" content="关键词： C++引用 0.前言 引用并非对象，相反的，它只是为一个已经存在的对象所起的另外一个名字。  这句话摘自C++ Prime 的46页。仔细品味这句话，就会产生很多疑惑。第一，引用并非是对象，那么引用是什么？第二，引用是所存在对象的别名，“别名”的具体含义是什么？它占用内存空间吗？它和指针变量有什么区别？所有的这些疑问将在本文中给以解答。我们将遵从认知事物的规律，从认识、理解和总结三个步骤">
+<meta property="og:description" content="南七技校软件培训速成中心16级学徒，半道出家的底层程序员，即将入职ARM。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-17T01:51:42.279Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入理解C++引用">
-<meta name="twitter:description" content="关键词： C++引用 0.前言 引用并非对象，相反的，它只是为一个已经存在的对象所起的另外一个名字。  这句话摘自C++ Prime 的46页。仔细品味这句话，就会产生很多疑惑。第一，引用并非是对象，那么引用是什么？第二，引用是所存在对象的别名，“别名”的具体含义是什么？它占用内存空间吗？它和指针变量有什么区别？所有的这些疑问将在本文中给以解答。我们将遵从认知事物的规律，从认识、理解和总结三个步骤">
+<meta name="twitter:title" content="王杰强的博客">
+<meta name="twitter:description" content="南七技校软件培训速成中心16级学徒，半道出家的底层程序员，即将入职ARM。">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
   
@@ -155,189 +153,71 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-深入理解C-引用" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      深入理解C++引用
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/12/06/剃须刀与半程马拉松/" class="archive-article-date">
+  	<time datetime="2018-12-06T13:40:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-06</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/12/06/剃须刀与半程马拉松/">剃须刀与半程马拉松</a>
     </h1>
   
 
-        
-        <a href="/2018/08/24/深入理解C-引用/" class="archive-article-date">
-  	<time datetime="2018-08-24T13:08:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>关键词：</strong> C++引用</p>
-<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h1><blockquote>
-<p>引用并非对象，相反的，它只是为一个已经存在的对象所起的另外一个名字。</p>
-</blockquote>
-<p>这句话摘自<em>C++ Prime</em> 的46页。仔细品味这句话，就会产生很多疑惑。第一，引用并非是对象，那么引用是什么？第二，引用是所存在对象的别名，“别名”的具体含义是什么？它占用内存空间吗？它和指针变量有什么区别？所有的这些疑问将在本文中给以解答。我们将遵从认知事物的规律，从认识、理解和总结三个步骤来把握C++引用。</p>
-<a id="more"></a>
-<h1 id="1-认识C-引用——看山是山，看水是水"><a href="#1-认识C-引用——看山是山，看水是水" class="headerlink" title="1.认识C++引用——看山是山，看水是水"></a>1.认识C++引用——看山是山，看水是水</h1><p>关于引用，我们首先了解一下<em>C++ Prime</em>的定义：</p>
-<blockquote>
-<p><strong>引用</strong>（reference）为对象起了另外一个名字，引用类型引用（refer to）另外一种类型。通过将声名符写成&amp;d的形式来定义引用类型，其中d是声名的变量名。</p>
-</blockquote>
-<p>举个例子：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> &amp;j = i;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span> &lt;&lt; j &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    j++;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span> &lt;&lt; j &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; &amp;i &lt;&lt; <span class="string">" "</span> &lt;&lt; &amp;j &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在上述代码中，我们通过<code>int &amp;j = i;</code>来声名<code>j</code>是引用对象的变量，指向对象<code>i</code>。要注意的是，<strong>引用必须初始化</strong>，诸如<code>int &amp;j;</code>这样的代码是无法编译通过的。我们在定义引用时，所完成的操作并不是像其它初始化操作一样，将初始值拷贝到新建的对象中，而是将引用和它的初始值<strong>绑定</strong>在一起，并没有将初始值拷贝给引用。举个现实生活中的例子作为类比理解。有一个人的身份证正式姓名为李鹏程，他的外号叫作阿程。我们可以在日常生活中通过李鹏程这个名字来找到他，也可以通过阿程这个名字来找到他。阿程这个外号如果脱离了李鹏程这个人的实体，也就失去了它的含义。同理，如果我们说李鹏程长胖了10斤，也就意味着阿程也长胖了10斤。阿程这个外号和李鹏程这个实体是一一对应的关系，引用同引用的对象也是一一对应的关系。引用不可以重新绑定到另外一个对象，就像是不可以把阿程这个外号用在另一个人身上。上述代码的运行结果也说明了我们的认识是正确的。</p>
-<p>代码运行结果：</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">10 </span><span class="number">10</span></span><br><span class="line"><span class="symbol">11 </span><span class="number">11</span></span><br><span class="line"><span class="number">0</span>x7ffd01e3cf5c <span class="number">0</span>x7ffd01e3cf5c</span><br></pre></td></tr></table></figure>
-<p>可以看见，引用变量的值就是所引用的对象的值，引用变量的地址也就是所引用的对象的地址。到现在，我们初步认识了引用的含义和引用的用法。</p>
-<h1 id="2-理解C-引用——看山不是山，看水不是水"><a href="#2-理解C-引用——看山不是山，看水不是水" class="headerlink" title="2. 理解C++引用——看山不是山，看水不是水"></a>2. 理解C++引用——看山不是山，看水不是水</h1>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志/C-C//" class="article-tag-list-link color1">C/C++</a>
+        			<a href="/categories/读书摘录//" class="article-tag-list-link color5">读书摘录</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://wangjieqiang.com/2018/08/24/深入理解C-引用/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/09/28/My-CS4-Challenge/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          My CS4 Challenge
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/04/30/理解Python函数参数-args和-kwargs/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">理解Python函数参数*args和**kwargs</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -360,8 +240,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

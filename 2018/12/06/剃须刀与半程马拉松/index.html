@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://wangjieqiang.com">
-  <title>深入理解C++引用 | 王杰强的博客</title>
+  <title>剃须刀与半程马拉松 | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关键词： C++引用 0.前言 引用并非对象，相反的，它只是为一个已经存在的对象所起的另外一个名字。  这句话摘自C++ Prime 的46页。仔细品味这句话，就会产生很多疑惑。第一，引用并非是对象，那么引用是什么？第二，引用是所存在对象的别名，“别名”的具体含义是什么？它占用内存空间吗？它和指针变量有什么区别？所有的">
-<meta name="keywords" content="技术日志,C&#x2F;C++">
+  <meta name="description" content="一把刀的锋刃是很难越过的，所以智者说得救之道是很难实现的。    这句被英国作家毛姆引用在其作品《刀锋》扉页上的句子，常常会莫名其妙地，在我拿着吉列剃须刀看着镜子中满脸剃须泡沫的自己时，倏忽间从脑海中蹦出来。很显然，做事情绝对不能分心，尤其又是手动剃须这种本身就具有自残倾向的的行为，最直接的恶果便是几乎每次剃须之后脸上">
+<meta name="keywords" content="随笔">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入理解C++引用">
-<meta property="og:url" content="https://wangjieqiang.com/2018/08/24/深入理解C-引用/index.html">
+<meta property="og:title" content="剃须刀与半程马拉松">
+<meta property="og:url" content="https://wangjieqiang.com/2018/12/06/剃须刀与半程马拉松/index.html">
 <meta property="og:site_name" content="王杰强的博客">
-<meta property="og:description" content="关键词： C++引用 0.前言 引用并非对象，相反的，它只是为一个已经存在的对象所起的另外一个名字。  这句话摘自C++ Prime 的46页。仔细品味这句话，就会产生很多疑惑。第一，引用并非是对象，那么引用是什么？第二，引用是所存在对象的别名，“别名”的具体含义是什么？它占用内存空间吗？它和指针变量有什么区别？所有的这些疑问将在本文中给以解答。我们将遵从认知事物的规律，从认识、理解和总结三个步骤">
+<meta property="og:description" content="一把刀的锋刃是很难越过的，所以智者说得救之道是很难实现的。    这句被英国作家毛姆引用在其作品《刀锋》扉页上的句子，常常会莫名其妙地，在我拿着吉列剃须刀看着镜子中满脸剃须泡沫的自己时，倏忽间从脑海中蹦出来。很显然，做事情绝对不能分心，尤其又是手动剃须这种本身就具有自残倾向的的行为，最直接的恶果便是几乎每次剃须之后脸上都多了几处可见的伤口。可见别说得救之道是很难实现的，光是完美的剃须之道，就已经">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-17T01:51:42.279Z">
+<meta property="og:image" content="https://wangjieqiang.com/2018/12/06/剃须刀与半程马拉松/比赛奖牌.jpg">
+<meta property="og:updated_time" content="2018-12-06T13:40:53.206Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入理解C++引用">
-<meta name="twitter:description" content="关键词： C++引用 0.前言 引用并非对象，相反的，它只是为一个已经存在的对象所起的另外一个名字。  这句话摘自C++ Prime 的46页。仔细品味这句话，就会产生很多疑惑。第一，引用并非是对象，那么引用是什么？第二，引用是所存在对象的别名，“别名”的具体含义是什么？它占用内存空间吗？它和指针变量有什么区别？所有的这些疑问将在本文中给以解答。我们将遵从认知事物的规律，从认识、理解和总结三个步骤">
+<meta name="twitter:title" content="剃须刀与半程马拉松">
+<meta name="twitter:description" content="一把刀的锋刃是很难越过的，所以智者说得救之道是很难实现的。    这句被英国作家毛姆引用在其作品《刀锋》扉页上的句子，常常会莫名其妙地，在我拿着吉列剃须刀看着镜子中满脸剃须泡沫的自己时，倏忽间从脑海中蹦出来。很显然，做事情绝对不能分心，尤其又是手动剃须这种本身就具有自残倾向的的行为，最直接的恶果便是几乎每次剃须之后脸上都多了几处可见的伤口。可见别说得救之道是很难实现的，光是完美的剃须之道，就已经">
+<meta name="twitter:image" content="https://wangjieqiang.com/2018/12/06/剃须刀与半程马拉松/比赛奖牌.jpg">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
   
@@ -155,43 +157,41 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-深入理解C-引用" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-剃须刀与半程马拉松" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      深入理解C++引用
+      剃须刀与半程马拉松
     </h1>
   
 
         
-        <a href="/2018/08/24/深入理解C-引用/" class="archive-article-date">
-  	<time datetime="2018-08-24T13:08:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-24</time>
+        <a href="/2018/12/06/剃须刀与半程马拉松/" class="archive-article-date">
+  	<time datetime="2018-12-06T13:40:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>关键词：</strong> C++引用</p>
-<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h1><blockquote>
-<p>引用并非对象，相反的，它只是为一个已经存在的对象所起的另外一个名字。</p>
+        <blockquote>
+<p>一把刀的锋刃是很难越过的，所以智者说得救之道是很难实现的。  </p>
 </blockquote>
-<p>这句话摘自<em>C++ Prime</em> 的46页。仔细品味这句话，就会产生很多疑惑。第一，引用并非是对象，那么引用是什么？第二，引用是所存在对象的别名，“别名”的具体含义是什么？它占用内存空间吗？它和指针变量有什么区别？所有的这些疑问将在本文中给以解答。我们将遵从认知事物的规律，从认识、理解和总结三个步骤来把握C++引用。</p>
+<p>这句被英国作家毛姆引用在其作品《刀锋》扉页上的句子，常常会莫名其妙地，在我拿着吉列剃须刀看着镜子中满脸剃须泡沫的自己时，倏忽间从脑海中蹦出来。很显然，做事情绝对不能分心，尤其又是手动剃须这种本身就具有自残倾向的的行为，最直接的恶果便是几乎每次剃须之后脸上都多了几处可见的伤口。可见别说得救之道是很难实现的，光是完美的剃须之道，就已经足够我伤脑筋的。</p>
+<p>伤脑筋总是难免的，可我还是对手动剃须这种行为一往情深。不是说没有体验过电动剃须刀的便捷与安全：开关一打开，剃须刀面开始旋转，下颚胡须与剃须刀摩擦发出嗡嗡的声音，然后不停地切换刀面与面部接触的位置，剃须刀机械地来回游弋，过程充满着文明与工业化的秩序与稳定。但我似乎更加潜意识地喜欢手动剃须刀，那种可能见血的恐惧与期待，在自我保护与自我伤害的矛盾中来回博弈，演变成一种不可名状的快感，最终在剃须结束时达到顶峰。</p>
 <a id="more"></a>
-<h1 id="1-认识C-引用——看山是山，看水是水"><a href="#1-认识C-引用——看山是山，看水是水" class="headerlink" title="1.认识C++引用——看山是山，看水是水"></a>1.认识C++引用——看山是山，看水是水</h1><p>关于引用，我们首先了解一下<em>C++ Prime</em>的定义：</p>
-<blockquote>
-<p><strong>引用</strong>（reference）为对象起了另外一个名字，引用类型引用（refer to）另外一种类型。通过将声名符写成&amp;d的形式来定义引用类型，其中d是声名的变量名。</p>
-</blockquote>
-<p>举个例子：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> &amp;j = i;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span> &lt;&lt; j &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    j++;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span> &lt;&lt; j &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; &amp;i &lt;&lt; <span class="string">" "</span> &lt;&lt; &amp;j &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在上述代码中，我们通过<code>int &amp;j = i;</code>来声名<code>j</code>是引用对象的变量，指向对象<code>i</code>。要注意的是，<strong>引用必须初始化</strong>，诸如<code>int &amp;j;</code>这样的代码是无法编译通过的。我们在定义引用时，所完成的操作并不是像其它初始化操作一样，将初始值拷贝到新建的对象中，而是将引用和它的初始值<strong>绑定</strong>在一起，并没有将初始值拷贝给引用。举个现实生活中的例子作为类比理解。有一个人的身份证正式姓名为李鹏程，他的外号叫作阿程。我们可以在日常生活中通过李鹏程这个名字来找到他，也可以通过阿程这个名字来找到他。阿程这个外号如果脱离了李鹏程这个人的实体，也就失去了它的含义。同理，如果我们说李鹏程长胖了10斤，也就意味着阿程也长胖了10斤。阿程这个外号和李鹏程这个实体是一一对应的关系，引用同引用的对象也是一一对应的关系。引用不可以重新绑定到另外一个对象，就像是不可以把阿程这个外号用在另一个人身上。上述代码的运行结果也说明了我们的认识是正确的。</p>
-<p>代码运行结果：</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">10 </span><span class="number">10</span></span><br><span class="line"><span class="symbol">11 </span><span class="number">11</span></span><br><span class="line"><span class="number">0</span>x7ffd01e3cf5c <span class="number">0</span>x7ffd01e3cf5c</span><br></pre></td></tr></table></figure>
-<p>可以看见，引用变量的值就是所引用的对象的值，引用变量的地址也就是所引用的对象的地址。到现在，我们初步认识了引用的含义和引用的用法。</p>
-<h1 id="2-理解C-引用——看山不是山，看水不是水"><a href="#2-理解C-引用——看山不是山，看水不是水" class="headerlink" title="2. 理解C++引用——看山不是山，看水不是水"></a>2. 理解C++引用——看山不是山，看水不是水</h1>
+<p>文字似乎有点夸张，但随着年岁的增长，我渐渐地发现了另一个长期压抑甚至是忽视的自己。这个“我”，他好斗，他暴躁，他嗜血，他极不安定，却又渴望完全掌控自己。最重要的是，<strong>他渴望掌控自己。</strong></p>
+<p>琳琅满目的商品，五彩斑斓的食物，花枝招展的美女，暴力血腥的游戏，应接不暇的微信，这个世界有太多太多的诱惑，太多太多的陷阱。在各种琐碎信息和花样广告的轰炸下，如果不想屈服于社会这台巨型绞肉机下，那似乎只能让那个“我”不断强化，以合法的身份，成为真正的我的组成部分。但就像高压锅的小孔放出高温气体一样，也必须找到合适的渠道去间歇式地释放那个“我”所带来的负面能量，这个<strong>渠道就是跑步。</strong></p>
+<p>好吧，上面的都是在胡扯，认真你就输了。不就是跑个步嘛，至于说得那么玄乎？是啊，跑步这么简单的事情，无非就是迈出双脚向前进这个动作的循环执行罢了，哪有什么难度可言。穿上舒服的跑鞋，听上喜欢的音乐，在天气适宜环境优美的条件下，任何健全人都可以跑步，任何健全人都可以成为跑者。<strong>我也只不过是千千万万跑者中的一员罢了。</strong>然而操场的四百米跑道似乎跑个五圈问题不大，这不巧了，公寓旁边的人造湖正好有五公里的塑胶跑道。塑胶跑道好像一圈也能跑得下来，两圈貌似不太吃力，三圈身体勉勉强强也能接受，双腿也没有撕心裂肺地哭诉抱怨，这时候便有一个声音从那个“我”中冒了出来，想不想挑战一下半程马拉松？</p>
+<p>当然也需要交代一下当时的状态。八月底的时候正在一家公司实习，然而实习的经历并不是很愉快。自己在面临着秋招和毕业论文的双重压力下，却依然每天过得浑浑噩噩，熬夜刷手机，白天卧不起。这种毫无目标毫无动力的生活状态让整个人异常颓废，也会胡思乱想着一些毫无边际的白日梦。我渴望改变，我渴望不想再接受这种生活循环的折磨，我渴望有一个目标有一件事情能让我感受到自己的存在，让我内心能够平静地去完成应该完成的事情。好吧，那就挑战一下半程马拉松吧！</p>
+<p>于是辞掉了实习的工作，做了个减法。于是报名了合肥半程马拉松，做了个加法。于是每周两次左右绕湖三圈跑，一次大概一个半小时。于是每周周末都会参加跑协的公路跑活动，一次八公里左右，一条天鹅湖路线，一条大蜀山路线。事情也并不是一番风顺，跑着跑着也在质疑自己，跑着跑着也就忘了自己的初心，跑着跑着就想着自己跑完了半程马拉松一定要发朋友圈证明自己多么牛逼，跑着跑着就想着自己这么渴望通过别人认可证明自己真是可笑之极，跑着跑着就回忆起大二在宝山校区绕着校园跑步篮球场边黄色路灯的温馨，跑着跑着就回忆起老家油库路巷口深秋梧桐叶的气息。<strong>我可以按照我的节奏向着我认为的终点，跑过去。</strong></p>
+<p>继续跑下去，就足够了。养成良好的生活节奏，就如同跑马拉松时良好的呼吸节奏一样，生活就能平稳地运行下去。那个“我”继续运转，也没有什么问题，就像村上在其书里记录的那样，<strong>Pain is inevitable, Suffering is optional</strong>。正如剃须刀在脸上所留下的伤口，无法抵消剃须完成那一刻的满足类似，忍受着半程马拉松所带来的痛苦，也就能理解生活另一层面的幸福。</p>
+<p>毕竟，道阻且长，跑则将至。</p>
+<p><img src="/2018/12/06/剃须刀与半程马拉松/比赛奖牌.jpg" alt="比赛奖牌"></p>
+
       
 
       
@@ -204,11 +204,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
         		</li>
       		
 		</ul>
@@ -220,11 +216,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志/C-C//" class="article-tag-list-link color1">C/C++</a>
+        			<a href="/categories/读书摘录//" class="article-tag-list-link color5">读书摘录</a>
         		</li>
       		
 		</ul>
@@ -279,7 +271,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://wangjieqiang.com/2018/08/24/深入理解C-引用/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://wangjieqiang.com/2018/12/06/剃须刀与半程马拉松/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -293,18 +285,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/09/28/My-CS4-Challenge/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          My CS4 Challenge
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/30/理解Python函数参数-args和-kwargs/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">理解Python函数参数*args和**kwargs</div>
+    <a href="/2018/11/13/理解Python中的深拷贝和浅拷贝/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">理解Python中的深拷贝和浅拷贝</div>
       <i class="icon-circle-right"></i>
     </a>
   
