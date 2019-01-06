@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://wangjieqiang.com">
-  <title>Archives: 2018/2 | 王杰强的博客</title>
+  <title>理解C关键字extern | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="南七技校软件培训速成中心16级学徒，半道出家的底层程序员，即将入职ARM。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="王杰强的博客">
-<meta property="og:url" content="https://wangjieqiang.com/archives/2018/02/index.html">
+  <meta name="description" content="0. 前言在学习MIT 6.087的过程中，遇到了变量作用域范围的问题，其中对C语言关键字extern的认识和理解并不够充分。搜索后发现了这篇英文博客，于是将之翻译修改，作为学习记录及总结。">
+<meta name="keywords" content="技术日志,C&#x2F;C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解C关键字extern">
+<meta property="og:url" content="https://wangjieqiang.com/2019/01/06/理解C关键字extern/index.html">
 <meta property="og:site_name" content="王杰强的博客">
-<meta property="og:description" content="南七技校软件培训速成中心16级学徒，半道出家的底层程序员，即将入职ARM。">
+<meta property="og:description" content="0. 前言在学习MIT 6.087的过程中，遇到了变量作用域范围的问题，其中对C语言关键字extern的认识和理解并不够充分。搜索后发现了这篇英文博客，于是将之翻译修改，作为学习记录及总结。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-06T03:28:37.556Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王杰强的博客">
-<meta name="twitter:description" content="南七技校软件培训速成中心16级学徒，半道出家的底层程序员，即将入职ARM。">
+<meta name="twitter:title" content="理解C关键字extern">
+<meta name="twitter:description" content="0. 前言在学习MIT 6.087的过程中，遇到了变量作用域范围的问题，其中对C语言关键字extern的认识和理解并不够充分。搜索后发现了这篇英文博客，于是将之翻译修改，作为学习记录及总结。">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
   
@@ -153,36 +155,76 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-理解C关键字extern" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/02/Python魔法方法和操作符重载/" class="archive-article-date">
-  	<time datetime="2018-02-01T16:12:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/02/Python魔法方法和操作符重载/">Python魔法方法和操作符重载</a>
+    <h1 class="article-title" itemprop="name">
+      理解C关键字extern
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/01/06/理解C关键字extern/" class="archive-article-date">
+  	<time datetime="2019-01-06T01:26:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>在学习<a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-087-practical-programming-in-c-january-iap-2010/" target="_blank" rel="noopener">MIT 6.087</a>的过程中，遇到了变量作用域范围的问题，其中对C语言关键字<code>extern</code>的认识和理解并不够充分。搜索后发现了这篇<a href="https://www.geeksforgeeks.org/understanding-extern-keyword-in-c/" target="_blank" rel="noopener">英文博客</a>，于是将之翻译修改，作为学习记录及总结。</p>
+<a id="more"></a>
+<h1 id="1-声名和定义"><a href="#1-声名和定义" class="headerlink" title="1. 声名和定义"></a>1. 声名和定义</h1><p>首先我们要明确的是，C语言关键词<code>extern</code>的应用范围包括C的变量和函数。笼统地讲，关键字<code>extern</code>延申了C语言变量和C语言函数的可视性，这可能就是它被命名为<code>extern</code>的原因。</p>
+<p>但在正式介绍<code>extern</code>关键字之前，我们还是要复习一下声明和定义的概念。对变量和函数的声明仅仅意味着这个变量和函数存在于程序的某处而并没有分配内存。虽然没有分配内存，但对变量和函数的声明却起到了关键的作用，它决定了变量和函数的类型。对于C语言中的变量而言，当一个变量被声明时，程序便知道了变量的数据类型。对于C语言中的函数而言，当一个函数被声明时，程序便知道了传递给函数的参数，参数的数据类型，参数的顺序以及函数的返回值。这就是声明的作用。当我们定义变量和函数时，除了完成声明的作用外，程序也为变量或函数分配内存。由此，我们可认为定义是声明的超集（或声明是定义的子集）。从这个角度出发，我们可以得到结论的是：变量和函数可被多次声明，但只可被定义一次。理由也显而易见，程序不可能在内存中的两个不同位置存储相同的变量和函数。上述就是关于声明和定义的全部内容。</p>
+<h1 id="2-extern关键字"><a href="#2-extern关键字" class="headerlink" title="2. extern关键字"></a>2. <code>extern</code>关键字</h1><h2 id="2-1-C函数与extern关键字"><a href="#2-1-C函数与extern关键字" class="headerlink" title="2.1 C函数与extern关键字"></a>2.1 C函数与<code>extern</code>关键字</h2><p>理解了声明和定义的概念，我们就能很清晰地理解<code>extern</code>关键字的作用。先来看一个简单的例子，C语言函数使用<code>extern</code>。默认情况下，C语言中函数的声明和定义都被预先添加关键字<code>extern</code>。也就是说，即使我们在声明和定义函数时没有使用<code>extern</code>关键字，它本身默认设定自动使用。举例来说，当我们编写的函数代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">foo</span><span class="params">(<span class="keyword">int</span> arg1, <span class="keyword">char</span> arg2)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><code>extern</code>关键字其实只是在开头被隐藏了而已，编译器实际处理的代码是</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">foo</span><span class="params">(<span class="keyword">int</span> arg1, <span class="keyword">char</span> arg2)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>同理适用于C语言函数的定义。由此，无论何时我们定义了一个C语言函数，<code>extern</code>关键字就会出现在函数定义的开始。由于函数可被多次声明但只可定义一次，我们可发现对函数的声明可被添加到多个C/H文件中，亦或者在单个C/H文件中多次出现。但函数的实际定义只能在项目程序中出现一次，即只能定义在一个C文件中。所以<code>extern</code>关键字拓展了函数在整个程序中的可视性，任何程序中包含了已知函数声明的文件都可以调用声明的函数。换句话说，只要知道了函数的定义，C编译器便可知道函数定义的存在，并找到函数的定义完成编译。这就是C函数与<code>extern</code>关键字的内容。</p>
+<h2 id="2-2-C变量与extern关键字"><a href="#2-2-C变量与extern关键字" class="headerlink" title="2.2 C变量与extern关键字"></a>2.2 C变量与<code>extern</code>关键字</h2><p>现在再让我们来看一看<code>extern</code>关键字在C变量上的使用。首先提出一个问题，我们如何在声明一个C变量时不去定义它？</p>
+<p>大部分人可能觉得这个问题问得有点神经病。但回答这个问题对于理解有<code>extern</code>关键字的C变量有着非常重要的意义。问题的答案是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> var;</span><br></pre></td></tr></table></figure>
+<p>上述代码中，我们声明了一个名为<code>var</code>的整型变量。需要明确的是，在这一步我们并没有定义变量<code>var</code>，由此也就并没有为变量<code>var</code>分配内存。由此我们可以根据需求，多次进行这种类型的声明。</p>
+<p>那么新的问题又要出现了，现在我们如何定义一个变量了？可能这个问题显得更加神经病。答案显而易见：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> var;</span><br></pre></td></tr></table></figure>
+<p>上述代码中，我们声明并且定义了一个名为<code>var</code>的整型变量（要记住定义是声明的超集哦🙃）。这时<code>var</code>的内存也已经分配。在C函数中，我们知道<code>extern</code>关键字是默认设定的。所以当我们定义一个函数时，我们可以在函数前添加<code>extern</code>，不会产生任何问题。但C函数这种<code>extern</code>的使用方式并不适用于C变量。如果我们设定<code>extern</code>关键字是C变量的默认设定，那么C变量只会被声明，程序永远不会为C变量分配内存。因此，当我们需要对C变量仅仅声明而不去定义时，我们必须对C变量显式地使用<code>extern</code>关键字。同时，由于<code>extern</code>的可视性拓展能力，如果我们知道了变量的声明以及变量已被定义，那么通过<code>extern</code>关键字我们可以在程序的任意位置使用此变量。</p>
+<p>接下来通过一些具体的例子来进一步加深理解。</p>
+<p>例子1：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> var;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    var = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码分析：程序编译成功。变量<code>var</code>被定义（隐式地被声明）为全局变量。</p>
+<p>例子2：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> var;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码分析：程序编译成功。变量<code>var</code>仅被声明。在主程序中没有使用<code>var</code>变量，所以程序没有出错。</p>
+<p>例子3：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> var;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    var = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码分析：程序编译出错。因为变量<code>var</code>仅仅被声明而没有在程序任何地方定义。程序并没有为变量<code>var</code>分配内存。所以当程序想修改一个没有内存的变量的值时，编译报错。</p>
+<p>例子4：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"somefile.h"</span></span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> var;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    var = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码分析：如果<code>somefile.h</code>中包含着变量<code>var</code>的定义，那么程序编译成功，否则编译失败。</p>
+<p>例子5：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> var = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    var = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码分析：你猜猜这段程序能正常运行嘛？这里就又涉及到了C标准里的另一条规定。在C语言中，如果一个变量仅被声明，但在声明的同时也进行了初始化，这个变量依旧会被分配内存。也就是此时变量被认为是完成了定义。由此，上述程序可编译成功和运行。</p>
+<h1 id="3-小结"><a href="#3-小结" class="headerlink" title="3. 小结"></a>3. 小结</h1><ol>
+<li>C变量和函数可被多次声明，但只可定义一次。</li>
+<li><code>extern</code>关键字用来拓展C变量和函数的可视性。</li>
+<li>程序中的函数的可视性默认设定为整个程序，所以<code>extern</code>关键字对于C函数的定义和使用是冗余的。</li>
+<li>当<code>extern</code>关键字用在C变量时，此变量只被声明而没有被定义。</li>
+<li>第4条有个例外，即当使用了<code>extern</code>的变量被声明的同时也被初始化，此操作可等同考虑为此变量被定义。</li>
+</ol>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a href="https://www.geeksforgeeks.org/understanding-extern-keyword-in-c/" target="_blank" rel="noopener">https://www.geeksforgeeks.org/understanding-extern-keyword-in-c/</a></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -192,21 +234,13 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Magic Method</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Operator Overloading</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -216,24 +250,111 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志/Python//" class="article-tag-list-link color2">Python</a>
+        			<a href="/categories/技术日志/C-C//" class="article-tag-list-link color1">C/C++</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://wangjieqiang.com/2019/01/06/理解C关键字extern/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/12/24/CS4-Challenge之MIT-6-0002/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CS4 Challenge之MIT-6.0002</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -256,8 +377,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
