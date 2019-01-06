@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://wangjieqiang.com">
   <title>理解C关键字extern | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0. 前言在学习MIT 6.087的过程中，遇到了变量作用域范围的问题，其中对C语言关键字extern的认识和理解并不够充分。搜索后发现了这篇英文博客，于是将之翻译修改，作为学习记录及总结。">
+  <meta name="description" content="关键词： C/C++  extern 0. 前言在学习MIT 6.087的过程中，遇到了变量作用域范围的问题，其中对C语言关键字extern的认识和理解并不够充分。搜索后发现了这篇英文博客，于是将之翻译修改，作为学习记录及总结。">
 <meta name="keywords" content="技术日志,C&#x2F;C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解C关键字extern">
 <meta property="og:url" content="https://wangjieqiang.com/2019/01/06/理解C关键字extern/index.html">
 <meta property="og:site_name" content="王杰强的博客">
-<meta property="og:description" content="0. 前言在学习MIT 6.087的过程中，遇到了变量作用域范围的问题，其中对C语言关键字extern的认识和理解并不够充分。搜索后发现了这篇英文博客，于是将之翻译修改，作为学习记录及总结。">
+<meta property="og:description" content="关键词： C/C++  extern 0. 前言在学习MIT 6.087的过程中，遇到了变量作用域范围的问题，其中对C语言关键字extern的认识和理解并不够充分。搜索后发现了这篇英文博客，于是将之翻译修改，作为学习记录及总结。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-06T03:28:37.556Z">
+<meta property="og:updated_time" content="2019-01-06T07:32:09.254Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解C关键字extern">
-<meta name="twitter:description" content="0. 前言在学习MIT 6.087的过程中，遇到了变量作用域范围的问题，其中对C语言关键字extern的认识和理解并不够充分。搜索后发现了这篇英文博客，于是将之翻译修改，作为学习记录及总结。">
+<meta name="twitter:description" content="关键词： C/C++  extern 0. 前言在学习MIT 6.087的过程中，遇到了变量作用域范围的问题，其中对C语言关键字extern的认识和理解并不够充分。搜索后发现了这篇英文博客，于是将之翻译修改，作为学习记录及总结。">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
   
@@ -175,7 +175,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>在学习<a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-087-practical-programming-in-c-january-iap-2010/" target="_blank" rel="noopener">MIT 6.087</a>的过程中，遇到了变量作用域范围的问题，其中对C语言关键字<code>extern</code>的认识和理解并不够充分。搜索后发现了这篇<a href="https://www.geeksforgeeks.org/understanding-extern-keyword-in-c/" target="_blank" rel="noopener">英文博客</a>，于是将之翻译修改，作为学习记录及总结。</p>
+        <p><strong>关键词：</strong> C/C++  extern</p>
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>在学习<a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-087-practical-programming-in-c-january-iap-2010/" target="_blank" rel="noopener">MIT 6.087</a>的过程中，遇到了变量作用域范围的问题，其中对C语言关键字<code>extern</code>的认识和理解并不够充分。搜索后发现了这篇<a href="https://www.geeksforgeeks.org/understanding-extern-keyword-in-c/" target="_blank" rel="noopener">英文博客</a>，于是将之翻译修改，作为学习记录及总结。</p>
 <a id="more"></a>
 <h1 id="1-声名和定义"><a href="#1-声名和定义" class="headerlink" title="1. 声名和定义"></a>1. 声名和定义</h1><p>首先我们要明确的是，C语言关键词<code>extern</code>的应用范围包括C的变量和函数。笼统地讲，关键字<code>extern</code>延申了C语言变量和C语言函数的可视性，这可能就是它被命名为<code>extern</code>的原因。</p>
 <p>但在正式介绍<code>extern</code>关键字之前，我们还是要复习一下声明和定义的概念。对变量和函数的声明仅仅意味着这个变量和函数存在于程序的某处而并没有分配内存。虽然没有分配内存，但对变量和函数的声明却起到了关键的作用，它决定了变量和函数的类型。对于C语言中的变量而言，当一个变量被声明时，程序便知道了变量的数据类型。对于C语言中的函数而言，当一个函数被声明时，程序便知道了传递给函数的参数，参数的数据类型，参数的顺序以及函数的返回值。这就是声明的作用。当我们定义变量和函数时，除了完成声明的作用外，程序也为变量或函数分配内存。由此，我们可认为定义是声明的超集（或声明是定义的子集）。从这个角度出发，我们可以得到结论的是：变量和函数可被多次声明，但只可被定义一次。理由也显而易见，程序不可能在内存中的两个不同位置存储相同的变量和函数。上述就是关于声明和定义的全部内容。</p>
@@ -476,15 +477,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0001</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0001</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -493,6 +490,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">技术日志</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -516,6 +517,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
               </li>
              
@@ -536,6 +545,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">朝话</a>
               </li>
              
@@ -544,19 +557,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
               </li>
             
             <div class="clearfix"></div>
