@@ -155,6 +155,192 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Python-OS模块小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/23/Python-OS模块小结/">Python OS模块小结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/23/Python-OS模块小结/" class="archive-article-date">
+  	<time datetime="2019-04-23T13:47:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>关键字：</strong> Python  OS模块</p>
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h1><p>前些日子在看PyQt5的项目代码时，遇到了使用OS模块实现目标文件夹中的文件遍历的功能。接下来的工作也会接触到与操作系统相关的操作，本文就是对Python的OS模块中相关函数的小结。</p>
+<h1 id="1-基本函数"><a href="#1-基本函数" class="headerlink" title="1. 基本函数"></a>1. 基本函数</h1><p>首先通过一些样例代码了解OS模块。</p>
+<p>导入OS模块：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br></pre></td></tr></table></figure>
+<p>查看OS模块中的函数列表：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(dir(os))</span><br></pre></td></tr></table></figure>
+<p>得到的输出结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'DirEntry'</span>, <span class="string">'F_OK'</span>, <span class="string">'MutableMapping'</span>, <span class="string">'O_APPEND'</span>, <span class="string">'O_BINARY'</span>, <span class="string">'O_CREAT'</span>, <span class="string">'O_EXCL'</span>, <span class="string">'O_NOINHERIT'</span>, <span class="string">'O_RANDOM'</span>, <span class="string">'O_RDONLY'</span>, <span class="string">'O_RDWR'</span>, <span class="string">'O_SEQUENTIAL'</span>, <span class="string">'O_SHORT_LIVED'</span>, <span class="string">'O_TEMPORARY'</span>, <span class="string">'O_TEXT'</span>, <span class="string">'O_TRUNC'</span>, <span class="string">'O_WRONLY'</span>, <span class="string">'P_DETACH'</span>, <span class="string">'P_NOWAIT'</span>, <span class="string">'P_NOWAITO'</span>, <span class="string">'P_OVERLAY'</span>, <span class="string">'P_WAIT'</span>, <span class="string">'PathLike'</span>, <span class="string">'R_OK'</span>, <span class="string">'SEEK_CUR'</span>, <span class="string">'SEEK_END'</span>, <span class="string">'SEEK_SET'</span>, <span class="string">'TMP_MAX'</span>, <span class="string">'W_OK'</span>, <span class="string">'X_OK'</span>, <span class="string">'_Environ'</span>, <span class="string">'__all__'</span>, <span class="string">'__builtins__'</span>, <span class="string">'__cached__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__file__'</span>, <span class="string">'__loader__'</span>, <span class="string">'__name__'</span>, <span class="string">'__package__'</span>, <span class="string">'__spec__'</span>, <span class="string">'_execvpe'</span>, <span class="string">'_exists'</span>, <span class="string">'_exit'</span>, <span class="string">'_fspath'</span>, <span class="string">'_get_exports_list'</span>, <span class="string">'_putenv'</span>, <span class="string">'_unsetenv'</span>, <span class="string">'_wrap_close'</span>, <span class="string">'abc'</span>, <span class="string">'abort'</span>, <span class="string">'access'</span>, <span class="string">'altsep'</span>, <span class="string">'chdir'</span>, <span class="string">'chmod'</span>, <span class="string">'close'</span>, <span class="string">'closerange'</span>, <span class="string">'cpu_count'</span>, <span class="string">'curdir'</span>, <span class="string">'defpath'</span>, <span class="string">'device_encoding'</span>, <span class="string">'devnull'</span>, <span class="string">'dup'</span>, <span class="string">'dup2'</span>, <span class="string">'environ'</span>, <span class="string">'errno'</span>, <span class="string">'error'</span>, <span class="string">'execl'</span>, <span class="string">'execle'</span>, <span class="string">'execlp'</span>, <span class="string">'execlpe'</span>, <span class="string">'execv'</span>, <span class="string">'execve'</span>, <span class="string">'execvp'</span>, <span class="string">'execvpe'</span>, <span class="string">'extsep'</span>, <span class="string">'fdopen'</span>, <span class="string">'fsdecode'</span>, <span class="string">'fsencode'</span>, <span class="string">'fspath'</span>, <span class="string">'fstat'</span>, <span class="string">'fsync'</span>, <span class="string">'ftruncate'</span>, <span class="string">'get_exec_path'</span>, <span class="string">'get_handle_inheritable'</span>, <span class="string">'get_inheritable'</span>, <span class="string">'get_terminal_size'</span>, <span class="string">'getcwd'</span>, <span class="string">'getcwdb'</span>, <span class="string">'getenv'</span>, <span class="string">'getlogin'</span>, <span class="string">'getpid'</span>, <span class="string">'getppid'</span>, <span class="string">'isatty'</span>, <span class="string">'kill'</span>, <span class="string">'linesep'</span>, <span class="string">'link'</span>, <span class="string">'listdir'</span>, <span class="string">'lseek'</span>, <span class="string">'lstat'</span>, <span class="string">'makedirs'</span>, <span class="string">'mkdir'</span>, <span class="string">'name'</span>, <span class="string">'open'</span>, <span class="string">'pardir'</span>, <span class="string">'path'</span>, <span class="string">'pathsep'</span>, <span class="string">'pipe'</span>, <span class="string">'popen'</span>, <span class="string">'putenv'</span>, <span class="string">'read'</span>, <span class="string">'readlink'</span>, <span class="string">'remove'</span>, <span class="string">'removedirs'</span>, <span class="string">'rename'</span>, <span class="string">'renames'</span>, <span class="string">'replace'</span>, <span class="string">'rmdir'</span>, <span class="string">'scandir'</span>, <span class="string">'sep'</span>, <span class="string">'set_handle_inheritable'</span>, <span class="string">'set_inheritable'</span>, <span class="string">'spawnl'</span>, <span class="string">'spawnle'</span>, <span class="string">'spawnv'</span>, <span class="string">'spawnve'</span>, <span class="string">'st'</span>, <span class="string">'startfile'</span>, <span class="string">'stat'</span>, <span class="string">'stat_float_times'</span>, <span class="string">'stat_result'</span>, <span class="string">'statvfs_result'</span>, <span class="string">'strerror'</span>, <span class="string">'supports_bytes_environ'</span>, <span class="string">'supports_dir_fd'</span>, <span class="string">'supports_effective_ids'</span>, <span class="string">'supports_fd'</span>, <span class="string">'supports_follow_symlinks'</span>, <span class="string">'symlink'</span>, <span class="string">'sys'</span>, <span class="string">'system'</span>, <span class="string">'terminal_size'</span>, <span class="string">'times'</span>, <span class="string">'times_result'</span>, <span class="string">'truncate'</span>, <span class="string">'umask'</span>, <span class="string">'uname_result'</span>, <span class="string">'unlink'</span>, <span class="string">'urandom'</span>, <span class="string">'utime'</span>, <span class="string">'waitpid'</span>, <span class="string">'walk'</span>, <span class="string">'write'</span>]</span><br></pre></td></tr></table></figure>
+<p>通过<code>getcwd</code>函数，我们可获取当前的工作路径：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(os.getcwd())</span><br></pre></td></tr></table></figure>
+<p>得到的输出结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\jiewan01\test\MIT_6<span class="number">.0001</span>_Introduction_to_CS_Using_Python-master</span><br></pre></td></tr></table></figure>
+<h1 id="2-列出目录与目录内的文件"><a href="#2-列出目录与目录内的文件" class="headerlink" title="2. 列出目录与目录内的文件"></a>2. 列出目录与目录内的文件</h1><p>可通过<code>listdir</code>函数列出当前目录下中的目录与文件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(os.listdir())</span><br></pre></td></tr></table></figure>
+<p>得到的输出结果是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'ps0'</span>, <span class="string">'ps1'</span>, <span class="string">'ps2'</span>, <span class="string">'ps3'</span>, <span class="string">'ps4'</span>, <span class="string">'ps5'</span>, <span class="string">'README.md'</span>]</span><br></pre></td></tr></table></figure>
+<p>从输出的结果可以看出，在当前目录下，我一共有6个文件夹和1个<code>README.md</code>文件。</p>
+<p>如果想要获取整个项目文件的目录树结构，我们通过使用<code>os.walk()</code>函数对当前路径下每个目录内的文件进行迭代，其代码如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># 使用os.walk()遍历当前文件目录下的所有文件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">list_files</span><span class="params">(startpath)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> os.walk(startpath):</span><br><span class="line">        level = root.replace(startpath, <span class="string">''</span>).count(os.sep)</span><br><span class="line">        indent = <span class="string">' '</span> * <span class="number">4</span> * level</span><br><span class="line">        print(<span class="string">'&#123;&#125;&#123;&#125;/'</span>.format(indent, os.path.basename(root)))</span><br><span class="line">        subindent = <span class="string">' '</span> <span class="number">4</span> * (level + <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> f <span class="keyword">in</span> files:</span><br><span class="line">            print(<span class="string">'&#123;&#125;&#123;&#125;'</span>.format(subindent, f))</span><br></pre></td></tr></table></figure>
+<p>在上述代码中，<code>os.walk()</code>函数返回的是包含迭代到当前的根目录、根目录下所有子目录、子目录中的所有文件的生成器。代码通过设置<code>indent</code>和<code>subindent</code>两个参数来实现目录层级的显示。<code>os.path.basename()</code>返回文件路径最后的文件名。调用<code>list_files</code>函数，实现对当前目录的遍历，代码为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">startpath = os.getcwd()</span><br><span class="line">list_files(startpath)</span><br></pre></td></tr></table></figure>
+<p>得到的输出结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">test/</span><br><span class="line">    MIT_6<span class="number">.0001</span>_Introduction_to_CS_Using_Python-master/</span><br><span class="line">        README.md</span><br><span class="line">        ps0/</span><br><span class="line">            MIT6_0001F16_Getting_Start.pdf</span><br><span class="line">            MIT6_0001F16_ProblemSet0.pdf</span><br><span class="line">            pkgtest.py</span><br><span class="line">            ps0.py</span><br><span class="line">        ps1/</span><br><span class="line">            MIT6_0001F16_ps1.pdf</span><br><span class="line">            MIT6_0001F16_StyleGuide.pdf</span><br><span class="line">            ps1a.py</span><br><span class="line">            ps1b.py</span><br><span class="line">            ps1c.py</span><br><span class="line">        ps2/</span><br><span class="line">            hangman.py</span><br><span class="line">            MIT6_0001F16_Pset2.pdf</span><br><span class="line">            words.txt</span><br><span class="line">        ps3/</span><br><span class="line">            MIT6_0001F16_ProblemSet3.pdf</span><br><span class="line">            ps3.py</span><br><span class="line">            test_ps3.py</span><br><span class="line">            words.txt</span><br><span class="line">        ps4/</span><br><span class="line">            MIT6_0001F16_Pset4.pdf</span><br><span class="line">            ps4a.py</span><br><span class="line">            ps4b.py</span><br><span class="line">            ps4c.py</span><br><span class="line">            story.txt</span><br><span class="line">            words.txt</span><br><span class="line">        ps5/</span><br><span class="line">            feedparser.py</span><br><span class="line">            MIT6_0001F16_ps5.pdf</span><br><span class="line">            mtTkinter.py</span><br><span class="line">            my_own_triggers.png</span><br><span class="line">            my_own_triggers.txt</span><br><span class="line">            project_util.py</span><br><span class="line">            ps5.py</span><br><span class="line">            ps5_test.py</span><br><span class="line">            test_is_phrase_in.py</span><br><span class="line">            triggers.txt</span><br></pre></td></tr></table></figure>
+<p>从输出结果可以看到，每个目录后都以<code>/</code>结束，目录内的文件缩进4个空格。</p>
+<h1 id="3-更改工作目录"><a href="#3-更改工作目录" class="headerlink" title="3. 更改工作目录"></a>3. 更改工作目录</h1><p>我们通过<code>os.chdir</code>函数来更改工作目录，进入到<code>ps5</code>工作目录下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.chdir(<span class="string">'MIT_6.0001_Introduction_to_CS_Using_Python-master/ps5'</span>)</span><br></pre></td></tr></table></figure>
+<p>再次使用<code>list_files</code>函数，得到输出结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ps5/</span><br><span class="line">    feedparser.py</span><br><span class="line">    MIT6_0001F16_ps5.pdf</span><br><span class="line">    mtTkinter.py</span><br><span class="line">    my_own_triggers.png</span><br><span class="line">    my_own_triggers.txt</span><br><span class="line">    project_util.py</span><br><span class="line">    ps5.py</span><br><span class="line">    ps5_test.py</span><br><span class="line">    test_is_phrase_in.py</span><br><span class="line">    triggers.txt</span><br></pre></td></tr></table></figure>
+<h1 id="4-创建单个或嵌套目录结构"><a href="#4-创建单个或嵌套目录结构" class="headerlink" title="4. 创建单个或嵌套目录结构"></a>4. 创建单个或嵌套目录结构</h1><p>我们在当前目录下创建一个名为<code>testdir</code>的新目录。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.mkdir(<span class="string">'testdir'</span>)</span><br></pre></td></tr></table></figure>
+<p>再调用<code>list_files</code>函数显示当前目录下的所有文件，得到的输出结果为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ps5/</span><br><span class="line">    feedparser.py</span><br><span class="line">    MIT6_0001F16_ps5.pdf</span><br><span class="line">    mtTkinter.py</span><br><span class="line">    my_own_triggers.png</span><br><span class="line">    my_own_triggers.txt</span><br><span class="line">    project_util.py</span><br><span class="line">    ps5.py</span><br><span class="line">    ps5_test.py</span><br><span class="line">    test_is_phrase_in.py</span><br><span class="line">    triggers.txt</span><br><span class="line">    testdir/</span><br></pre></td></tr></table></figure>
+<p>由输出结果可以看到，该函数在当前目录下创建了一个新目录。</p>
+<p>我们再来创建一个2级的嵌套目录：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.mkdir(<span class="string">'level1dir/level2dir'</span>)</span><br></pre></td></tr></table></figure>
+<p>得到的输出结果是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">FileNotFoundError: [WinError <span class="number">3</span>] 系统找不到指定的路径。: <span class="string">'level1dir/level2dir'</span></span><br></pre></td></tr></table></figure>
+<p>我们得到了一个<code>FileNotFoundError</code>的错误，原因在于Python会在创建<code>level2dir</code>之前先调用<code>level1dir</code>，而<code>level1dir</code>一开始就没有创建，由此抛出了<code>FileNotFoundError</code>错误。</p>
+<p>想要创建多级嵌套目录，我们可使用<code>makekdirs()</code>函数，来递归地创建多级目录。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.makedirs(<span class="string">'level1dir/level2dir'</span>)</span><br></pre></td></tr></table></figure>
+<p>再次调用<code>list_files</code>函数来显示当前目录的目录树结构，得到的输出结果为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ps5/</span><br><span class="line">    feedparser.py</span><br><span class="line">    MIT6_0001F16_ps5.pdf</span><br><span class="line">    mtTkinter.py</span><br><span class="line">    my_own_triggers.png</span><br><span class="line">    my_own_triggers.txt</span><br><span class="line">    project_util.py</span><br><span class="line">    ps5.py</span><br><span class="line">    ps5_test.py</span><br><span class="line">    test_is_phrase_in.py</span><br><span class="line">    triggers.txt</span><br><span class="line">    level1dir/</span><br><span class="line">       level2dir/</span><br><span class="line">    testdir/</span><br></pre></td></tr></table></figure>
+<p>输出结果显示，再<code>ps5</code>目录下有我们创建的<code>level1dir</code>和<code>testdir</code>两个新的文件夹。在<code>level1dir</code>目录下有<code>level2dir</code>目录。</p>
+<h1 id="5-递归地删除单个或多个目录"><a href="#5-递归地删除单个或多个目录" class="headerlink" title="5. 递归地删除单个或多个目录"></a>5. 递归地删除单个或多个目录</h1><p>我们可通过<code>rmdir</code>指令删除目录：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.rmdir(<span class="string">'testdir'</span>)</span><br></pre></td></tr></table></figure>
+<p>调用<code>list_files</code>函数严重目录是否已被删除，得到的输出结果是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ps5/</span><br><span class="line">    feedparser.py</span><br><span class="line">    MIT6_0001F16_ps5.pdf</span><br><span class="line">    mtTkinter.py</span><br><span class="line">    my_own_triggers.png</span><br><span class="line">    my_own_triggers.txt</span><br><span class="line">    project_util.py</span><br><span class="line">    ps5.py</span><br><span class="line">    ps5_test.py</span><br><span class="line">    test_is_phrase_in.py</span><br><span class="line">    triggers.txt</span><br><span class="line">    level1dir/</span><br><span class="line">        level2dir/</span><br></pre></td></tr></table></figure>
+<p>从输出结果可以看出，<code>testdir</code>已经被删除。</p>
+<p>接下来我们删除<code>level1dir</code>的嵌套目录：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.rmdir(<span class="string">'level1dir'</span>)</span><br></pre></td></tr></table></figure>
+<p>得到的输出结果是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">OSError: [WinError <span class="number">145</span>] 目录不是空的。: <span class="string">'level1dir'</span></span><br></pre></td></tr></table></figure>
+<p>输出结果抛出<code>OSError</code>错误，报错的信息说明<code>level1dir</code>目录不是空的，因为<code>level1dir</code>下有<code>level2dir</code>目录。同Unix系统类似，<code>os.rmdir</code>函数不能删除非空目录。</p>
+<p>同<code>makedirs()</code>函数一样，我们使用<code>removedirs()</code>来实现目录树结构中目录的递归删除。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.removedirs(<span class="string">'level1dir/level2dir'</span>)</span><br></pre></td></tr></table></figure>
+<p>再次调用<code>list_files</code>函数来显示目录树结构，得到的输出结果为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ps5/</span><br><span class="line">    feedparser.py</span><br><span class="line">    MIT6_0001F16_ps5.pdf</span><br><span class="line">    mtTkinter.py</span><br><span class="line">    my_own_triggers.png</span><br><span class="line">    my_own_triggers.txt</span><br><span class="line">    project_util.py</span><br><span class="line">    ps5.py</span><br><span class="line">    ps5_test.py</span><br><span class="line">    test_is_phrase_in.py</span><br><span class="line">    triggers.txt</span><br></pre></td></tr></table></figure>
+<p>当前显示的目录树结构与先前相同，没有发生变化。</p>
+<h1 id="6-其它常用OS模块函数表"><a href="#6-其它常用OS模块函数表" class="headerlink" title="6. 其它常用OS模块函数表"></a>6. 其它常用OS模块函数表</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">函数名</th>
+<th style="text-align:center">函数含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">os.rename(old, new)</td>
+<td style="text-align:center">将old文件名重新命名为new</td>
+</tr>
+<tr>
+<td style="text-align:center">os.path.abspath(file)</td>
+<td style="text-align:center">获得file的绝对路径</td>
+</tr>
+<tr>
+<td style="text-align:center">os.path.dirname(file)</td>
+<td style="text-align:center">若file是文件，则获取文件所在的目录；若file是目录，获取file目录的上一层目录</td>
+</tr>
+<tr>
+<td style="text-align:center">os.path.basename(file)</td>
+<td style="text-align:center">获取file所在文件路径最后的目录或文件</td>
+</tr>
+<tr>
+<td style="text-align:center">os.path.split(path)</td>
+<td style="text-align:center">将path所在的路径与文件名分离</td>
+</tr>
+<tr>
+<td style="text-align:center">os.path.join(path, file)</td>
+<td style="text-align:center">将path和file两者组合形成文件路径</td>
+</tr>
+</tbody>
+</table>
+<h1 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h1><p>Python的OS模块提供了与操作系统交互的接口，在与操作系统中的文件打交道时非常有用。记住本文中使用到的OS模块函数，已经足够的使用。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
+<li><a href="https://docs.python.org/3/library/os.html" target="_blank" rel="noopener">https://docs.python.org/3/library/os.html</a></li>
+<li><a href="https://stackabuse.com/introduction-to-python-os-module/" target="_blank" rel="noopener">https://stackabuse.com/introduction-to-python-os-module/</a></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/23/Python-OS模块小结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-理解C关键字extern" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1021,104 +1207,9 @@
 
 
   
-    <article id="post-理解C-C-中的左值和右值" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/29/理解C-C-中的左值和右值/">理解C/C++中的左值和右值</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/29/理解C-C-中的左值和右值/" class="archive-article-date">
-  	<time datetime="2018-03-29T07:39:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在执行<strong>100天C++ Primer计划</strong>，书中第四章里的左值和右值的概念让我困惑不已。CSDN博客里关于左值和右值的文章介绍的都不够全面，每次看了一些都没有耐心继续再看下去。个人认为这篇<a href="https://eli.thegreenplace.net/2011/12/15/understanding-lvalues-and-rvalues-in-c-and-c" target="_blank" rel="noopener">英文博客</a>把左值和右值的概念说明的非常清晰，且方式也是循循善诱。翻译之作为学习的存档。</p>
-        
-          <a class="article-more-a" href="/2018/03/29/理解C-C-中的左值和右值/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志/C-C//" class="article-tag-list-link color1">C/C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/29/理解C-C-中的左值和右值/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1258,15 +1349,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1286,23 +1377,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">matlab</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">k-means</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1318,11 +1401,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">matlab</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">k-means</a>
               </li>
             
             <div class="clearfix"></div>
