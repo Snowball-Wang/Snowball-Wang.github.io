@@ -159,6 +159,99 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Python-unittest模块小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/16/Python-unittest模块小结/">Python unittest模块小结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/16/Python-unittest模块小结/" class="archive-article-date">
+  	<time datetime="2019-07-16T11:18:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>关键字：</strong> 单元测试 Python unittest模块</p>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>最近在看关于<a href="https://wiki.fd.io/view/VPP" target="_blank" rel="noopener">VPP</a>项目中的CSIT的部分，VPP的Path test里主要就是应用了Python的unittest框架，正好在毕业论文项目中也使用到了unittest完成相应单元测试，<a href="https://pymotw.com/3/unittest/index.html" target="_blank" rel="noopener">这篇博客</a>对unittest框架的使用作了全面的介绍，故翻译之作为学习的存档，也算是一个小小的总结。</p>
+<p>Python的<code>unittest</code>框架是基于Kent Beck（TDD测试驱动开发发明人）和Erich Gamma的XUnit框架开发完成的，这种模式在C、Perl、Java和Smalltalk等语言中也被重复利用。<code>unittest</code>框架中有三个基本概念，分别是<strong>test fixtures</strong>，<strong>test suites</strong>以及<strong>test runner</strong>，这三个概念的组合使用可以实现Python的自动化测试。</p>
+        
+          <a class="article-more-a" href="/2019/07/16/Python-unittest模块小结/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/16/Python-unittest模块小结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-记论文答辩之过程与反思" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1007,103 +1100,6 @@
 
 
   
-    <article id="post-理解Python函数参数-args和-kwargs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/30/理解Python函数参数-args和-kwargs/">理解Python函数参数*args和**kwargs</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/30/理解Python函数参数-args和-kwargs/" class="archive-article-date">
-  	<time datetime="2018-04-30T07:53:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/2018/04/30/理解Python函数参数-args和-kwargs/tricks.jpg" alt="*args和**kwargs"></p>
-<p><strong>关键字：</strong> Python <code>*args</code>  <code>**kwargs</code></p>
-<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>上周和室友讨论他在科大讯飞面试的问题时，谈到了Python装饰器的含义和用途。于是乎今天重新复习了一下关于Python装饰器的内容。但在阅读Python装饰器的代码中，函数经常会出现<code>*args</code>和<code>**kwargs</code>等参数，虽然之前了解这两个参数表示可以输入数量不定的变量的含义，但并没有深入理解其含义和用法。写下此文作为理解<code>*args</code>和<code>**kwargs</code>的学习笔记。</p>
-        
-          <a class="article-more-a" href="/2018/04/30/理解Python函数参数-args和-kwargs/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志/Python//" class="article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/30/理解Python函数参数-args和-kwargs/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1230,7 +1226,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
+                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0001</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MIT 6.087</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1242,7 +1250,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0001</a>
+                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1294,18 +1302,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">朝话</a>
               </li>
              
@@ -1314,11 +1310,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MIT 6.087</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
               </li>
             
             <div class="clearfix"></div>
