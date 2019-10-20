@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://wangjieqiang.com">
-  <title>Tag: input() | 王杰强的博客</title>
+  <title>理解C语言中的Stringizing操作符和Token Pasting操作符 | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="南七技校软件培训速成中心16级学徒，半道出家的底层程序员，即将入职ARM。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="王杰强的博客">
-<meta property="og:url" content="https://wangjieqiang.com/tags/input/index.html">
+  <meta name="description" content="关键词： C/C++ Stringizing Operator  Token Pasting Operator 0.前言这些天在阅读VPP源码时，发现VPP的源码在很多宏的定义中使用了诸如#和##的操作符，这在以前C语言的学习中从未接触过。Google了一下发现#叫做Stringizing Operator，##叫做T">
+<meta name="keywords" content="技术日志,C&#x2F;C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解C语言中的Stringizing操作符和Token Pasting操作符">
+<meta property="og:url" content="https://wangjieqiang.com/2019/09/01/理解C语言中的Stringizing操作符和Token-Pasting操作符/index.html">
 <meta property="og:site_name" content="王杰强的博客">
-<meta property="og:description" content="南七技校软件培训速成中心16级学徒，半道出家的底层程序员，即将入职ARM。">
+<meta property="og:description" content="关键词： C/C++ Stringizing Operator  Token Pasting Operator 0.前言这些天在阅读VPP源码时，发现VPP的源码在很多宏的定义中使用了诸如#和##的操作符，这在以前C语言的学习中从未接触过。Google了一下发现#叫做Stringizing Operator，##叫做Token Pasting Operator，借以此文做一个对这两个C语言知识点的">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-20T13:49:52.287Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王杰强的博客">
-<meta name="twitter:description" content="南七技校软件培训速成中心16级学徒，半道出家的底层程序员，即将入职ARM。">
+<meta name="twitter:title" content="理解C语言中的Stringizing操作符和Token Pasting操作符">
+<meta name="twitter:description" content="关键词： C/C++ Stringizing Operator  Token Pasting Operator 0.前言这些天在阅读VPP源码时，发现VPP的源码在很多宏的定义中使用了诸如#和##的操作符，这在以前C语言的学习中从未接触过。Google了一下发现#叫做Stringizing Operator，##叫做Token Pasting Operator，借以此文做一个对这两个C语言知识点的">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
   
@@ -157,36 +159,75 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-理解C语言中的Stringizing操作符和Token-Pasting操作符" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/17/Python中raw-input-和input-的区别/" class="archive-article-date">
-  	<time datetime="2018-01-17T01:41:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-17</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/17/Python中raw-input-和input-的区别/">Python中raw_input()和input()的区别</a>
+    <h1 class="article-title" itemprop="name">
+      理解C语言中的Stringizing操作符和Token Pasting操作符
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/09/01/理解C语言中的Stringizing操作符和Token-Pasting操作符/" class="archive-article-date">
+  	<time datetime="2019-09-01T05:52:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>关键词：</strong> C/C++ Stringizing Operator  Token Pasting Operator</p>
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h1><p>这些天在阅读<a href="https://wiki.fd.io/view/VPP" target="_blank" rel="noopener">VPP</a>源码时，发现VPP的源码在很多宏的定义中使用了诸如<code>#</code>和<code>##</code>的操作符，这在以前C语言的学习中从未接触过。Google了一下发现<code>#</code>叫做<strong>Stringizing Operator</strong>，<code>##</code>叫做<strong>Token Pasting Operator</strong>，借以此文做一个对这两个C语言知识点的梳理和总结。</p>
+<a id="more"></a>
+<h1 id="1-Stringizing操作符"><a href="#1-Stringizing操作符" class="headerlink" title="1. Stringizing操作符"></a>1. Stringizing操作符</h1><p>Stringizing操作符<code>#</code>的作用，简单来说就是把宏定义中的参数转换成字符串值（string literals）。当宏定义的参数前有一个<code>#</code>时，C语言的预处理器（preprocessor）会将参数转换成一个字符串常量。不同于常规的宏参数替代，这个过程中宏参数不会首先进行展开，这个过程就叫做<strong>stringizing</strong>。</p>
+<p>举个例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sum(xy) printf(#xy <span class="meta-string">" = %f\n"</span>, xy)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">float</span> a = <span class="number">1.1</span>;</span><br><span class="line">    <span class="keyword">float</span> b = <span class="number">1.2</span>;</span><br><span class="line">    sum(a+b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"a+b"</span> <span class="string">" = %f\n"</span>, a+b);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码的输出结果为：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a+<span class="selector-tag">b</span> = <span class="number">2.300000</span></span><br><span class="line">a+<span class="selector-tag">b</span> = <span class="number">2.300000</span></span><br></pre></td></tr></table></figure>
+<p>可以看到，<strong>stringizing</strong>操作符的效果和<code>printf</code>的效果相同，只是在宏定义中把原来的<code>a+b</code>计算表达式转换成了字符串。</p>
+<p>在使用<strong>stringizing</strong>操作符时，我们需要注意：</p>
+<ul>
+<li><strong>stringizing</strong>操作符会删除参数前后包含的空格（leading and trailing white space）。</li>
+<li>如果传给<strong>stringizing</strong>操作符的参数是宏的话，该宏不会被展开。</li>
+<li>诸如<code>,``)</code>之类的符号不能被<strong>stringized</strong>。</li>
+</ul>
+<p>举个例子说明一下上述的注意要点：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> print(var) #var</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GREETING <span class="meta-string">"welcome"</span> </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *s = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="comment">//s = print(,);    //,不能作为操作符</span></span><br><span class="line">    s = print(<span class="string">","</span>);  </span><br><span class="line">    <span class="built_in">puts</span>(s);</span><br><span class="line">    <span class="built_in">puts</span>(print( Testing Program  ));  <span class="comment">//前后空格被去除</span></span><br><span class="line">    <span class="built_in">puts</span>(print(GREETING));            <span class="comment">//此处的GREETING宏不被展开</span></span><br><span class="line">    <span class="built_in">puts</span>(GREETING);                   <span class="comment">//此处的GREETING宏正常展开</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果为：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">","                            </span><br><span class="line"><span class="keyword">Testing </span>Program                                                                         GREETING                                                                              welcome</span><br></pre></td></tr></table></figure>
+<p>如果使用注释的<code>s = print(,)</code>，程序编译会出错，同上述的第三点吻合。<code>puts(print( Testing Program  )</code>输出的结果为<code>Testing Program</code>，验证了上述关于前后空格删除的注意点。接下来的两条语句就是比较<strong>stringizing</strong>操作符传入的参数是宏不被展开的情况，输出的结果也验证了第二条注意点。</p>
+<h1 id="2-Token-Pasting操作符"><a href="#2-Token-Pasting操作符" class="headerlink" title="2. Token Pasting操作符"></a>2. Token Pasting操作符</h1><p>要理解<strong>token pasting</strong>操作符就要首先理解<strong>token</strong>在C语言中的含义。类比于英语句子中的单词，<strong>token</strong>在C语言中就是构成一个程序的最小组成单元，也是C语言编译器能够理解的C中的最小单元。C语言的<strong>token</strong>主要包括以下6种类型：</p>
+<ul>
+<li>C中的关键字（char、struct、if等）</li>
+<li>C中的标识符（即变量的变量名）</li>
+<li>C中的常量（整型常量、字符常量等）</li>
+<li>C中的字符串</li>
+<li>C中的特殊符号（诸如<code>[]</code>数组括号、<code>#</code>预处理指令符号等）</li>
+<li>C中的操作符（单元操作符、二元操作符、三元操作符）</li>
+</ul>
+<p><strong>token pasting</strong>操作符能够在一个宏定义里将两个<strong>token</strong>合并成一个<strong>token</strong>。换句话说，<strong>token pasting</strong>操作符<code>##</code>的作用就是消除<strong>token</strong>的空格然后把<strong>token</strong>中非空格的字符的字符连接在一起。</p>
+<p>举个例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_DEVICE_BASE_ADDR  0x40004000</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_DEVICE_REG_CTRL_OFS  0x20</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_DEVICE_REG_STATUS_OFS  0x30</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MY_DEVICE_REG_INTR_OFS  0x40</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> REG(name)  (MY_DEVICE_BASE_ADDR + MY_DEVICE_REG_##name##_OFS)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Example to use ## Pre-Processor!\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"*** My-Device Register ***\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Control-Register Addr = 0x%x\n"</span>, REG(CTRL));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Status-Register Addr = 0x%x\n"</span>, REG(STATUS));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Interrupt-Register Addr = 0x%x\n"</span>, REG(INTR));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序的输出结果是：</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Example <span class="keyword">to</span> use ## Pre-Processor!</span><br><span class="line">*** My-Device <span class="keyword">Register</span> ***</span><br><span class="line">Control-<span class="keyword">Register</span> Addr = <span class="number">0</span>x40004020</span><br><span class="line">Status-<span class="keyword">Register</span> Addr = <span class="number">0</span>x40004030</span><br><span class="line"><span class="keyword">Interrupt</span>-<span class="keyword">Register</span> Addr = <span class="number">0</span>x40004040</span><br></pre></td></tr></table></figure>
+<p>可以看到，上述程序利用<strong>token pasting</strong>操作符将不同寄存器的名字对应的值与基值相加，得到相应的结果。我们不用针对三种不同的寄存器定义三个不同的宏。<strong>token pasting</strong>操作符的使用使上述实现既简单也清晰，大大降低了重复编码的操作。</p>
+<h1 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h1><p>本文主要小结了<strong>stringizing</strong>操作符和<strong>token-pasting</strong>操作符的使用方法，并结合代码说明两种方法的实际用途。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a href="https://embetronicx.com/tutorials/p_language/c/stringizing-and-token-pasting-operators-in-c-programming/" target="_blank" rel="noopener">https://embetronicx.com/tutorials/p_language/c/stringizing-and-token-pasting-operators-in-c-programming/</a></li>
+<li><a href="https://data-flair.training/blogs/tokens-in-c/" target="_blank" rel="noopener">https://data-flair.training/blogs/tokens-in-c/</a></li>
+<li><a href="https://kunaliiita.wordpress.com/2007/09/01/what-is-the-token-pasting-operator-and-stringizing-operator-in-c/" target="_blank" rel="noopener">https://kunaliiita.wordpress.com/2007/09/01/what-is-the-token-pasting-operator-and-stringizing-operator-in-c/</a></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -196,21 +237,13 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">raw_input()</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">input()</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -218,22 +251,113 @@
         		<li class="article-tag-list-item">
         			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术日志/C-C//" class="article-tag-list-link color1">C/C++</a>
+        		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://wangjieqiang.com/2019/09/01/理解C语言中的Stringizing操作符和Token-Pasting操作符/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/07/16/Python-unittest模块小结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python unittest模块小结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -256,9 +380,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

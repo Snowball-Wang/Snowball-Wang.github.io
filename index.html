@@ -159,6 +159,102 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-理解C语言中的Stringizing操作符和Token-Pasting操作符" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/01/理解C语言中的Stringizing操作符和Token-Pasting操作符/">理解C语言中的Stringizing操作符和Token Pasting操作符</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/01/理解C语言中的Stringizing操作符和Token-Pasting操作符/" class="archive-article-date">
+  	<time datetime="2019-09-01T05:52:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>关键词：</strong> C/C++ Stringizing Operator  Token Pasting Operator</p>
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h1><p>这些天在阅读<a href="https://wiki.fd.io/view/VPP" target="_blank" rel="noopener">VPP</a>源码时，发现VPP的源码在很多宏的定义中使用了诸如<code>#</code>和<code>##</code>的操作符，这在以前C语言的学习中从未接触过。Google了一下发现<code>#</code>叫做<strong>Stringizing Operator</strong>，<code>##</code>叫做<strong>Token Pasting Operator</strong>，借以此文做一个对这两个C语言知识点的梳理和总结。</p>
+        
+          <a class="article-more-a" href="/2019/09/01/理解C语言中的Stringizing操作符和Token-Pasting操作符/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术日志/C-C//" class="article-tag-list-link color1">C/C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/01/理解C语言中的Stringizing操作符和Token-Pasting操作符/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Python-unittest模块小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1001,105 +1097,6 @@
 
 
   
-    <article id="post-深入理解C-引用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/24/深入理解C-引用/">深入理解C++引用</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/24/深入理解C-引用/" class="archive-article-date">
-  	<time datetime="2018-08-24T13:08:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>关键词：</strong> C++引用</p>
-<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h1><blockquote>
-<p>引用并非对象，相反的，它只是为一个已经存在的对象所起的另外一个名字。</p>
-</blockquote>
-<p>这句话摘自<em>C++ Prime</em> 的46页。仔细品味这句话，就会产生很多疑惑。第一，引用并非是对象，那么引用是什么？第二，引用是所存在对象的别名，“别名”的具体含义是什么？它占用内存空间吗？它和指针变量有什么区别？所有的这些疑问将在本文中给以解答。我们将遵从认知事物的规律，从认识、理解和总结三个步骤来把握C++引用。</p>
-        
-          <a class="article-more-a" href="/2018/08/24/深入理解C-引用/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志/C-C//" class="article-tag-list-link color1">C/C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/24/深入理解C-引用/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1230,15 +1227,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MIT 6.087</a>
+                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1247,10 +1236,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">技术日志</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1282,14 +1267,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
@@ -1302,6 +1279,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">朝话</a>
               </li>
              
@@ -1310,11 +1299,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+                <a href="javascript:void(0)" class="js-tag color5">MIT 6.087</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
               </li>
             
             <div class="clearfix"></div>
