@@ -180,22 +180,22 @@
 <a id="more"></a>
 <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>在编程时，我们经常会有一些习惯用法。这些习惯用法要么是程序员约定俗成的编码方式，要么是某个问题的通用解决方法。Shell脚本也不例外，然而有一个相当通用的Shell习惯用法没有被程序员们充分理解，那就是<code>2&gt;&amp;1</code>。举个例子，<code>ls foo &gt; /dev/null 2&gt;&amp;1</code>。本篇文章就来说明一下<code>2&gt;&amp;1</code>背后的故事。</p>
 <h2 id="2-I-O重定向简介"><a href="#2-I-O重定向简介" class="headerlink" title="2. I/O重定向简介"></a>2. I/O重定向简介</h2><p>简而言之，重定向就是用来将一个命令的输出发送到另一个位置的机制。举个例子，如果我们用<code>cat</code>去查看一个文件，输出默认会打印在屏幕上。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cat foo.txt</span><br><span class="line">foo</span><br><span class="line">bar</span><br><span class="line">baz</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat foo.txt</span></span><br><span class="line">foo</span><br><span class="line">bar</span><br><span class="line">baz</span><br></pre></td></tr></table></figure>
 <p>但是我们可以把<code>cat</code>的输出重定向到别的地方。举个例子，我们可以把上述的结果重定向到<code>output.txt</code>文件中。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cat foo.txt &gt; output.txt</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> cat output.txt</span><br><span class="line">foo</span><br><span class="line">bar</span><br><span class="line">baz</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat foo.txt &gt; output.txt</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat output.txt</span></span><br><span class="line">foo</span><br><span class="line">bar</span><br><span class="line">baz</span><br></pre></td></tr></table></figure>
 <p>注意到第一个<code>cat</code>命令我们没有在屏幕上见到任何输出。我们把标准输出（<code>stdout</code>）的位置改成了<code>output.txt</code>文件，所以屏幕上没有任何输出。</p>
 <p>需要注意的是，我们还有标准错误<code>stderr</code>，程序可以将错误信息发送到这个位置。比如说，我们想用<code>cat</code>去查看一个不存在的文件，如下所示：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cat nop.txt &gt; output.txt</span><br><span class="line">cat: nop.txt: No such file or directory</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat nop.txt &gt; output.txt</span></span><br><span class="line">cat: nop.txt: No such file or directory</span><br></pre></td></tr></table></figure>
 <p>即使我们把<code>stdout</code>重定向到<code>output.txt</code>文件，我们依然在屏幕上看到了错误信息。这是因为我们只是重定向了标准输出，并没有对标准错误进行重定向。</p>
 <h2 id="3-文件描述符简介"><a href="#3-文件描述符简介" class="headerlink" title="3. 文件描述符简介"></a>3. 文件描述符简介</h2><p>文件描述符就是一个表示打开文件的正整数。如果你打开了100个文件，那么你就有100个文件描述符。需要注意的是，Unix系统的设计哲学中有一条是，<strong>万物皆文件</strong>。对于标准输出（<code>stdout</code>）和标准错误（<code>stderr</code>），也有其相应的文件描述符。</p>
 <h2 id="4-汇总"><a href="#4-汇总" class="headerlink" title="4. 汇总"></a>4. 汇总</h2><p>回到我们一开始的例子，当我们将<code>cat foo.txt</code>的输出重定向到<code>output.txt</code>中时，我们可在命令行中输入以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cat foo.txt 1&gt; output.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat foo.txt 1&gt; output.txt</span></span><br></pre></td></tr></table></figure>
 <p>这里的<code>1</code>就是<code>stdout</code>的文件描述符。重定向操作的语法是<code>[FILE_DESCRIPTOR]&gt;</code>，所以对于将<code>stdout</code>重定向到其它地方，我们可以写成<code>1&gt;</code>。</p>
 <p>因此，对于重定向标准错误<code>stderr</code>而言，我们只需要将文件描述符放在正确的位置上：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> Using stderr file descriptor (2) to redirect the errors to a file</span><br><span class="line"><span class="meta">$</span> cat nop.txt 2&gt; error.txt</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> cat error.txt</span><br><span class="line">cat: nop.txt: No such file or directory</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Using stderr file descriptor (2) to redirect the errors to a file</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat nop.txt 2&gt; error.txt</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat error.txt</span></span><br><span class="line">cat: nop.txt: No such file or directory</span><br></pre></td></tr></table></figure>
 <p>到此为止，我们可能已经清楚<code>2&gt;&amp;1</code>这个习惯用法的含义了，不过我们还是系统地说明一下。</p>
 <p>我们用<code>&amp;1</code>来引用文件描述符<code>1</code>（<code>stdout</code>）的值。因此当我们用<code>2&gt;&amp;1</code>时，我们的意思是”把<code>stderr</code>的输出重定向到和<code>stdout</code>重定向输出相同的位置”。我们这么做的原因就是把<code>stdout</code>和<code>stderr</code>的输出重定向到同一个地方。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cat foo.txt &gt; output.txt 2&gt;&amp;1</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> cat output.txt</span><br><span class="line">foo</span><br><span class="line">bar</span><br><span class="line">baz</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> cat nop.txt &gt; output.txt 2&gt;&amp;1</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> cat output.txt</span><br><span class="line">cat: nop.txt: No such file or directory</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat foo.txt &gt; output.txt 2&gt;&amp;1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat output.txt</span></span><br><span class="line">foo</span><br><span class="line">bar</span><br><span class="line">baz</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat nop.txt &gt; output.txt 2&gt;&amp;1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat output.txt</span></span><br><span class="line">cat: nop.txt: No such file or directory</span><br></pre></td></tr></table></figure>
 <h2 id="5-回顾"><a href="#5-回顾" class="headerlink" title="5. 回顾"></a>5. 回顾</h2><ul>
 <li>程序可将输出发送到标准输出（<code>stdout</code>）和标准错误（<code>stderr</code>）两个位置；</li>
 <li>我们可以将程序的输出重定向到不同的位置（比如重定向到一个文件）；</li>
@@ -453,6 +453,18 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MIT 6.087</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -461,11 +473,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
+                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0001</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0001</a>
+                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -474,10 +486,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">技术日志</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,10 +517,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
               </li>
              
@@ -533,6 +537,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">朝话</a>
               </li>
              
@@ -550,14 +558,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">VPP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MIT 6.087</a>
               </li>
             
             <div class="clearfix"></div>
