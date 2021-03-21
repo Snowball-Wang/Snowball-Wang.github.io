@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://wangjieqiang.com">
-  <title>Category: VPP | 王杰强的博客</title>
+  <title>CS4 Challenge之MIT-6.087 | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="南七技校软件培训速成中心16级学徒，半道出家的底层程序员，Arm OSS菜鸟学徒。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="王杰强的博客">
-<meta property="og:url" content="https://wangjieqiang.com/categories/VPP/index.html">
+  <meta name="description" content="关键词：CS4挑战  MIT-6.087 0. 前言今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的Pratical Programming in C的部分看完，并把之前看过的部分复习巩固一遍，也算是给新版CS4挑战起个头。看了一下这个Repo最早的commit的记录是2018年12月">
+<meta name="keywords" content="日常规划,自我学习,MIT 6.087">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS4 Challenge之MIT-6.087">
+<meta property="og:url" content="https://wangjieqiang.com/2021/02/14/CS4-Challenge之MIT-6-087/index.html">
 <meta property="og:site_name" content="王杰强的博客">
-<meta property="og:description" content="南七技校软件培训速成中心16级学徒，半道出家的底层程序员，Arm OSS菜鸟学徒。">
+<meta property="og:description" content="关键词：CS4挑战  MIT-6.087 0. 前言今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的Pratical Programming in C的部分看完，并把之前看过的部分复习巩固一遍，也算是给新版CS4挑战起个头。看了一下这个Repo最早的commit的记录是2018年12月份，可以说是历史遗留问题了。借着再巩固一下C语言基本知识、数据结构以及Unix相">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-02-22T01:06:49.149Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王杰强的博客">
-<meta name="twitter:description" content="南七技校软件培训速成中心16级学徒，半道出家的底层程序员，Arm OSS菜鸟学徒。">
+<meta name="twitter:title" content="CS4 Challenge之MIT-6.087">
+<meta name="twitter:description" content="关键词：CS4挑战  MIT-6.087 0. 前言今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的Pratical Programming in C的部分看完，并把之前看过的部分复习巩固一遍，也算是给新版CS4挑战起个头。看了一下这个Repo最早的commit的记录是2018年12月份，可以说是历史遗留问题了。借着再巩固一下C语言基本知识、数据结构以及Unix相">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
   
@@ -153,79 +155,183 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-CS4-Challenge之MIT-6-087" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/23/记一次VPP-debug过程/" class="archive-article-date">
-  	<time datetime="2020-02-23T01:26:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-23</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/23/记一次VPP-debug过程/">记一次VPP debug过程</a>
+    <h1 class="article-title" itemprop="name">
+      CS4 Challenge之MIT-6.087
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/02/14/CS4-Challenge之MIT-6-087/" class="archive-article-date">
+  	<time datetime="2021-02-14T03:34:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>关键词</strong>：CS4挑战  MIT-6.087</p>
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的<em>Pratical Programming in C</em>的部分看完，并把之前看过的部分复习巩固一遍，也算是给<a href="http://wangjieqiang.com/2020/04/12/My-CS4-Challenge-Version1/">新版CS4挑战</a>起个头。看了一下这个<a href="https://github.com/Snowball-Wang/MIT_6.087_Practical_Programming_in_C" target="_blank" rel="noopener">Repo</a>最早的commit的记录是2018年12月份，可以说是历史遗留问题了。借着再巩固一下C语言基本知识、数据结构以及Unix相关概念的想法，以本文作为契机对MIT-6.087课程进行回顾和总结。</p>
+<h1 id="1-课程介绍"><a href="#1-课程介绍" class="headerlink" title="1. 课程介绍"></a>1. 课程介绍</h1><h2 id="1-1-课程简介"><a href="#1-1-课程简介" class="headerlink" title="1.1 课程简介"></a>1.1 课程简介</h2><p><em>MIT 6.087 Practical Programming in C</em>是MIT 2010年的IAP(Independent Activities Period)课程。MIT的IAP课程总长四周，有点类似于上海大学的夏季小学期。但是MIT-6.087的内容还是很丰富的，感觉四周时间学习完所有的内容还是非常有挑战性的。直接摘录课程主页的课程介绍来看看这门课的内容。</p>
+<blockquote>
+<p>This course provides a thorough introduction to the C programming language, the workhorse of the UNIX operating system and lingua franca of embedded processors and micro-controllers. </p>
+<p>The first two weeks will cover basic syntax and grammer, and expose students to practical programming techniques. The remaining lectures will focus on more advanced concepts, such as dynamic memory allocation, concurrency and synchronization, UNIX signals and process control, library development and usage. Daily programming assignments and weekly laboratory exercises are required. Knowledge of C is highly marketable for summer internships, UROPs, and full-time positions in software and embedded systems development.</p>
+</blockquote>
+<p>正如课程介绍所说，这门课程在我看来很不错的地方在于不仅仅介绍了C语言的基础用法和一些基本的数据结构，而且还在后面的章节涉及到了很多Unix的高级概念。而这些概念很多是计算机体系或者是操作系统的内容，这也是当初为什么我看完前面的C基础就没法继续推进下去的原因😂，自己当时对计算机体系和操作系统一无所知。</p>
+<h2 id="1-2-课程资源"><a href="#1-2-课程资源" class="headerlink" title="1.2 课程资源"></a>1.2 课程资源</h2><p>课程主页在<a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-087-practical-programming-in-c-january-iap-2010/" target="_blank" rel="noopener">这里</a>，包括了课程的讲义、练习和项目说明。遗憾的是，这个课程并没有相关视频，所以我的学习方式是看课程PPT，不懂的地方谷歌或者在油管上找相关视频。课程推荐的书籍是经典的<a href="https://book.douban.com/subject/1139336/" target="_blank" rel="noopener">K&amp;R</a>，可以作为辅助参考资料。</p>
+<p>课程一共有7个<em>Problem set</em>和3个<em>Lab</em>。每个<em>Problem set</em>都有官方的答案和解释，每个<em>Project</em>就没有官方的参考了。同样，我也把自己的Solution放在了<a href="https://github.com/Snowball-Wang/MIT_6.087_Practical_Programming_in_C" target="_blank" rel="noopener">Github Repo</a>，以供参考。</p>
+<h1 id="2-课程总结"><a href="#2-课程总结" class="headerlink" title="2. 课程总结"></a>2. 课程总结</h1><h2 id="2-1-课程概述"><a href="#2-1-课程概述" class="headerlink" title="2.1 课程概述"></a>2.1 课程概述</h2><h2 id="2-2-课程详述"><a href="#2-2-课程详述" class="headerlink" title="2.2 课程详述"></a>2.2 课程详述</h2><p><strong>Lecture 1：</strong>主要介绍了如何编写、编译和调试C程序，同时覆盖了C语言的基本概念。本节主要分为三个部分。首先简要地介绍了C语言的历史，包括C语言的诞生、C语言的版本演进、C语言的应用范围、C语言同其它类型计算机语言的差别，最关键的就是明确C语言是底层语言（low-level language）。第二部分介绍如何编写C程序，包括编辑器、编译器（课程用的是gcc）的选择，了解gcc相应的编译选项，C程序调试工具gdb的使用，以及内存检查工具valgrind。第三部分用一个具体的<em>Hello World</em>例子来介绍C语言的基本语法。包括一个<strong>.c</strong>文件结构所包含的内容，如何注释，如何使用宏，C语言算数运算规则，C语言函数原型，如何声明、初始化变量，变量的作用域，如何使用I/O函数打印字符串等等。在宏的部分，还着重介绍了预处理宏在条件编译的使用，包括<code>#if,#ifdef,#ifndef,#else,#elif,#endif,#pragma,#error,#warning,#undef</code>等等。</p>
+<p><strong>Lecture 2：</strong>主要介绍了C语言的变量、数据类型以及运算符。首先说明了数据类型、运算符、表达式、变量的相关概念，了解C是一个<a href="https://www.zhihu.com/question/19918532" target="_blank" rel="noopener">弱类型静态类型语言</a>。接着介绍了C语言变量的命名规范和C包含的数据类型。在介绍C数据类型中，还插入介绍了一下大端（Big Endian）和小端（Little Endian）的<a href="https://www.cnblogs.com/wxdlut/p/9200720.html" target="_blank" rel="noopener">区别</a>。除了C常规的数据结构（int, float, struct, union），还对C常量（Constants）进行了介绍，包括字符类型，字符串类型，<a href="https://www.geeksforgeeks.org/enumeration-enum-c/" target="_blank" rel="noopener">C枚举</a>（enumeration）。最后是C中的运算符的使用，包括算数运算符（+, -, *, /, %），关系运算符（&gt;, &gt;=, &lt;, &lt;=, ==, !=），逻辑运算符（&amp;&amp;, ||, !），自增自减运算符（++, –），位运算符（&amp;, |, ^, &lt;&lt;, &gt;&gt;），三元条件运算符（?:）。其中关于逻辑运算符要注意其中的短路机制，即条件表达式一旦被满足就不会再执行后续的表达式。关于自增自减表达式要注意类似<code>y=x++</code>与<code>y=++x</code>的区别。本节的结尾还提及C类型转换和运算符优先级。</p>
+<p><strong>Lecture 3：</strong>主要介绍了C语言的程序控制流、函数及模块化思想和变量作用域。在程序控制流部分，说明了C语言条件语句<code>if...else if... else</code>和<code>switch-case</code>使用，以及C语言中的几种循环语句的表达，包括<code>while</code>循环、<code>do-while</code>循环和<code>for</code>循环。同时介绍了<code>break</code>和<code>continue</code>关键字在循环语句中的作用。在函数及模块化思想部分，主要通过一个具体的例子，来说明如何用C语言通过模块化的思想构造函数来解决实际问题，在<code>euclid.h</code>文件中自己额外引申关于<strong>include guard</strong>的问题。在最后一部分介绍了关于C变量作用域的话题，包括<code>extern</code>、<code>static</code>和<code>register</code>关键词对变量作用域范围的影响。</p>
+<p><strong>Lecture 4：</strong>进一步介绍了C语言的程序控制流以及C语言的I/O控制。在C语言的程序控制流部分，主要说明了<code>goto</code>语句的用法以及它在C语言<strong>error handling</strong>如何使用。在I/O控制部分，首先介绍了最简单的标准输入输出<code>putchar()</code>和<code>getchar()</code>函数，然后详细说明了一下格式化输出<code>printf()</code>函数的使用，通过具体的例子来理解其格式化的规则<code>%[flags][width][.precision][length]&lt;type&gt;</code>。中间还提了一下<code>strcmp()</code>函数的用法。对应<code>printf()</code>函数也介绍了<code>scanf()</code>函数，对应的还有针对字符串类型的输入输出<code>sprintf()</code>与<code>sscanf()</code>函数，文件输入输出<code>fprintf()</code>与<code>fscanf()</code>函数等。也可以通过<code>fgets()</code>和<code>fputs()</code>函数读写文件一行的数据。最后说明了一下C语言如何在类Unix系统环境下使用命令命令行参数，<code>int main(int argc, char *argv)</code>中的<code>argc</code>表示的就是参数的数量，<code>argv[]</code>就是每一个参数字符串数组的指针。</p>
+<p><strong>Lecture 5：</strong>主要引入了C语言指针的概念，介绍了操作字符串的相关函数，最后简单说明了几种排序算法。在引入指针的概念之前，说明了一下虚拟内存和物理内存的区别。也借用之前模块化函数的例子，来说明函数的参数是指针的效果。指针的算数运算不同于常规的数值算数运算，指针的加减运算等于其加减值乘以指针对应的数据类型。在操作字符串函数的部分，提及了相关常用的字符串函数，包括<code>strcpy</code>、<code>strcmp</code>、<code>strcat</code>等等。</p>
+<h2 id="2-3-编程练习"><a href="#2-3-编程练习" class="headerlink" title="2.3 编程练习"></a>2.3 编程练习</h2><p><strong>Problem Set1：</strong>练习1主要是针对Lecture 1的讲到的一些C语言基本知识点进行考察。比如区分<code>7</code>、<code>&#39;7&#39;</code>和<code>&quot;7&quot;</code>在C语言中含义的不同，要警惕使用宏定义进行算数运算时表达式是否符合预期。最后就是亲自上手编写、编译、调试C程序<em>Hello World</em>，熟悉编写C语言的整体流程。</p>
+<p><strong>Problem Set2：</strong>练习2主要是通过一些小例子，对Lecture 2中讲到的C各个数据类型的大小，逻辑运算符、位运算符、运算符优先级进行练习。</p>
+<p><strong>Problem Set3：</strong>练习3.1通过一个具体的code profiling代码的例子，来说明C语言中<code>register</code>关键词对执行程序速度的影响。练习3.2锻炼C模块化编程的思想，着重强调了<code>extern</code>关键词的作用。练习3.3练习如何在<code>do...while</code>、<code>while</code>、<code>for</code>循环之间进行代码转换。练习3.4训练的是C语言实现<code>wc</code>命令的功能，其中关于实现单词的计数需要用到一些小技巧。练习3.5个人觉得最有意思，用C语言实现打开文件读写文件内容，并针对实际需求对处理结果进行格式化输出。</p>
+<p><strong>Problem Set4：</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">日常规划</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">自我学习</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">VPP</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MIT 6.087</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/VPP//" class="article-tag-list-link color4">VPP</a>
+        			<a href="/categories/CS4挑战//" class="article-tag-list-link color1">CS4挑战</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://wangjieqiang.com/2021/02/14/CS4-Challenge之MIT-6-087/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2021/01/10/2020年年终复盘/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2020年年终复盘</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -248,10 +354,10 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
