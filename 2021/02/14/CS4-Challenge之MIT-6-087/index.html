@@ -9,14 +9,14 @@
   <title>CS4 Challenge之MIT-6.087 | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="关键词：CS4挑战  MIT-6.087 0. 前言今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的Pratical Programming in C的部分看完，并把之前看过的部分复习巩固一遍，也算是给新版CS4挑战起个头。看了一下这个Repo最早的commit的记录是2018年12月">
-<meta name="keywords" content="自我学习,MIT 6.087,日常规划">
+<meta name="keywords" content="日常规划,自我学习,MIT 6.087">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS4 Challenge之MIT-6.087">
 <meta property="og:url" content="https://wangjieqiang.com/2021/02/14/CS4-Challenge之MIT-6-087/index.html">
 <meta property="og:site_name" content="王杰强的博客">
 <meta property="og:description" content="关键词：CS4挑战  MIT-6.087 0. 前言今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的Pratical Programming in C的部分看完，并把之前看过的部分复习巩固一遍，也算是给新版CS4挑战起个头。看了一下这个Repo最早的commit的记录是2018年12月份，可以说是历史遗留问题了。借着再巩固一下C语言基本知识、数据结构以及Unix相">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-02-22T01:06:49.149Z">
+<meta property="og:updated_time" content="2021-06-29T15:05:26.231Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS4 Challenge之MIT-6.087">
 <meta name="twitter:description" content="关键词：CS4挑战  MIT-6.087 0. 前言今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的Pratical Programming in C的部分看完，并把之前看过的部分复习巩固一遍，也算是给新版CS4挑战起个头。看了一下这个Repo最早的commit的记录是2018年12月份，可以说是历史遗留问题了。借着再巩固一下C语言基本知识、数据结构以及Unix相">
@@ -183,6 +183,7 @@
 <p>The first two weeks will cover basic syntax and grammer, and expose students to practical programming techniques. The remaining lectures will focus on more advanced concepts, such as dynamic memory allocation, concurrency and synchronization, UNIX signals and process control, library development and usage. Daily programming assignments and weekly laboratory exercises are required. Knowledge of C is highly marketable for summer internships, UROPs, and full-time positions in software and embedded systems development.</p>
 </blockquote>
 <p>正如课程介绍所说，这门课程在我看来很不错的地方在于不仅仅介绍了C语言的基础用法和一些基本的数据结构，而且还在后面的章节涉及到了很多Unix的高级概念。而这些概念很多是计算机体系或者是操作系统的内容，这也是当初为什么我看完前面的C基础就没法继续推进下去的原因😂，自己当时对计算机体系和操作系统一无所知。</p>
+<a id="more"></a>
 <h2 id="1-2-课程资源"><a href="#1-2-课程资源" class="headerlink" title="1.2 课程资源"></a>1.2 课程资源</h2><p>课程主页在<a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-087-practical-programming-in-c-january-iap-2010/" target="_blank" rel="noopener">这里</a>，包括了课程的讲义、练习和项目说明。遗憾的是，这个课程并没有相关视频，所以我的学习方式是看课程PPT，不懂的地方谷歌或者在油管上找相关视频。课程推荐的书籍是经典的<a href="https://book.douban.com/subject/1139336/" target="_blank" rel="noopener">K&amp;R</a>，可以作为辅助参考资料。</p>
 <p>课程一共有7个<em>Problem set</em>和3个<em>Lab</em>。每个<em>Problem set</em>都有官方的答案和解释，每个<em>Project</em>就没有官方的参考了。同样，我也把自己的Solution放在了<a href="https://github.com/Snowball-Wang/MIT_6.087_Practical_Programming_in_C" target="_blank" rel="noopener">Github Repo</a>，以供参考。</p>
 <h1 id="2-课程总结"><a href="#2-课程总结" class="headerlink" title="2. 课程总结"></a>2. 课程总结</h1><h2 id="2-1-课程概述"><a href="#2-1-课程概述" class="headerlink" title="2.1 课程概述"></a>2.1 课程概述</h2><h2 id="2-2-课程详述"><a href="#2-2-课程详述" class="headerlink" title="2.2 课程详述"></a>2.2 课程详述</h2><p><strong>Lecture 1：</strong>主要介绍了如何编写、编译和调试C程序，同时覆盖了C语言的基本概念。本节主要分为三个部分。首先简要地介绍了C语言的历史，包括C语言的诞生、C语言的版本演进、C语言的应用范围、C语言同其它类型计算机语言的差别，最关键的就是明确C语言是底层语言（low-level language）。第二部分介绍如何编写C程序，包括编辑器、编译器（课程用的是gcc）的选择，了解gcc相应的编译选项，C程序调试工具gdb的使用，以及内存检查工具valgrind。第三部分用一个具体的<em>Hello World</em>例子来介绍C语言的基本语法。包括一个<strong>.c</strong>文件结构所包含的内容，如何注释，如何使用宏，C语言算数运算规则，C语言函数原型，如何声明、初始化变量，变量的作用域，如何使用I/O函数打印字符串等等。在宏的部分，还着重介绍了预处理宏在条件编译的使用，包括<code>#if,#ifdef,#ifndef,#else,#elif,#endif,#pragma,#error,#warning,#undef</code>等等。</p>
@@ -207,15 +208,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">日常规划</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">自我学习</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MIT 6.087</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">日常规划</a>
         		</li>
       		
 		</ul>
@@ -445,7 +446,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -457,19 +462,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
+                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MIT 6.0001</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -501,6 +498,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
@@ -510,22 +515,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">k-means</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,11 +534,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Shell编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">VPP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Shell编程</a>
+                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
               </li>
             
             <div class="clearfix"></div>
