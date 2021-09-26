@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="王杰强的博客">
 <meta property="og:description" content="关键词：CS4挑战  MIT-6.087 0. 前言今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的Pratical Programming in C的部分看完，并把之前看过的部分复习巩固一遍，也算是给新版CS4挑战起个头。看了一下这个Repo最早的commit的记录是2018年12月份，可以说是历史遗留问题了。借着再巩固一下C语言基本知识、数据结构以及Unix相">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-06-29T15:05:26.231Z">
+<meta property="og:updated_time" content="2021-09-26T13:21:11.932Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS4 Challenge之MIT-6.087">
 <meta name="twitter:description" content="关键词：CS4挑战  MIT-6.087 0. 前言今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的Pratical Programming in C的部分看完，并把之前看过的部分复习巩固一遍，也算是给新版CS4挑战起个头。看了一下这个Repo最早的commit的记录是2018年12月份，可以说是历史遗留问题了。借着再巩固一下C语言基本知识、数据结构以及Unix相">
@@ -191,10 +191,15 @@
 <p><strong>Lecture 3：</strong>主要介绍了C语言的程序控制流、函数及模块化思想和变量作用域。在程序控制流部分，说明了C语言条件语句<code>if...else if... else</code>和<code>switch-case</code>使用，以及C语言中的几种循环语句的表达，包括<code>while</code>循环、<code>do-while</code>循环和<code>for</code>循环。同时介绍了<code>break</code>和<code>continue</code>关键字在循环语句中的作用。在函数及模块化思想部分，主要通过一个具体的例子，来说明如何用C语言通过模块化的思想构造函数来解决实际问题，在<code>euclid.h</code>文件中自己额外引申关于<strong>include guard</strong>的问题。在最后一部分介绍了关于C变量作用域的话题，包括<code>extern</code>、<code>static</code>和<code>register</code>关键词对变量作用域范围的影响。</p>
 <p><strong>Lecture 4：</strong>进一步介绍了C语言的程序控制流以及C语言的I/O控制。在C语言的程序控制流部分，主要说明了<code>goto</code>语句的用法以及它在C语言<strong>error handling</strong>如何使用。在I/O控制部分，首先介绍了最简单的标准输入输出<code>putchar()</code>和<code>getchar()</code>函数，然后详细说明了一下格式化输出<code>printf()</code>函数的使用，通过具体的例子来理解其格式化的规则<code>%[flags][width][.precision][length]&lt;type&gt;</code>。中间还提了一下<code>strcmp()</code>函数的用法。对应<code>printf()</code>函数也介绍了<code>scanf()</code>函数，对应的还有针对字符串类型的输入输出<code>sprintf()</code>与<code>sscanf()</code>函数，文件输入输出<code>fprintf()</code>与<code>fscanf()</code>函数等。也可以通过<code>fgets()</code>和<code>fputs()</code>函数读写文件一行的数据。最后说明了一下C语言如何在类Unix系统环境下使用命令命令行参数，<code>int main(int argc, char *argv)</code>中的<code>argc</code>表示的就是参数的数量，<code>argv[]</code>就是每一个参数字符串数组的指针。</p>
 <p><strong>Lecture 5：</strong>主要引入了C语言指针的概念，介绍了操作字符串的相关函数，最后简单说明了几种排序算法。在引入指针的概念之前，说明了一下虚拟内存和物理内存的区别。也借用之前模块化函数的例子，来说明函数的参数是指针的效果。指针的算数运算不同于常规的数值算数运算，指针的加减运算等于其加减值乘以指针对应的数据类型。在操作字符串函数的部分，提及了相关常用的字符串函数，包括<code>strcpy</code>、<code>strcmp</code>、<code>strcat</code>等等。</p>
-<h2 id="2-3-编程练习"><a href="#2-3-编程练习" class="headerlink" title="2.3 编程练习"></a>2.3 编程练习</h2><p><strong>Problem Set1：</strong>练习1主要是针对Lecture 1的讲到的一些C语言基本知识点进行考察。比如区分<code>7</code>、<code>&#39;7&#39;</code>和<code>&quot;7&quot;</code>在C语言中含义的不同，要警惕使用宏定义进行算数运算时表达式是否符合预期。最后就是亲自上手编写、编译、调试C程序<em>Hello World</em>，熟悉编写C语言的整体流程。</p>
-<p><strong>Problem Set2：</strong>练习2主要是通过一些小例子，对Lecture 2中讲到的C各个数据类型的大小，逻辑运算符、位运算符、运算符优先级进行练习。</p>
-<p><strong>Problem Set3：</strong>练习3.1通过一个具体的code profiling代码的例子，来说明C语言中<code>register</code>关键词对执行程序速度的影响。练习3.2锻炼C模块化编程的思想，着重强调了<code>extern</code>关键词的作用。练习3.3练习如何在<code>do...while</code>、<code>while</code>、<code>for</code>循环之间进行代码转换。练习3.4训练的是C语言实现<code>wc</code>命令的功能，其中关于实现单词的计数需要用到一些小技巧。练习3.5个人觉得最有意思，用C语言实现打开文件读写文件内容，并针对实际需求对处理结果进行格式化输出。</p>
-<p><strong>Problem Set4：</strong></p>
+<p><strong>Lecture 6：</strong>介绍了C语言中三种用户自定义的数据类型，并引入动态内存分配的概念，介绍了链表和二叉树两种数据结构的简单实现。C语言中的用户自定义的复杂数据类型包括结构体（struct），联合体（union）和位域bitfield。在结构体部分，着重说明了结构体变量如何访问成员变量，<code>.</code>操作符和<code>-&gt;</code>操作符的不同，以及结构体变量的大小需考虑内存对齐等细节。联合体最需要注意的就是其大小等同于成员变量中最大元素的大小。位域部分需了解其在C语言中的语法与使用。动态内存分配部分介绍了三个API，<code>malloc</code>、<code>calloc</code>和<code>free</code>，并基于这三个API，引入对链表linkedlist和二叉树binary tree的C实现的介绍。二叉树部分还涉及了遍历二叉树的三种方法，前序遍历（preorder）、中序遍历（inorder）和后序遍历（postorder）。</p>
+<p><strong>Lecture 7：</strong>介绍了C语言指针的进阶用法，并引入了栈（stack）和队列（queue）数据结构的概念和实现。关于指针的进阶用法，用指针数组和字符串数组两个例子来说明指向指针的指针的用法，顺带也说了一下如何用C语言定义多维数组。然后引入了栈和队列两种数据结构的介绍，分别用数组和链表对两种数据结构进行设计和实现，最后结合两种数据结构设计一个简单的表达式计算器，计算器将前序计算表达式转换成后序计算表达式，并计算后序表达式的结果。计算器具体的实现可参照本章的练习题。</p>
+<p><strong>Lecture 8：</strong>继续介绍C语言指针的进阶用法，并引入哈希表（hash）数据结构的概念和实现。首先介绍<code>void</code>指针的使用，需注意<code>void</code>指针不能够被解引用。其次介绍了函数指针（function pointer）的用法，声明的格式同<code>int (*fn)(void *, void *)</code>类似。C的函数指针主要应用在回调函数（callback）上，以<code>qsort</code>函数为例说明了函数指针的用法，及其灵活性。C的函数指针也可以构成指针数组。哈希表可以简单理解成链表和数组的结合体，最后介绍了哈希表的简单实现。</p>
+<h2 id="2-3-编程练习"><a href="#2-3-编程练习" class="headerlink" title="2.3 编程练习"></a>2.3 编程练习</h2><p><strong>Problem Set 1：</strong>练习1主要是针对Lecture 1的讲到的一些C语言基本知识点进行考察。比如区分<code>7</code>、<code>&#39;7&#39;</code>和<code>&quot;7&quot;</code>在C语言中含义的不同，要警惕使用宏定义进行算数运算时表达式是否符合预期。最后就是亲自上手编写、编译、调试C程序<em>Hello World</em>，熟悉编写C语言的整体流程。</p>
+<p><strong>Problem Set 2：</strong>练习2主要是通过一些小例子，对Lecture 2中讲到的C各个数据类型的大小，逻辑运算符、位运算符、运算符优先级进行练习。</p>
+<p><strong>Problem Set 3：</strong>练习3.1通过一个具体的code profiling代码的例子，来说明C语言中<code>register</code>关键词对执行程序速度的影响。练习3.2锻炼C模块化编程的思想，着重强调了<code>extern</code>关键词的作用。练习3.3练习如何在<code>do...while</code>、<code>while</code>、<code>for</code>循环之间进行代码转换。练习3.4训练的是C语言实现<code>wc</code>命令的功能，其中关于实现单词的计数需要用到一些小技巧。练习3.5个人觉得最有意思，用C语言实现打开文件读写文件内容，并针对实际需求对处理结果进行格式化输出。</p>
+<p><strong>Problem Set 4：</strong>练习4.1要求将Lecture5中插入排序的数组实现改为用指针去实现，强化了C语言数组与指针之间的联系。练习4.2很有意思，根据提示实现字符串数组<code>strspn</code>和<code>strcspn</code>，其中的关键在于如何使用<code>strpos</code>函数定位相应的字符位置。练习4.3以插入排序为基础，引入了插入排序的改进版—希尔排序（shell sort），结合插入排序的代码完成希尔排序的实现。</p>
+<p><strong>Problem Set 5：</strong>练习5.1熟悉关于链表数据结构的相关操作，包括打印链表数据，添加/删除节点，查询节点，删除链表等操作。练习5.2熟悉关于二叉树数据结构的相关操作，包括添加树节点，使用前序/中序/后续遍历二叉树，计算二叉树节点数，删除二叉树等操作。</p>
+<p><strong>Problem Set 6a：</strong></p>
 
       
 
@@ -446,10 +451,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
               </li>
              
@@ -458,15 +459,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0001</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MIT 6.087</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0001</a>
+                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -498,14 +507,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
@@ -518,7 +519,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,23 +551,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Shell编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">VPP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">Shell编程</a>
               </li>
             
             <div class="clearfix"></div>
