@@ -9,14 +9,14 @@
   <title>CS4 Challenge之MIT-6.087 | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="关键词：CS4挑战  MIT-6.087 0. 前言今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的Pratical Programming in C的部分看完，并把之前看过的部分复习巩固一遍，也算是给新版CS4挑战起个头。看了一下这个Repo最早的commit的记录是2018年12月">
-<meta name="keywords" content="日常规划,自我学习,MIT 6.087">
+<meta name="keywords" content="自我学习,MIT 6.087,日常规划">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS4 Challenge之MIT-6.087">
 <meta property="og:url" content="https://wangjieqiang.com/2021/02/14/CS4-Challenge之MIT-6-087/index.html">
 <meta property="og:site_name" content="王杰强的博客">
 <meta property="og:description" content="关键词：CS4挑战  MIT-6.087 0. 前言今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的Pratical Programming in C的部分看完，并把之前看过的部分复习巩固一遍，也算是给新版CS4挑战起个头。看了一下这个Repo最早的commit的记录是2018年12月份，可以说是历史遗留问题了。借着再巩固一下C语言基本知识、数据结构以及Unix相">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-10-08T13:28:32.485Z">
+<meta property="og:updated_time" content="2021-10-10T04:05:43.808Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS4 Challenge之MIT-6.087">
 <meta name="twitter:description" content="关键词：CS4挑战  MIT-6.087 0. 前言今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的Pratical Programming in C的部分看完，并把之前看过的部分复习巩固一遍，也算是给新版CS4挑战起个头。看了一下这个Repo最早的commit的记录是2018年12月份，可以说是历史遗留问题了。借着再巩固一下C语言基本知识、数据结构以及Unix相">
@@ -200,7 +200,7 @@
 <p><strong>Problem Set 4：</strong>练习4.1要求将Lecture5中插入排序的数组实现改为用指针去实现，强化了C语言数组与指针之间的联系。练习4.2很有意思，根据提示实现字符串数组<code>strspn</code>和<code>strcspn</code>，其中的关键在于如何使用<code>strpos</code>函数定位相应的字符位置。练习4.3以插入排序为基础，引入了插入排序的改进版—希尔排序（shell sort），结合插入排序的代码完成希尔排序的实现。</p>
 <p><strong>Problem Set 5：</strong>练习5.1熟悉关于链表数据结构的相关操作，包括打印链表数据，添加/删除节点，查询节点，删除链表等操作。练习5.2熟悉关于二叉树数据结构的相关操作，包括添加树节点，使用前序/中序/后续遍历二叉树，计算二叉树节点数，删除二叉树等操作。</p>
 <p><strong>Problem Set 6a：</strong>练习6.1使用栈和队列两种数据结构完成一个简单的计算器，主要完成其中<code>infix_to_postfix</code>（前缀表达式转换成后缀表达式）和<code>evaluate_postfix</code>（由后缀表达式得出计算结果）两个函数的实现。可参照<strong>Lecture 7</strong>中的调度场算法（shunting yard algorithm）来进行编码，题目看似很简单但我觉得很锻炼编程能力。练习6.2引入<code>trie</code>树数据结构，通过<code>trie</code>树来实现一个单向的英语转法语的字典，主要是实现其中的<code>add_node</code>（添加节点）、<code>delete_node</code>（删除节点）、<code>add_word</code>（将单词添加进<code>trie</code>树）以及<code>lookup_word</code>（查找对应英文单词的法语单词）函数。关于<code>trie</code>树的详细介绍可参照此<a href="https://medium.com/basecs/trying-to-understand-tries-3ec6bede0014" target="_blank" rel="noopener">文章</a>。</p>
-<p><strong>Problem Set 6b：</strong></p>
+<p><strong>Problem Set 6b：</strong>练习6.1给出一组学生的信息，然后使用<code>qsort</code>函数对信息进行排序打印，练习主要加深对函数指针的理解和使用。练习6.2使用哈希表对文本单词数量进行统计，完成<code>lookup</code>和<code>cleartable</code>两个函数的实现。练习6.2需注意的是，在更新每个<code>bucket</code>对应的链表时，头节点必须使用全局变量<code>table[hash]</code>而不能使用函数内的局部变量，即使局部变量的初始值等同于<code>table[hash]</code>。</p>
 
       
 
@@ -214,15 +214,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">日常规划</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">自我学习</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MIT 6.087</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">日常规划</a>
         		</li>
       		
 		</ul>
@@ -452,15 +452,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0001</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -468,11 +460,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">自我学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MIT 6.087</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0001</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,19 +504,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,7 +520,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
+                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
               </li>
              
               <li class="article-tag-list-item">
