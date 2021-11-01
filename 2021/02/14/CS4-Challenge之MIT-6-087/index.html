@@ -9,14 +9,14 @@
   <title>CS4 Challenge之MIT-6.087 | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="关键词：CS4挑战  MIT-6.087 0. 前言今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的Pratical Programming in C的部分看完，并把之前看过的部分复习巩固一遍，也算是给新版CS4挑战起个头。看了一下这个Repo最早的commit的记录是2018年12月">
-<meta name="keywords" content="日常规划,自我学习,MIT 6.087">
+<meta name="keywords" content="自我学习,MIT 6.087,日常规划">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS4 Challenge之MIT-6.087">
 <meta property="og:url" content="https://wangjieqiang.com/2021/02/14/CS4-Challenge之MIT-6-087/index.html">
 <meta property="og:site_name" content="王杰强的博客">
 <meta property="og:description" content="关键词：CS4挑战  MIT-6.087 0. 前言今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的Pratical Programming in C的部分看完，并把之前看过的部分复习巩固一遍，也算是给新版CS4挑战起个头。看了一下这个Repo最早的commit的记录是2018年12月份，可以说是历史遗留问题了。借着再巩固一下C语言基本知识、数据结构以及Unix相">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-10-26T14:31:10.341Z">
+<meta property="og:updated_time" content="2021-11-01T15:26:43.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS4 Challenge之MIT-6.087">
 <meta name="twitter:description" content="关键词：CS4挑战  MIT-6.087 0. 前言今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的Pratical Programming in C的部分看完，并把之前看过的部分复习巩固一遍，也算是给新版CS4挑战起个头。看了一下这个Repo最早的commit的记录是2018年12月份，可以说是历史遗留问题了。借着再巩固一下C语言基本知识、数据结构以及Unix相">
@@ -195,6 +195,8 @@
 <p><strong>Lecture 7：</strong>介绍了C语言指针的进阶用法，并引入了栈（stack）和队列（queue）数据结构的概念和实现。关于指针的进阶用法，用指针数组和字符串数组两个例子来说明指向指针的指针的用法，顺带也说了一下如何用C语言定义多维数组。然后引入了栈和队列两种数据结构的介绍，分别用数组和链表对两种数据结构进行设计和实现，最后结合两种数据结构设计一个简单的表达式计算器，计算器将前序计算表达式转换成后序计算表达式，并计算后序表达式的结果。计算器具体的实现可参照本章的练习题。</p>
 <p><strong>Lecture 8：</strong>继续介绍C语言指针的进阶用法，并引入哈希表（hash）数据结构的概念和实现。首先介绍<code>void</code>指针的使用，需注意<code>void</code>指针不能够被解引用。其次介绍了函数指针（function pointer）的用法，声明的格式同<code>int (*fn)(void *, void *)</code>类似。C的函数指针主要应用在回调函数（callback）上，以<code>qsort</code>函数为例说明了函数指针的用法，及其灵活性。C的函数指针也可以构成指针数组。哈希表可以简单理解成链表和数组的结合体，最后介绍了哈希表的简单实现。</p>
 <p><strong>Lecture 9：</strong>介绍了C语言外部库的使用和创建，同时引入了<code>B-tree</code>和优先队列<code>priority queues</code>两种数据结构。在外部库的使用介绍中，首先说明符号（symbol）的定义，包括全局变量、静态变量和函数等。然后通过一个简单<code>hello.c</code>来阐述静态链接和动态链接的差异及其各自的优缺点。程序也可以通过定义在头文件<code>dlfcn.h</code>里的<code>dlopen/dlsys/dlclose</code>函数在运行态中加载动态库。对于静态库的创建，可以先编译但不链接源代码，然后将生成的可重定位目标文件通过<code>ar</code>命令打包成一个后缀为<code>.a</code>的静态库文件。对于动态库的创建，则可通过<code>-shared -fPIC</code>编译器选项生成自定义的后缀为<code>.so</code>的动态库文件。<code>B-tree</code>是更通用版本的二叉搜索树，这里的通用指的是每个节点的值和对应的子节点不止一个，并且<code>B-tree</code>始终是平衡的。对于<code>B-tree</code>和<code>priority queues</code>，分别介绍了相应的搜索（search）、插入（insertion）和删除（deletion）等操作。具体的用法和实践在<strong>Problem Set 7</strong>中有更好的体现。</p>
+<p><strong>Lecture 10：</strong>介绍了C语言标准库，并列出了常用标准库中的使用频率较高的函数。本章中介绍的标准库有<code>stdio.h</code>、<code>ctype.h</code>、<code>string.h</code>、<code>stdlib.h</code>、<code>assert.h</code>、<code>stdarg.h</code>以及<code>time.h</code>。<code>stdio.h</code>主要是包含文件以及输入输出的操作。<code>ctype.h</code>主要是包含字符处理的相关的API。<code>string.h</code>主要是包含字符串处理和内存相关的API。<code>stdlib.h</code>定义了很多常用的功能函数，包括随机函数<code>rand()</code>等。<code>assert.h</code>包含关于断言的相关函数。<code>stdarg.h</code>定义了C语言可变参数函数的相关API。<code>time.h</code>是C语言关于实践相关的库函数的头文件定义。</p>
+<p><strong>Lecture 11：</strong>介绍了C语言动态内存分配的实现，<code>valgrind</code>工具的使用以及垃圾回收（garbage collection）的机制。这个章节的内容基本和<a href="https://csapp.cs.cmu.edu/" target="_blank" rel="noopener">CSAPP</a>中第九章虚拟内存的内容一致，包括本章中介绍<code>malloc</code>不同的实现也是第九章的课后实验。个人觉得详细的内容还是<strong>CSAPP</strong>（深入理解计算机系统）这本书介绍得比较详细。</p>
 <h2 id="2-3-编程练习"><a href="#2-3-编程练习" class="headerlink" title="2.3 编程练习"></a>2.3 编程练习</h2><p><strong>Problem Set 1：</strong>练习1主要是针对<strong>Lecture 1</strong>的讲到的一些C语言基本知识点进行考察。比如区分<code>7</code>、<code>&#39;7&#39;</code>和<code>&quot;7&quot;</code>在C语言中含义的不同，要警惕使用宏定义进行算数运算时表达式是否符合预期。最后就是亲自上手编写、编译、调试C程序<em>Hello World</em>，熟悉编写C语言的整体流程。</p>
 <p><strong>Problem Set 2：</strong>练习2主要是通过一些小例子，对<strong>Lecture 2</strong>中讲到的C各个数据类型的大小，逻辑运算符、位运算符、运算符优先级进行练习。</p>
 <p><strong>Problem Set 3：</strong>练习3.1通过一个具体的code profiling代码的例子，来说明C语言中<code>register</code>关键词对执行程序速度的影响。练习3.2锻炼C模块化编程的思想，着重强调了<code>extern</code>关键词的作用。练习3.3练习如何在<code>do...while</code>、<code>while</code>、<code>for</code>循环之间进行代码转换。练习3.4训练的是C语言实现<code>wc</code>命令的功能，其中关于实现单词的计数需要用到一些小技巧。练习3.5个人觉得最有意思，用C语言实现打开文件读写文件内容，并针对实际需求对处理结果进行格式化输出。</p>
@@ -216,15 +218,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">日常规划</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">自我学习</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MIT 6.087</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">日常规划</a>
         		</li>
       		
 		</ul>
@@ -454,11 +456,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
+                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -466,11 +464,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MIT 6.087</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MIT 6.0001</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MIT 6.087</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -514,14 +520,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
@@ -534,6 +532,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">朝话</a>
               </li>
              
@@ -542,15 +552,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Shell编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,7 +560,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">Shell编程</a>
               </li>
             
             <div class="clearfix"></div>
