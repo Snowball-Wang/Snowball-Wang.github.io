@@ -5,28 +5,28 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://wangjieqiang.com">
+  <link rel="dns-prefetch" href="https://Snowball-Wang.github.io">
   <title>理解Python中的深拷贝和浅拷贝 | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="关键词： Python  深拷贝  浅拷贝 0. 前言之前在参加海康研究院图像算法工程师的面试时，面试官问到了关于Python中深拷贝和浅拷贝的问题。我只是回答出了直接赋值和浅拷贝的差异，并没有涉及到Python如何使用copy模块中的deepcopy()方法来实现深拷贝。这部分的知识明显有漏洞，并且网上有很多说明Py">
 <meta name="keywords" content="技术日志,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解Python中的深拷贝和浅拷贝">
-<meta property="og:url" content="https://wangjieqiang.com/2018/11/13/理解Python中的深拷贝和浅拷贝/index.html">
+<meta property="og:url" content="https://Snowball-Wang.github.io/2018/11/13/理解Python中的深拷贝和浅拷贝/index.html">
 <meta property="og:site_name" content="王杰强的博客">
 <meta property="og:description" content="关键词： Python  深拷贝  浅拷贝 0. 前言之前在参加海康研究院图像算法工程师的面试时，面试官问到了关于Python中深拷贝和浅拷贝的问题。我只是回答出了直接赋值和浅拷贝的差异，并没有涉及到Python如何使用copy模块中的deepcopy()方法来实现深拷贝。这部分的知识明显有漏洞，并且网上有很多说明Python深浅拷贝的文章，本文就是基于自己的理解对Python的深浅拷贝做个总结。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://wangjieqiang.com/2018/11/13/理解Python中的深拷贝和浅拷贝/test1.png">
-<meta property="og:image" content="https://wangjieqiang.com/2018/11/13/理解Python中的深拷贝和浅拷贝/图1.png">
-<meta property="og:image" content="https://wangjieqiang.com/2018/11/13/理解Python中的深拷贝和浅拷贝/test2.png">
-<meta property="og:image" content="https://wangjieqiang.com/2018/11/13/理解Python中的深拷贝和浅拷贝/图2.png">
-<meta property="og:image" content="https://wangjieqiang.com/2018/11/13/理解Python中的深拷贝和浅拷贝/test3.png">
-<meta property="og:image" content="https://wangjieqiang.com/2018/11/13/理解Python中的深拷贝和浅拷贝/图3.png">
+<meta property="og:image" content="https://snowball-wang.github.io/2018/11/13/理解Python中的深拷贝和浅拷贝/test1.png">
+<meta property="og:image" content="https://snowball-wang.github.io/2018/11/13/理解Python中的深拷贝和浅拷贝/图1.png">
+<meta property="og:image" content="https://snowball-wang.github.io/2018/11/13/理解Python中的深拷贝和浅拷贝/test2.png">
+<meta property="og:image" content="https://snowball-wang.github.io/2018/11/13/理解Python中的深拷贝和浅拷贝/图2.png">
+<meta property="og:image" content="https://snowball-wang.github.io/2018/11/13/理解Python中的深拷贝和浅拷贝/test3.png">
+<meta property="og:image" content="https://snowball-wang.github.io/2018/11/13/理解Python中的深拷贝和浅拷贝/图3.png">
 <meta property="og:updated_time" content="2018-11-16T12:03:34.785Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解Python中的深拷贝和浅拷贝">
 <meta name="twitter:description" content="关键词： Python  深拷贝  浅拷贝 0. 前言之前在参加海康研究院图像算法工程师的面试时，面试官问到了关于Python中深拷贝和浅拷贝的问题。我只是回答出了直接赋值和浅拷贝的差异，并没有涉及到Python如何使用copy模块中的deepcopy()方法来实现深拷贝。这部分的知识明显有漏洞，并且网上有很多说明Python深浅拷贝的文章，本文就是基于自己的理解对Python的深浅拷贝做个总结。">
-<meta name="twitter:image" content="https://wangjieqiang.com/2018/11/13/理解Python中的深拷贝和浅拷贝/test1.png">
+<meta name="twitter:image" content="https://snowball-wang.github.io/2018/11/13/理解Python中的深拷贝和浅拷贝/test1.png">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
   
@@ -314,7 +314,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://wangjieqiang.com/2018/11/13/理解Python中的深拷贝和浅拷贝/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://Snowball-Wang.github.io/2018/11/13/理解Python中的深拷贝和浅拷贝/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -498,15 +498,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MIT 6.0001</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MIT 6.087</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,10 +574,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">朝话</a>
               </li>
              
@@ -582,7 +582,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">VPP</a>
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,7 +590,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">VPP</a>
               </li>
             
             <div class="clearfix"></div>

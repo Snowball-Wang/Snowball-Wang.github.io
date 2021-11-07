@@ -5,24 +5,24 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://wangjieqiang.com">
+  <link rel="dns-prefetch" href="https://Snowball-Wang.github.io">
   <title>Python魔法方法和操作符重载 | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="关键词： Python 魔法方法 操作符重载 0.前言在阅读Python的代码时，经常会看到以双下划线__包裹起来的方法，最常见的就是在Python的类里的__init__方法。这些方法被称之为魔法方法（Magic Method）。网上看了很多介绍Python魔法方法的文章，有的写得太过啰嗦，有的写得太过深奥。我个人觉">
 <meta name="keywords" content="技术日志,Python,Magic Method,Operator Overloading">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python魔法方法和操作符重载">
-<meta property="og:url" content="https://wangjieqiang.com/2018/02/02/Python魔法方法和操作符重载/index.html">
+<meta property="og:url" content="https://Snowball-Wang.github.io/2018/02/02/Python魔法方法和操作符重载/index.html">
 <meta property="og:site_name" content="王杰强的博客">
 <meta property="og:description" content="关键词： Python 魔法方法 操作符重载 0.前言在阅读Python的代码时，经常会看到以双下划线__包裹起来的方法，最常见的就是在Python的类里的__init__方法。这些方法被称之为魔法方法（Magic Method）。网上看了很多介绍Python魔法方法的文章，有的写得太过啰嗦，有的写得太过深奥。我个人觉得这篇文章写得非常简洁明了，于是将之翻译，稍微对原文内容做了一些修改，算是Py">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://wangjieqiang.com/2018/02/02/Python魔法方法和操作符重载/marvin_the_magician.png">
-<meta property="og:image" content="https://wangjieqiang.com/2018/02/02/Python魔法方法和操作符重载/operator_overloading__radd__.png">
+<meta property="og:image" content="https://snowball-wang.github.io/2018/02/02/Python魔法方法和操作符重载/marvin_the_magician.png">
+<meta property="og:image" content="https://snowball-wang.github.io/2018/02/02/Python魔法方法和操作符重载/operator_overloading__radd__.png">
 <meta property="og:updated_time" content="2018-11-17T01:53:40.394Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python魔法方法和操作符重载">
 <meta name="twitter:description" content="关键词： Python 魔法方法 操作符重载 0.前言在阅读Python的代码时，经常会看到以双下划线__包裹起来的方法，最常见的就是在Python的类里的__init__方法。这些方法被称之为魔法方法（Magic Method）。网上看了很多介绍Python魔法方法的文章，有的写得太过啰嗦，有的写得太过深奥。我个人觉得这篇文章写得非常简洁明了，于是将之翻译，稍微对原文内容做了一些修改，算是Py">
-<meta name="twitter:image" content="https://wangjieqiang.com/2018/02/02/Python魔法方法和操作符重载/marvin_the_magician.png">
+<meta name="twitter:image" content="https://snowball-wang.github.io/2018/02/02/Python魔法方法和操作符重载/marvin_the_magician.png">
   
     <link rel="alternative" href="/atom.xml" title="王杰强的博客" type="application/atom+xml">
   
@@ -532,7 +532,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://wangjieqiang.com/2018/02/02/Python魔法方法和操作符重载/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://Snowball-Wang.github.io/2018/02/02/Python魔法方法和操作符重载/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -716,15 +716,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MIT 6.0001</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MIT 6.087</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -788,10 +792,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">朝话</a>
               </li>
              
@@ -800,7 +800,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">VPP</a>
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -808,7 +808,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">VPP</a>
               </li>
             
             <div class="clearfix"></div>
