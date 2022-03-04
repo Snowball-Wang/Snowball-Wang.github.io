@@ -155,6 +155,102 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-理解C关键词inline" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/17/理解C关键词inline/">理解C关键词inline</a>
+    </h1>
+  
+
+        
+        <a href="/2022/01/17/理解C关键词inline/" class="archive-article-date">
+  	<time datetime="2022-01-17T15:05:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>关键词：</strong> C/C++ inline</p>
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>最近在看VPP<code>ip4-frag</code>的代码，尤其是同事关于<code>ip4-frag</code>多架构支持的patch，其中的一个改动是将核心调用函数的<code>static</code>改为<code>always_inline</code>，查看<code>always_inline</code>在VPP里的定义，发现<code>always_inline</code>是一个宏，其在VPP的定义如下。那么这个<code>always_inline</code>到底是什么含义？<code>inline</code>关键词到底有什么作用？参考油管上的这个<a href="https://www.youtube.com/watch?v=t6Jfrmdg5rk&amp;list=PL-Ov9uEUQe2uQ1Tr5Oo4lDXi1EERTt-qP&amp;index=35&amp;ab_channel=JacobSorber" target="_blank" rel="noopener">教学视频</a>，用例子对C关键词<code>inline</code>进行一次总结。</p>
+        
+          <a class="article-more-a" href="/2022/01/17/理解C关键词inline/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术日志/C-C//" class="article-tag-list-link color1">C/C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/01/17/理解C关键词inline/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2021年终之前复盘" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -999,99 +1095,6 @@
 
 
   
-    <article id="post-Python-unittest模块小结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/16/Python-unittest模块小结/">Python unittest模块小结</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/16/Python-unittest模块小结/" class="archive-article-date">
-  	<time datetime="2019-07-16T11:18:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>关键字：</strong> 单元测试 Python unittest模块</p>
-<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>最近在看关于<a href="https://wiki.fd.io/view/VPP" target="_blank" rel="noopener">VPP</a>项目中的CSIT的部分，VPP的Path test里主要就是应用了Python的unittest框架，正好在毕业论文项目中也使用到了unittest完成相应单元测试，<a href="https://pymotw.com/3/unittest/index.html" target="_blank" rel="noopener">这篇博客</a>对unittest框架的使用作了全面的介绍，故翻译之作为学习的存档，也算是一个小小的总结。</p>
-<p>Python的<code>unittest</code>框架是基于Kent Beck（TDD测试驱动开发发明人）和Erich Gamma的XUnit框架开发完成的，这种模式在C、Perl、Java和Smalltalk等语言中也被重复利用。<code>unittest</code>框架中有三个基本概念，分别是<strong>test fixtures</strong>，<strong>test suites</strong>以及<strong>test runner</strong>，这三个概念的组合使用可以实现Python的自动化测试。</p>
-        
-          <a class="article-more-a" href="/2019/07/16/Python-unittest模块小结/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/16/Python-unittest模块小结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1106,7 +1109,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 王杰强
+    		&copy; 2022 王杰强
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1210,10 +1213,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
               </li>
              
@@ -1226,11 +1225,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
+                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">MIT 6.087</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1311,10 +1318,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">VPP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
               </li>
             
             <div class="clearfix"></div>
