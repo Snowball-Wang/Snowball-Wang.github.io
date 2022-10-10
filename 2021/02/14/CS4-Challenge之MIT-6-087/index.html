@@ -9,14 +9,14 @@
   <title>CS4 Challenge之MIT-6.087 | 王杰强的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="关键词：CS4挑战  MIT-6.087 0. 前言今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的Pratical Programming in C的部分看完，并把之前看过的部分复习巩固一遍，也算是给新版CS4挑战起个头。看了一下这个Repo最早的commit的记录是2018年12月">
-<meta name="keywords" content="日常规划,自我学习,MIT 6.087">
+<meta name="keywords" content="自我学习,MIT 6.087,日常规划">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS4 Challenge之MIT-6.087">
 <meta property="og:url" content="https://Snowball-Wang.github.io/2021/02/14/CS4-Challenge之MIT-6-087/index.html">
 <meta property="og:site_name" content="王杰强的博客">
 <meta property="og:description" content="关键词：CS4挑战  MIT-6.087 0. 前言今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的Pratical Programming in C的部分看完，并把之前看过的部分复习巩固一遍，也算是给新版CS4挑战起个头。看了一下这个Repo最早的commit的记录是2018年12月份，可以说是历史遗留问题了。借着再巩固一下C语言基本知识、数据结构以及Unix相">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-11-01T15:26:43.511Z">
+<meta property="og:updated_time" content="2022-10-10T08:06:43.441Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS4 Challenge之MIT-6.087">
 <meta name="twitter:description" content="关键词：CS4挑战  MIT-6.087 0. 前言今年过年没有回家，留在了上海。趁着这还有三四天的假期，把遗留的MIT-6.087的Pratical Programming in C的部分看完，并把之前看过的部分复习巩固一遍，也算是给新版CS4挑战起个头。看了一下这个Repo最早的commit的记录是2018年12月份，可以说是历史遗留问题了。借着再巩固一下C语言基本知识、数据结构以及Unix相">
@@ -185,8 +185,9 @@
 <p>正如课程介绍所说，这门课程在我看来很不错的地方在于不仅仅介绍了C语言的基础用法和一些基本的数据结构，而且还在后面的章节涉及到了很多Unix的高级概念。而这些概念很多是计算机体系或者是操作系统的内容，这也是当初为什么我看完前面的C基础就没法继续推进下去的原因😂，自己当时对计算机体系和操作系统一无所知。</p>
 <a id="more"></a>
 <h2 id="1-2-课程资源"><a href="#1-2-课程资源" class="headerlink" title="1.2 课程资源"></a>1.2 课程资源</h2><p>课程主页在<a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-087-practical-programming-in-c-january-iap-2010/" target="_blank" rel="noopener">这里</a>，包括了课程的讲义、练习和项目说明。遗憾的是，这个课程并没有相关视频，所以我的学习方式是看课程PPT，不懂的地方谷歌或者在油管上找相关视频。课程推荐的书籍是经典的<a href="https://book.douban.com/subject/1139336/" target="_blank" rel="noopener">K&amp;R</a>，可以作为辅助参考资料。</p>
-<p>课程一共有7个<em>Problem set</em>和3个<em>Lab</em>。每个<em>Problem set</em>都有官方的答案和解释，每个<em>Project</em>就没有官方的参考了。同样，我也把自己的Solution放在了<a href="https://github.com/Snowball-Wang/MIT_6.087_Practical_Programming_in_C" target="_blank" rel="noopener">Github Repo</a>，以供参考。</p>
-<h1 id="2-课程总结"><a href="#2-课程总结" class="headerlink" title="2. 课程总结"></a>2. 课程总结</h1><h2 id="2-1-课程概述"><a href="#2-1-课程概述" class="headerlink" title="2.1 课程概述"></a>2.1 课程概述</h2><h2 id="2-2-课程详述"><a href="#2-2-课程详述" class="headerlink" title="2.2 课程详述"></a>2.2 课程详述</h2><p><strong>Lecture 1：</strong>主要介绍了如何编写、编译和调试C程序，同时覆盖了C语言的基本概念。本节主要分为三个部分。首先简要地介绍了C语言的历史，包括C语言的诞生、C语言的版本演进、C语言的应用范围、C语言同其它类型计算机语言的差别，最关键的就是明确C语言是底层语言（low-level language）。第二部分介绍如何编写C程序，包括编辑器、编译器（课程用的是gcc）的选择，了解gcc相应的编译选项，C程序调试工具gdb的使用，以及内存检查工具valgrind。第三部分用一个具体的<em>Hello World</em>例子来介绍C语言的基本语法。包括一个<strong>.c</strong>文件结构所包含的内容，如何注释，如何使用宏，C语言算数运算规则，C语言函数原型，如何声明、初始化变量，变量的作用域，如何使用I/O函数打印字符串等等。在宏的部分，还着重介绍了预处理宏在条件编译的使用，包括<code>#if,#ifdef,#ifndef,#else,#elif,#endif,#pragma,#error,#warning,#undef</code>等等。</p>
+<p>课程一共有7个<em>Problem set</em>和2个<em>Lab</em>。每个<em>Problem set</em>都有官方的答案和解释，每个<em>Project</em>就没有官方的参考了。同样，我也把自己的Solution放在了<a href="https://github.com/Snowball-Wang/MIT_6.087_Practical_Programming_in_C" target="_blank" rel="noopener">Github Repo</a>，以供参考。</p>
+<h1 id="2-课程总结"><a href="#2-课程总结" class="headerlink" title="2. 课程总结"></a>2. 课程总结</h1><h2 id="2-1-课程概述"><a href="#2-1-课程概述" class="headerlink" title="2.1 课程概述"></a>2.1 课程概述</h2><p>本课程首先是介绍了C语言的基本语法，然后结合链表、二叉树、哈希表等数据结构，用C语言解决实际的问题。在此过程中，还引入了库开发、动态内存分配、多线程编程、进程间通信等系统编程的概念，虽然很多内容也是浅浅地介绍一下。即便如此，这门课对我的帮助依旧很大。正如其英文名<code>Practical Programming in C</code>表达的一样，认真地学完这门课，可以掌握C语言的基本语法和常用的数据结构的C实现，并对操作系统的相关概念有了入门的了解，同时能够体会系统编程的趣味和魅力（debug的痛并快乐着🤣）。</p>
+<h2 id="2-2-课程详述"><a href="#2-2-课程详述" class="headerlink" title="2.2 课程详述"></a>2.2 课程详述</h2><p><strong>Lecture 1：</strong>主要介绍了如何编写、编译和调试C程序，同时覆盖了C语言的基本概念。本节主要分为三个部分。首先简要地介绍了C语言的历史，包括C语言的诞生、C语言的版本演进、C语言的应用范围、C语言同其它类型计算机语言的差别，最关键的就是明确C语言是底层语言（low-level language）。第二部分介绍如何编写C程序，包括编辑器、编译器（课程用的是gcc）的选择，了解gcc相应的编译选项，C程序调试工具gdb的使用，以及内存检查工具valgrind。第三部分用一个具体的<em>Hello World</em>例子来介绍C语言的基本语法。包括一个<strong>.c</strong>文件结构所包含的内容，如何注释，如何使用宏，C语言算数运算规则，C语言函数原型，如何声明、初始化变量，变量的作用域，如何使用I/O函数打印字符串等等。在宏的部分，还着重介绍了预处理宏在条件编译的使用，包括<code>#if,#ifdef,#ifndef,#else,#elif,#endif,#pragma,#error,#warning,#undef</code>等等。</p>
 <p><strong>Lecture 2：</strong>主要介绍了C语言的变量、数据类型以及运算符。首先说明了数据类型、运算符、表达式、变量的相关概念，了解C是一个<a href="https://www.zhihu.com/question/19918532" target="_blank" rel="noopener">弱类型静态类型语言</a>。接着介绍了C语言变量的命名规范和C包含的数据类型。在介绍C数据类型中，还插入介绍了一下大端（Big Endian）和小端（Little Endian）的<a href="https://www.cnblogs.com/wxdlut/p/9200720.html" target="_blank" rel="noopener">区别</a>。除了C常规的数据结构（int, float, struct, union），还对C常量（Constants）进行了介绍，包括字符类型，字符串类型，<a href="https://www.geeksforgeeks.org/enumeration-enum-c/" target="_blank" rel="noopener">C枚举</a>（enumeration）。最后是C中的运算符的使用，包括算数运算符（+, -, *, /, %），关系运算符（&gt;, &gt;=, &lt;, &lt;=, ==, !=），逻辑运算符（&amp;&amp;, ||, !），自增自减运算符（++, –），位运算符（&amp;, |, ^, &lt;&lt;, &gt;&gt;），三元条件运算符（?:）。其中关于逻辑运算符要注意其中的短路机制，即条件表达式一旦被满足就不会再执行后续的表达式。关于自增自减表达式要注意类似<code>y=x++</code>与<code>y=++x</code>的区别。本节的结尾还提及C类型转换和运算符优先级。</p>
 <p><strong>Lecture 3：</strong>主要介绍了C语言的程序控制流、函数及模块化思想和变量作用域。在程序控制流部分，说明了C语言条件语句<code>if...else if... else</code>和<code>switch-case</code>使用，以及C语言中的几种循环语句的表达，包括<code>while</code>循环、<code>do-while</code>循环和<code>for</code>循环。同时介绍了<code>break</code>和<code>continue</code>关键字在循环语句中的作用。在函数及模块化思想部分，主要通过一个具体的例子，来说明如何用C语言通过模块化的思想构造函数来解决实际问题，在<code>euclid.h</code>文件中自己额外引申关于<strong>include guard</strong>的问题。在最后一部分介绍了关于C变量作用域的话题，包括<code>extern</code>、<code>static</code>和<code>register</code>关键词对变量作用域范围的影响。</p>
 <p><strong>Lecture 4：</strong>进一步介绍了C语言的程序控制流以及C语言的I/O控制。在C语言的程序控制流部分，主要说明了<code>goto</code>语句的用法以及它在C语言<strong>error handling</strong>如何使用。在I/O控制部分，首先介绍了最简单的标准输入输出<code>putchar()</code>和<code>getchar()</code>函数，然后详细说明了一下格式化输出<code>printf()</code>函数的使用，通过具体的例子来理解其格式化的规则<code>%[flags][width][.precision][length]&lt;type&gt;</code>。中间还提了一下<code>strcmp()</code>函数的用法。对应<code>printf()</code>函数也介绍了<code>scanf()</code>函数，对应的还有针对字符串类型的输入输出<code>sprintf()</code>与<code>sscanf()</code>函数，文件输入输出<code>fprintf()</code>与<code>fscanf()</code>函数等。也可以通过<code>fgets()</code>和<code>fputs()</code>函数读写文件一行的数据。最后说明了一下C语言如何在类Unix系统环境下使用命令命令行参数，<code>int main(int argc, char *argv)</code>中的<code>argc</code>表示的就是参数的数量，<code>argv[]</code>就是每一个参数字符串数组的指针。</p>
@@ -197,6 +198,17 @@
 <p><strong>Lecture 9：</strong>介绍了C语言外部库的使用和创建，同时引入了<code>B-tree</code>和优先队列<code>priority queues</code>两种数据结构。在外部库的使用介绍中，首先说明符号（symbol）的定义，包括全局变量、静态变量和函数等。然后通过一个简单<code>hello.c</code>来阐述静态链接和动态链接的差异及其各自的优缺点。程序也可以通过定义在头文件<code>dlfcn.h</code>里的<code>dlopen/dlsys/dlclose</code>函数在运行态中加载动态库。对于静态库的创建，可以先编译但不链接源代码，然后将生成的可重定位目标文件通过<code>ar</code>命令打包成一个后缀为<code>.a</code>的静态库文件。对于动态库的创建，则可通过<code>-shared -fPIC</code>编译器选项生成自定义的后缀为<code>.so</code>的动态库文件。<code>B-tree</code>是更通用版本的二叉搜索树，这里的通用指的是每个节点的值和对应的子节点不止一个，并且<code>B-tree</code>始终是平衡的。对于<code>B-tree</code>和<code>priority queues</code>，分别介绍了相应的搜索（search）、插入（insertion）和删除（deletion）等操作。具体的用法和实践在<strong>Problem Set 7</strong>中有更好的体现。</p>
 <p><strong>Lecture 10：</strong>介绍了C语言标准库，并列出了常用标准库中的使用频率较高的函数。本章中介绍的标准库有<code>stdio.h</code>、<code>ctype.h</code>、<code>string.h</code>、<code>stdlib.h</code>、<code>assert.h</code>、<code>stdarg.h</code>以及<code>time.h</code>。<code>stdio.h</code>主要是包含文件以及输入输出的操作。<code>ctype.h</code>主要是包含字符处理的相关的API。<code>string.h</code>主要是包含字符串处理和内存相关的API。<code>stdlib.h</code>定义了很多常用的功能函数，包括随机函数<code>rand()</code>等。<code>assert.h</code>包含关于断言的相关函数。<code>stdarg.h</code>定义了C语言可变参数函数的相关API。<code>time.h</code>是C语言关于实践相关的库函数的头文件定义。</p>
 <p><strong>Lecture 11：</strong>介绍了C语言动态内存分配的实现，<code>valgrind</code>工具的使用以及垃圾回收（garbage collection）的机制。这个章节的内容基本和<a href="https://csapp.cs.cmu.edu/" target="_blank" rel="noopener">CSAPP</a>中第九章虚拟内存的内容一致，包括本章中介绍<code>malloc</code>不同的实现也是第九章的课后实验。个人觉得详细的内容还是<strong>CSAPP</strong>（深入理解计算机系统）这本书介绍得比较详细。</p>
+<p><strong>Lecture 12：</strong> 介绍了多线程编程的基本概念，以及<code>pthread</code>相应的API的使用。首先要区别两组组概念：并行<code>Parallelism</code>和并发<code>Concurrency</code>、进程<code>Process</code>和线程<code>Thread</code>，然后说明多线程编程给程序员带来的好处。后半部分介绍了<code>pthread</code>相关的API，着重介绍了线程创建<code>pthread_create</code>、线程退出<code>pthread_exit</code>、线程同步<code>thread_join</code>等。也对<code>pthread mutex</code>锁的API进行说明，并结合实例阐述其作用。最后对条件变量<code>condition variable</code>的API进行介绍，并给出实例说明。</p>
+<p><strong>Lecture 13：</strong> 继续介绍多线程编程，同时引入套接字<code>sockets</code>和异步IO的说明。首先说明多线程编程中会出现的竞争条件<code>race condition</code>的问题，然后介绍信号量<code>semaphore</code>的使用，以及如何用信号量来实现<code>生产者-消费者</code>模型。接着介绍了线程安全、可重入函数<code>reentrant function</code>、死锁<code>deadlock</code>以及优先级反转<code>priority inversion</code>等多线程编程中的概念和问题。后半部分介绍了<code>Client-Server</code>模型中的套接字相关的API，最后引入异步I/O中的<code>select</code>、<code>poll</code>的说明和使用。</p>
+<p><strong>Lecture 14：</strong>介绍了进程间通信的几种方式。本节从以下方式中介绍了信号、<code>Fork</code>、管道、<code>FIFO</code>四种方式进行了简单的说明。</p>
+<ul>
+<li>信号<code>signal</code></li>
+<li>管道<code>pipes</code></li>
+<li>FIFO队列</li>
+<li>共享内存</li>
+<li>信号量</li>
+<li>套接字<code>sockets</code></li>
+</ul>
 <h2 id="2-3-编程练习"><a href="#2-3-编程练习" class="headerlink" title="2.3 编程练习"></a>2.3 编程练习</h2><p><strong>Problem Set 1：</strong>练习1主要是针对<strong>Lecture 1</strong>的讲到的一些C语言基本知识点进行考察。比如区分<code>7</code>、<code>&#39;7&#39;</code>和<code>&quot;7&quot;</code>在C语言中含义的不同，要警惕使用宏定义进行算数运算时表达式是否符合预期。最后就是亲自上手编写、编译、调试C程序<em>Hello World</em>，熟悉编写C语言的整体流程。</p>
 <p><strong>Problem Set 2：</strong>练习2主要是通过一些小例子，对<strong>Lecture 2</strong>中讲到的C各个数据类型的大小，逻辑运算符、位运算符、运算符优先级进行练习。</p>
 <p><strong>Problem Set 3：</strong>练习3.1通过一个具体的code profiling代码的例子，来说明C语言中<code>register</code>关键词对执行程序速度的影响。练习3.2锻炼C模块化编程的思想，着重强调了<code>extern</code>关键词的作用。练习3.3练习如何在<code>do...while</code>、<code>while</code>、<code>for</code>循环之间进行代码转换。练习3.4训练的是C语言实现<code>wc</code>命令的功能，其中关于实现单词的计数需要用到一些小技巧。练习3.5个人觉得最有意思，用C语言实现打开文件读写文件内容，并针对实际需求对处理结果进行格式化输出。</p>
@@ -205,6 +217,19 @@
 <p><strong>Problem Set 6a：</strong>练习6.1使用栈和队列两种数据结构完成一个简单的计算器，主要完成其中<code>infix_to_postfix</code>（前缀表达式转换成后缀表达式）和<code>evaluate_postfix</code>（由后缀表达式得出计算结果）两个函数的实现。可参照<strong>Lecture 7</strong>中的调度场算法（shunting yard algorithm）来进行编码，题目看似很简单但我觉得很锻炼编程能力。练习6.2引入<code>trie</code>树数据结构，通过<code>trie</code>树来实现一个单向的英语转法语的字典，主要是实现其中的<code>add_node</code>（添加节点）、<code>delete_node</code>（删除节点）、<code>add_word</code>（将单词添加进<code>trie</code>树）以及<code>lookup_word</code>（查找对应英文单词的法语单词）函数。关于<code>trie</code>树的详细介绍可参照此<a href="https://medium.com/basecs/trying-to-understand-tries-3ec6bede0014" target="_blank" rel="noopener">文章</a>。</p>
 <p><strong>Problem Set 6b：</strong>练习6.1给出一组学生的信息，然后使用<code>qsort</code>函数对信息进行排序打印，练习主要加深对函数指针的理解和使用。练习6.2使用哈希表对文本单词数量进行统计，完成<code>lookup</code>和<code>cleartable</code>两个函数的实现。练习6.2需注意的是，在更新每个<code>bucket</code>对应的链表时，头节点必须使用全局变量<code>table[hash]</code>而不能使用函数内的局部变量，即使局部变量的初始值等同于<code>table[hash]</code>。</p>
 <p><strong>Problem Set 7：</strong>练习7.1a主要是熟悉<code>sqlite3</code>库相应的API，包括如何用<code>sqlite3_open</code>打开一个数据库，如何用<code>sqlite3_exec</code>执行相应的SQL语句并将数据库条目保存到自定义的<code>B-tree</code>中，以及如何用<code>sqlite3_close</code>关闭数据库。练习7.1b主要完成<code>find_index</code>、<code>inorder_traversal</code>以及<code>find_value</code>三个函数的实现，并在<code>main</code>函数中添加将<code>B-tree</code>中序遍历结果输出到命令行参数指定的文件的逻辑。练习7.1c完成用<code>find_value</code>函数实现对<code>B-tree</code>的搜索，同时需要在<code>main</code>函数中添加查询的命令行交互实现。练习7.1d则是训练如何创建静态库、动态库，并且使用创建好的静态库和动态库，本质上就是把前三个练习实现的功能抽出来放到<code>initialize_db</code>、<code>locate_movie</code>、<code>dump_sorted_list</code>以及<code>cleanup</code>四个函数中，并且将四个函数作为库中的函数被其他程序调用。</p>
+<p><strong>Lab 1：</strong> Lab1是对<code>Game of Life</code>游戏的实现。在<code>Part A</code>部分，我们对<code>num_neighbors</code>,<code>get_next_state</code>,<code>next_generation</code>函数实现并调用，从而得到50轮迭代后的细胞状态。<code>Part B</code>部分则是从文件读取细胞的初始化状态，并将迭代后的细胞状态存放在文件里。通过此实验我们更加了解C函数的调用流程，并对C语言的文件I/O操作的API（<code>fopen</code>、<code>fputs</code>）等的使用更加熟悉。</p>
+<p><strong>Lab 2：</strong> Lab2是对霍夫曼编码的实现。实现霍夫曼编码就要理解其流程：</p>
+<ol>
+<li>计算每个字符在文件中的频率</li>
+<li>根据每个字符的频率将字符及其对应的数量添加进优先队列</li>
+<li>利用优先队列创建霍夫曼树</li>
+<li>遍历霍夫曼树查找字符和二进制编码的映射关系</li>
+<li>遍历文件字符，将其转换成二进制编码</li>
+</ol>
+<p>所以在此实验中实现霍夫曼的编码，我们熟悉了相应的文件读写操作（我在<code>feof</code>和<code>EOF</code>的区别上纠结了很长时间），并理解了优先队列数据结构，以及如何利用优先队列创建霍夫曼树。实验最后部分是通过一个具体的文件<code>book.txt</code>来完成霍夫曼的编码和解码，并计算出相应的压缩率。我得到的结果是<code>1.7496</code>。</p>
+<h1 id="3-课程总结与评价"><a href="#3-课程总结与评价" class="headerlink" title="3. 课程总结与评价"></a>3. 课程总结与评价</h1><p>查看对应repo的提交记录，发现最早提交的时间点是2018年12月份。可以说，<code>MIT 6.087</code>这门课我是断断续续用了4年时间才完整地过完。其实准确来说这门课我一共推进了三次。第一次是刚刚来Arm实习，C语言一窍不通的时候开始的。不过这一次只是看了前面C语言的基本语法部分，后面稍微涉及操作系统的概念时就放弃了。第二次是2021年中，当时看CSAPP有了一定的系统编程的了解，再去复习了一遍相应的assignment，感觉自己对很多C数据结构的实现应用地就更加熟练，研究生期间算法课上的那种数据结构恐惧症的魔咒算是打破了。第三次就是2022年的国庆，完成了剩下的Lab，并对最后的多线程编程等内容结合PPT自己扩展找资源加深理解。</p>
+<p>可以夸张一点地说，这门课帮助我在Arm工作，乃至在系统编程方向上奠定了基础。可能最重要的一点是，用C语言去解决问题对我来言，难点不再是以前的C语言的使用，而在于问题解决的思路了。这种小小的自信在四年前之前是不敢奢想的。</p>
+<p>总之，这门课最大的遗憾是没有视频，并且后半部分针对多线程编程、进程间通信等话题也只是点到为止。不过过完这门课，可以大胆地宣称自己是个<strong>初级系统工程师</strong>了。</p>
 
       
 
@@ -218,15 +243,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">日常规划</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">自我学习</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MIT 6.087</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">日常规划</a>
         		</li>
       		
 		</ul>
@@ -469,7 +494,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
+                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -477,7 +502,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MIT 6.087</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MIT 6.0001</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -489,10 +526,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0002</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
@@ -501,23 +534,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">raw_input()</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">input()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">List Comprehension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,7 +558,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MIT 6.087</a>
+                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,10 +574,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">朝话</a>
               </li>
              
@@ -557,15 +582,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Shell编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
               </li>
              
               <li class="article-tag-list-item">
