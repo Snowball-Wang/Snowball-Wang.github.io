@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="王杰强的博客">
 <meta property="og:description" content="关键词： C/C++ inline 0. 前言最近在看VPPip4-frag的代码，尤其是同事关于ip4-frag多架构支持的patch，其中的一个改动是将核心调用函数的static改为always_inline，查看always_inline在VPP里的定义，发现always_inline是一个宏，其在VPP的定义如下。那么这个always_inline到底是什么含义？inline关键词到底有什">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-03-04T13:27:48.098Z">
+<meta property="og:updated_time" content="2022-11-06T04:23:21.456Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解C关键词inline">
 <meta name="twitter:description" content="关键词： C/C++ inline 0. 前言最近在看VPPip4-frag的代码，尤其是同事关于ip4-frag多架构支持的patch，其中的一个改动是将核心调用函数的static改为always_inline，查看always_inline在VPP里的定义，发现always_inline是一个宏，其在VPP的定义如下。那么这个always_inline到底是什么含义？inline关键词到底有什">
@@ -180,7 +180,7 @@
 <a id="more"></a>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> CLIB_DEBUG &gt; 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> always_inline static inline</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> static_always_inline static inline</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> always_inline static inline __attribute__ ((__always_inline__))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> static_always_inline static inline __attribute__ ((__always_inline__))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 <h1 id="1-正文"><a href="#1-正文" class="headerlink" title="1. 正文"></a>1. 正文</h1><p>视频包含一个例子，这个例子一个有四个文件，分别是<code>Makefile</code>、<code>test.c</code>、<code>nums.c</code>、<code>nums.h</code>。目前<code>nums.c</code>和<code>nums.h</code>是空文件，<code>test.c</code>的内容如下。可以看到，我们定义了两个非常简单的函数<code>max</code>和<code>two</code>，函数<code>max</code>比较两个整型数的大小，函数<code>two</code>直接返回2。<code>main</code>函数比较命令行传入的参数与2进行比较，返回较大的值。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">two</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (argc != <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"One argument needed!\n"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> arg = atoi(argv[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">int</span> result;</span><br><span class="line">    </span><br><span class="line">    result = max(two(), arg);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%result = %d\n"</span>, result);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">two</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (argc != <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"One argument needed!\n"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> arg = atoi(argv[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">int</span> result;</span><br><span class="line">    </span><br><span class="line">    result = max(two(), arg);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"result = %d\n"</span>, result);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>对应的<code>Makefile</code>文件：</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">CC=clang</span><br><span class="line">CFLAGS=</span><br><span class="line"></span><br><span class="line"><span class="section">all: test</span></span><br><span class="line"></span><br><span class="line"><span class="section">test: test.c nums.o</span></span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$(CFLAGS)</span> -S <span class="variable">$&lt;</span> -o <span class="variable">$@</span>.opt0.s</span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$(CFLAGS)</span> -O1 -S <span class="variable">$&lt;</span> -o <span class="variable">$@</span>.opt1.s</span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$(CFLAGS)</span> -O2 -S <span class="variable">$&lt;</span> -o <span class="variable">$@</span>.opt2.s</span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$(CFLAGS)</span> <span class="variable">$&lt;</span> nums.o -o <span class="variable">$@</span>0</span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$(CFLAGS)</span> -O1 <span class="variable">$&lt;</span> nums.o -o <span class="variable">$@</span>1</span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$(CFLAGS)</span> -O2 <span class="variable">$&lt;</span> nums.o -o <span class="variable">$@</span>2</span><br><span class="line">	</span><br><span class="line"><span class="section">.phony: clean</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	<span class="variable">$(RM)</span> *.o *.s a.out test0 test1 test2</span><br><span class="line">	<span class="variable">$(RM)</span> -r *.dSYM</span><br></pre></td></tr></table></figure>
 <p><code>Makefile</code>文件中通过设置不同的优化选项来生成不同的汇编代码和二进制文件。编译器使用的<code>clang</code>，对应的版本是<code>clang version 10.0.0-4ubuntu1</code>。当然可以用<code>gcc</code>或者其它编译器，不过不同编译器生成的汇编代码可能会有差异。</p>
@@ -479,7 +479,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
+                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,7 +487,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0001</a>
+                <a href="javascript:void(0)" class="js-tag color5">MIT 6.087</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,11 +495,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">日常学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">日常规划</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MIT 6.087</a>
+                <a href="javascript:void(0)" class="js-tag color1">MIT 6.0001</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,14 +535,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
@@ -555,7 +547,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Ubuntu16.04</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Caffe</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,23 +579,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Shell编程</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">VPP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Magic Method</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Operator Overloading</a>
               </li>
             
             <div class="clearfix"></div>
