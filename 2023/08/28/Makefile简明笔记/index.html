@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://Snowball-Wang.github.io">
-  <title>Python中raw_input()和input()的区别 | 司诺宝的博客</title>
+  <title>Makefile简明笔记 | 司诺宝的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关键词： Python  raw_input()  input() 0. 前言之前在学习“笨办法学Python”时使用过raw_input()函数来提取用户输入的内容，今天在学习Python基础教程又遇到了input()函数，input()函数也可以用来提取用户输入的内容，那么两者有什么差别？本文将对raw_input">
-<meta name="keywords" content="技术日志,Python,raw_input(),input()">
+  <meta name="description" content="0. 前言一直想写一篇关于VPP构建系统的博客，但VPP的构建系统里包含着一个顶级目录下的Makefile，一个在build-root下由数据驱动的Makefile，以及一系列子目录下的Makefile。理解VPP的构建系统就要求对Makefile掌握熟练。本文就是自己在使用Makefile过程中的相关知识点的回顾和总">
+<meta name="keywords" content="技术日志,C&#x2F;C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python中raw_input()和input()的区别">
-<meta property="og:url" content="https://Snowball-Wang.github.io/2018/01/17/Python中raw-input-和input-的区别/index.html">
+<meta property="og:title" content="Makefile简明笔记">
+<meta property="og:url" content="https://Snowball-Wang.github.io/2023/08/28/Makefile简明笔记/index.html">
 <meta property="og:site_name" content="司诺宝的博客">
-<meta property="og:description" content="关键词： Python  raw_input()  input() 0. 前言之前在学习“笨办法学Python”时使用过raw_input()函数来提取用户输入的内容，今天在学习Python基础教程又遇到了input()函数，input()函数也可以用来提取用户输入的内容，那么两者有什么差别？本文将对raw_input()和input()函数的差别进行总结。">
+<meta property="og:description" content="0. 前言一直想写一篇关于VPP构建系统的博客，但VPP的构建系统里包含着一个顶级目录下的Makefile，一个在build-root下由数据驱动的Makefile，以及一系列子目录下的Makefile。理解VPP的构建系统就要求对Makefile掌握熟练。本文就是自己在使用Makefile过程中的相关知识点的回顾和总结。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-17T01:54:16.832Z">
+<meta property="og:updated_time" content="2023-08-28T14:47:59.747Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python中raw_input()和input()的区别">
-<meta name="twitter:description" content="关键词： Python  raw_input()  input() 0. 前言之前在学习“笨办法学Python”时使用过raw_input()函数来提取用户输入的内容，今天在学习Python基础教程又遇到了input()函数，input()函数也可以用来提取用户输入的内容，那么两者有什么差别？本文将对raw_input()和input()函数的差别进行总结。">
+<meta name="twitter:title" content="Makefile简明笔记">
+<meta name="twitter:description" content="0. 前言一直想写一篇关于VPP构建系统的博客，但VPP的构建系统里包含着一个顶级目录下的Makefile，一个在build-root下由数据驱动的Makefile，以及一系列子目录下的Makefile。理解VPP的构建系统就要求对Makefile掌握熟练。本文就是自己在使用Makefile过程中的相关知识点的回顾和总结。">
   
     <link rel="alternative" href="/atom.xml" title="司诺宝的博客" type="application/atom+xml">
   
@@ -155,47 +155,220 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Python中raw-input-和input-的区别" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Makefile简明笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Python中raw_input()和input()的区别
+      Makefile简明笔记
     </h1>
   
 
         
-        <a href="/2018/01/17/Python中raw-input-和input-的区别/" class="archive-article-date">
-  	<time datetime="2018-01-17T01:41:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-17</time>
+        <a href="/2023/08/28/Makefile简明笔记/" class="archive-article-date">
+  	<time datetime="2023-08-28T14:45:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>关键词：</strong> Python  raw_input()  input()</p>
-<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>之前在学习<a href="https://learnpythonthehardway.org/book/" target="_blank" rel="noopener">“笨办法学Python”</a>时使用过<code>raw_input()</code>函数来提取用户输入的内容，今天在学习<a href="https://book.douban.com/subject/4866934/" target="_blank" rel="noopener">Python基础教程</a>又遇到了<code>input()</code>函数，<code>input()</code>函数也可以用来提取用户输入的内容，那么两者有什么差别？本文将对<code>raw_input()</code>和<code>input()</code>函数的差别进行总结。</p>
+        <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>一直想写一篇关于<code>VPP</code>构建系统的博客，但<code>VPP</code>的构建系统里包含着一个顶级目录下的<code>Makefile</code>，一个在<code>build-root</code>下由数据驱动的<code>Makefile</code>，以及一系列子目录下的<code>Makefile</code>。理解<code>VPP</code>的构建系统就要求对<code>Makefile</code>掌握熟练。本文就是自己在使用<code>Makefile</code>过程中的相关知识点的回顾和总结。</p>
 <a id="more"></a>
-<h1 id="1-正文"><a href="#1-正文" class="headerlink" title="1. 正文"></a>1. 正文</h1><h2 id="1-1-Python2-x版本"><a href="#1-1-Python2-x版本" class="headerlink" title="1.1 Python2.x版本"></a>1.1 Python2.x版本</h2><p>我所用的是<code>Ubuntu16.04</code>系统，系统自带Python2.7版本，在命令行中敲入<code>python</code>命令，进入Python交互命令界面。由于<code>raw_input()</code>和<code>input()</code>是内置函数，可通过<code>help</code>函数来查看其具体用法。</p>
-<p>先来看一看<code>raw_input()</code>的含义：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>help(raw_input)</span><br><span class="line"></span><br><span class="line">Help on built-<span class="keyword">in</span> function raw_input <span class="keyword">in</span> module __builtin__:</span><br><span class="line"></span><br><span class="line">raw_input(...)</span><br><span class="line">    raw_input([prompt]) -&gt; string</span><br><span class="line">    </span><br><span class="line">    Read a string <span class="keyword">from</span> standard input.  The trailing newline <span class="keyword">is</span> stripped.</span><br><span class="line">    If the user hits EOF (Unix: Ctl-D, Windows: Ctl-Z+Return), <span class="keyword">raise</span> EOFError.</span><br><span class="line">    On Unix, GNU readline <span class="keyword">is</span> used <span class="keyword">if</span> enabled.  The prompt string, <span class="keyword">if</span> given,</span><br><span class="line">    <span class="keyword">is</span> printed without a trailing newline before reading.</span><br></pre></td></tr></table></figure>
-<p><code>raw_input()</code>的含义是读取用户输入的字符串，并且用户输入的字符串中如果有<strong>换行符（trailing newline）</strong>，那么换行符将会被去除。如果用户在输入过程中输入<strong>EOF（文件结束符）</strong>，将会引发<code>EOFError</code>。</p>
-<p>再来看一看<code>input()</code>的含义：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>help(input)</span><br><span class="line"></span><br><span class="line">Help on built-<span class="keyword">in</span> function input <span class="keyword">in</span> module __builtin__:</span><br><span class="line"></span><br><span class="line">input(...)</span><br><span class="line">    input([prompt]) -&gt; value</span><br><span class="line">    </span><br><span class="line">    Equivalent to eval(raw_input(prompt)).</span><br></pre></td></tr></table></figure>
-<p>可以看到，<code>input()</code>函数实际上是通过调用<code>raw_input()</code>来实现的，<code>eval()</code>函数的功能是将字符串str当成有效的Python表达式来求值并返回计算结果。</p>
-<p>这样子还是不能够理解两个函数的差别，下面通过具体例子来理解两者差异：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>raw_input_A = raw_input(<span class="string">"&gt;"</span>)</span><br><span class="line">&gt;abc</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>input_A = input(<span class="string">"&gt;"</span>)</span><br><span class="line">&gt;abc</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">  File <span class="string">"&lt;string&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">NameError: name <span class="string">'abc'</span> <span class="keyword">is</span> <span class="keyword">not</span> defined</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>input_A = input(<span class="string">"&gt;"</span>)</span><br><span class="line">&gt;<span class="string">'abc'</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
-<p>可以看出，<code>raw_input()</code>和<code>input()</code>都可以接收字符串，但<code>raw_input()</code>可以接受控制台任何类型的输入，而<code>input()</code>则要求输入必须是合法的Python表达式，否则就会引起错误。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>raw_input_B = raw_input(<span class="string">"&gt;"</span>)</span><br><span class="line">&gt;<span class="number">123</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(raw_input_B)</span><br><span class="line">&lt;type <span class="string">'str'</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>input_B = input(<span class="string">"&gt;"</span>)</span><br><span class="line">&gt;<span class="number">123</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(input_B)</span><br><span class="line">&lt;type <span class="string">'int'</span>&gt;</span><br></pre></td></tr></table></figure>
-<p>可以看出，<code>raw_input()</code>将所有输入都当做字符串来看待，返回的是str类型。而<code>input()</code>在对待纯数字输入时，会把数字当作Python表达式来看待，它的返回类型就不再是str类型，将会变成int或float类型。同时，<code>input()</code>函数可以接收合法的Python表达式，如<code>input(1+1)</code>结果返回int类型的2。</p>
-<h2 id="1-2-Python3-x版本"><a href="#1-2-Python3-x版本" class="headerlink" title="1.2     Python3.x版本"></a>1.2     Python3.x版本</h2><p>在Python3.x版本中，旧的<code>input()</code>函数功能被<strong>删除</strong>，<strong>新的<code>input()</code>函数</strong>的含义<strong>完全相当于</strong>Python2.x中的<strong><code>raw_input()</code></strong>。也就是说，在Python3.x版本中，不再有<code>raw_input()</code>函数，<code>input()</code>函数变为Python2.x中的<code>raw_input()</code>函数。</p>
-<p><strong>参考链接：</strong></p>
+<h2 id="1-Makefile简介"><a href="#1-Makefile简介" class="headerlink" title="1. Makefile简介"></a>1. <code>Makefile</code>简介</h2><h3 id="1-1-Makefile的规则"><a href="#1-1-Makefile的规则" class="headerlink" title="1.1 Makefile的规则"></a>1.1 <code>Makefile</code>的规则</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">target ... : prerequisites ...</span><br><span class="line">	command</span><br><span class="line">	...</span><br><span class="line">	...</span><br></pre></td></tr></table></figure>
+<p><code>target</code>可以是一个目标文件，也可以是一个可执行文件，还可以是一个标签（伪目标）。</p>
+<p><code>prerequisites</code>是生成<code>target</code>所依赖的文件。</p>
+<p><code>command</code>是生成<code>target</code>所要执行的命令。</p>
+<p>需要注意的是，<code>Makefile</code>中的命令，也就是上述的<code>command</code>，必须是以<code>Tab</code>键开始。</p>
+<p>以上描述的三者相互构成依赖关系，一句话描述的话就是：<strong>prerequisites中如果有文件比target要更新的话，command所定义的命令就会被执行</strong>。</p>
+<p>上述描述的就是<code>Makefile</code>的规则，也是<code>Makefile</code>的核心内容。</p>
+<h3 id="1-2-make命令自动推导"><a href="#1-2-make命令自动推导" class="headerlink" title="1.2 make命令自动推导"></a>1.2 <code>make</code>命令自动推导</h3><p>GNU <code>make</code>命令很强大，可以自动推导文件以及文件依赖后面的命令。只要<code>make</code>看到一个<code>.o</code>文件，它就会自动地把<code>.c</code>文件添加到依赖关系中。例如，如果<code>make</code>找到一个<code>example.o</code>，那么<code>example.c</code>就会是<code>example.o</code>的依赖文件，并且<code>cc -c example.c</code>也会被自动推导出来。这种方法，就是<code>make</code>的隐式推导规则。</p>
+<h3 id="1-3-Makefile文件包含的内容"><a href="#1-3-Makefile文件包含的内容" class="headerlink" title="1.3 Makefile文件包含的内容"></a>1.3 <code>Makefile</code>文件包含的内容</h3><p><code>Makefile</code>文件里主要包含了五个部分的内容：显示规则、隐式规则、变量定义、文件指示和注释。</p>
+<ul>
+<li>显示规则说明了如何生成一个或多个目标文件。程序员负责编写要生成的文件、文件的依赖以及生成的命令。</li>
+<li>隐晦规则使用的是<code>make</code>自动推导的过程，不需要程序员像显示规则一样指定整个依赖关系。</li>
+<li><code>Makefile</code>里的变量可以理解为C语言中的宏。当<code>Makefile</code>被执行时，其中的变量会被扩展到相应的引用位置上。</li>
+<li>文件指示。<code>Makefile</code>可以引用另一个<code>Makefile</code>文件，类似于C中的<code>include</code>。<code>Makefile</code>中可以通过<code>#if</code>等条件语句来指定有效部分。同时，<code>Makefile</code>中还可以定义一个多行的命令。</li>
+<li>注释。<code>Makefile</code>使用<code>#</code>字符作为注释符。</li>
+</ul>
+<h3 id="1-4-引入其它的Makefile"><a href="#1-4-引入其它的Makefile" class="headerlink" title="1.4 引入其它的Makefile"></a>1.4 引入其它的<code>Makefile</code></h3><p>在<code>Makefile</code>中使用<code>include</code>关键字可以把别的<code>Makefile</code>包含进来，语法如下：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span> &lt;filename&gt;</span><br></pre></td></tr></table></figure>
+<p><code>make</code>命令执行时，会搜索<code>include</code>所包含的所有的<code>Makefile</code>，并将其内容放置在当前位置。如果文件没有声明绝对路径或者相对路径的话，<code>make</code>会在当前目录下首先搜索。如果当前目录没有对应的文件，<code>make</code>继续在以下目录中搜索：</p>
+<ul>
+<li>若<code>make</code>执行时，添加了<code>-I</code>或者<code>--include-dir</code>参数，那么<code>make</code>回去此参数指定的目录搜索。</li>
+<li>若<code>&lt;prefix&gt;/include</code>包括<code>/usr/local/bin</code>或<code>/usr/include</code>存在的话，<code>make</code>也会在相应目录中搜索。</li>
+</ul>
+<p>若文件没有被查找到，<code>make</code>会提示警告信息，但不会立即出错。如果想让<code>make</code>不理会无法读取的文件，继续执行接下来的命令，可在<code>include</code>前加一个<code>-</code>号。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">-include</span> &lt;filename&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="1-5-make工作流程"><a href="#1-5-make工作流程" class="headerlink" title="1.5 make工作流程"></a>1.5 <code>make</code>工作流程</h3><p>GNU<code>make</code>工作流程如下：</p>
 <ol>
-<li><a href="https://www.cnblogs.com/way_testlife/archive/2011/03/29/1999283.html" target="_blank" rel="noopener">https://www.cnblogs.com/way_testlife/archive/2011/03/29/1999283.html</a></li>
-<li><a href="https://stackoverflow.com/questions/4915361/whats-the-difference-between-raw-input-and-input-in-python3-x" target="_blank" rel="noopener">https://stackoverflow.com/questions/4915361/whats-the-difference-between-raw-input-and-input-in-python3-x</a></li>
+<li>读入所有的<code>Makefile</code>文件。</li>
+<li>读入被<code>include</code>的其它<code>Makefile</code>文件。</li>
+<li>初始化文件中的变量。</li>
+<li>推导隐式规则，并分析所有规则。</li>
+<li>为所有的目标文件创建依赖关系链。</li>
+<li>根据依赖关系，决定哪些目标要重新生成。</li>
+<li>执行生成命令。</li>
 </ol>
+<h2 id="2-Makefile命令"><a href="#2-Makefile命令" class="headerlink" title="2. Makefile命令"></a>2. <code>Makefile</code>命令</h2><p><code>Makefile</code>中每条规则中的命令和操作系统<code>Shell</code>的命令行是一致的。<code>make</code>会按照顺序一条一条地执行命令，每条命令的开头必须是以<code>Tab</code>键开头的。</p>
+<h3 id="2-1-命令显示"><a href="#2-1-命令显示" class="headerlink" title="2.1 命令显示"></a>2.1 命令显示</h3><p>一般情况下，<code>make</code>会把其要执行的命令行在命令执行前输出到屏幕上。当我们在命令行前添加<code>@</code>字符时，这个命令将不被显示出来。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Makefile1</span></span><br><span class="line">echo <span class="string">"Compiling xxx module..."</span></span><br><span class="line"><span class="comment"># This will output the command and the result</span></span><br><span class="line">echo <span class="string">"Compiling xxx module..."</span></span><br><span class="line">Compiling xxx <span class="class"><span class="keyword">module</span>...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Makefile2</span></span><br><span class="line">@echo <span class="string">"Compiling xxx module..."</span></span><br><span class="line"><span class="comment"># This will only output the result</span></span><br><span class="line">compiling xxx <span class="class"><span class="keyword">module</span>...</span></span><br></pre></td></tr></table></figure>
+<p><code>make</code>执行时带入参数<code>-n</code>或者<code>--just-print</code>，只会显示命令，不会执行命令，可帮助调试<code>Makefile</code>，了解对应<code>Makefile</code>执行的具体步骤和内容。</p>
+<p><code>make</code>执行时带入参数<code>-s</code>或者<code>--silent</code>或者<code>--quiet</code>，则在执行时不会显示执行的命令。</p>
+<h3 id="2-2-命令执行"><a href="#2-2-命令执行" class="headerlink" title="2.2 命令执行"></a>2.2 命令执行</h3><p>当在执行<code>Makefile</code>中的命令去更新目标文件时，执行命令的过程中，<code>shell</code>会为每一行命令创建一个子进程，在子进程中执行对应的命令。这就意味着一些如<code>cd</code>等<code>shell</code>命令的作用域只在当前行，不会影响到接下来命令的执行结果。如果想要<code>cd</code>的结果作用于接下来的命令，则需把两条命令写在同一行，中间用<code>;</code>隔开。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Makefile1</span></span><br><span class="line">foo:</span><br><span class="line">	<span class="built_in">cd</span> ~</span><br><span class="line">	<span class="built_in">pwd</span></span><br><span class="line"><span class="comment"># This will output the directory where your Makefile is</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Makefile2</span></span><br><span class="line">foo:</span><br><span class="line">	<span class="built_in">cd</span> ~; <span class="built_in">pwd</span></span><br><span class="line"><span class="comment"># This will output the home directory specified by $HOME</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-3-并行执行"><a href="#2-3-并行执行" class="headerlink" title="2.3 并行执行"></a>2.3 并行执行</h3><p>GNU<code>make</code>可一次执行多条命令。通常情况下，<code>make</code>一次只执行一条命令，下一条命令需等待当前命令结束再执行。但是我们可以通过设置<code>-j</code>或者<code>--jobs</code>选项来显示地通知<code>make</code>并行执行命令，并行执行命令的数量即是<code>-j</code>或<code>--jobs</code>后接的数字。</p>
+<h3 id="2-4-错误处理"><a href="#2-4-错误处理" class="headerlink" title="2.4 错误处理"></a>2.4 错误处理</h3><p><code>make</code>会检查每行命令执行过后的退出码。如果其中一条命令的退出码有问题，<code>make</code>则不会继续执行那条命令对应接下来的命令，甚至可能直接退出执行。</p>
+<p>当然有时候一些命令执行错误也无伤大雅，比如用<code>mkdir</code>创建一个已经存在的目录，<code>make</code>执行就会报错。解决这种问题可以在命令前添加<code>-</code>，如下例所示。即使<code>rm</code>无法删除文件，<code>make</code>也会继续执行。</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">clean:</span></span><br><span class="line">	-rm -f *.o</span><br></pre></td></tr></table></figure>
+<p>另一种方法是在<code>make</code>选项中添加<code>-i</code>或<code>--ignore-errors</code>，显示地说明忽略<code>make</code>执行过程中所有的错误。</p>
+<h3 id="2-5-嵌套使用"><a href="#2-5-嵌套使用" class="headerlink" title="2.5 嵌套使用"></a>2.5 嵌套使用</h3><p>我们可以在<code>Makefile</code>中把<code>make</code>当作命令使用。一般对于构建大型软件系统来说，我们会对不同的子项目编写单独的<code>Makefile</code>。举个例子，如果我们有个子目录<code>subdir</code>，对应<code>subdir</code>有自己的<code>Makefile</code>，我们可以在顶级<code>Makefile</code>里做如下编写：</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># <span class="function"><span class="keyword">Method</span> 1</span></span><br><span class="line"><span class="function"><span class="title">subsystem</span>:</span></span><br><span class="line">	cd subdir &amp;&amp; $(MAKE)</span><br><span class="line"></span><br><span class="line"># <span class="function"><span class="keyword">Method</span> 2</span></span><br><span class="line"><span class="function"><span class="title">subsystem</span>:</span></span><br><span class="line">	$(MAKE) -C subdir</span><br></pre></td></tr></table></figure>
+<p>当我们嵌套使用<code>make</code>时，最好添加<code>.PHONY</code>对其目标声明为伪目标。</p>
+<h3 id="2-6-定义命令包"><a href="#2-6-定义命令包" class="headerlink" title="2.6 定义命令包"></a>2.6 定义命令包</h3><p>如果<code>Makefile</code>中出现一组相同的命令序列，我们则可以将这些相同的命令序列组合定义成一个变量。语法如下所示。<code>echo_var</code>即是这个命令包的名字，命令包还可以接受参数。我们可以直接把<code>echo_var</code>看作一个变量，用<code>$(echo_var)</code>。也可以把<code>echo_var</code>看作一个函数，用<code>call</code>调用<code>echo_var</code>。下述例子<code>t1</code>和<code>t2</code>的执行结果相同，都是输出<code>one</code>。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">define</span> echo_var</span><br><span class="line">@echo $(1)</span><br><span class="line"><span class="keyword">endef</span></span><br><span class="line"></span><br><span class="line"><span class="section">all: t1 t2</span></span><br><span class="line"></span><br><span class="line"><span class="section">t1:</span></span><br><span class="line">    <span class="variable">$(echo_var)</span> <span class="string">"one"</span></span><br><span class="line"></span><br><span class="line"><span class="section">t2:</span></span><br><span class="line">    <span class="variable">$(<span class="built_in">call</span> echo_var, "one")</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-Makefile变量"><a href="#3-Makefile变量" class="headerlink" title="3. Makefile变量"></a>3. <code>Makefile</code>变量</h2><p><code>Makefile</code>中定义的变量，类似于C/C++语言中的宏，本质上就是文本字符串，可以在<code>Makefile</code>执行过程中自动展开。变量在声明时需要赋初值，在使用变量时，需要给变量名前加<code>$</code>，而且最好使用<code>()</code>和<code>{}</code>将变量包起来。</p>
+<h3 id="3-1-变量赋值"><a href="#3-1-变量赋值" class="headerlink" title="3.1 变量赋值"></a>3.1 变量赋值</h3><p>在<code>Makefile</code>中，赋值方式有<code>=</code>、<code>:=</code>、<code>?=</code>和<code>+=</code>四种。</p>
+<h4 id="递归展开变量"><a href="#递归展开变量" class="headerlink" title="= 递归展开变量"></a><code>=</code> 递归展开变量</h4><p>用<code>=</code>或者<code>define</code>关键词都可以定义此类型变量。如果变量的定义援引了其它的变量，则引用会一直展开下去，直到找到被引用变量的最新定义，并以此作为变量的返回值。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var = I love</span><br><span class="line">distro = centos</span><br><span class="line">var += <span class="variable">$(distro)</span></span><br><span class="line">distro = ubuntu</span><br><span class="line"></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">		@echo <span class="variable">$(var)</span></span><br></pre></td></tr></table></figure>
+<p>上述例子运行结果是：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I love ubuntu</span><br></pre></td></tr></table></figure>
+<p><code>=</code>的赋值时没有先后顺序的，使用时要小心递归的出现，如<code>A = $(A)</code>这样的写法就会导致变量递归定义。</p>
+<h4 id="简单扩展变量"><a href="#简单扩展变量" class="headerlink" title=":=简单扩展变量"></a><code>:=</code>简单扩展变量</h4><p><code>:=</code>用此方式定义的变量，会在变量定义的位置，按照被引用的变量的当前值做一次展开。被引用的变量的值后续发生变化不会影响当前定义变量的值。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var := I love</span><br><span class="line">distro = centos</span><br><span class="line">res := <span class="variable">$(var)</span> <span class="variable">$(distro)</span></span><br><span class="line">distro = ubuntu</span><br><span class="line"></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">        @echo <span class="variable">$(res)</span></span><br></pre></td></tr></table></figure>
+<p>上述例子运行结果是：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I love centos</span><br></pre></td></tr></table></figure>
+<p>但如果上述中的<code>res := $(var) $(distro)</code>改为<code>res = $(var) $(distro)</code>，运行的结果则为<code>I love ubuntu</code>。可以体会到两种赋值方式的差别。</p>
+<h4 id="条件变量"><a href="#条件变量" class="headerlink" title="?=条件变量"></a><code>?=</code>条件变量</h4><p><code>?=</code>只在变量未被赋值的情况下起作用。如果变量没有初始化，变量的定义即为默认值。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ARCH = arm</span><br><span class="line">ARCH ?= amd64</span><br><span class="line"></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">		@echo <span class="variable">$(ARCH)</span></span><br></pre></td></tr></table></figure>
+<p>上述例子运行结果是：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arm</span><br></pre></td></tr></table></figure>
+<h4 id="变量添加新的文本"><a href="#变量添加新的文本" class="headerlink" title="+=变量添加新的文本"></a><code>+=</code>变量添加新的文本</h4><p>当变量未被定义，则<code>+=</code>的作用和<code>=</code>是一致的，定义一个递归展开的变量。但如果变量之前已被定义，<code>+=</code>只是做字符的添加工作。如果一开始使用<code>:=</code>定义变量，则<code>+=</code>就是对变量添加新的文本。但如果一开始使用<code>:</code>定义变量，<code>+=</code>则不会立即进行变量展开，直到找到最新的变量定义。第一个例子中的<code>var</code>的最终值是<code>I love ubuntu</code>说明了这种用法。</p>
+<h3 id="3-2-自动化变量"><a href="#3-2-自动化变量" class="headerlink" title="3.2 自动化变量"></a>3.2 自动化变量</h3><p><code>Makefile</code>的自动变量包括目标文件、依赖文件等，本质上是对一类变量的简写。</p>
+<p>首先来看三个常用的自动化变量的含义：</p>
+<ul>
+<li><code>$@</code> 代表目标文件名</li>
+<li><code>$&lt;</code>代表规则的第一个依赖文件</li>
+<li><code>$^</code>代表规则的所有的依赖文件，以空格分离</li>
+</ul>
+<p>举一个例子来说明三个自动化变量的使用。创建一个项目，包含如下所示的文件：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* func1.h */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* func1.c */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"func1: hello!\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* func2.h */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func2</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* func2.c */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"func2: hello!\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* main.c */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"func1.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"func2.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    func1();</span><br><span class="line">    func2();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个示例项目中，<code>main</code>函数调用<code>func1</code>和<code>func2</code>，两个函数分别在<code>func1.h</code>和<code>func2.h</code>里声明。我们编写项目的<code>makefile</code>如下所示：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">CC = gcc</span><br><span class="line"></span><br><span class="line"><span class="section">all: main</span></span><br><span class="line"></span><br><span class="line"><span class="section">main: main.o func1.o func2.o</span></span><br><span class="line">        <span class="variable">$(CC)</span> <span class="variable">$^</span> -o <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="section">%.o: %.c</span></span><br><span class="line">        <span class="variable">$(CC)</span> -c <span class="variable">$&lt;</span> -o <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="meta-keyword">.PHONY</span>: run clean</span></span><br><span class="line"><span class="section">run:</span></span><br><span class="line">        ./main</span><br><span class="line"></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">        <span class="variable">$(RM)</span> main *.o</span><br></pre></td></tr></table></figure>
+<p>生成目标<code>main</code>，则需要<code>main.o</code>、<code>func1.o</code>和<code>func2.o</code>。所以<code>$^</code>指的是所有的依赖条件。而<code>%.o:%.c</code>的写法，则是采用了<code>Makefile</code>的静态模式，<code>$&lt;</code>表示的是第一个依赖条件，所以其等价于如下所示的写法：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">main.o: main.c</span></span><br><span class="line">		gcc -c main.c -o main.o</span><br><span class="line">		</span><br><span class="line"><span class="section">func1.o: func1.c</span></span><br><span class="line">		gcc -c func1.c -o func1.o</span><br><span class="line">		</span><br><span class="line"><span class="section">func2.o: func2.c</span></span><br><span class="line">		gcc -c func2.c -o func2.o</span><br></pre></td></tr></table></figure>
+<p>还有一些出现频率不高的自动化变量：</p>
+<ul>
+<li><code>$?</code>所有比目标文件新的依赖文件的集合</li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">libxyz: x.o y.o z.o</span></span><br><span class="line">		ar r libxyz <span class="variable">$?</span></span><br></pre></td></tr></table></figure>
+<p>如果<code>x.o</code>、<code>y.o</code>或者<code>z.o</code>发生了更新，<code>$?</code>的含义则是将更新过后的目标文件插入到库<code>libxyz</code>中。</p>
+<ul>
+<li><code>$+</code>和<code>$^</code>类似，表示所有依赖文件的集合（重复的依赖文件不剔除），主要用于链接过程的使用</li>
+<li><code>$*</code>表示在模式匹配和静态模式规则中，代表目标模式中%的部分。比如<code>hello.c</code>，当匹配模式为<code>%.c</code>时，<code>$*</code>表示的是<code>hello</code></li>
+</ul>
+<h2 id="4-Makefile条件判断"><a href="#4-Makefile条件判断" class="headerlink" title="4. Makefile条件判断"></a>4. <code>Makefile</code>条件判断</h2><p><code>Makefile</code>里有两种条件判断的使用方法： <code>ifeq</code>和<code>ifdef</code>。接下来我们就用例子加以说明。</p>
+<h3 id="4-1-ifeq"><a href="#4-1-ifeq" class="headerlink" title="4.1 ifeq"></a>4.1 <code>ifeq</code></h3><p><code>ifeq</code> 和<code>ifneq</code>用于比较<code>Makefile</code>中变量是否相等。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DEBUG = true</span><br><span class="line"></span><br><span class="line"><span class="keyword">ifeq</span> (<span class="variable">$(DEBUG)</span>, true)</span><br><span class="line">		CFLAGS = -g</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">		CFLAGS = -O2</span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">		gcc <span class="variable">$(CFLAGS)</span> main.c -o my_program</span><br></pre></td></tr></table></figure>
+<p>在上述例子中，变量<code>DEBUG</code>的值与<code>true</code>比较，如果相等，则<code>CFLAGS</code>被设置成<code>-g</code>，为调试选项；如果不等，则<code>CFLAGS</code>被设置成<code>-O2</code>，为优化选项。</p>
+<h3 id="4-2-ifdef"><a href="#4-2-ifdef" class="headerlink" title="4.2 ifdef"></a>4.2 <code>ifdef</code></h3><p><code>ifdef</code>和<code>ifndef</code>用于判断变量是否被定义。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ifdef</span> VERBOSE</span><br><span class="line">		PRINT = echo</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">		PRINT = @echo</span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">		<span class="variable">$(PRINT)</span> <span class="string">"Building my_program..."</span></span><br><span class="line">		gcc main.c -o my_program</span><br></pre></td></tr></table></figure>
+<p>上述例子中，检查<code>VERBOSE</code>是否被定义（非空），如果已被定义，则<code>PRINT</code>设为<code>echo</code>，<code>makefile</code>运行时打印出<code>Building my_program...</code>。若未定义，则<code>PRINT</code>设为<code>@echo</code>，只展示编译的命令。</p>
+<h2 id="5-Makefile函数"><a href="#5-Makefile函数" class="headerlink" title="5. Makefile函数"></a>5. <code>Makefile</code>函数</h2><p><code>Makefile</code>中函数的基本调用语法如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">(<span class="keyword">function</span> arguments)</span></span><br></pre></td></tr></table></figure>
+<p>或者是：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">&#123;<span class="keyword">function</span> arguments&#125;</span></span><br></pre></td></tr></table></figure>
+<p><code>arguments</code>为函数的参数，参数间以逗号分隔，函数名和参数之间以空格分隔。接下来我们来具体看看<code>Makefile</code>里的函数。</p>
+<h3 id="5-1-字符串处理函数"><a href="#5-1-字符串处理函数" class="headerlink" title="5.1 字符串处理函数"></a>5.1 字符串处理函数</h3><h4 id="subst字符串替换函数"><a href="#subst字符串替换函数" class="headerlink" title="subst字符串替换函数"></a><code>subst</code>字符串替换函数</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">subst</span> &lt;from&gt;,&lt;to&gt;,&lt;text&gt;)</span></span><br></pre></td></tr></table></figure>
+<p>把字符串<code>text</code>中的<code>from</code>全部替换成<code>to</code>。</p>
+<p>示例：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">subst</span> ee,EE,feet on the street)</span></span><br></pre></td></tr></table></figure>
+<p>上述返回结果为<code>fEEt on the strEEt</code>。</p>
+<h4 id="patsubst模式字符串替换函数"><a href="#patsubst模式字符串替换函数" class="headerlink" title="patsubst模式字符串替换函数"></a><code>patsubst</code>模式字符串替换函数</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">patsubst</span> &lt;pattern&gt;,&lt;replacement&gt;,&lt;text&gt;)</span></span><br></pre></td></tr></table></figure>
+<p>查找<code>text</code>中的单词（单词以空格、Tab、回车或换行分隔）是否符合模式<code>pattern</code>，如果匹配的话，则用<code>replacement</code>替换。</p>
+<p>示例：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">patsubst</span> %.c,%.o,x.c.c y.c)</span></span><br></pre></td></tr></table></figure>
+<p>上述返回结果为<code>x.c.o y.o</code>。</p>
+<h4 id="strip去空格函数"><a href="#strip去空格函数" class="headerlink" title="strip去空格函数"></a><code>strip</code>去空格函数</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">strip</span> &lt;string&gt;)</span></span><br></pre></td></tr></table></figure>
+<p>去除<code>string</code>字符串中开头和结尾的空字符。</p>
+<h4 id="findstring查找字符串函数"><a href="#findstring查找字符串函数" class="headerlink" title="findstring查找字符串函数"></a><code>findstring</code>查找字符串函数</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">findstring</span> &lt;find&gt;,&lt;in&gt;)</span></span><br></pre></td></tr></table></figure>
+<p>在字符串<code>in</code>中查找<code>find</code>字符串，如果找到，则返回<code>find</code>。否则返回空字符串。</p>
+<p>示例：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">findstring</span> a,a b c)</span></span><br><span class="line"><span class="variable">$(<span class="built_in">findstring</span> a,b c)</span></span><br></pre></td></tr></table></figure>
+<p>第一个函数返回结果<code>a</code>，第二个函数返回空字符串。</p>
+<h4 id="filter过滤函数"><a href="#filter过滤函数" class="headerlink" title="filter过滤函数"></a><code>filter</code>过滤函数</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">filter</span> &lt;pattern&gt;,&lt;text&gt;)</span></span><br></pre></td></tr></table></figure>
+<p>以<code>pattern</code>模式过滤<code>text</code>字符串中的单词，保留符合模式<code>pattern</code>的单词。匹配的模式可以有多个。</p>
+<p>示例：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sources := foo.c bar.c baz.s ugh.h</span><br><span class="line"><span class="section">foo: <span class="variable">$(sources)</span></span></span><br><span class="line">		cc <span class="variable">$(<span class="built_in">filter</span> %.c %.s, <span class="variable">$(sources)</span>)</span> -o foo</span><br></pre></td></tr></table></figure>
+<p>上述<code>$(filter %.c %.s, $(sources))</code>返回的值是<code>foo.c bar.c baz.s</code>。</p>
+<h4 id="filter-out反过滤函数"><a href="#filter-out反过滤函数" class="headerlink" title="filter-out反过滤函数"></a><code>filter-out</code>反过滤函数</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">filter</span>-out &lt;pattern&gt;,&lt;text&gt;)</span></span><br></pre></td></tr></table></figure>
+<p>同<code>filter</code>函数的含义相反，以<code>pattern</code>模式过滤<code>text</code>字符串中的单词，去除符合模式<code>pattern</code>的单词。</p>
+<h4 id="word取单词函数"><a href="#word取单词函数" class="headerlink" title="word取单词函数"></a><code>word</code>取单词函数</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">word</span> &lt;n&gt;,&lt;text&gt;)</span></span><br></pre></td></tr></table></figure>
+<p>取字符串<code>text</code>中的第<code>n</code>的单词（从1开始索引）。</p>
+<p>示例：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">word</span> 2, foo bar baz)</span></span><br></pre></td></tr></table></figure>
+<p>上述返回值是<code>bar</code>。</p>
+<h4 id="wordlist取单词串函数"><a href="#wordlist取单词串函数" class="headerlink" title="wordlist取单词串函数"></a><code>wordlist</code>取单词串函数</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">wordlist</span> &lt;start&gt;,&lt;end&gt;,&lt;text&gt;)</span></span><br></pre></td></tr></table></figure>
+<p>从字符串<code>text</code>中取<code>start</code>到<code>end</code>的字符串。</p>
+<p>示例：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">wordlist</span> 2,3,foo bar baz)</span></span><br></pre></td></tr></table></figure>
+<p>上述返回值是<code>bar baz</code>。</p>
+<h4 id="words单词个数统计函数"><a href="#words单词个数统计函数" class="headerlink" title="words单词个数统计函数"></a><code>words</code>单词个数统计函数</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(words &lt;text&gt;)</span></span><br></pre></td></tr></table></figure>
+<p>统计字符串中<code>text</code>的单词个数。</p>
+<p>示例：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">word</span> $(words, foo bar baz)</span>, foo bar baz)</span><br></pre></td></tr></table></figure>
+<p>上述返回值是<code>baz</code>。</p>
+<h3 id="5-2-文件名操作函数"><a href="#5-2-文件名操作函数" class="headerlink" title="5.2 文件名操作函数"></a>5.2 文件名操作函数</h3><h4 id="dir取目录函数"><a href="#dir取目录函数" class="headerlink" title="dir取目录函数"></a><code>dir</code>取目录函数</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">dir</span> &lt;names...&gt;)</span></span><br></pre></td></tr></table></figure>
+<p>从文件名<code>names</code>取出目录部分。目录部分指最后一个反斜杠之前的部分。若无反斜杠，则返回<code>./</code>。</p>
+<p>示例：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">dir</span> src/foo.c main)</span></span><br></pre></td></tr></table></figure>
+<p>上述返回值是<code>src/ ./</code>。</p>
+<h4 id="notdir取文件函数"><a href="#notdir取文件函数" class="headerlink" title="notdir取文件函数"></a><code>notdir</code>取文件函数</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">notdir</span> &lt;names...&gt;)</span></span><br></pre></td></tr></table></figure>
+<p>从文件名<code>names</code>取出非目录部分。</p>
+<p>示例：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">notdir</span> src/foo.c main)</span></span><br></pre></td></tr></table></figure>
+<p>上述返回值是<code>foo.c main</code>。</p>
+<h4 id="suffix取后缀函数"><a href="#suffix取后缀函数" class="headerlink" title="suffix取后缀函数"></a><code>suffix</code>取后缀函数</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">suffix</span> &lt;names...&gt;)</span></span><br></pre></td></tr></table></figure>
+<p>从文件名<code>names</code>取出各个文件名的后缀。返回文件名<code>names</code>的后缀。若无后缀，则返回空字符串。</p>
+<p>示例：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">suffix</span> src/foo.c src-1.0/bar.c hacks)</span></span><br></pre></td></tr></table></figure>
+<p>上述返回值<code>.c .c</code>。</p>
+<h4 id="basename取前缀函数"><a href="#basename取前缀函数" class="headerlink" title="basename取前缀函数"></a><code>basename</code>取前缀函数</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">basename</span> &lt;names...&gt;)</span></span><br></pre></td></tr></table></figure>
+<p><code>suffix</code>函数的对立函数，从文件<code>names</code>取出每个文件名的前缀。</p>
+<p>示例：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">basename</span> src/foo.c src-1.0/bar.c hacks)</span></span><br></pre></td></tr></table></figure>
+<p>上述返回值是<code>src/foo src-1.0/bar hacks</code>。</p>
+<h4 id="addsuffix加后缀函数"><a href="#addsuffix加后缀函数" class="headerlink" title="addsuffix加后缀函数"></a><code>addsuffix</code>加后缀函数</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">addsuffix</span> &lt;<span class="built_in">suffix</span>&gt;,&lt;names...&gt;)</span></span><br></pre></td></tr></table></figure>
+<p>把<code>suffix</code>添加到<code>names</code>的每个单词后。</p>
+<p>示例：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">addsuffix</span> .c, foo bar)</span></span><br></pre></td></tr></table></figure>
+<p>上述返回值是<code>foo.c bar.c</code>。</p>
+<h4 id="addprefix加前缀函数"><a href="#addprefix加前缀函数" class="headerlink" title="addprefix加前缀函数"></a><code>addprefix</code>加前缀函数</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">addprefix</span> &lt;prefix&gt;,&lt;names...&gt;)</span></span><br></pre></td></tr></table></figure>
+<p>把<code>prefix</code>添加到<code>names</code>的每个单词之前。</p>
+<p>示例：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">addprefix</span> src, foo.c bar.c)</span></span><br></pre></td></tr></table></figure>
+<p>上述返回值是<code>src/foo.c src/bar.c</code>。</p>
+<h3 id="5-3-foreach函数"><a href="#5-3-foreach函数" class="headerlink" title="5.3 foreach函数"></a>5.3 <code>foreach</code>函数</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">foreach</span> &lt;var&gt;,&lt;list&gt;,&lt;text&gt;)</span></span><br></pre></td></tr></table></figure>
+<p><code>foreach</code>函数的含义是，把参数<code>list</code>中的单词逐一取出放到参数<code>var</code>所指定的变量中，然后再执行<code>text</code>所包含的表达式。每一次执行<code>text</code>都会返回一个字符串，最终的返回值就是每次字符串的组合。</p>
+<p>示例：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">names := a b c d</span><br><span class="line">files := <span class="variable">$(<span class="built_in">foreach</span> n, <span class="variable">$(names)</span>,<span class="variable">$(n)</span>.o)</span></span><br></pre></td></tr></table></figure>
+<p>上述返回值是<code>a.o b.o c.o d.o</code>。</p>
+<p>需要注意的一点是，<code>foreach</code>函数中的<code>var</code>参数是一个临时的局部变量，作用域只在<code>foreach</code>函数中。</p>
+<h3 id="5-4-if函数"><a href="#5-4-if函数" class="headerlink" title="5.4 if函数"></a>5.4 <code>if</code>函数</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">if</span> &lt;condition&gt;,&lt;then-part&gt;)</span></span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">if</span> &lt;condition&gt;,&lt;then-part&gt;,&lt;else-part&gt;)</span></span><br></pre></td></tr></table></figure>
+<p>使用含义直接明了，不再赘述。</p>
+<h3 id="5-5-call函数"><a href="#5-5-call函数" class="headerlink" title="5.5 call函数"></a>5.5 <code>call</code>函数</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">call</span> &lt;expression&gt;,&lt;parm1&gt;,&lt;parm2&gt;,...,&lt;parmN&gt;)</span></span><br></pre></td></tr></table></figure>
+<p><code>call</code>函数执行时，<code>expression</code>参数中的变量，<code>$(1)</code>、<code>$(2)</code>等，会被<code>parm1</code>、<code>parm2</code>等取代。<code>expression</code>的返回值就是<code>call</code>的返回值。</p>
+<p><code>call</code>函数使用中需要注意的一点是，传递参数时不要有多余的空格。</p>
+<h3 id="5-6-shell函数"><a href="#5-6-shell函数" class="headerlink" title="5.6 shell函数"></a>5.6 <code>shell</code>函数</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">shell</span> &lt;command&gt;)</span></span><br></pre></td></tr></table></figure>
+<p><code>shell</code>命令能够把执行操作系统命令后的输出作为函数返回。</p>
+<h3 id="5-7-origin函数"><a href="#5-7-origin函数" class="headerlink" title="5.7 origin函数"></a>5.7 <code>origin</code>函数</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(<span class="built_in">origin</span> &lt;variable&gt;)</span></span><br></pre></td></tr></table></figure>
+<p><code>orign</code>函数用作判断变量的来源。这里不作细究，需要时查文档。</p>
+<h3 id="5-8-eval函数"><a href="#5-8-eval函数" class="headerlink" title="5.8 eval函数"></a>5.8 <code>eval</code>函数</h3><p><code>eval</code>函数执行时会对参数进行两次展开。第一次展开过程是由函数本身完成的，第二次是函数展开过后的结果会被认为是<code>Makefile</code>的内容由<code>make</code>执行。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>了解<code>Makefile</code>的基本语法规则和工作流程，熟悉<code>makefile</code>的自动变量，静态模式等技巧，会使用基本的条件判断语句和<code>Makefile</code>中相应的函数，我觉得对<code>Makefile</code>的掌握也就可以算是入了门。</p>
 
       
 
@@ -213,15 +386,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">raw_input()</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">input()</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
         		</li>
       		
 		</ul>
@@ -234,6 +399,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="/categories/技术日志//" class="article-tag-list-link color5">技术日志</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术日志/C-C//" class="article-tag-list-link color1">C/C++</a>
         		</li>
       		
 		</ul>
@@ -288,7 +457,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://Snowball-Wang.github.io/2018/01/17/Python中raw-input-和input-的区别/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://Snowball-Wang.github.io/2023/08/28/Makefile简明笔记/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -302,18 +471,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/01/25/Python列表推导式/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Python列表推导式
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/01/13/循序渐进学Vim/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">循序渐进学Vim</div>
+    <a href="/2023/03/13/糊涂脸水聪明枕/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">糊涂脸水聪明枕</div>
       <i class="icon-circle-right"></i>
     </a>
   
