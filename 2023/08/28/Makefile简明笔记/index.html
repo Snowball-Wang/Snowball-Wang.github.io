@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="司诺宝的博客">
 <meta property="og:description" content="0. 前言一直想写一篇关于VPP构建系统的博客，但VPP的构建系统里包含着一个顶级目录下的Makefile，一个在build-root下由数据驱动的Makefile，以及一系列子目录下的Makefile。理解VPP的构建系统就要求对Makefile掌握熟练。本文就是自己在使用Makefile过程中的相关知识点的回顾和总结。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2023-08-28T14:55:44.254Z">
+<meta property="og:updated_time" content="2023-08-28T14:59:07.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Makefile简明笔记">
 <meta name="twitter:description" content="0. 前言一直想写一篇关于VPP构建系统的博客，但VPP的构建系统里包含着一个顶级目录下的Makefile，一个在build-root下由数据驱动的Makefile，以及一系列子目录下的Makefile。理解VPP的构建系统就要求对Makefile掌握熟练。本文就是自己在使用Makefile过程中的相关知识点的回顾和总结。">
@@ -218,7 +218,7 @@
 <p><code>make</code>执行时带入参数<code>-n</code>或者<code>--just-print</code>，只会显示命令，不会执行命令，可帮助调试<code>Makefile</code>，了解对应<code>Makefile</code>执行的具体步骤和内容。</p>
 <p><code>make</code>执行时带入参数<code>-s</code>或者<code>--silent</code>或者<code>--quiet</code>，则在执行时不会显示执行的命令。</p>
 <h3 id="2-2-命令执行"><a href="#2-2-命令执行" class="headerlink" title="2.2 命令执行"></a>2.2 命令执行</h3><p>当在执行<code>Makefile</code>中的命令去更新目标文件时，执行命令的过程中，<code>shell</code>会为每一行命令创建一个子进程，在子进程中执行对应的命令。这就意味着一些如<code>cd</code>等<code>shell</code>命令的作用域只在当前行，不会影响到接下来命令的执行结果。如果想要<code>cd</code>的结果作用于接下来的命令，则需把两条命令写在同一行，中间用<code>;</code>隔开。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Makefile1</span></span><br><span class="line">foo:</span><br><span class="line">	<span class="built_in">cd</span> ~</span><br><span class="line">	<span class="built_in">pwd</span></span><br><span class="line"><span class="comment"># This will output the directory where your Makefile is</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Makefile2</span></span><br><span class="line">foo:</span><br><span class="line">	<span class="built_in">cd</span> ~; <span class="built_in">pwd</span></span><br><span class="line"><span class="comment"># This will output the home directory specified by $HOME</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Makefile1</span></span><br><span class="line">foo:</span><br><span class="line">    <span class="built_in">cd</span> ~</span><br><span class="line">    <span class="built_in">pwd</span></span><br><span class="line"><span class="comment"># This will output the directory where your Makefile is</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Makefile2</span></span><br><span class="line">foo:</span><br><span class="line">    <span class="built_in">cd</span> ~; <span class="built_in">pwd</span></span><br><span class="line"><span class="comment"># This will output the home directory specified by $HOME</span></span><br></pre></td></tr></table></figure>
 <h3 id="2-3-并行执行"><a href="#2-3-并行执行" class="headerlink" title="2.3 并行执行"></a>2.3 并行执行</h3><p>GNU<code>make</code>可一次执行多条命令。通常情况下，<code>make</code>一次只执行一条命令，下一条命令需等待当前命令结束再执行。但是我们可以通过设置<code>-j</code>或者<code>--jobs</code>选项来显示地通知<code>make</code>并行执行命令，并行执行命令的数量即是<code>-j</code>或<code>--jobs</code>后接的数字。</p>
 <h3 id="2-4-错误处理"><a href="#2-4-错误处理" class="headerlink" title="2.4 错误处理"></a>2.4 错误处理</h3><p><code>make</code>会检查每行命令执行过后的退出码。如果其中一条命令的退出码有问题，<code>make</code>则不会继续执行那条命令对应接下来的命令，甚至可能直接退出执行。</p>
 <p>当然有时候一些命令执行错误也无伤大雅，比如用<code>mkdir</code>创建一个已经存在的目录，<code>make</code>执行就会报错。解决这种问题可以在命令前添加<code>-</code>，如下例所示。即使<code>rm</code>无法删除文件，<code>make</code>也会继续执行。</p>
@@ -274,7 +274,7 @@
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DEBUG = true</span><br><span class="line"></span><br><span class="line"><span class="keyword">ifeq</span> (<span class="variable">$(DEBUG)</span>, true)</span><br><span class="line">    CFLAGS = -g</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    CFLAGS = -O2</span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">    gcc <span class="variable">$(CFLAGS)</span> main.c -o my_program</span><br></pre></td></tr></table></figure>
 <p>在上述例子中，变量<code>DEBUG</code>的值与<code>true</code>比较，如果相等，则<code>CFLAGS</code>被设置成<code>-g</code>，为调试选项；如果不等，则<code>CFLAGS</code>被设置成<code>-O2</code>，为优化选项。</p>
 <h3 id="4-2-ifdef"><a href="#4-2-ifdef" class="headerlink" title="4.2 ifdef"></a>4.2 <code>ifdef</code></h3><p><code>ifdef</code>和<code>ifndef</code>用于判断变量是否被定义。</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ifdef</span> VERBOSE</span><br><span class="line">		PRINT = echo</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">		PRINT = @echo</span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">	<span class="variable">$(PRINT)</span> <span class="string">"Building my_program..."</span></span><br><span class="line">	gcc main.c -o my_program</span><br></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ifdef</span> VERBOSE</span><br><span class="line">	PRINT = echo</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	PRINT = @echo</span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">	<span class="variable">$(PRINT)</span> <span class="string">"Building my_program..."</span></span><br><span class="line">	gcc main.c -o my_program</span><br></pre></td></tr></table></figure>
 <p>上述例子中，检查<code>VERBOSE</code>是否被定义（非空），如果已被定义，则<code>PRINT</code>设为<code>echo</code>，<code>makefile</code>运行时打印出<code>Building my_program...</code>。若未定义，则<code>PRINT</code>设为<code>@echo</code>，只展示编译的命令。</p>
 <h2 id="5-Makefile函数"><a href="#5-Makefile函数" class="headerlink" title="5. Makefile函数"></a>5. <code>Makefile</code>函数</h2><p><code>Makefile</code>中函数的基本调用语法如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">(<span class="keyword">function</span> arguments)</span></span><br></pre></td></tr></table></figure>
@@ -728,19 +728,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">朝话</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">梁漱溟</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Shell编程</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">VPP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">朝话</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">梁漱溟</a>
               </li>
             
             <div class="clearfix"></div>
